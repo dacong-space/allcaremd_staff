@@ -1160,29 +1160,32 @@ function Home() {
                       transform: 'translateZ(0)',
                       willChange: 'transform, box-shadow, border-color',
                       '&:hover': {
-                        transform: 'translateY(-8px) scale(1.02)',
+                        transform: 'translateY(-6px) rotateX(2deg)',
                         background: 'linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%)',
                         boxShadow: `
-                          0 20px 40px rgba(0,0,0,0.12),
-                          0 8px 16px rgba(0,0,0,0.08),
+                          0 16px 32px rgba(0,0,0,0.1),
+                          0 6px 16px rgba(0,0,0,0.06),
                           inset 0 1px 0 rgba(255,255,255,0.9),
-                          0 0 0 1px rgba(25, 118, 210, 0.15)
+                          0 0 0 1px rgba(25, 118, 210, 0.2)
                         `,
-                        border: '1px solid rgba(25, 118, 210, 0.25)',
+                        border: '1px solid rgba(25, 118, 210, 0.3)',
                         '& .timeline-year': {
-                          transform: 'scale(1.05)',
-                          color: 'primary.main',
+                          color: 'primary.dark',
+                          textShadow: '0 2px 4px rgba(25, 118, 210, 0.2)',
                         },
                         '& .timeline-title': {
-                          transform: 'translateX(4px)',
                           color: 'text.primary',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.1)',
                         },
                         '& .timeline-description': {
-                          transform: 'translateX(2px)',
                           color: 'text.secondary',
                         },
                         '& .timeline-glow': {
-                          opacity: 0.6,
+                          opacity: 0.8,
+                        },
+                        '&::before': {
+                          transform: 'scaleX(1.1)',
+                          background: 'linear-gradient(90deg, rgba(25, 118, 210, 1) 0%, rgba(25, 118, 210, 0.8) 100%)',
                         }
                       },
                       '&::before': {
@@ -1194,6 +1197,9 @@ function Home() {
                         height: 3,
                         background: 'linear-gradient(90deg, rgba(25, 118, 210, 0.8) 0%, rgba(25, 118, 210, 0.6) 100%)',
                         borderRadius: '3px 3px 0 0',
+                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        transform: 'scaleX(1)',
+                        transformOrigin: 'left center',
                       },
                       '&::after': {
                         content: '""',
@@ -1235,7 +1241,6 @@ function Home() {
                         zIndex: 1,
                         fontWeight: 700,
                         transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: 'translateZ(0)',
                       }}
                     >
                       {milestone.year}
@@ -1249,7 +1254,6 @@ function Home() {
                         zIndex: 1,
                         fontWeight: 600,
                         transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: 'translateZ(0)',
                       }}
                     >
                       {milestone.title}
@@ -1263,7 +1267,6 @@ function Home() {
                         zIndex: 1,
                         lineHeight: 1.6,
                         transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: 'translateZ(0)',
                       }}
                     >
                       {milestone.description}
