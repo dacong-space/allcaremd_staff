@@ -362,7 +362,7 @@ function Home() {
                   alignItems: 'center',
                   position: 'relative',
                   height: { xs: 400, md: 500 }, // 增大尺寸
-                  px: { xs: 8, md: 10 }, // 增加左右间距为箭头留出空间
+                  px: { xs: 6, md: 7 }, // 减少左右间距，让箭头更靠近图片
                 }}
               >
                 {/* 左箭头 - 外部 */}
@@ -370,18 +370,18 @@ function Home() {
                   onClick={prevImage}
                   sx={{
                     position: 'absolute',
-                    left: { xs: 0, md: 0 },
+                    left: { xs: -2, md: -4 }, // 更靠近图片边界
                     top: '50%',
                     transform: 'translateY(-50%)',
                     zIndex: 3,
-                    width: 44,
-                    height: 44,
+                    width: 36, // 缩小尺寸
+                    height: 36,
                     background: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(20px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     borderRadius: '50%',
-                    boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
                     color: '#FF8C00', // 橙色箭头
                     opacity: 1, // 一直显示
                     transition: 'all 0.2s ease-out',
@@ -394,7 +394,7 @@ function Home() {
                     }
                   }}
                 >
-                  <ArrowBackIcon sx={{ fontSize: 20 }} />
+                  <ArrowBackIcon sx={{ fontSize: 18 }} />
                 </IconButton>
 
                 {/* 右箭头 - 外部 */}
@@ -402,18 +402,18 @@ function Home() {
                   onClick={nextImage}
                   sx={{
                     position: 'absolute',
-                    right: { xs: 0, md: 0 },
+                    right: { xs: -2, md: -4 }, // 更靠近图片边界
                     top: '50%',
                     transform: 'translateY(-50%)',
                     zIndex: 3,
-                    width: 44,
-                    height: 44,
+                    width: 36, // 缩小尺寸
+                    height: 36,
                     background: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(20px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     borderRadius: '50%',
-                    boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
                     color: '#FF8C00', // 橙色箭头
                     opacity: 1, // 一直显示
                     transition: 'all 0.2s ease-out',
@@ -426,7 +426,7 @@ function Home() {
                     }
                   }}
                 >
-                  <ArrowForwardIcon sx={{ fontSize: 20 }} />
+                  <ArrowForwardIcon sx={{ fontSize: 18 }} />
                 </IconButton>
 
                 {/* 图片容器 */}
