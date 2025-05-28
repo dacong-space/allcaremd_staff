@@ -493,140 +493,116 @@ function Home() {
             专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
           </Typography>
 
-          {/* Carousel Container with Glassmorphism Effects */}
+          {/* Carousel Container with Soft Fade Effects */}
           <Box sx={{ position: 'relative', px: 6 }}>
-            {/* Left Glassmorphism Overlay */}
+            {/* Left Soft Fade Overlay */}
             <Box
               sx={{
                 position: 'absolute',
                 left: 0,
                 top: 0,
                 bottom: 0,
-                width: 120,
-                background: 'linear-gradient(to right, rgba(248,249,250,0.95) 0%, rgba(248,249,250,0.7) 40%, rgba(248,249,250,0.3) 70%, rgba(248,249,250,0) 100%)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
+                width: 100,
+                background: 'linear-gradient(to right, #f8f9fa 0%, rgba(248,249,250,0.9) 30%, rgba(248,249,250,0.6) 60%, rgba(248,249,250,0.2) 80%, transparent 100%)',
                 zIndex: 2,
                 pointerEvents: 'none',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%)',
-                  borderRadius: '0 20px 20px 0',
-                }
               }}
             />
 
-            {/* Right Glassmorphism Overlay */}
+            {/* Right Soft Fade Overlay */}
             <Box
               sx={{
                 position: 'absolute',
                 right: 0,
                 top: 0,
                 bottom: 0,
-                width: 120,
-                background: 'linear-gradient(to left, rgba(248,249,250,0.95) 0%, rgba(248,249,250,0.7) 40%, rgba(248,249,250,0.3) 70%, rgba(248,249,250,0) 100%)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
+                width: 100,
+                background: 'linear-gradient(to left, #f8f9fa 0%, rgba(248,249,250,0.9) 30%, rgba(248,249,250,0.6) 60%, rgba(248,249,250,0.2) 80%, transparent 100%)',
                 zIndex: 2,
                 pointerEvents: 'none',
-                '&::before': {
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'linear-gradient(to left, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%)',
-                  borderRadius: '20px 0 0 20px',
-                }
               }}
             />
 
-            {/* Left Glassmorphism Arrow */}
+            {/* Left Arrow with Soft Glass Effect */}
             <IconButton
               onClick={scrollLeft}
               sx={{
                 position: 'absolute',
-                left: 20,
+                left: 15,
                 top: '50%',
                 transform: 'translateY(-50%)',
                 zIndex: 3,
-                width: 56,
-                height: 56,
-                background: 'rgba(255, 255, 255, 0.25)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '16px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-                color: 'rgba(0, 0, 0, 0.7)',
+                width: 52,
+                height: 52,
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
+                backdropFilter: 'blur(8px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+                border: '1px solid rgba(255,255,255,0.5)',
+                borderRadius: '50%',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)',
+                color: 'rgba(0,0,0,0.65)',
                 '&:hover': {
-                  background: 'rgba(255, 255, 255, 0.35)',
-                  transform: 'translateY(-50%) scale(1.05)',
-                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-                  color: 'rgba(0, 0, 0, 0.8)',
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
+                  transform: 'translateY(-50%) scale(1.08)',
+                  boxShadow: '0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.15)',
+                  color: 'rgba(0,0,0,0.8)',
                   '& .arrow-icon': {
-                    transform: 'translateX(-2px)',
+                    transform: 'translateX(-1px)',
                   }
                 },
                 '&:active': {
-                  transform: 'translateY(-50%) scale(0.95)',
+                  transform: 'translateY(-50%) scale(1.02)',
                 },
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
               }}
             >
               <ArrowBackIcon
                 className="arrow-icon"
                 sx={{
-                  fontSize: 24,
-                  transition: 'transform 0.3s ease-in-out'
+                  fontSize: 22,
+                  transition: 'transform 0.25s ease-out'
                 }}
               />
             </IconButton>
 
-            {/* Right Glassmorphism Arrow */}
+            {/* Right Arrow with Soft Glass Effect */}
             <IconButton
               onClick={scrollRight}
               sx={{
                 position: 'absolute',
-                right: 20,
+                right: 15,
                 top: '50%',
                 transform: 'translateY(-50%)',
                 zIndex: 3,
-                width: 56,
-                height: 56,
-                background: 'rgba(255, 255, 255, 0.25)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255, 255, 255, 0.3)',
-                borderRadius: '16px',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
-                color: 'rgba(0, 0, 0, 0.7)',
+                width: 52,
+                height: 52,
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
+                backdropFilter: 'blur(8px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+                border: '1px solid rgba(255,255,255,0.5)',
+                borderRadius: '50%',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)',
+                color: 'rgba(0,0,0,0.65)',
                 '&:hover': {
-                  background: 'rgba(255, 255, 255, 0.35)',
-                  transform: 'translateY(-50%) scale(1.05)',
-                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-                  color: 'rgba(0, 0, 0, 0.8)',
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
+                  transform: 'translateY(-50%) scale(1.08)',
+                  boxShadow: '0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.15)',
+                  color: 'rgba(0,0,0,0.8)',
                   '& .arrow-icon': {
-                    transform: 'translateX(2px)',
+                    transform: 'translateX(1px)',
                   }
                 },
                 '&:active': {
-                  transform: 'translateY(-50%) scale(0.95)',
+                  transform: 'translateY(-50%) scale(1.02)',
                 },
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
               }}
             >
               <ArrowForwardIcon
                 className="arrow-icon"
                 sx={{
-                  fontSize: 24,
-                  transition: 'transform 0.3s ease-in-out'
+                  fontSize: 22,
+                  transition: 'transform 0.25s ease-out'
                 }}
               />
             </IconButton>
@@ -658,29 +634,29 @@ function Home() {
                     p: 3,
                     position: 'relative',
                     overflow: 'hidden',
-                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     cursor: 'pointer',
-                    borderRadius: 3,
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    WebkitBackdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    borderRadius: 4,
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
+                    backdropFilter: 'blur(6px) saturate(120%)',
+                    WebkitBackdropFilter: 'blur(6px) saturate(120%)',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    boxShadow: '0 4px 24px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.04)',
                     '&:hover': {
-                      transform: 'translateY(-12px) scale(1.03)',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      backdropFilter: 'blur(15px)',
-                      WebkitBackdropFilter: 'blur(15px)',
-                      boxShadow: `0 20px 40px rgba(0,0,0,0.15), 0 0 0 1px ${item.color}30`,
-                      border: `1px solid ${item.color}40`,
+                      transform: 'translateY(-8px) scale(1.02)',
+                      background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
+                      backdropFilter: 'blur(8px) saturate(140%)',
+                      WebkitBackdropFilter: 'blur(8px) saturate(140%)',
+                      boxShadow: `0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px ${item.color}20`,
+                      border: `1px solid ${item.color}30`,
                       '& .card-icon': {
-                        transform: 'scale(1.1) rotate(5deg)',
+                        transform: 'scale(1.08) rotate(3deg)',
                       },
                       '& .card-badge': {
-                        transform: 'scale(1.05)',
+                        transform: 'scale(1.03)',
                       },
-                      '& .glassmorphism-overlay': {
-                        opacity: 1,
+                      '& .soft-glow': {
+                        opacity: 0.6,
                       }
                     },
                     '&::before': {
@@ -689,9 +665,9 @@ function Home() {
                       top: 0,
                       left: 0,
                       right: 0,
-                      height: 4,
-                      background: `linear-gradient(90deg, ${item.color}, ${item.color}aa)`,
-                      borderRadius: '3px 3px 0 0',
+                      height: 3,
+                      background: `linear-gradient(90deg, ${item.color}80, ${item.color}60)`,
+                      borderRadius: '4px 4px 0 0',
                     },
                     '&::after': {
                       content: '""',
@@ -700,28 +676,26 @@ function Home() {
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      background: `linear-gradient(135deg, ${item.color}08, transparent 50%)`,
+                      background: `radial-gradient(circle at 50% 0%, ${item.color}06, transparent 60%)`,
                       pointerEvents: 'none',
-                      borderRadius: 3,
+                      borderRadius: 4,
                     }
                   }}
                 >
-                  {/* Glassmorphism Overlay for Hover Effect */}
+                  {/* Soft Glow Effect */}
                   <Box
-                    className="glassmorphism-overlay"
+                    className="soft-glow"
                     sx={{
                       position: 'absolute',
                       top: 0,
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
-                      backdropFilter: 'blur(5px)',
-                      WebkitBackdropFilter: 'blur(5px)',
+                      background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%)`,
                       opacity: 0,
-                      transition: 'opacity 0.4s ease-in-out',
+                      transition: 'opacity 0.3s ease-in-out',
                       pointerEvents: 'none',
-                      borderRadius: 3,
+                      borderRadius: 4,
                     }}
                   />
 
@@ -732,19 +706,19 @@ function Home() {
                       top: 16,
                       right: 16,
                       background: item.category === 'service'
-                        ? 'rgba(76, 175, 80, 0.9)'
-                        : 'rgba(33, 150, 243, 0.9)',
-                      backdropFilter: 'blur(10px)',
-                      WebkitBackdropFilter: 'blur(10px)',
+                        ? 'linear-gradient(135deg, rgba(76, 175, 80, 0.85) 0%, rgba(76, 175, 80, 0.75) 100%)'
+                        : 'linear-gradient(135deg, rgba(33, 150, 243, 0.85) 0%, rgba(33, 150, 243, 0.75) 100%)',
+                      backdropFilter: 'blur(4px) saturate(150%)',
+                      WebkitBackdropFilter: 'blur(4px) saturate(150%)',
                       color: 'white',
                       px: 1.5,
                       py: 0.5,
-                      borderRadius: 2,
+                      borderRadius: 3,
                       fontSize: '0.75rem',
                       fontWeight: 600,
-                      border: '1px solid rgba(255, 255, 255, 0.2)',
-                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
-                      transition: 'all 0.3s ease-in-out',
+                      border: '1px solid rgba(255, 255, 255, 0.25)',
+                      boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
+                      transition: 'all 0.25s ease-out',
                     }}
                   >
                     {item.category === 'service' ? '护理服务' : '培训特色'}
@@ -757,13 +731,14 @@ function Home() {
                       mx: 'auto',
                       mb: 3,
                       mt: 2,
-                      background: `rgba(255, 255, 255, 0.8)`,
-                      backdropFilter: 'blur(10px)',
-                      WebkitBackdropFilter: 'blur(10px)',
+                      background: `linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)`,
+                      backdropFilter: 'blur(4px) saturate(130%)',
+                      WebkitBackdropFilter: 'blur(4px) saturate(130%)',
                       color: item.color,
-                      border: `2px solid rgba(255, 255, 255, 0.3)`,
-                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: `0 8px 24px ${item.color}20, inset 0 1px 0 rgba(255, 255, 255, 0.3)`,
+                      border: `1px solid rgba(255, 255, 255, 0.4)`,
+                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      boxShadow: `0 6px 20px ${item.color}15, 0 2px 8px rgba(0,0,0,0.04)`,
+                      position: 'relative',
                       '&::before': {
                         content: '""',
                         position: 'absolute',
@@ -771,7 +746,7 @@ function Home() {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: `linear-gradient(135deg, ${item.color}10, transparent 50%)`,
+                        background: `radial-gradient(circle at 30% 30%, ${item.color}08, transparent 70%)`,
                         borderRadius: '50%',
                       }
                     }}
