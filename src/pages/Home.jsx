@@ -493,84 +493,142 @@ function Home() {
             专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
           </Typography>
 
-          {/* Carousel Container with Fade Effects */}
+          {/* Carousel Container with Glassmorphism Effects */}
           <Box sx={{ position: 'relative', px: 6 }}>
-            {/* Left Fade Overlay */}
+            {/* Left Glassmorphism Overlay */}
             <Box
               sx={{
                 position: 'absolute',
                 left: 0,
                 top: 0,
                 bottom: 0,
-                width: 80,
-                background: 'linear-gradient(to right, rgba(248,249,250,1) 0%, rgba(248,249,250,0.8) 50%, rgba(248,249,250,0) 100%)',
+                width: 120,
+                background: 'linear-gradient(to right, rgba(248,249,250,0.95) 0%, rgba(248,249,250,0.7) 40%, rgba(248,249,250,0.3) 70%, rgba(248,249,250,0) 100%)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 zIndex: 2,
                 pointerEvents: 'none',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%)',
+                  borderRadius: '0 20px 20px 0',
+                }
               }}
             />
 
-            {/* Right Fade Overlay */}
+            {/* Right Glassmorphism Overlay */}
             <Box
               sx={{
                 position: 'absolute',
                 right: 0,
                 top: 0,
                 bottom: 0,
-                width: 80,
-                background: 'linear-gradient(to left, rgba(248,249,250,1) 0%, rgba(248,249,250,0.8) 50%, rgba(248,249,250,0) 100%)',
+                width: 120,
+                background: 'linear-gradient(to left, rgba(248,249,250,0.95) 0%, rgba(248,249,250,0.7) 40%, rgba(248,249,250,0.3) 70%, rgba(248,249,250,0) 100%)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
                 zIndex: 2,
                 pointerEvents: 'none',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(to left, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%)',
+                  borderRadius: '20px 0 0 20px',
+                }
               }}
             />
 
-            {/* Left Arrow */}
+            {/* Left Glassmorphism Arrow */}
             <IconButton
               onClick={scrollLeft}
               sx={{
                 position: 'absolute',
-                left: 10,
+                left: 20,
                 top: '50%',
                 transform: 'translateY(-50%)',
                 zIndex: 3,
-                bgcolor: 'white',
-                boxShadow: theme.shadows[4],
-                width: 48,
-                height: 48,
+                width: 56,
+                height: 56,
+                background: 'rgba(255, 255, 255, 0.25)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '16px',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                color: 'rgba(0, 0, 0, 0.7)',
                 '&:hover': {
-                  bgcolor: 'primary.main',
-                  color: 'white',
-                  transform: 'translateY(-50%) scale(1.1)',
-                  boxShadow: theme.shadows[8],
+                  background: 'rgba(255, 255, 255, 0.35)',
+                  transform: 'translateY(-50%) scale(1.05)',
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                  color: 'rgba(0, 0, 0, 0.8)',
+                  '& .arrow-icon': {
+                    transform: 'translateX(-2px)',
+                  }
                 },
-                transition: 'all 0.3s ease-in-out',
+                '&:active': {
+                  transform: 'translateY(-50%) scale(0.95)',
+                },
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               }}
             >
-              <ArrowBackIcon />
+              <ArrowBackIcon
+                className="arrow-icon"
+                sx={{
+                  fontSize: 24,
+                  transition: 'transform 0.3s ease-in-out'
+                }}
+              />
             </IconButton>
 
-            {/* Right Arrow */}
+            {/* Right Glassmorphism Arrow */}
             <IconButton
               onClick={scrollRight}
               sx={{
                 position: 'absolute',
-                right: 10,
+                right: 20,
                 top: '50%',
                 transform: 'translateY(-50%)',
                 zIndex: 3,
-                bgcolor: 'white',
-                boxShadow: theme.shadows[4],
-                width: 48,
-                height: 48,
+                width: 56,
+                height: 56,
+                background: 'rgba(255, 255, 255, 0.25)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                borderRadius: '16px',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2)',
+                color: 'rgba(0, 0, 0, 0.7)',
                 '&:hover': {
-                  bgcolor: 'primary.main',
-                  color: 'white',
-                  transform: 'translateY(-50%) scale(1.1)',
-                  boxShadow: theme.shadows[8],
+                  background: 'rgba(255, 255, 255, 0.35)',
+                  transform: 'translateY(-50%) scale(1.05)',
+                  boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                  color: 'rgba(0, 0, 0, 0.8)',
+                  '& .arrow-icon': {
+                    transform: 'translateX(2px)',
+                  }
                 },
-                transition: 'all 0.3s ease-in-out',
+                '&:active': {
+                  transform: 'translateY(-50%) scale(0.95)',
+                },
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               }}
             >
-              <ArrowForwardIcon />
+              <ArrowForwardIcon
+                className="arrow-icon"
+                sx={{
+                  fontSize: 24,
+                  transition: 'transform 0.3s ease-in-out'
+                }}
+              />
             </IconButton>
 
             {/* Scrollable Cards Container */}
@@ -603,18 +661,26 @@ function Home() {
                     transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                     cursor: 'pointer',
                     borderRadius: 3,
-                    background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
-                    border: '1px solid',
-                    borderColor: 'grey.200',
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                     '&:hover': {
                       transform: 'translateY(-12px) scale(1.03)',
-                      boxShadow: `0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px ${item.color}20`,
-                      borderColor: item.color,
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      backdropFilter: 'blur(15px)',
+                      WebkitBackdropFilter: 'blur(15px)',
+                      boxShadow: `0 20px 40px rgba(0,0,0,0.15), 0 0 0 1px ${item.color}30`,
+                      border: `1px solid ${item.color}40`,
                       '& .card-icon': {
                         transform: 'scale(1.1) rotate(5deg)',
                       },
                       '& .card-badge': {
                         transform: 'scale(1.05)',
+                      },
+                      '& .glassmorphism-overlay': {
+                        opacity: 1,
                       }
                     },
                     '&::before': {
@@ -625,6 +691,7 @@ function Home() {
                       right: 0,
                       height: 4,
                       background: `linear-gradient(90deg, ${item.color}, ${item.color}aa)`,
+                      borderRadius: '3px 3px 0 0',
                     },
                     '&::after': {
                       content: '""',
@@ -633,26 +700,51 @@ function Home() {
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      background: `linear-gradient(135deg, ${item.color}05, transparent 50%)`,
+                      background: `linear-gradient(135deg, ${item.color}08, transparent 50%)`,
                       pointerEvents: 'none',
+                      borderRadius: 3,
                     }
                   }}
                 >
+                  {/* Glassmorphism Overlay for Hover Effect */}
+                  <Box
+                    className="glassmorphism-overlay"
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)`,
+                      backdropFilter: 'blur(5px)',
+                      WebkitBackdropFilter: 'blur(5px)',
+                      opacity: 0,
+                      transition: 'opacity 0.4s ease-in-out',
+                      pointerEvents: 'none',
+                      borderRadius: 3,
+                    }}
+                  />
+
                   <Box
                     className="card-badge"
                     sx={{
                       position: 'absolute',
                       top: 16,
                       right: 16,
-                      bgcolor: item.category === 'service' ? 'success.main' : 'info.main',
+                      background: item.category === 'service'
+                        ? 'rgba(76, 175, 80, 0.9)'
+                        : 'rgba(33, 150, 243, 0.9)',
+                      backdropFilter: 'blur(10px)',
+                      WebkitBackdropFilter: 'blur(10px)',
                       color: 'white',
                       px: 1.5,
                       py: 0.5,
                       borderRadius: 2,
                       fontSize: '0.75rem',
                       fontWeight: 600,
-                      boxShadow: theme.shadows[2],
-                      transition: 'transform 0.3s ease-in-out',
+                      border: '1px solid rgba(255, 255, 255, 0.2)',
+                      boxShadow: '0 4px 16px rgba(0, 0, 0, 0.1)',
+                      transition: 'all 0.3s ease-in-out',
                     }}
                   >
                     {item.category === 'service' ? '护理服务' : '培训特色'}
@@ -665,11 +757,23 @@ function Home() {
                       mx: 'auto',
                       mb: 3,
                       mt: 2,
-                      background: `linear-gradient(135deg, ${item.color}15, ${item.color}25)`,
+                      background: `rgba(255, 255, 255, 0.8)`,
+                      backdropFilter: 'blur(10px)',
+                      WebkitBackdropFilter: 'blur(10px)',
                       color: item.color,
-                      border: `2px solid ${item.color}20`,
+                      border: `2px solid rgba(255, 255, 255, 0.3)`,
                       transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                      boxShadow: `0 8px 24px ${item.color}20`,
+                      boxShadow: `0 8px 24px ${item.color}20, inset 0 1px 0 rgba(255, 255, 255, 0.3)`,
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: `linear-gradient(135deg, ${item.color}10, transparent 50%)`,
+                        borderRadius: '50%',
+                      }
                     }}
                   >
                     {item.icon}
