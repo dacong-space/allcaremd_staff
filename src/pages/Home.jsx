@@ -539,7 +539,7 @@ function Home() {
 
       {/* About Allcare Section */}
       <Box sx={{
-        background: 'linear-gradient(135deg, rgba(248, 165, 194, 0.08) 0%, rgba(184, 230, 184, 0.08) 50%, rgba(200, 162, 200, 0.08) 100%)',
+        bgcolor: '#f5f5f5',
         py: 8
       }}>
         <Container maxWidth="lg">
