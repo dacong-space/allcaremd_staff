@@ -703,30 +703,7 @@ function Home() {
                     }}
                   />
 
-                  <Box
-                    className="card-badge"
-                    sx={{
-                      position: 'absolute',
-                      top: 16,
-                      right: 16,
-                      background: item.category === 'service'
-                        ? 'linear-gradient(135deg, rgba(76, 175, 80, 0.85) 0%, rgba(76, 175, 80, 0.75) 100%)'
-                        : 'linear-gradient(135deg, rgba(33, 150, 243, 0.85) 0%, rgba(33, 150, 243, 0.75) 100%)',
-                      backdropFilter: 'blur(4px) saturate(150%)',
-                      WebkitBackdropFilter: 'blur(4px) saturate(150%)',
-                      color: 'white',
-                      px: 1.5,
-                      py: 0.5,
-                      borderRadius: 3,
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      border: '1px solid rgba(255, 255, 255, 0.25)',
-                      boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
-                      transition: 'all 0.25s ease-out',
-                    }}
-                  >
-                    {item.category === 'service' ? '护理服务' : '培训特色'}
-                  </Box>
+
                   <Avatar
                     className="card-icon"
                     sx={{
