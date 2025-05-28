@@ -296,38 +296,7 @@ function Home() {
               >
                 Allcare 将使您的培训体验现代化和专业化，同时为您节省宝贵的时间。
               </Typography>
-              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 4 }}>
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={() => navigate('/training/elderly-manual')}
-                  sx={{
-                    px: 4,
-                    py: 1.5,
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    borderRadius: 2,
-                    textTransform: 'none',
-                  }}
-                >
-                  查看客户手册
-                </Button>
-                <Button
-                  variant="outlined"
-                  size="large"
-                  onClick={() => navigate('/training')}
-                  sx={{
-                    px: 4,
-                    py: 1.5,
-                    fontSize: '1rem',
-                    fontWeight: 600,
-                    borderRadius: 2,
-                    textTransform: 'none',
-                  }}
-                >
-                  开始培训
-                </Button>
-              </Stack>
+
             </Grid>
             <Grid item xs={12} md={6}>
               <Box
