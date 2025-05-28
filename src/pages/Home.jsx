@@ -91,13 +91,6 @@ const services = [
   },
 ]
 
-const stats = [
-  { number: '100%', label: 'CPR认证', icon: <SecurityIcon /> },
-  { number: '24/7', label: '护理支持', icon: <SupportIcon /> },
-  { number: 'RN', label: '护士监督', icon: <CheckIcon /> },
-  { number: '专业', label: 'PCA培训', icon: <SchoolIcon /> },
-]
-
 // 核心价值观数据
 const values = [
   {
@@ -460,32 +453,6 @@ function Home() {
       </Box>
 
       <Container maxWidth="lg" sx={{ py: 8 }}>
-        {/* Stats Section */}
-        <Grid container spacing={4} sx={{ mb: 8 }}>
-          {stats.map((stat, index) => (
-            <Grid item xs={6} md={3} key={index}>
-              <Card sx={{ textAlign: 'center', p: 3, height: '100%' }}>
-                <Avatar
-                  sx={{
-                    width: 60,
-                    height: 60,
-                    mx: 'auto',
-                    mb: 2,
-                    background: `linear-gradient(135deg, ${features[index]?.color || '#6366f1'} 0%, ${features[index]?.color || '#8b5cf6'} 100%)`,
-                  }}
-                >
-                  {stat.icon}
-                </Avatar>
-                <Typography variant="h3" component="div" gutterBottom>
-                  {stat.number}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {stat.label}
-                </Typography>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
 
         {/* Platform Features Section */}
         <Box sx={{ mb: 8, textAlign: 'center' }}>
