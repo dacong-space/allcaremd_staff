@@ -6,12 +6,7 @@ import {
   Grid,
   Link,
   Divider,
-  Chip,
 } from '@mui/material'
-import {
-  Phone as PhoneIcon,
-  Email as EmailIcon,
-} from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 
 function Footer() {
@@ -265,68 +260,6 @@ function Footer() {
             </Box>
           </Grid>
         </Grid>
-
-        <Divider sx={{ my: 4, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
-
-        {/* Contact Section */}
-        <Box sx={{ textAlign: 'center', mb: 4 }}>
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{
-              fontWeight: 600,
-              color: 'white',
-              mb: 2,
-            }}
-          >
-            需要帮助？
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              mb: 4,
-            }}
-          >
-            联系我们获取培训支持或技术帮助
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Chip
-              icon={<PhoneIcon />}
-              label="电话: (240) 668-4666"
-              sx={{
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                color: 'white',
-                fontSize: '1rem',
-                py: 2,
-                px: 3,
-                '&:hover': {
-                  bgcolor: 'rgba(255, 255, 255, 0.2)',
-                },
-                '& .MuiChip-icon': {
-                  color: 'white',
-                },
-              }}
-            />
-            <Chip
-              icon={<EmailIcon />}
-              label="邮箱: allcaremd@outlook.com"
-              sx={{
-                bgcolor: 'rgba(255, 255, 255, 0.1)',
-                color: 'white',
-                fontSize: '1rem',
-                py: 2,
-                px: 3,
-                '&:hover': {
-                  bgcolor: 'rgba(255, 255, 255, 0.2)',
-                },
-                '& .MuiChip-icon': {
-                  color: 'white',
-                },
-              }}
-            />
-          </Box>
-        </Box>
 
         <Divider sx={{ my: 4, borderColor: 'rgba(255, 255, 255, 0.2)' }} />
 
