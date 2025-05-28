@@ -39,6 +39,7 @@ const navigationItems = [
     label: '培训',
     type: 'dropdown',
     items: [
+      { label: '培训总览', path: '/training' },
       { label: '老人文件', path: '/training/elderly-manual' },
       { label: 'PCA培训', path: '/training/pca' },
       { label: 'CPR培训', path: '/training/cpr' },
