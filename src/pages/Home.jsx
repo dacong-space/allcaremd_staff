@@ -906,42 +906,41 @@ function Home() {
                       position: 'relative',
                       height: '100%',
                       cursor: 'pointer',
-                      transition: 'transform 0.2s ease-out',
+                      transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       '&:hover': {
-                        transform: 'translateY(-8px) scale(1.02)',
+                        transform: 'translateY(-6px)',
                         '& .value-card': {
-                          background: 'linear-gradient(145deg, #ffffff 0%, #f1f3f4 100%)',
+                          background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
                           boxShadow: `
-                            0 16px 48px rgba(0,0,0,0.12),
-                            0 8px 24px rgba(0,0,0,0.08),
-                            inset 0 2px 0 rgba(255,255,255,0.95),
-                            inset 0 -2px 0 rgba(0,0,0,0.03),
-                            0 0 0 1px ${value.color}20
+                            0 20px 40px rgba(0,0,0,0.08),
+                            0 8px 16px rgba(0,0,0,0.04),
+                            inset 0 1px 0 rgba(255,255,255,0.9),
+                            0 0 0 1px ${value.color}15
                           `,
-                          border: `2px solid ${value.color}50`,
-                          transition: 'all 0.2s ease-out',
+                          border: `2px solid ${value.color}40`,
+                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                           '&::before': {
-                            boxShadow: `0 4px 12px ${value.color}60`,
+                            boxShadow: `0 4px 12px ${value.color}50`,
                           }
                         },
                         '& .value-icon': {
-                          transform: 'scale(1.08) translateY(-2px)',
+                          transform: 'scale(1.05) translateY(-1px)',
                           boxShadow: `
-                            0 8px 24px ${value.color}25,
-                            0 4px 12px rgba(0,0,0,0.08),
-                            inset 0 2px 0 rgba(255,255,255,0.3)
+                            0 8px 20px ${value.color}20,
+                            0 4px 8px rgba(0,0,0,0.06),
+                            inset 0 1px 0 rgba(255,255,255,0.3)
                           `,
-                          transition: 'all 0.2s ease-out',
+                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         },
                         '& .value-number': {
-                          opacity: 0.7,
-                          transform: 'scale(1.05)',
-                          transition: 'all 0.2s ease-out',
+                          opacity: 0.6,
+                          transform: 'scale(1.02)',
+                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         },
                         '& .floating-elements': {
-                          opacity: 0.6,
-                          transform: 'scale(1.2)',
-                          transition: 'all 0.2s ease-out',
+                          opacity: 0.4,
+                          transform: 'scale(1.1)',
+                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         }
                       }
                     }}
@@ -955,10 +954,10 @@ function Home() {
                         right: -10,
                         width: 40,
                         height: 40,
-                        background: `radial-gradient(circle, ${value.color}25, transparent 70%)`,
+                        background: `radial-gradient(circle, ${value.color}20, transparent 70%)`,
                         borderRadius: '50%',
                         opacity: 0,
-                        transition: 'opacity 0.2s ease-out',
+                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         zIndex: 0,
                       }}
                     />
@@ -980,8 +979,9 @@ function Home() {
                           inset 0 1px 0 rgba(255,255,255,0.9),
                           inset 0 -1px 0 rgba(0,0,0,0.02)
                         `,
-                        transition: 'all 0.2s ease-out',
+                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                         transform: 'translateZ(0)',
+                        willChange: 'transform, box-shadow, border-color',
                         '&::before': {
                           content: '""',
                           position: 'absolute',
@@ -1018,7 +1018,7 @@ function Home() {
                           color: `${value.color}30`,
                           opacity: 0,
                           transform: 'scale(0.9)',
-                          transition: 'all 0.2s ease-out',
+                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                           zIndex: 0,
                         }}
                       >
@@ -1042,11 +1042,12 @@ function Home() {
                             inset 0 2px 0 rgba(255,255,255,0.4),
                             inset 0 -2px 0 rgba(0,0,0,0.05)
                           `,
-                          transition: 'all 0.2s ease-out',
+                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                           position: 'relative',
                           zIndex: 1,
                           color: value.color,
                           transform: 'translateZ(0)',
+                          willChange: 'transform, box-shadow',
                           '&::before': {
                             content: '""',
                             position: 'absolute',
