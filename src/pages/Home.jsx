@@ -40,6 +40,13 @@ import {
 } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 
+// 图片配置 - 方便快速更换
+const HERO_IMAGE = {
+  src: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+  alt: "Allcare Health Care 专业护理服务展示",
+  fallback: "/api/placeholder/600/400"
+};
+
 // 合并护理服务和培训平台特色
 const servicesAndFeatures = [
   {
@@ -306,68 +313,29 @@ function Home() {
                   alignItems: 'center',
                   position: 'relative',
                   height: { xs: 300, md: 400 },
+                  px: 2,
                 }}
               >
-                {/* 模拟多个页面卡片的效果 */}
                 <Box
+                  component="img"
+                  src={HERO_IMAGE.src}
+                  alt={HERO_IMAGE.alt}
+                  onError={(e) => {
+                    e.target.src = HERO_IMAGE.fallback;
+                  }}
                   sx={{
-                    position: 'relative',
                     width: '100%',
                     height: '100%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    objectFit: 'cover',
+                    borderRadius: 3,
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.08)',
+                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    '&:hover': {
+                      transform: 'translateY(-4px) scale(1.02)',
+                      boxShadow: '0 32px 64px rgba(0,0,0,0.15), 0 16px 32px rgba(0,0,0,0.12)',
+                    }
                   }}
-                >
-                  {/* 背景卡片 */}
-                  {[1, 2, 3, 4, 5].map((index) => (
-                    <Paper
-                      key={index}
-                      elevation={3}
-                      sx={{
-                        position: 'absolute',
-                        width: { xs: 200, md: 250 },
-                        height: { xs: 140, md: 180 },
-                        borderRadius: 2,
-                        bgcolor: 'white',
-                        transform: `rotate(${(index - 3) * 8}deg) translateX(${(index - 3) * 20}px) translateY(${(index - 3) * 10}px)`,
-                        zIndex: 6 - index,
-                        opacity: index === 3 ? 1 : 0.7,
-                        border: '1px solid',
-                        borderColor: 'grey.200',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        p: 2,
-                      }}
-                    >
-                      {index === 3 && (
-                        <>
-                          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                            <Avatar
-                              sx={{
-                                width: 32,
-                                height: 32,
-                                bgcolor: 'primary.main',
-                                mr: 1,
-                              }}
-                            >
-                              <FavoriteIcon sx={{ fontSize: 20 }} />
-                            </Avatar>
-                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                              Allcare
-                            </Typography>
-                          </Box>
-                          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                            Health Care, LLC
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary">
-                            马里兰州专业居家护理服务
-                          </Typography>
-                        </>
-                      )}
-                    </Paper>
-                  ))}
-                </Box>
+                />
               </Box>
             </Grid>
           </Grid>
