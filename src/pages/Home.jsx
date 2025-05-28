@@ -375,10 +375,6 @@ function Home() {
                     '&:hover': {
                       transform: 'translateY(-6px) scale(1.02)',
                       boxShadow: '0 32px 64px rgba(0,0,0,0.16), 0 16px 32px rgba(0,0,0,0.12)',
-                      '& .image-nav-btn': {
-                        opacity: 1,
-                        transform: 'translateY(-50%) scale(1)',
-                      }
                     }
                   }}
                 >
@@ -400,66 +396,70 @@ function Home() {
 
                   {/* 左箭头 */}
                   <IconButton
-                    className="image-nav-btn"
                     onClick={prevImage}
                     sx={{
                       position: 'absolute',
-                      left: 16,
+                      left: 20,
                       top: '50%',
-                      transform: 'translateY(-50%) scale(0.9)',
-                      zIndex: 2,
-                      width: 48,
-                      height: 48,
-                      background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
-                      backdropFilter: 'blur(12px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-                      border: '1px solid rgba(255,255,255,0.6)',
+                      transform: 'translateY(-50%)',
+                      zIndex: 3,
+                      width: 56,
+                      height: 56,
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      backdropFilter: 'blur(20px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                      border: '1px solid rgba(255, 255, 255, 0.8)',
                       borderRadius: '50%',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
-                      color: 'rgba(0,0,0,0.7)',
-                      opacity: 0,
-                      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)',
+                      color: '#FF8C00', // 橙色箭头
+                      opacity: 1, // 一直显示
+                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       '&:hover': {
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
+                        background: 'rgba(255, 255, 255, 1)',
                         transform: 'translateY(-50%) scale(1.1)',
-                        boxShadow: '0 12px 32px rgba(0,0,0,0.16), 0 6px 12px rgba(0,0,0,0.12)',
-                        color: 'rgba(0,0,0,0.85)',
+                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.16), 0 6px 20px rgba(0, 0, 0, 0.12)',
+                        color: '#FF6B00',
+                      },
+                      '&:active': {
+                        transform: 'translateY(-50%) scale(0.95)',
                       }
                     }}
                   >
-                    <ArrowBackIcon sx={{ fontSize: 20 }} />
+                    <ArrowBackIcon sx={{ fontSize: 24, fontWeight: 'bold' }} />
                   </IconButton>
 
                   {/* 右箭头 */}
                   <IconButton
-                    className="image-nav-btn"
                     onClick={nextImage}
                     sx={{
                       position: 'absolute',
-                      right: 16,
+                      right: 20,
                       top: '50%',
-                      transform: 'translateY(-50%) scale(0.9)',
-                      zIndex: 2,
-                      width: 48,
-                      height: 48,
-                      background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
-                      backdropFilter: 'blur(12px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(12px) saturate(180%)',
-                      border: '1px solid rgba(255,255,255,0.6)',
+                      transform: 'translateY(-50%)',
+                      zIndex: 3,
+                      width: 56,
+                      height: 56,
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      backdropFilter: 'blur(20px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                      border: '1px solid rgba(255, 255, 255, 0.8)',
                       borderRadius: '50%',
-                      boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
-                      color: 'rgba(0,0,0,0.7)',
-                      opacity: 0,
-                      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)',
+                      color: '#FF8C00', // 橙色箭头
+                      opacity: 1, // 一直显示
+                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       '&:hover': {
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
+                        background: 'rgba(255, 255, 255, 1)',
                         transform: 'translateY(-50%) scale(1.1)',
-                        boxShadow: '0 12px 32px rgba(0,0,0,0.16), 0 6px 12px rgba(0,0,0,0.12)',
-                        color: 'rgba(0,0,0,0.85)',
+                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.16), 0 6px 20px rgba(0, 0, 0, 0.12)',
+                        color: '#FF6B00',
+                      },
+                      '&:active': {
+                        transform: 'translateY(-50%) scale(0.95)',
                       }
                     }}
                   >
-                    <ArrowForwardIcon sx={{ fontSize: 20 }} />
+                    <ArrowForwardIcon sx={{ fontSize: 24, fontWeight: 'bold' }} />
                   </IconButton>
 
                   {/* 图片标题覆盖层 */}
