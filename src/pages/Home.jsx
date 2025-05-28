@@ -362,9 +362,73 @@ function Home() {
                   alignItems: 'center',
                   position: 'relative',
                   height: { xs: 400, md: 500 }, // 增大尺寸
-                  px: 2,
+                  px: { xs: 8, md: 10 }, // 增加左右间距为箭头留出空间
                 }}
               >
+                {/* 左箭头 - 外部 */}
+                <IconButton
+                  onClick={prevImage}
+                  sx={{
+                    position: 'absolute',
+                    left: { xs: 0, md: 0 },
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 3,
+                    width: 44,
+                    height: 44,
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(20px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                    border: '1px solid rgba(255, 255, 255, 0.8)',
+                    borderRadius: '50%',
+                    boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
+                    color: '#FF8C00', // 橙色箭头
+                    opacity: 1, // 一直显示
+                    transition: 'all 0.2s ease-out',
+                    '&:hover': {
+                      background: 'rgba(255, 255, 255, 1)',
+                      color: '#FF6B00',
+                    },
+                    '&:active': {
+                      transform: 'translateY(-50%) scale(0.95)',
+                    }
+                  }}
+                >
+                  <ArrowBackIcon sx={{ fontSize: 20 }} />
+                </IconButton>
+
+                {/* 右箭头 - 外部 */}
+                <IconButton
+                  onClick={nextImage}
+                  sx={{
+                    position: 'absolute',
+                    right: { xs: 0, md: 0 },
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    zIndex: 3,
+                    width: 44,
+                    height: 44,
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    backdropFilter: 'blur(20px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                    border: '1px solid rgba(255, 255, 255, 0.8)',
+                    borderRadius: '50%',
+                    boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
+                    color: '#FF8C00', // 橙色箭头
+                    opacity: 1, // 一直显示
+                    transition: 'all 0.2s ease-out',
+                    '&:hover': {
+                      background: 'rgba(255, 255, 255, 1)',
+                      color: '#FF6B00',
+                    },
+                    '&:active': {
+                      transform: 'translateY(-50%) scale(0.95)',
+                    }
+                  }}
+                >
+                  <ArrowForwardIcon sx={{ fontSize: 20 }} />
+                </IconButton>
+
                 {/* 图片容器 */}
                 <Box
                   onMouseEnter={() => setIsImageHovered(true)}
@@ -410,70 +474,6 @@ function Home() {
                       />
                     ))}
                   </Box>
-
-                  {/* 左箭头 */}
-                  <IconButton
-                    onClick={prevImage}
-                    sx={{
-                      position: 'absolute',
-                      left: 16,
-                      top: '50%',
-                      transform: 'translateY(-50%)',
-                      zIndex: 3,
-                      width: 44,
-                      height: 44,
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      backdropFilter: 'blur(20px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                      border: '1px solid rgba(255, 255, 255, 0.8)',
-                      borderRadius: '50%',
-                      boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
-                      color: '#FF8C00', // 橙色箭头
-                      opacity: 1, // 一直显示
-                      transition: 'all 0.2s ease-out',
-                      '&:hover': {
-                        background: 'rgba(255, 255, 255, 1)',
-                        color: '#FF6B00',
-                      },
-                      '&:active': {
-                        transform: 'translateY(-50%) scale(0.95)',
-                      }
-                    }}
-                  >
-                    <ArrowBackIcon sx={{ fontSize: 20 }} />
-                  </IconButton>
-
-                  {/* 右箭头 */}
-                  <IconButton
-                    onClick={nextImage}
-                    sx={{
-                      position: 'absolute',
-                      right: 16,
-                      top: '50%',
-                      transform: 'translateY(-50%)',
-                      zIndex: 3,
-                      width: 44,
-                      height: 44,
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      backdropFilter: 'blur(20px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                      border: '1px solid rgba(255, 255, 255, 0.8)',
-                      borderRadius: '50%',
-                      boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
-                      color: '#FF8C00', // 橙色箭头
-                      opacity: 1, // 一直显示
-                      transition: 'all 0.2s ease-out',
-                      '&:hover': {
-                        background: 'rgba(255, 255, 255, 1)',
-                        color: '#FF6B00',
-                      },
-                      '&:active': {
-                        transform: 'translateY(-50%) scale(0.95)',
-                      }
-                    }}
-                  >
-                    <ArrowForwardIcon sx={{ fontSize: 20 }} />
-                  </IconButton>
 
                   {/* 图片标题覆盖层 */}
                   <Box
