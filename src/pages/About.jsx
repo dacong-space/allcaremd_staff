@@ -27,10 +27,6 @@ import {
   School as SchoolIcon,
   Star as StarIcon,
   CheckCircle as CheckIcon,
-  Phone as PhoneIcon,
-  Email as EmailIcon,
-  LocationOn as LocationIcon,
-  Schedule as ScheduleIcon,
 } from '@mui/icons-material'
 
 const teamMembers = [
@@ -116,28 +112,7 @@ const values = [
   },
 ]
 
-const contactInfo = [
-  {
-    icon: <PhoneIcon />,
-    title: '联系电话',
-    content: '+1 (240) 668-4666',
-  },
-  {
-    icon: <EmailIcon />,
-    title: '邮箱地址',
-    content: 'allcaremd@outlook.com',
-  },
-  {
-    icon: <LocationIcon />,
-    title: '服务地址',
-    content: 'Harvest Glen Way, Germantown, MD 20874',
-  },
-  {
-    icon: <ScheduleIcon />,
-    title: '服务时间',
-    content: '24/7 护理支持服务',
-  },
-]
+
 
 function About() {
   return (
@@ -293,36 +268,7 @@ function About() {
         </Timeline>
       </Box>
 
-      {/* Contact Information */}
-      <Card sx={{ p: 6 }}>
-        <Typography variant="h3" textAlign="center" gutterBottom>
-          联系我们
-        </Typography>
-        <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
-          我们随时为您提供帮助和支持
-        </Typography>
-        <Grid container spacing={4}>
-          {contactInfo.map((info, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <Card sx={{ p: 3, height: '100%' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                  <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>
-                    {info.icon}
-                  </Avatar>
-                  <Box>
-                    <Typography variant="h6" gutterBottom>
-                      {info.title}
-                    </Typography>
-                    <Typography variant="body1" color="text.secondary">
-                      {info.content}
-                    </Typography>
-                  </Box>
-                </Box>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Card>
+
     </Container>
   )
 }
