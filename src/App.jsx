@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { Box, Container, Typography } from '@mui/material'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import About from './pages/About'
 import Training from './pages/Training'
@@ -47,6 +48,7 @@ function App() {
           <Route path="/others" element={<ComingSoon title="其他服务" />} />
         </Routes>
       </Box>
+      <Footer />
     </Box>
   )
 }
