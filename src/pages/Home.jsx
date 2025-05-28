@@ -10,6 +10,8 @@ import {
   Avatar,
   Stack,
   useTheme,
+  Chip,
+  Paper
 } from '@mui/material'
 import {
   School as SchoolIcon,
@@ -19,44 +21,77 @@ import {
   Security as SecurityIcon,
   Support as SupportIcon,
   CheckCircle as CheckIcon,
+  Favorite as FavoriteIcon,
+  Home as HomeIcon,
+  Phone as PhoneIcon,
+  Email as EmailIcon
 } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const features = [
   {
     icon: <ManualIcon sx={{ fontSize: 48 }} />,
-    title: '老人护理手册',
-    description: '详细的老人护理指南，包含日常护理、安全注意事项等重要内容',
+    title: '客户信息手册',
+    description: 'Allcare Health Care 完整的客户信息手册，包含权利法案、隐私政策等',
     color: '#377dff',
   },
   {
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
-    title: 'PCA培训',
-    description: '个人护理助理培训课程，掌握专业护理技能和操作规范',
+    title: 'PCA专业培训',
+    description: '个人护理助理培训课程，掌握ADLs协助、安全护理等专业技能',
     color: '#00c9a7',
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
-    title: 'CPR培训',
-    description: '心肺复苏术培训，学习紧急救护技能，确保工作安全',
+    title: 'CPR & 急救培训',
+    description: '心肺复苏术和急救培训，确保紧急情况下的专业应对能力',
     color: '#ffb946',
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
-    title: '在线支持',
-    description: '24/7在线培训支持，随时获取帮助和指导',
+    title: '护理监督支持',
+    description: '注册护士监督指导，确保护理质量和服务标准',
     color: '#de4437',
   },
 ]
 
+const services = [
+  {
+    icon: <HomeIcon sx={{ fontSize: 40 }} />,
+    title: '日常生活协助 (ADLs)',
+    description: '协助洗澡、穿衣、进食、移动等日常活动',
+    color: '#377dff',
+  },
+  {
+    icon: <FavoriteIcon sx={{ fontSize: 40 }} />,
+    title: '陪伴与情感支持',
+    description: '提供友好的陪伴和心理支持服务',
+    color: '#e91e63',
+  },
+  {
+    icon: <SecurityIcon sx={{ fontSize: 40 }} />,
+    title: '安全监督',
+    description: '确保客户在家中的安全和健康',
+    color: '#ff9800',
+  },
+  {
+    icon: <SupportIcon sx={{ fontSize: 40 }} />,
+    title: '专业护理监督',
+    description: '注册护士定期监督和评估护理质量',
+    color: '#4caf50',
+  },
+]
+
 const stats = [
-  { number: '100%', label: '员工覆盖', icon: <PeopleIcon /> },
-  { number: '24/7', label: '在线访问', icon: <SupportIcon /> },
-  { number: '实时', label: '内容更新', icon: <CheckIcon /> },
-  { number: '专业', label: '培训内容', icon: <SchoolIcon /> },
+  { number: '100%', label: 'CPR认证', icon: <SecurityIcon /> },
+  { number: '24/7', label: '护理支持', icon: <SupportIcon /> },
+  { number: 'RN', label: '护士监督', icon: <CheckIcon /> },
+  { number: '专业', label: 'PCA培训', icon: <SchoolIcon /> },
 ]
 
 function Home() {
   const theme = useTheme()
+  const navigate = useNavigate()
 
   return (
     <Box>
@@ -65,12 +100,23 @@ function Home() {
         sx={{
           pt: { xs: 8, md: 12 },
           pb: { xs: 8, md: 16 },
-          background: 'linear-gradient(180deg, #f8fafc 0%, #ffffff 100%)',
+          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+          color: 'white',
         }}
       >
         <Container maxWidth="lg">
           <Grid container spacing={6} alignItems="center">
             <Grid item xs={12} md={6}>
+              <Chip
+                label="All People. All Heart. Allcare."
+                sx={{
+                  bgcolor: 'rgba(255,255,255,0.2)',
+                  color: 'white',
+                  mb: 3,
+                  fontSize: '1rem',
+                  px: 2
+                }}
+              />
               <Typography
                 variant="h1"
                 component="h1"
@@ -79,46 +125,59 @@ function Home() {
                   fontSize: { xs: '2.5rem', md: '3.5rem' },
                   fontWeight: 700,
                   lineHeight: 1.2,
-                  color: 'text.primary',
+                  color: 'white',
                 }}
               >
-                RSA 员工培训平台
+                RSA 培训平台
               </Typography>
               <Typography
                 variant="h5"
                 sx={{
                   mb: 4,
-                  color: 'text.secondary',
+                  color: 'rgba(255,255,255,0.9)',
                   fontSize: { xs: '1.125rem', md: '1.25rem' },
                   lineHeight: 1.6,
                 }}
               >
-                为新员工提供全面的入职培训，包括老人护理手册、PCA培训、CPR培训等专业内容
+                为 Allcare Health Care 员工提供专业的培训资源、客户手册和文档管理系统
               </Typography>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 4 }}>
                 <Button
                   variant="contained"
                   size="large"
+                  onClick={() => navigate('/training/elderly-manual')}
                   sx={{
+                    bgcolor: 'white',
+                    color: theme.palette.primary.main,
                     px: 4,
                     py: 1.5,
                     fontSize: '1rem',
                     fontWeight: 600,
+                    '&:hover': {
+                      bgcolor: 'rgba(255,255,255,0.9)'
+                    }
                   }}
                 >
-                  开始培训
+                  查看客户手册
                 </Button>
                 <Button
                   variant="outlined"
                   size="large"
+                  onClick={() => navigate('/training')}
                   sx={{
+                    borderColor: 'white',
+                    color: 'white',
                     px: 4,
                     py: 1.5,
                     fontSize: '1rem',
                     fontWeight: 600,
+                    '&:hover': {
+                      borderColor: 'white',
+                      bgcolor: 'rgba(255,255,255,0.1)'
+                    }
                   }}
                 >
-                  查看手册
+                  开始培训
                 </Button>
               </Stack>
             </Grid>
@@ -135,35 +194,145 @@ function Home() {
                   sx={{
                     width: { xs: 300, md: 400 },
                     height: { xs: 300, md: 400 },
-                    background: 'linear-gradient(135deg, #377dff 0%, #00c9a7 100%)',
+                    background: 'rgba(255,255,255,0.1)',
                     borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     position: 'relative',
+                    backdropFilter: 'blur(10px)',
+                    border: '2px solid rgba(255,255,255,0.2)',
                     '&::before': {
                       content: '""',
                       position: 'absolute',
                       width: '120%',
                       height: '120%',
-                      background: 'linear-gradient(135deg, rgba(55, 125, 255, 0.1) 0%, rgba(0, 201, 167, 0.1) 100%)',
+                      background: 'rgba(255,255,255,0.05)',
                       borderRadius: '50%',
                       zIndex: -1,
                     },
                   }}
                 >
                   <Box textAlign="center" sx={{ color: 'white' }}>
-                    <BusinessIcon sx={{ fontSize: { xs: 60, md: 80 }, mb: 2 }} />
+                    <FavoriteIcon sx={{ fontSize: { xs: 60, md: 80 }, mb: 2 }} />
                     <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
-                      RSA
+                      Allcare
                     </Typography>
                     <Typography variant="h6">
-                      专业护理服务
+                      Health Care, LLC
+                    </Typography>
+                    <Typography variant="body2" sx={{ mt: 1, opacity: 0.8 }}>
+                      马里兰州居家护理服务
                     </Typography>
                   </Box>
                 </Box>
               </Box>
             </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* About Allcare Section */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Grid container spacing={6} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Typography
+              variant="h3"
+              component="h2"
+              gutterBottom
+              sx={{ fontWeight: 600, mb: 3 }}
+            >
+              关于 Allcare Health Care
+            </Typography>
+            <Typography variant="h6" color="primary" gutterBottom>
+              马里兰州值得信赖的居家护理服务提供商
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
+              在 Allcare Health Care，我们相信富有同情心的护理始于真诚的连接。我们自豪地为老年人、慢性疾病患者和残疾人士（包括儿童）提供服务，以尊严、尊重和真诚的奉献精神为他们服务。
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 4, lineHeight: 1.7 }}>
+              我们不仅仅是护理人员，我们是陪伴者、倡导者，是您日常生活中值得信赖的支持。我们的使命是将可靠、尊重和以心为中心的护理带到我们服务的每一个家庭。
+            </Typography>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={() => navigate('/about')}
+              sx={{ px: 4 }}
+            >
+              了解更多
+            </Button>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                bgcolor: theme.palette.primary.light,
+                borderRadius: 2,
+                p: 4,
+                textAlign: 'center'
+              }}
+            >
+              <Typography variant="h4" sx={{ fontWeight: 600, mb: 2, color: 'white' }}>
+                我们的服务理念
+              </Typography>
+              <Typography variant="h6" sx={{ color: 'white', opacity: 0.9 }}>
+                "以客户为中心，用心护理每一天"
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* Services Section */}
+      <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            gutterBottom
+            sx={{ mb: 6, fontWeight: 600 }}
+          >
+            我们的护理服务
+          </Typography>
+
+          <Grid container spacing={4}>
+            {services.map((service, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <Card
+                  sx={{
+                    height: '100%',
+                    textAlign: 'center',
+                    p: 3,
+                    transition: 'transform 0.3s ease-in-out',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: theme.shadows[8]
+                    }
+                  }}
+                >
+                  <CardContent>
+                    <Avatar
+                      sx={{
+                        width: 70,
+                        height: 70,
+                        mx: 'auto',
+                        mb: 2,
+                        bgcolor: `${service.color}20`,
+                        color: service.color,
+                      }}
+                    >
+                      {service.icon}
+                    </Avatar>
+                    <Typography variant="h6" component="h3" gutterBottom>
+                      {service.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {service.description}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Box>
@@ -196,13 +365,13 @@ function Home() {
           ))}
         </Grid>
 
-        {/* Features Section */}
+        {/* Platform Features Section */}
         <Box sx={{ mb: 8, textAlign: 'center' }}>
           <Typography variant="h2" component="h2" gutterBottom>
-            我们的优势
+            培训平台特色
           </Typography>
           <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', maxWidth: 600, mx: 'auto' }}>
-            为什么选择我们的培训服务？我们提供专业、全面、高质量的培训体验
+            为 Allcare Health Care 员工提供专业、全面、高质量的培训体验
           </Typography>
 
           <Grid container spacing={4}>
@@ -215,6 +384,11 @@ function Home() {
                     p: 3,
                     position: 'relative',
                     overflow: 'hidden',
+                    transition: 'transform 0.3s ease-in-out',
+                    '&:hover': {
+                      transform: 'translateY(-8px)',
+                      boxShadow: theme.shadows[8]
+                    },
                     '&::before': {
                       content: '""',
                       position: 'absolute',
@@ -250,106 +424,132 @@ function Home() {
           </Grid>
         </Box>
 
-        {/* Company Info Section */}
-        <Card sx={{ p: 6, mb: 8 }}>
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Typography variant="h3" gutterBottom>
-                关于我们
-              </Typography>
-              <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                我们是一家专注于提供高质量培训服务的专业机构，致力于为个人和企业提供专业的培训服务，
-                帮助提升技能水平和职业发展。
-              </Typography>
-              <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                通过系统化的课程设计和实践导向的教学方法，我们已经成功培训了众多学员，
-                涵盖PCA培训、CPR培训、技能认证、企业内训等多个领域。
-              </Typography>
-              <Box sx={{ mt: 4 }}>
-                <Button variant="contained" size="large" sx={{ mr: 2 }}>
-                  了解更多
-                </Button>
-                <Button variant="outlined" size="large">
-                  联系我们
-                </Button>
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box
+        {/* Quick Access Section */}
+        <Box sx={{ mb: 8 }}>
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            gutterBottom
+            sx={{ mb: 6, fontWeight: 600 }}
+          >
+            快速访问
+          </Typography>
+
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={4}>
+              <Paper
                 sx={{
-                  height: 300,
-                  background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f59e0b 100%)',
-                  borderRadius: 4,
+                  p: 4,
+                  textAlign: 'center',
+                  height: '100%',
                   display: 'flex',
-                  alignItems: 'center',
+                  flexDirection: 'column',
                   justifyContent: 'center',
-                  color: 'white',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s',
+                  '&:hover': { transform: 'translateY(-4px)' }
                 }}
+                onClick={() => navigate('/training')}
               >
-                <Box textAlign="center">
-                  <SchoolIcon sx={{ fontSize: 80, mb: 2 }} />
-                  <Typography variant="h4" gutterBottom>
-                    专业培训
-                  </Typography>
-                  <Typography variant="h6">
-                    成就每一个学员的梦想
-                  </Typography>
-                </Box>
-              </Box>
+                <Typography variant="h5" gutterBottom color="primary">
+                  PCA 培训
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                  个人护理助理专业培训课程
+                </Typography>
+                <Button variant="contained" size="large">
+                  开始培训
+                </Button>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={4}>
+              <Paper
+                sx={{
+                  p: 4,
+                  textAlign: 'center',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s',
+                  '&:hover': { transform: 'translateY(-4px)' }
+                }}
+                onClick={() => navigate('/training/elderly-manual')}
+              >
+                <Typography variant="h5" gutterBottom color="primary">
+                  客户手册
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                  完整的客户信息和护理指南
+                </Typography>
+                <Button variant="contained" size="large">
+                  查看手册
+                </Button>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={4}>
+              <Paper
+                sx={{
+                  p: 4,
+                  textAlign: 'center',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s',
+                  '&:hover': { transform: 'translateY(-4px)' }
+                }}
+                onClick={() => navigate('/files')}
+              >
+                <Typography variant="h5" gutterBottom color="primary">
+                  文档库
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                  查看和下载重要的工作文档
+                </Typography>
+                <Button variant="outlined" size="large">
+                  浏览文档
+                </Button>
+              </Paper>
             </Grid>
           </Grid>
-        </Card>
-
-        {/* CTA Section */}
-        <Card
-          sx={{
-            p: 6,
-            textAlign: 'center',
-            background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-            color: 'white',
-          }}
-        >
-          <Typography variant="h3" gutterBottom>
-            开始您的学习之旅
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-            立即联系我们，了解更多培训课程信息，开启职业发展新篇章
-          </Typography>
-          <Stack direction="row" spacing={3} justifyContent="center">
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                backgroundColor: 'white',
-                color: 'primary.main',
-                px: 4,
-                py: 2,
-                '&:hover': {
-                  backgroundColor: 'grey.100',
-                },
-              }}
-            >
-              立即报名
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              sx={{
-                borderColor: 'white',
-                color: 'white',
-                px: 4,
-                py: 2,
-                '&:hover': {
-                  borderColor: 'white',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                },
-              }}
-            >
-              咨询详情
-            </Button>
-          </Stack>
-        </Card>
+        </Box>
       </Container>
+
+      {/* Contact Section */}
+      <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
+        <Container maxWidth="lg">
+          <Box textAlign="center">
+            <Typography variant="h4" gutterBottom sx={{ fontWeight: 600 }}>
+              需要帮助？
+            </Typography>
+            <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
+              联系我们获取培训支持或技术帮助
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Chip
+                icon={<PhoneIcon />}
+                label="电话: (240) 668-4666"
+                variant="outlined"
+                size="large"
+                sx={{ fontSize: '1rem', py: 2 }}
+              />
+              <Chip
+                icon={<EmailIcon />}
+                label="邮箱: allcaremd@outlook.com"
+                variant="outlined"
+                size="large"
+                sx={{ fontSize: '1rem', py: 2 }}
+              />
+            </Box>
+          </Box>
+        </Container>
+      </Box>
     </Box>
   )
 }

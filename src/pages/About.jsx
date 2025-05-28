@@ -35,83 +35,83 @@ import {
 
 const teamMembers = [
   {
-    name: '张主任',
-    position: '培训总监',
-    description: '拥有15年护理培训经验，专业认证讲师',
-    avatar: '👩‍💼',
-  },
-  {
-    name: '李老师',
-    position: 'PCA培训专家',
-    description: '资深PCA培训师，培训学员超过500人',
-    avatar: '👨‍🏫',
-  },
-  {
-    name: '王医生',
-    position: 'CPR认证讲师',
-    description: '急救医学专家，国际CPR认证培训师',
+    name: 'Allcare 护理团队',
+    position: '注册护士监督',
+    description: '持有RN执照的专业护士，负责监督和指导护理质量',
     avatar: '👩‍⚕️',
   },
   {
-    name: '陈经理',
-    position: '客户服务经理',
-    description: '负责客户关系维护和培训后续服务',
+    name: 'PCA培训专家',
+    position: '个人护理助理培训师',
+    description: '资深PCA培训师，专注于ADLs协助和安全护理培训',
+    avatar: '👨‍🏫',
+  },
+  {
+    name: 'CPR认证讲师',
+    position: '急救培训专家',
+    description: '持有CPR和急救认证的专业培训师',
+    avatar: '👩‍⚕️',
+  },
+  {
+    name: '客户服务团队',
+    position: '护理协调员',
+    description: '负责客户关系维护和护理计划协调',
     avatar: '👨‍💼',
   },
 ]
 
 const milestones = [
   {
-    year: '2018',
-    title: '公司成立',
-    description: '正式成立专业培训机构，开始提供PCA培训服务',
+    year: '成立',
+    title: 'Allcare Health Care 成立',
+    description: '在马里兰州成立，专注于提供高质量的居家护理服务',
   },
   {
-    year: '2019',
-    title: '认证获得',
-    description: '获得省级培训机构认证，成为官方认可的培训提供商',
+    year: '认证',
+    title: '专业认证获得',
+    description: '获得马里兰州居家护理服务认证，成为官方认可的护理服务提供商',
   },
   {
-    year: '2020',
-    title: '服务扩展',
-    description: '增加CPR培训项目，扩大培训服务范围',
+    year: '扩展',
+    title: '服务范围扩展',
+    description: '扩大服务范围，为老年人、慢性疾病患者和残疾人士提供全面护理',
   },
   {
-    year: '2021',
-    title: '数字化转型',
-    description: '推出在线培训平台，提供混合式学习体验',
+    year: '培训',
+    title: '员工培训体系建立',
+    description: '建立完善的PCA培训体系，确保所有护理人员持有CPR和急救认证',
   },
   {
-    year: '2022',
-    title: '质量认证',
-    description: '通过ISO质量管理体系认证，确保培训质量',
+    year: '质量',
+    title: '质量保证体系',
+    description: '建立注册护士监督体系，定期进行家访和护理质量评估',
   },
   {
-    year: '2024',
-    title: '持续发展',
-    description: '继续扩大服务范围，为更多学员提供优质培训',
+    year: '现在',
+    title: '持续服务',
+    description: '继续为马里兰州社区提供优质的居家护理服务，帮助客户在家中安全舒适地生活',
   },
 ]
 
 const values = [
   {
-    title: '专业性',
-    description: '始终坚持专业标准，提供高质量的培训服务',
+    title: '富有同情心',
+    description: '我们相信富有同情心的护理始于真诚的连接',
     icon: <SchoolIcon />,
   },
   {
-    title: '诚信',
-    description: '以诚待人，建立长期信任的合作关系',
+    title: '尊严与尊重',
+    description: '以尊严、尊重和真诚的奉献精神为每位客户服务',
     icon: <CheckIcon />,
   },
   {
-    title: '创新',
-    description: '不断改进培训方法，采用最新的教学技术',
+    title: '专业护理',
+    description: '提供专业的ADLs协助和个性化护理计划',
     icon: <StarIcon />,
   },
   {
-    title: '服务',
-    description: '以学员为中心，提供全方位的学习支持',
+    title: '可靠支持',
+    description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持',
     icon: <PeopleIcon />,
   },
 ]
@@ -120,22 +120,22 @@ const contactInfo = [
   {
     icon: <PhoneIcon />,
     title: '联系电话',
-    content: '+1 (555) 123-4567',
+    content: '+1 (240) 668-4666',
   },
   {
     icon: <EmailIcon />,
     title: '邮箱地址',
-    content: 'info@trainingcenter.com',
+    content: 'allcaremd@outlook.com',
   },
   {
     icon: <LocationIcon />,
-    title: '办公地址',
-    content: '123 培训街, 教育区, 城市 12345',
+    title: '服务地址',
+    content: 'Harvest Glen Way, Germantown, MD 20874',
   },
   {
     icon: <ScheduleIcon />,
-    title: '营业时间',
-    content: '周一至周五 9:00-18:00',
+    title: '服务时间',
+    content: '24/7 护理支持服务',
   },
 ]
 
@@ -145,10 +145,10 @@ function About() {
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 8 }}>
         <Typography variant="h2" component="h1" gutterBottom>
-          关于我们
+          关于 Allcare Health Care
         </Typography>
         <Typography variant="h5" color="text.secondary" sx={{ maxWidth: 800, mx: 'auto' }}>
-          我们是一家专注于提供高质量培训服务的专业机构，致力于帮助每一位学员实现职业发展目标
+          马里兰州值得信赖的居家护理服务提供商，致力于为老年人、慢性疾病患者和残疾人士提供富有同情心的护理服务
         </Typography>
       </Box>
 
@@ -160,19 +160,20 @@ function About() {
               我们的使命
             </Typography>
             <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-              我们致力于为个人和企业提供专业、全面的培训服务，通过高质量的教育帮助学员掌握核心技能，
-              提升职业竞争力，实现个人价值和职业发展目标。
+              在 Allcare Health Care，我们相信富有同情心的护理始于真诚的连接。我们自豪地为老年人、慢性疾病患者和残疾人士（包括儿童）提供服务，以尊严、尊重和真诚的奉献精神为他们服务。
             </Typography>
             <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-              我们相信每个人都有无限的潜力，通过专业的培训和指导，可以帮助他们在各自的领域中取得成功。
-              我们不仅提供知识传授，更注重实践技能的培养和职业素养的提升。
+              我们不仅仅是护理人员，我们是陪伴者、倡导者，是您日常生活中值得信赖的支持。我们的使命是将可靠、尊重和以心为中心的护理带到我们服务的每一个家庭。
+            </Typography>
+            <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
+              我们优先考虑您所爱之人的福祉，通过我们对日常生活活动 (ADLs) 的专业支持来实现这一目标。
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
             <Box
               sx={{
                 height: 300,
-                background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #f59e0b 100%)',
+                background: 'linear-gradient(135deg, #377dff 0%, #00c9a7 50%, #e91e63 100%)',
                 borderRadius: 4,
                 display: 'flex',
                 alignItems: 'center',
@@ -183,10 +184,10 @@ function About() {
               <Box textAlign="center">
                 <BusinessIcon sx={{ fontSize: 80, mb: 2 }} />
                 <Typography variant="h4" gutterBottom>
-                  专业培训机构
+                  Allcare Health Care
                 </Typography>
                 <Typography variant="h6">
-                  6年专业培训经验
+                  马里兰州居家护理服务
                 </Typography>
               </Box>
             </Box>
@@ -197,10 +198,10 @@ function About() {
       {/* Core Values */}
       <Box sx={{ mb: 8 }}>
         <Typography variant="h3" textAlign="center" gutterBottom>
-          我们的价值观
+          我们的核心价值观
         </Typography>
         <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
-          指导我们行动的核心原则
+          指导我们护理服务的核心原则
         </Typography>
         <Grid container spacing={4}>
           {values.map((value, index) => (
@@ -232,10 +233,10 @@ function About() {
       {/* Team */}
       <Box sx={{ mb: 8 }}>
         <Typography variant="h3" textAlign="center" gutterBottom>
-          我们的团队
+          我们的专业团队
         </Typography>
         <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
-          经验丰富的专业培训师团队
+          经验丰富的护理专业人员和培训师团队
         </Typography>
         <Grid container spacing={4}>
           {teamMembers.map((member, index) => (
@@ -262,10 +263,10 @@ function About() {
       {/* Timeline */}
       <Box sx={{ mb: 8 }}>
         <Typography variant="h3" textAlign="center" gutterBottom>
-          发展历程
+          我们的发展历程
         </Typography>
         <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
-          我们的成长足迹
+          Allcare Health Care 的成长足迹
         </Typography>
         <Timeline position="alternate">
           {milestones.map((milestone, index) => (

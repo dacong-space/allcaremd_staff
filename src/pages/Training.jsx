@@ -26,60 +26,60 @@ import {
 const trainingPrograms = [
   {
     id: 'pca',
-    title: 'PCA培训',
-    subtitle: 'Personal Care Assistant',
-    description: '专业的个人护理助理培训课程，涵盖基础护理技能、沟通技巧、安全操作等核心内容。',
+    title: 'PCA专业培训',
+    subtitle: 'Personal Care Assistant Training',
+    description: 'Allcare Health Care 专业的个人护理助理培训课程，专注于ADLs协助、安全护理和客户沟通技巧。',
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
-    color: '#6366f1',
-    duration: '40小时',
-    certification: '省级认证',
+    color: '#377dff',
+    duration: '持续培训',
+    certification: 'Allcare认证',
     features: [
-      '基础护理技能',
-      '沟通与人际关系',
-      '安全操作规程',
-      '紧急情况处理',
-      '职业道德与法规',
-      '实践操作训练',
+      '日常生活活动(ADLs)协助',
+      '安全护理操作规程',
+      '客户沟通与陪伴技巧',
+      '紧急情况应对处理',
+      '护理记录与报告',
+      '职业道德与隐私保护',
     ],
-    price: '￥1,200',
+    price: '员工培训',
   },
   {
     id: 'cpr',
-    title: 'CPR培训',
-    subtitle: 'Cardiopulmonary Resuscitation',
-    description: '心肺复苏术培训，学习生命救护技能，掌握紧急情况下的急救操作方法。',
+    title: 'CPR & 急救培训',
+    subtitle: 'CPR & First Aid Certification',
+    description: '心肺复苏术和急救培训，确保所有护理人员具备紧急救护技能，保障客户安全。',
     icon: <CPRIcon sx={{ fontSize: 48 }} />,
     color: '#dc2626',
-    duration: '8小时',
-    certification: '国际认证',
+    duration: '年度更新',
+    certification: 'CPR认证',
     features: [
-      '心肺复苏基础理论',
-      '胸外按压技术',
-      'AED使用方法',
-      '气道管理',
-      '团队急救配合',
-      '实际案例演练',
+      '心肺复苏基础理论与实践',
+      '胸外按压标准技术',
+      'AED自动除颤器使用',
+      '气道管理与人工呼吸',
+      '常见急救情况处理',
+      '团队急救配合训练',
     ],
-    price: '￥800',
+    price: '必修课程',
   },
   {
-    id: 'others',
-    title: '其他培训',
-    subtitle: 'Specialized Training',
-    description: '根据行业需求定制的专业培训课程，包括特殊护理技能、设备操作等。',
+    id: 'manual',
+    title: '客户信息手册',
+    subtitle: 'Client Information Manual',
+    description: '完整的客户信息手册，包含权利法案、隐私政策、护理标准等重要信息。',
     icon: <CertificateIcon sx={{ fontSize: 48 }} />,
-    color: '#059669',
-    duration: '灵活安排',
-    certification: '专业证书',
+    color: '#00c9a7',
+    duration: '随时学习',
+    certification: '必读材料',
     features: [
-      '定制化课程设计',
-      '专业技能培训',
-      '设备操作指导',
-      '行业最新标准',
-      '实践技能考核',
-      '持续教育支持',
+      '客户权利法案',
+      '隐私保护政策(HIPAA)',
+      '护理服务标准',
+      '投诉处理程序',
+      '紧急联系信息',
+      '护理计划指导',
     ],
-    price: '面议',
+    price: '免费资源',
   },
 ]
 
@@ -89,10 +89,10 @@ function Training() {
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 6 }}>
         <Typography variant="h2" component="h1" gutterBottom>
-          专业培训课程
+          Allcare 员工培训
         </Typography>
         <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
-          我们提供全面的专业培训服务，帮助您获得行业认可的技能认证，提升职业竞争力
+          为 Allcare Health Care 员工提供专业的护理培训，确保高质量的居家护理服务
         </Typography>
       </Box>
 
@@ -215,7 +215,7 @@ function Training() {
       {/* Why Choose Us */}
       <Card sx={{ p: 6, mb: 6 }}>
         <Typography variant="h3" textAlign="center" gutterBottom>
-          为什么选择我们的培训？
+          Allcare 培训优势
         </Typography>
         <Grid container spacing={4} sx={{ mt: 2 }}>
           <Grid item xs={12} md={3} textAlign="center">
@@ -223,10 +223,10 @@ function Training() {
               <GroupIcon />
             </Avatar>
             <Typography variant="h6" gutterBottom>
-              专业师资
+              注册护士监督
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              经验丰富的专业讲师团队
+              RN护士定期监督和指导护理质量
             </Typography>
           </Grid>
           <Grid item xs={12} md={3} textAlign="center">
@@ -234,10 +234,10 @@ function Training() {
               <CertificateIcon />
             </Avatar>
             <Typography variant="h6" gutterBottom>
-              权威认证
+              CPR认证要求
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              获得行业认可的专业证书
+              所有护理人员必须持有CPR认证
             </Typography>
           </Grid>
           <Grid item xs={12} md={3} textAlign="center">
@@ -245,10 +245,10 @@ function Training() {
               <ScheduleIcon />
             </Avatar>
             <Typography variant="h6" gutterBottom>
-              灵活安排
+              年度培训
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              多种时间安排满足不同需求
+              定期年度在职培训确保技能更新
             </Typography>
           </Grid>
           <Grid item xs={12} md={3} textAlign="center">
@@ -259,7 +259,7 @@ function Training() {
               实践导向
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              注重实际操作和技能应用
+              注重实际护理操作和客户服务
             </Typography>
           </Grid>
         </Grid>
@@ -270,15 +270,15 @@ function Training() {
         sx={{
           p: 6,
           textAlign: 'center',
-          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+          background: 'linear-gradient(135deg, #377dff 0%, #00c9a7 100%)',
           color: 'white',
         }}
       >
         <Typography variant="h4" gutterBottom>
-          准备开始学习了吗？
+          需要培训支持？
         </Typography>
         <Typography variant="h6" sx={{ mb: 4, opacity: 0.9 }}>
-          联系我们了解更多课程详情，或直接报名参加培训
+          联系我们获取培训资源或技术支持
         </Typography>
         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button
@@ -293,7 +293,7 @@ function Training() {
               },
             }}
           >
-            联系咨询
+            联系培训部门
           </Button>
           <Button
             variant="outlined"
@@ -308,8 +308,26 @@ function Training() {
               },
             }}
           >
-            查看课程表
+            查看客户手册
           </Button>
+        </Box>
+        <Box sx={{ mt: 3, display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Chip
+            label="电话: (240) 668-4666"
+            sx={{
+              bgcolor: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              fontSize: '0.9rem'
+            }}
+          />
+          <Chip
+            label="邮箱: allcaremd@outlook.com"
+            sx={{
+              bgcolor: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              fontSize: '0.9rem'
+            }}
+          />
         </Box>
       </Card>
     </Container>

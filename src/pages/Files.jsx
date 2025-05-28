@@ -33,68 +33,97 @@ import {
 
 const fileCategories = [
   {
-    id: 'onboarding',
-    title: '入职文件',
-    description: '新员工入职所需的各类文件和表格',
+    id: 'contracts',
+    title: '合同文件',
+    description: '护理服务合同、协议和相关法律文件',
     icon: <OnboardingIcon sx={{ fontSize: 48 }} />,
-    color: '#6366f1',
-    count: 12,
-  },
-  {
-    id: 'client',
-    title: '客户文件',
-    description: '客户相关的合同、协议和服务文件',
-    icon: <ClientIcon sx={{ fontSize: 48 }} />,
-    color: '#8b5cf6',
+    color: '#377dff',
     count: 8,
   },
   {
-    id: 'employee',
-    title: '员工文件',
-    description: '员工手册、政策文件和培训资料',
+    id: 'policies',
+    title: '政策文件',
+    description: '公司政策、隐私保护和权利法案文件',
+    icon: <ClientIcon sx={{ fontSize: 48 }} />,
+    color: '#00c9a7',
+    count: 12,
+  },
+  {
+    id: 'training',
+    title: '培训资料',
+    description: 'PCA培训、CPR认证和护理操作指南',
     icon: <EmployeeIcon sx={{ fontSize: 48 }} />,
-    color: '#f59e0b',
+    color: '#ffb946',
     count: 15,
   },
   {
-    id: 'others',
-    title: '其他文件',
-    description: '其他类型的文档和资料',
+    id: 'forms',
+    title: '表格文件',
+    description: '护理记录表、评估表和其他工作表格',
     icon: <OthersIcon sx={{ fontSize: 48 }} />,
-    color: '#10b981',
-    count: 6,
+    color: '#de4437',
+    count: 10,
   },
 ]
 
 const sampleFiles = {
-  onboarding: [
-    { name: '员工入职申请表.pdf', size: '245 KB', date: '2024-01-15' },
-    { name: '身份证明文件清单.docx', size: '128 KB', date: '2024-01-10' },
-    { name: '入职培训手册.pdf', size: '2.1 MB', date: '2024-01-08' },
-    { name: '薪资福利说明.pdf', size: '356 KB', date: '2024-01-05' },
+  contracts: [
+    { name: '护理服务协议模板.pdf', size: '245 KB', date: '2024-01-15' },
+    { name: '客户服务合同.docx', size: '189 KB', date: '2024-01-20' },
+    { name: '护理责任协议.pdf', size: '167 KB', date: '2024-01-18' },
+    { name: '服务终止协议.pdf', size: '145 KB', date: '2024-01-12' },
+    { name: '紧急联系授权书.pdf', size: '128 KB', date: '2024-01-10' },
+    { name: '医疗信息发布同意书.pdf', size: '156 KB', date: '2024-01-08' },
+    { name: '护理计划同意书.pdf', size: '134 KB', date: '2024-01-05' },
+    { name: '费用支付协议.pdf', size: '178 KB', date: '2024-01-03' },
   ],
-  client: [
-    { name: '服务协议模板.docx', size: '189 KB', date: '2024-01-20' },
-    { name: '客户信息登记表.pdf', size: '167 KB', date: '2024-01-18' },
-    { name: '服务质量评估表.pdf', size: '234 KB', date: '2024-01-15' },
-    { name: '投诉处理流程.docx', size: '145 KB', date: '2024-01-12' },
+  policies: [
+    { name: '客户权利法案.pdf', size: '356 KB', date: '2024-01-25' },
+    { name: 'HIPAA隐私保护政策.pdf', size: '445 KB', date: '2024-01-22' },
+    { name: '投诉处理程序.docx', size: '234 KB', date: '2024-01-20' },
+    { name: '护理质量标准.pdf', size: '567 KB', date: '2024-01-18' },
+    { name: '员工行为准则.pdf', size: '289 KB', date: '2024-01-15' },
+    { name: '安全操作政策.pdf', size: '378 KB', date: '2024-01-12' },
+    { name: '紧急情况处理程序.pdf', size: '423 KB', date: '2024-01-10' },
+    { name: '感染控制政策.pdf', size: '345 KB', date: '2024-01-08' },
+    { name: '药物管理政策.pdf', size: '267 KB', date: '2024-01-05' },
+    { name: '客户信息保密政策.pdf', size: '198 KB', date: '2024-01-03' },
+    { name: '护理文档标准.pdf', size: '234 KB', date: '2024-01-01' },
+    { name: '质量改进程序.pdf', size: '312 KB', date: '2023-12-28' },
   ],
-  employee: [
-    { name: '员工手册2024版.pdf', size: '3.2 MB', date: '2024-01-25' },
-    { name: '安全操作规程.pdf', size: '1.8 MB', date: '2024-01-22' },
-    { name: '培训记录表.xlsx', size: '89 KB', date: '2024-01-20' },
-    { name: '绩效考核标准.docx', size: '267 KB', date: '2024-01-18' },
-    { name: '请假申请表.pdf', size: '123 KB', date: '2024-01-15' },
+  training: [
+    { name: 'PCA培训手册.pdf', size: '2.1 MB', date: '2024-01-25' },
+    { name: 'CPR认证指南.pdf', size: '1.8 MB', date: '2024-01-22' },
+    { name: 'ADLs协助培训.pdf', size: '1.5 MB', date: '2024-01-20' },
+    { name: '安全护理操作指南.pdf', size: '1.2 MB', date: '2024-01-18' },
+    { name: '客户沟通技巧培训.pdf', size: '890 KB', date: '2024-01-15' },
+    { name: '紧急情况应对培训.pdf', size: '1.1 MB', date: '2024-01-12' },
+    { name: '感染控制培训.pdf', size: '756 KB', date: '2024-01-10' },
+    { name: '护理记录培训.pdf', size: '634 KB', date: '2024-01-08' },
+    { name: '职业道德培训.pdf', size: '567 KB', date: '2024-01-05' },
+    { name: '隐私保护培训.pdf', size: '445 KB', date: '2024-01-03' },
+    { name: '急救培训视频.mp4', size: '45.2 MB', date: '2024-01-01' },
+    { name: '护理技能演示.mp4', size: '38.7 MB', date: '2023-12-28' },
+    { name: '培训考核标准.pdf', size: '289 KB', date: '2023-12-25' },
+    { name: '继续教育要求.pdf', size: '234 KB', date: '2023-12-22' },
+    { name: '培训记录模板.xlsx', size: '89 KB', date: '2023-12-20' },
   ],
-  others: [
-    { name: '公司介绍PPT.pptx', size: '4.5 MB', date: '2024-01-28' },
-    { name: '联系方式清单.xlsx', size: '67 KB', date: '2024-01-25' },
-    { name: '常见问题FAQ.pdf', size: '445 KB', date: '2024-01-22' },
+  forms: [
+    { name: '护理评估表.pdf', size: '234 KB', date: '2024-01-25' },
+    { name: '日常护理记录表.pdf', size: '189 KB', date: '2024-01-22' },
+    { name: '药物管理记录表.pdf', size: '167 KB', date: '2024-01-20' },
+    { name: '事故报告表.pdf', size: '145 KB', date: '2024-01-18' },
+    { name: '客户满意度调查表.pdf', size: '178 KB', date: '2024-01-15' },
+    { name: '护理计划表.pdf', size: '156 KB', date: '2024-01-12' },
+    { name: '家属沟通记录表.pdf', size: '134 KB', date: '2024-01-10' },
+    { name: '健康状况变化报告.pdf', size: '198 KB', date: '2024-01-08' },
+    { name: '服务时间记录表.pdf', size: '123 KB', date: '2024-01-05' },
+    { name: '护理用品清单.xlsx', size: '67 KB', date: '2024-01-03' },
   ],
 }
 
 function Files() {
-  const [selectedCategory, setSelectedCategory] = useState('onboarding')
+  const [selectedCategory, setSelectedCategory] = useState('contracts')
   const [searchTerm, setSearchTerm] = useState('')
 
   const handleCategoryChange = (event, newValue) => {
@@ -115,10 +144,10 @@ function Files() {
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 6 }}>
         <Typography variant="h2" component="h1" gutterBottom>
-          文件资源中心
+          Allcare 文档中心
         </Typography>
         <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
-          这里提供各类工作相关的文件下载，包括入职文件、客户文件、员工文件等
+          提供护理服务相关的各类文件下载，包括合同文件、政策文件、培训资料和工作表格
         </Typography>
       </Box>
 
@@ -277,7 +306,7 @@ function Files() {
           mt: 6,
           p: 4,
           textAlign: 'center',
-          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+          background: 'linear-gradient(135deg, #377dff 0%, #00c9a7 100%)',
           color: 'white',
         }}
       >
@@ -285,22 +314,57 @@ function Files() {
           需要帮助？
         </Typography>
         <Typography variant="h6" sx={{ mb: 3, opacity: 0.9 }}>
-          如果您找不到需要的文件，或者需要其他文档支持，请联系我们
+          如果您找不到需要的文件，或者需要其他文档支持，请联系 Allcare Health Care
         </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{
-            backgroundColor: 'white',
-            color: 'primary.main',
-            px: 4,
-            '&:hover': {
-              backgroundColor: 'grey.100',
-            },
-          }}
-        >
-          联系支持
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mb: 3 }}>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{
+              backgroundColor: 'white',
+              color: 'primary.main',
+              px: 4,
+              '&:hover': {
+                backgroundColor: 'grey.100',
+              },
+            }}
+          >
+            联系支持
+          </Button>
+          <Button
+            variant="outlined"
+            size="large"
+            sx={{
+              borderColor: 'white',
+              color: 'white',
+              px: 4,
+              '&:hover': {
+                borderColor: 'white',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              },
+            }}
+          >
+            查看客户手册
+          </Button>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <Chip
+            label="电话: (240) 668-4666"
+            sx={{
+              bgcolor: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              fontSize: '0.9rem'
+            }}
+          />
+          <Chip
+            label="邮箱: allcaremd@outlook.com"
+            sx={{
+              bgcolor: 'rgba(255,255,255,0.2)',
+              color: 'white',
+              fontSize: '0.9rem'
+            }}
+          />
+        </Box>
       </Card>
     </Container>
   )
