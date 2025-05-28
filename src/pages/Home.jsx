@@ -538,7 +538,11 @@ function Home() {
       </Box>
 
       {/* About Allcare Section */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Box sx={{
+        background: 'linear-gradient(135deg, rgba(248, 165, 194, 0.08) 0%, rgba(184, 230, 184, 0.08) 50%, rgba(200, 162, 200, 0.08) 100%)',
+        py: 8
+      }}>
+        <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center">
           <Grid item xs={12} md={6}>
             <Typography
@@ -585,7 +589,8 @@ function Home() {
             </Box>
           </Grid>
         </Grid>
-      </Container>
+        </Container>
+      </Box>
 
       {/* Services and Features Section with Horizontal Scroll */}
       <Box sx={{ bgcolor: 'white', py: 8 }}>
