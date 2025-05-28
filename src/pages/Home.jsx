@@ -37,57 +37,63 @@ import {
 } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 
-const features = [
+// 合并护理服务和培训平台特色
+const servicesAndFeatures = [
+  {
+    icon: <HomeIcon sx={{ fontSize: 48 }} />,
+    title: '日常生活协助 (ADLs)',
+    description: '协助洗澡、穿衣、进食、移动等日常活动',
+    color: '#377dff',
+    category: 'service'
+  },
+  {
+    icon: <FavoriteIcon sx={{ fontSize: 48 }} />,
+    title: '陪伴与情感支持',
+    description: '提供友好的陪伴和心理支持服务',
+    color: '#e91e63',
+    category: 'service'
+  },
+  {
+    icon: <SecurityIcon sx={{ fontSize: 48 }} />,
+    title: '安全监督',
+    description: '确保客户在家中的安全和健康',
+    color: '#ff9800',
+    category: 'service'
+  },
+  {
+    icon: <SupportIcon sx={{ fontSize: 48 }} />,
+    title: '专业护理监督',
+    description: '注册护士定期监督和评估护理质量',
+    color: '#4caf50',
+    category: 'service'
+  },
   {
     icon: <ManualIcon sx={{ fontSize: 48 }} />,
     title: '客户信息手册',
     description: 'Allcare Health Care 完整的客户信息手册，包含权利法案、隐私政策等',
-    color: '#377dff',
+    color: '#6366f1',
+    category: 'feature'
   },
   {
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
     title: 'PCA专业培训',
     description: '个人护理助理培训课程，掌握ADLs协助、安全护理等专业技能',
     color: '#00c9a7',
+    category: 'feature'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: 'CPR & 急救培训',
     description: '心肺复苏术和急救培训，确保紧急情况下的专业应对能力',
     color: '#ffb946',
+    category: 'feature'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '护理监督支持',
     description: '注册护士监督指导，确保护理质量和服务标准',
     color: '#de4437',
-  },
-]
-
-const services = [
-  {
-    icon: <HomeIcon sx={{ fontSize: 40 }} />,
-    title: '日常生活协助 (ADLs)',
-    description: '协助洗澡、穿衣、进食、移动等日常活动',
-    color: '#377dff',
-  },
-  {
-    icon: <FavoriteIcon sx={{ fontSize: 40 }} />,
-    title: '陪伴与情感支持',
-    description: '提供友好的陪伴和心理支持服务',
-    color: '#e91e63',
-  },
-  {
-    icon: <SecurityIcon sx={{ fontSize: 40 }} />,
-    title: '安全监督',
-    description: '确保客户在家中的安全和健康',
-    color: '#ff9800',
-  },
-  {
-    icon: <SupportIcon sx={{ fontSize: 40 }} />,
-    title: '专业护理监督',
-    description: '注册护士定期监督和评估护理质量',
-    color: '#4caf50',
+    category: 'feature'
   },
 ]
 
@@ -397,7 +403,7 @@ function Home() {
         </Grid>
       </Container>
 
-      {/* Services Section */}
+      {/* Services and Features Section with Horizontal Scroll */}
       <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
         <Container maxWidth="lg">
           <Typography
@@ -405,113 +411,113 @@ function Home() {
             component="h2"
             textAlign="center"
             gutterBottom
-            sx={{ mb: 6, fontWeight: 600 }}
+            sx={{ mb: 2, fontWeight: 600 }}
           >
-            我们的护理服务
+            我们的护理服务与培训特色
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 800, mx: 'auto' }}>
+            专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
           </Typography>
 
-          <Grid container spacing={4}>
-            {services.map((service, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card
+          {/* Horizontal Scrollable Cards */}
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 3,
+              overflowX: 'auto',
+              pb: 2,
+              '&::-webkit-scrollbar': {
+                height: 8,
+              },
+              '&::-webkit-scrollbar-track': {
+                backgroundColor: 'rgba(0,0,0,0.1)',
+                borderRadius: 4,
+              },
+              '&::-webkit-scrollbar-thumb': {
+                backgroundColor: 'primary.main',
+                borderRadius: 4,
+                '&:hover': {
+                  backgroundColor: 'primary.dark',
+                },
+              },
+            }}
+          >
+            {servicesAndFeatures.map((item, index) => (
+              <Card
+                key={index}
+                sx={{
+                  minWidth: 320,
+                  maxWidth: 320,
+                  textAlign: 'center',
+                  p: 3,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s ease-in-out',
+                  cursor: 'pointer',
+                  '&:hover': {
+                    transform: 'translateY(-8px) scale(1.02)',
+                    boxShadow: theme.shadows[12]
+                  },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 4,
+                    background: `linear-gradient(90deg, ${item.color}, ${item.color}aa)`,
+                  }
+                }}
+              >
+                <Box
                   sx={{
-                    height: '100%',
-                    textAlign: 'center',
-                    p: 3,
-                    transition: 'transform 0.3s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: theme.shadows[8]
-                    }
+                    position: 'absolute',
+                    top: 16,
+                    right: 16,
+                    bgcolor: item.category === 'service' ? 'success.main' : 'info.main',
+                    color: 'white',
+                    px: 1.5,
+                    py: 0.5,
+                    borderRadius: 1,
+                    fontSize: '0.75rem',
+                    fontWeight: 600,
                   }}
                 >
-                  <CardContent>
-                    <Avatar
-                      sx={{
-                        width: 70,
-                        height: 70,
-                        mx: 'auto',
-                        mb: 2,
-                        bgcolor: `${service.color}20`,
-                        color: service.color,
-                      }}
-                    >
-                      {service.icon}
-                    </Avatar>
-                    <Typography variant="h6" component="h3" gutterBottom>
-                      {service.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {service.description}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
+                  {item.category === 'service' ? '护理服务' : '培训特色'}
+                </Box>
+                <Avatar
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    mx: 'auto',
+                    mb: 3,
+                    mt: 2,
+                    background: `linear-gradient(135deg, ${item.color}20, ${item.color}40)`,
+                    color: item.color,
+                  }}
+                >
+                  {item.icon}
+                </Avatar>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+                  {item.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                  {item.description}
+                </Typography>
+              </Card>
             ))}
-          </Grid>
+          </Box>
+
+          {/* Scroll Hint */}
+          <Box sx={{ textAlign: 'center', mt: 3 }}>
+            <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+              ← 左右滑动查看更多服务与特色 →
+            </Typography>
+          </Box>
         </Container>
       </Box>
 
       <Container maxWidth="lg" sx={{ py: 8 }}>
-
-        {/* Platform Features Section */}
-        <Box sx={{ mb: 8, textAlign: 'center' }}>
-          <Typography variant="h2" component="h2" gutterBottom>
-            培训平台特色
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', maxWidth: 600, mx: 'auto' }}>
-            为 Allcare Health Care 员工提供专业、全面、高质量的培训体验
-          </Typography>
-
-          <Grid container spacing={4}>
-            {features.map((feature, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card
-                  sx={{
-                    height: '100%',
-                    textAlign: 'center',
-                    p: 3,
-                    position: 'relative',
-                    overflow: 'hidden',
-                    transition: 'transform 0.3s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: theme.shadows[8]
-                    },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 4,
-                      background: `linear-gradient(90deg, ${feature.color}, ${feature.color}aa)`,
-                    }
-                  }}
-                >
-                  <Avatar
-                    sx={{
-                      width: 80,
-                      height: 80,
-                      mx: 'auto',
-                      mb: 3,
-                      background: `linear-gradient(135deg, ${feature.color}20, ${feature.color}40)`,
-                      color: feature.color,
-                    }}
-                  >
-                    {feature.icon}
-                  </Avatar>
-                  <Typography variant="h5" gutterBottom>
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {feature.description}
-                  </Typography>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
 
         {/* Core Values Section */}
         <Box sx={{ mb: 8 }}>
