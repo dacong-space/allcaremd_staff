@@ -106,25 +106,25 @@ const values = [
     title: '富有同情心',
     description: '我们相信富有同情心的护理始于真诚的连接',
     icon: <SchoolIcon />,
-    color: '#e91e63', // 粉红色 - 代表同情心
+    color: '#6b7280', // 简约灰蓝色
   },
   {
     title: '尊严与尊重',
     description: '以尊严、尊重和真诚的奉献精神为每位客户服务',
     icon: <CheckIcon />,
-    color: '#9c27b0', // 紫色 - 代表尊严
+    color: '#64748b', // 简约石板色
   },
   {
     title: '专业护理',
     description: '提供专业的ADLs协助和个性化护理计划',
     icon: <StarIcon />,
-    color: '#2196f3', // 蓝色 - 代表专业
+    color: '#475569', // 简约深灰蓝
   },
   {
     title: '可靠支持',
     description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持',
     icon: <PeopleIcon />,
-    color: '#4caf50', // 绿色 - 代表支持
+    color: '#52525b', // 简约中性灰
   },
 ]
 
@@ -809,9 +809,9 @@ function Home() {
               textAlign="center"
               gutterBottom
               sx={{
-                background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 50%, #4caf50 100%)',
+                background: 'linear-gradient(135deg, #374151 0%, #6b7280 50%, #9ca3af 100%)',
                 backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
+                WebkitBackdropFilter: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 700,
                 mb: 2
@@ -836,23 +836,26 @@ function Home() {
                       position: 'relative',
                       height: '100%',
                       cursor: 'pointer',
-                      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transition: 'transform 0.2s ease-out',
                       '&:hover': {
-                        transform: 'translateY(-12px)',
+                        transform: 'translateY(-6px)',
                         '& .value-card': {
                           background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%)',
-                          boxShadow: '0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)',
+                          boxShadow: '0 12px 32px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04)',
+                          transition: 'all 0.2s ease-out',
                         },
                         '& .value-icon': {
-                          transform: 'scale(1.15) rotate(5deg)',
-                          background: `linear-gradient(135deg, ${value.color || '#1976d2'} 0%, ${value.color || '#1976d2'}aa 100%)`,
+                          transform: 'scale(1.05)',
+                          transition: 'transform 0.2s ease-out',
                         },
                         '& .value-number': {
-                          opacity: 1,
+                          opacity: 0.6,
                           transform: 'scale(1)',
+                          transition: 'all 0.2s ease-out',
                         },
                         '& .floating-elements': {
-                          opacity: 1,
+                          opacity: 0.4,
+                          transition: 'opacity 0.2s ease-out',
                         }
                       }
                     }}
@@ -887,16 +890,16 @@ function Home() {
                         WebkitBackdropFilter: 'blur(6px) saturate(120%)',
                         border: '1px solid rgba(255,255,255,0.3)',
                         borderRadius: 4,
-                        boxShadow: '0 8px 32px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
-                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        boxShadow: '0 6px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02)',
+                        transition: 'all 0.2s ease-out',
                         '&::before': {
                           content: '""',
                           position: 'absolute',
                           top: 0,
                           left: 0,
                           right: 0,
-                          height: 3,
-                          background: `linear-gradient(90deg, ${value.color || '#1976d2'} 0%, ${value.color || '#1976d2'}80 100%)`,
+                          height: 2,
+                          background: `linear-gradient(90deg, ${value.color}80 0%, ${value.color}60 100%)`,
                           borderRadius: '4px 4px 0 0',
                         }
                       }}
@@ -908,12 +911,12 @@ function Home() {
                           position: 'absolute',
                           top: 16,
                           right: 16,
-                          fontSize: '3rem',
-                          fontWeight: 800,
-                          color: `${value.color || '#1976d2'}20`,
+                          fontSize: '2.5rem',
+                          fontWeight: 300,
+                          color: `${value.color}30`,
                           opacity: 0,
-                          transform: 'scale(0.8)',
-                          transition: 'all 0.4s ease-in-out',
+                          transform: 'scale(0.9)',
+                          transition: 'all 0.2s ease-out',
                           zIndex: 0,
                         }}
                       >
@@ -923,31 +926,20 @@ function Home() {
                       <Avatar
                         className="value-icon"
                         sx={{
-                          width: 80,
-                          height: 80,
+                          width: 72,
+                          height: 72,
                           mx: 'auto',
                           mb: 3,
                           mt: 1,
-                          background: `linear-gradient(135deg, ${value.color || '#1976d2'}90 0%, ${value.color || '#1976d2'}70 100%)`,
+                          background: `linear-gradient(135deg, ${value.color}15 0%, ${value.color}08 100%)`,
                           backdropFilter: 'blur(4px) saturate(130%)',
                           WebkitBackdropFilter: 'blur(4px) saturate(130%)',
-                          border: '2px solid rgba(255,255,255,0.4)',
-                          boxShadow: `0 8px 24px ${value.color || '#1976d2'}25, 0 2px 8px rgba(0,0,0,0.06)`,
-                          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                          border: `1px solid ${value.color}20`,
+                          boxShadow: `0 4px 16px ${value.color}10, 0 1px 4px rgba(0,0,0,0.02)`,
+                          transition: 'transform 0.2s ease-out',
                           position: 'relative',
                           zIndex: 1,
-                          '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: -2,
-                            left: -2,
-                            right: -2,
-                            bottom: -2,
-                            background: `conic-gradient(from 0deg, ${value.color || '#1976d2'}40, transparent, ${value.color || '#1976d2'}40)`,
-                            borderRadius: '50%',
-                            zIndex: -1,
-                            opacity: 0.6,
-                          }
+                          color: value.color,
                         }}
                       >
                         {value.icon}
