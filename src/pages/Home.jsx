@@ -72,62 +72,62 @@ const HERO_IMAGES = [
   }
 ];
 
-// 合并护理服务和培训平台特色
+// 合并护理服务和培训平台特色 - 使用马卡龙色调与核心价值观保持一致
 const servicesAndFeatures = [
   {
     icon: <HomeIcon sx={{ fontSize: 48 }} />,
     title: '日常生活协助 (ADLs)',
     description: '协助洗澡、穿衣、进食、移动等日常活动',
-    color: '#377dff',
+    color: '#a8d8ea', // 淡雅蓝色马卡龙
     category: 'service'
   },
   {
     icon: <FavoriteIcon sx={{ fontSize: 48 }} />,
     title: '陪伴与情感支持',
     description: '提供友好的陪伴和心理支持服务',
-    color: '#e91e63',
+    color: '#f8a5c2', // 淡雅粉色马卡龙
     category: 'service'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: '安全监督',
     description: '确保客户在家中的安全和健康',
-    color: '#ff9800',
+    color: '#ffd3a5', // 淡雅橙色马卡龙
     category: 'service'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '专业护理监督',
     description: '注册护士定期监督和评估护理质量',
-    color: '#4caf50',
+    color: '#b8e6b8', // 淡雅绿色马卡龙
     category: 'service'
   },
   {
     icon: <ManualIcon sx={{ fontSize: 48 }} />,
     title: '客户信息手册',
     description: 'Allcare Health Care 完整的客户信息手册，包含权利法案、隐私政策等',
-    color: '#6366f1',
+    color: '#c8a2c8', // 淡雅紫色马卡龙
     category: 'feature'
   },
   {
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
     title: 'PCA专业培训',
     description: '个人护理助理培训课程，掌握ADLs协助、安全护理等专业技能',
-    color: '#00c9a7',
+    color: '#b8e6b8', // 淡雅绿色马卡龙
     category: 'feature'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: 'CPR & 急救培训',
     description: '心肺复苏术和急救培训，确保紧急情况下的专业应对能力',
-    color: '#ffb946',
+    color: '#ffd3a5', // 淡雅橙色马卡龙
     category: 'feature'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '护理监督支持',
     description: '注册护士监督指导，确保护理质量和服务标准',
-    color: '#de4437',
+    color: '#f8a5c2', // 淡雅粉色马卡龙
     category: 'feature'
   },
 ]
@@ -593,7 +593,7 @@ function Home() {
       </Container>
 
       {/* Services and Features Section with Horizontal Scroll */}
-      <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
+      <Box sx={{ bgcolor: 'white', py: 8 }}>
         <Container maxWidth="lg">
           <Typography
             variant="h3"
@@ -618,7 +618,7 @@ function Home() {
                 top: 0,
                 bottom: 0,
                 width: 100,
-                background: 'linear-gradient(to right, #f8f9fa 0%, rgba(248,249,250,0.9) 30%, rgba(248,249,250,0.6) 60%, rgba(248,249,250,0.2) 80%, transparent 100%)',
+                background: 'linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
                 zIndex: 2,
                 pointerEvents: 'none',
               }}
@@ -632,7 +632,7 @@ function Home() {
                 top: 0,
                 bottom: 0,
                 width: 100,
-                background: 'linear-gradient(to left, #f8f9fa 0%, rgba(248,249,250,0.9) 30%, rgba(248,249,250,0.6) 60%, rgba(248,249,250,0.2) 80%, transparent 100%)',
+                background: 'linear-gradient(to left, #ffffff 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
                 zIndex: 2,
                 pointerEvents: 'none',
               }}
