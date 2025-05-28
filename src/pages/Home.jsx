@@ -106,25 +106,25 @@ const values = [
     title: '富有同情心',
     description: '我们相信富有同情心的护理始于真诚的连接',
     icon: <SchoolIcon />,
-    color: '#6b7280', // 简约灰蓝色
+    color: '#f8a5c2', // 淡雅粉色马卡龙
   },
   {
     title: '尊严与尊重',
     description: '以尊严、尊重和真诚的奉献精神为每位客户服务',
     icon: <CheckIcon />,
-    color: '#64748b', // 简约石板色
+    color: '#c8a2c8', // 淡雅紫色马卡龙
   },
   {
     title: '专业护理',
     description: '提供专业的ADLs协助和个性化护理计划',
     icon: <StarIcon />,
-    color: '#475569', // 简约深灰蓝
+    color: '#a8d8ea', // 淡雅蓝色马卡龙
   },
   {
     title: '可靠支持',
     description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持',
     icon: <PeopleIcon />,
-    color: '#52525b', // 简约中性灰
+    color: '#b8e6b8', // 淡雅绿色马卡龙
   },
 ]
 
@@ -797,7 +797,7 @@ function Home() {
               left: 0,
               right: 0,
               bottom: 0,
-              background: 'radial-gradient(circle at 20% 20%, rgba(33,150,243,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(76,175,80,0.03) 0%, transparent 50%)',
+              background: 'radial-gradient(circle at 20% 20%, rgba(248,165,194,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168,216,234,0.08) 0%, transparent 50%), radial-gradient(circle at 50% 10%, rgba(200,162,200,0.06) 0%, transparent 40%)',
               borderRadius: 4,
               zIndex: 0,
             }}
@@ -809,9 +809,9 @@ function Home() {
               textAlign="center"
               gutterBottom
               sx={{
-                background: 'linear-gradient(135deg, #374151 0%, #6b7280 50%, #9ca3af 100%)',
+                background: 'linear-gradient(135deg, #f8a5c2 0%, #c8a2c8 25%, #a8d8ea 75%, #b8e6b8 100%)',
                 backgroundClip: 'text',
-                WebkitBackdropFilter: 'text',
+                WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 700,
                 mb: 2
@@ -869,10 +869,10 @@ function Home() {
                         right: -10,
                         width: 40,
                         height: 40,
-                        background: `linear-gradient(135deg, ${value.color || '#1976d2'}15, transparent)`,
+                        background: `radial-gradient(circle, ${value.color}25, transparent 70%)`,
                         borderRadius: '50%',
                         opacity: 0,
-                        transition: 'all 0.4s ease-in-out',
+                        transition: 'opacity 0.2s ease-out',
                         zIndex: 0,
                       }}
                     />
