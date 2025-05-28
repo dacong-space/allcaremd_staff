@@ -106,21 +106,25 @@ const values = [
     title: '富有同情心',
     description: '我们相信富有同情心的护理始于真诚的连接',
     icon: <SchoolIcon />,
+    color: '#e91e63', // 粉红色 - 代表同情心
   },
   {
     title: '尊严与尊重',
     description: '以尊严、尊重和真诚的奉献精神为每位客户服务',
     icon: <CheckIcon />,
+    color: '#9c27b0', // 紫色 - 代表尊严
   },
   {
     title: '专业护理',
     description: '提供专业的ADLs协助和个性化护理计划',
     icon: <StarIcon />,
+    color: '#2196f3', // 蓝色 - 代表专业
   },
   {
     title: '可靠支持',
     description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持',
     icon: <PeopleIcon />,
+    color: '#4caf50', // 绿色 - 代表支持
   },
 ]
 
@@ -784,38 +788,202 @@ function Home() {
       <Container maxWidth="lg" sx={{ py: 8 }}>
 
         {/* Core Values Section */}
-        <Box sx={{ mb: 8 }}>
-          <Typography variant="h3" textAlign="center" gutterBottom>
-            我们的核心价值观
-          </Typography>
-          <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
-            指导我们护理服务的核心原则
-          </Typography>
-          <Grid container spacing={4}>
-            {values.map((value, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card sx={{ textAlign: 'center', p: 3, height: '100%' }}>
-                  <Avatar
+        <Box sx={{ mb: 8, position: 'relative' }}>
+          {/* Background Pattern */}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'radial-gradient(circle at 20% 20%, rgba(33,150,243,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(76,175,80,0.03) 0%, transparent 50%)',
+              borderRadius: 4,
+              zIndex: 0,
+            }}
+          />
+
+          <Box sx={{ position: 'relative', zIndex: 1 }}>
+            <Typography
+              variant="h3"
+              textAlign="center"
+              gutterBottom
+              sx={{
+                background: 'linear-gradient(135deg, #1976d2 0%, #42a5f5 50%, #4caf50 100%)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 700,
+                mb: 2
+              }}
+            >
+              我们的核心价值观
+            </Typography>
+            <Typography
+              variant="h6"
+              textAlign="center"
+              color="text.secondary"
+              sx={{ mb: 8, maxWidth: 600, mx: 'auto' }}
+            >
+              指导我们护理服务的核心原则
+            </Typography>
+
+            <Grid container spacing={4} sx={{ mt: 2 }}>
+              {values.map((value, index) => (
+                <Grid item xs={12} sm={6} md={3} key={index}>
+                  <Box
                     sx={{
-                      width: 60,
-                      height: 60,
-                      mx: 'auto',
-                      mb: 2,
-                      bgcolor: 'primary.main',
+                      position: 'relative',
+                      height: '100%',
+                      cursor: 'pointer',
+                      transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      '&:hover': {
+                        transform: 'translateY(-12px)',
+                        '& .value-card': {
+                          background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%)',
+                          boxShadow: '0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08)',
+                        },
+                        '& .value-icon': {
+                          transform: 'scale(1.15) rotate(5deg)',
+                          background: `linear-gradient(135deg, ${value.color || '#1976d2'} 0%, ${value.color || '#1976d2'}aa 100%)`,
+                        },
+                        '& .value-number': {
+                          opacity: 1,
+                          transform: 'scale(1)',
+                        },
+                        '& .floating-elements': {
+                          opacity: 1,
+                        }
+                      }
                     }}
                   >
-                    {value.icon}
-                  </Avatar>
-                  <Typography variant="h5" gutterBottom>
-                    {value.title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {value.description}
-                  </Typography>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+                    {/* Floating Background Elements */}
+                    <Box
+                      className="floating-elements"
+                      sx={{
+                        position: 'absolute',
+                        top: -10,
+                        right: -10,
+                        width: 40,
+                        height: 40,
+                        background: `linear-gradient(135deg, ${value.color || '#1976d2'}15, transparent)`,
+                        borderRadius: '50%',
+                        opacity: 0,
+                        transition: 'all 0.4s ease-in-out',
+                        zIndex: 0,
+                      }}
+                    />
+
+                    <Card
+                      className="value-card"
+                      sx={{
+                        textAlign: 'center',
+                        p: 4,
+                        height: '100%',
+                        position: 'relative',
+                        overflow: 'hidden',
+                        background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.88) 100%)',
+                        backdropFilter: 'blur(6px) saturate(120%)',
+                        WebkitBackdropFilter: 'blur(6px) saturate(120%)',
+                        border: '1px solid rgba(255,255,255,0.3)',
+                        borderRadius: 4,
+                        boxShadow: '0 8px 32px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04)',
+                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        '&::before': {
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          height: 3,
+                          background: `linear-gradient(90deg, ${value.color || '#1976d2'} 0%, ${value.color || '#1976d2'}80 100%)`,
+                          borderRadius: '4px 4px 0 0',
+                        }
+                      }}
+                    >
+                      {/* Value Number */}
+                      <Typography
+                        className="value-number"
+                        sx={{
+                          position: 'absolute',
+                          top: 16,
+                          right: 16,
+                          fontSize: '3rem',
+                          fontWeight: 800,
+                          color: `${value.color || '#1976d2'}20`,
+                          opacity: 0,
+                          transform: 'scale(0.8)',
+                          transition: 'all 0.4s ease-in-out',
+                          zIndex: 0,
+                        }}
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </Typography>
+
+                      <Avatar
+                        className="value-icon"
+                        sx={{
+                          width: 80,
+                          height: 80,
+                          mx: 'auto',
+                          mb: 3,
+                          mt: 1,
+                          background: `linear-gradient(135deg, ${value.color || '#1976d2'}90 0%, ${value.color || '#1976d2'}70 100%)`,
+                          backdropFilter: 'blur(4px) saturate(130%)',
+                          WebkitBackdropFilter: 'blur(4px) saturate(130%)',
+                          border: '2px solid rgba(255,255,255,0.4)',
+                          boxShadow: `0 8px 24px ${value.color || '#1976d2'}25, 0 2px 8px rgba(0,0,0,0.06)`,
+                          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                          position: 'relative',
+                          zIndex: 1,
+                          '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: -2,
+                            left: -2,
+                            right: -2,
+                            bottom: -2,
+                            background: `conic-gradient(from 0deg, ${value.color || '#1976d2'}40, transparent, ${value.color || '#1976d2'}40)`,
+                            borderRadius: '50%',
+                            zIndex: -1,
+                            opacity: 0.6,
+                          }
+                        }}
+                      >
+                        {value.icon}
+                      </Avatar>
+
+                      <Typography
+                        variant="h5"
+                        gutterBottom
+                        sx={{
+                          fontWeight: 700,
+                          color: 'text.primary',
+                          mb: 2,
+                          position: 'relative',
+                          zIndex: 1,
+                        }}
+                      >
+                        {value.title}
+                      </Typography>
+
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{
+                          lineHeight: 1.6,
+                          position: 'relative',
+                          zIndex: 1,
+                        }}
+                      >
+                        {value.description}
+                      </Typography>
+                    </Card>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
         </Box>
 
         {/* Team Section */}
