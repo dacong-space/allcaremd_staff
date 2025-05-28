@@ -794,11 +794,8 @@ function Home() {
               textAlign="center"
               gutterBottom
               sx={{
-                background: 'linear-gradient(135deg, #f8a5c2 0%, #c8a2c8 25%, #a8d8ea 75%, #b8e6b8 100%)',
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                fontWeight: 700,
+                color: 'text.primary',
+                fontWeight: 600,
                 mb: 2
               }}
             >
