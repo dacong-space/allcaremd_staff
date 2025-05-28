@@ -993,26 +993,127 @@ function Home() {
           <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
             经验丰富的护理专业人员和培训师团队
           </Typography>
-          <Grid container spacing={4}>
+          <Box
+            sx={{
+              display: 'flex',
+              gap: 3,
+              overflowX: 'auto',
+              pb: 2,
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+              scrollbarWidth: 'none',
+            }}
+          >
             {teamMembers.map((member, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card sx={{ textAlign: 'center', p: 3 }}>
-                  <Box sx={{ fontSize: '4rem', mb: 2 }}>
-                    {member.avatar}
-                  </Box>
-                  <Typography variant="h5" gutterBottom>
-                    {member.name}
-                  </Typography>
-                  <Typography variant="subtitle1" color="primary" gutterBottom>
-                    {member.position}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {member.description}
-                  </Typography>
-                </Card>
-              </Grid>
+              <Card
+                key={index}
+                sx={{
+                  minWidth: 320,
+                  maxWidth: 320,
+                  textAlign: 'center',
+                  p: 3,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  cursor: 'pointer',
+                  borderRadius: 4,
+                  background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
+                  backdropFilter: 'blur(6px) saturate(120%)',
+                  WebkitBackdropFilter: 'blur(6px) saturate(120%)',
+                  border: `1px solid ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}30`,
+                  boxShadow: `0 8px 32px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.05)`,
+                  '&:hover': {
+                    transform: 'translateY(-8px) scale(1.02)',
+                    background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
+                    backdropFilter: 'blur(8px) saturate(140%)',
+                    WebkitBackdropFilter: 'blur(8px) saturate(140%)',
+                    boxShadow: `0 16px 48px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.08), 0 0 0 1px ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}40, inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.08)`,
+                    border: `1px solid ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}50`,
+                    '& .team-avatar': {
+                      transform: 'scale(1.08) translateY(-2px)',
+                      boxShadow: `0 8px 24px ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}25, 0 4px 12px rgba(0,0,0,0.08), inset 0 2px 0 rgba(255,255,255,0.9), inset 0 -2px 0 rgba(0,0,0,0.1)`,
+                    }
+                  },
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: 4,
+                    background: `linear-gradient(90deg, ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}80, ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}60)`,
+                    borderRadius: '4px 4px 0 0',
+                    boxShadow: `0 2px 8px ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}30`,
+                  },
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: `radial-gradient(circle at 50% 0%, ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}06, transparent 60%)`,
+                    pointerEvents: 'none',
+                    borderRadius: 4,
+                  }
+                }}
+              >
+                <Box
+                  className="team-avatar"
+                  sx={{
+                    fontSize: '4rem',
+                    mb: 3,
+                    mt: 2,
+                    mx: 'auto',
+                    width: 80,
+                    height: 80,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderRadius: '50%',
+                    background: `linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)`,
+                    backdropFilter: 'blur(4px) saturate(130%)',
+                    WebkitBackdropFilter: 'blur(4px) saturate(130%)',
+                    border: `1px solid rgba(255, 255, 255, 0.4)`,
+                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    boxShadow: `0 6px 20px ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}15, 0 2px 8px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.05)`,
+                    position: 'relative',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `conic-gradient(from 0deg, ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}15, transparent 60%, ${['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4]}15)`,
+                      borderRadius: '50%',
+                      opacity: 0.6,
+                    }
+                  }}
+                >
+                  {member.avatar}
+                </Box>
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, color: 'text.primary' }}>
+                  {member.name}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  gutterBottom
+                  sx={{
+                    color: ['#f8a5c2', '#c8a2c8', '#a8d8ea', '#b8e6b8'][index % 4],
+                    fontWeight: 500,
+                    mb: 2
+                  }}
+                >
+                  {member.position}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
+                  {member.description}
+                </Typography>
+              </Card>
             ))}
-          </Grid>
+          </Box>
         </Box>
 
         {/* Timeline Section */}
