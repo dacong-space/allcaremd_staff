@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import {
   Container,
   Typography,
@@ -190,6 +190,7 @@ function Home() {
   const theme = useTheme()
   const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
+  const autoScrollRef = useRef(null)
 
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
@@ -208,6 +209,57 @@ function Home() {
       })
     }
   }
+
+  // 自动滚动功能
+  useEffect(() => {
+    const startAutoScroll = () => {
+      autoScrollRef.current = setInterval(() => {
+        if (scrollContainerRef.current) {
+          const container = scrollContainerRef.current
+          const maxScroll = container.scrollWidth - container.clientWidth
+
+          if (container.scrollLeft >= maxScroll) {
+            // 滚动到最右边时，回到开始
+            container.scrollTo({
+              left: 0,
+              behavior: 'smooth'
+            })
+          } else {
+            // 继续向右滚动
+            container.scrollBy({
+              left: 350,
+              behavior: 'smooth'
+            })
+          }
+        }
+      }, 3000) // 每3秒自动滚动
+    }
+
+    const stopAutoScroll = () => {
+      if (autoScrollRef.current) {
+        clearInterval(autoScrollRef.current)
+      }
+    }
+
+    // 开始自动滚动
+    startAutoScroll()
+
+    // 鼠标悬停时停止自动滚动
+    const container = scrollContainerRef.current
+    if (container) {
+      container.addEventListener('mouseenter', stopAutoScroll)
+      container.addEventListener('mouseleave', startAutoScroll)
+    }
+
+    // 清理函数
+    return () => {
+      stopAutoScroll()
+      if (container) {
+        container.removeEventListener('mouseenter', stopAutoScroll)
+        container.removeEventListener('mouseleave', startAutoScroll)
+      }
+    }
+  }, [])
 
   return (
     <Box>
@@ -441,17 +493,45 @@ function Home() {
             专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
           </Typography>
 
-          {/* Carousel Container */}
+          {/* Carousel Container with Fade Effects */}
           <Box sx={{ position: 'relative', px: 6 }}>
+            {/* Left Fade Overlay */}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: 80,
+                background: 'linear-gradient(to right, rgba(248,249,250,1) 0%, rgba(248,249,250,0.8) 50%, rgba(248,249,250,0) 100%)',
+                zIndex: 2,
+                pointerEvents: 'none',
+              }}
+            />
+
+            {/* Right Fade Overlay */}
+            <Box
+              sx={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                bottom: 0,
+                width: 80,
+                background: 'linear-gradient(to left, rgba(248,249,250,1) 0%, rgba(248,249,250,0.8) 50%, rgba(248,249,250,0) 100%)',
+                zIndex: 2,
+                pointerEvents: 'none',
+              }}
+            />
+
             {/* Left Arrow */}
             <IconButton
               onClick={scrollLeft}
               sx={{
                 position: 'absolute',
-                left: -10,
+                left: 10,
                 top: '50%',
                 transform: 'translateY(-50%)',
-                zIndex: 2,
+                zIndex: 3,
                 bgcolor: 'white',
                 boxShadow: theme.shadows[4],
                 width: 48,
@@ -473,10 +553,10 @@ function Home() {
               onClick={scrollRight}
               sx={{
                 position: 'absolute',
-                right: -10,
+                right: 10,
                 top: '50%',
                 transform: 'translateY(-50%)',
-                zIndex: 2,
+                zIndex: 3,
                 bgcolor: 'white',
                 boxShadow: theme.shadows[4],
                 width: 48,
@@ -618,27 +698,6 @@ function Home() {
                 </Card>
               ))}
             </Box>
-          </Box>
-
-          {/* Navigation Dots */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, gap: 1 }}>
-            {Array.from({ length: Math.ceil(servicesAndFeatures.length / 3) }).map((_, index) => (
-              <Box
-                key={index}
-                sx={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: '50%',
-                  bgcolor: index === 0 ? 'primary.main' : 'grey.300',
-                  transition: 'all 0.3s ease-in-out',
-                  cursor: 'pointer',
-                  '&:hover': {
-                    bgcolor: 'primary.main',
-                    transform: 'scale(1.2)',
-                  }
-                }}
-              />
-            ))}
           </Box>
         </Container>
       </Box>
