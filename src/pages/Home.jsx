@@ -362,7 +362,7 @@ function Home() {
                   alignItems: 'center',
                   position: 'relative',
                   height: { xs: 400, md: 500 }, // 增大尺寸
-                  px: { xs: 6, md: 7 }, // 减少左右间距，让箭头更靠近图片
+                  px: { xs: 4, md: 5 }, // 进一步减少左右间距，让箭头更靠近图片
                 }}
               >
                 {/* 左箭头 - 外部 */}
@@ -370,12 +370,12 @@ function Home() {
                   onClick={prevImage}
                   sx={{
                     position: 'absolute',
-                    left: { xs: -2, md: -4 }, // 更靠近图片边界
+                    left: { xs: -6, md: -8 }, // 更加靠近图片边界
                     top: '50%',
                     transform: 'translateY(-50%)',
                     zIndex: 3,
-                    width: 36, // 缩小尺寸
-                    height: 36,
+                    width: 32, // 进一步缩小尺寸
+                    height: 32,
                     background: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(20px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -394,7 +394,7 @@ function Home() {
                     }
                   }}
                 >
-                  <ArrowBackIcon sx={{ fontSize: 18 }} />
+                  <ArrowBackIcon sx={{ fontSize: 16 }} />
                 </IconButton>
 
                 {/* 右箭头 - 外部 */}
@@ -402,12 +402,12 @@ function Home() {
                   onClick={nextImage}
                   sx={{
                     position: 'absolute',
-                    right: { xs: -2, md: -4 }, // 更靠近图片边界
+                    right: { xs: -6, md: -8 }, // 更加靠近图片边界
                     top: '50%',
                     transform: 'translateY(-50%)',
                     zIndex: 3,
-                    width: 36, // 缩小尺寸
-                    height: 36,
+                    width: 32, // 进一步缩小尺寸
+                    height: 32,
                     background: 'rgba(255, 255, 255, 0.95)',
                     backdropFilter: 'blur(20px) saturate(180%)',
                     WebkitBackdropFilter: 'blur(20px) saturate(180%)',
@@ -426,7 +426,7 @@ function Home() {
                     }
                   }}
                 >
-                  <ArrowForwardIcon sx={{ fontSize: 18 }} />
+                  <ArrowForwardIcon sx={{ fontSize: 16 }} />
                 </IconButton>
 
                 {/* 图片容器 */}
