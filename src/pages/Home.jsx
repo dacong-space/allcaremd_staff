@@ -823,24 +823,40 @@ function Home() {
                       cursor: 'pointer',
                       transition: 'transform 0.2s ease-out',
                       '&:hover': {
-                        transform: 'translateY(-6px)',
+                        transform: 'translateY(-8px) scale(1.02)',
                         '& .value-card': {
-                          background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 100%)',
-                          boxShadow: '0 12px 32px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04)',
+                          background: 'linear-gradient(145deg, #ffffff 0%, #f1f3f4 100%)',
+                          boxShadow: `
+                            0 16px 48px rgba(0,0,0,0.12),
+                            0 8px 24px rgba(0,0,0,0.08),
+                            inset 0 2px 0 rgba(255,255,255,0.95),
+                            inset 0 -2px 0 rgba(0,0,0,0.03),
+                            0 0 0 1px ${value.color}20
+                          `,
+                          border: `2px solid ${value.color}50`,
                           transition: 'all 0.2s ease-out',
+                          '&::before': {
+                            boxShadow: `0 4px 12px ${value.color}60`,
+                          }
                         },
                         '& .value-icon': {
-                          transform: 'scale(1.05)',
-                          transition: 'transform 0.2s ease-out',
+                          transform: 'scale(1.08) translateY(-2px)',
+                          boxShadow: `
+                            0 8px 24px ${value.color}25,
+                            0 4px 12px rgba(0,0,0,0.08),
+                            inset 0 2px 0 rgba(255,255,255,0.3)
+                          `,
+                          transition: 'all 0.2s ease-out',
                         },
                         '& .value-number': {
-                          opacity: 0.6,
-                          transform: 'scale(1)',
+                          opacity: 0.7,
+                          transform: 'scale(1.05)',
                           transition: 'all 0.2s ease-out',
                         },
                         '& .floating-elements': {
-                          opacity: 0.4,
-                          transition: 'opacity 0.2s ease-out',
+                          opacity: 0.6,
+                          transform: 'scale(1.2)',
+                          transition: 'all 0.2s ease-out',
                         }
                       }
                     }}
@@ -870,22 +886,38 @@ function Home() {
                         height: '100%',
                         position: 'relative',
                         overflow: 'hidden',
-                        background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.88) 100%)',
-                        backdropFilter: 'blur(6px) saturate(120%)',
-                        WebkitBackdropFilter: 'blur(6px) saturate(120%)',
-                        border: '1px solid rgba(255,255,255,0.3)',
-                        borderRadius: 4,
-                        boxShadow: '0 6px 20px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02)',
+                        background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                        border: `2px solid ${value.color}30`,
+                        borderRadius: 3,
+                        boxShadow: `
+                          0 8px 32px rgba(0,0,0,0.08),
+                          0 4px 16px rgba(0,0,0,0.04),
+                          inset 0 1px 0 rgba(255,255,255,0.9),
+                          inset 0 -1px 0 rgba(0,0,0,0.02)
+                        `,
                         transition: 'all 0.2s ease-out',
+                        transform: 'translateZ(0)',
                         '&::before': {
                           content: '""',
                           position: 'absolute',
                           top: 0,
                           left: 0,
                           right: 0,
-                          height: 2,
-                          background: `linear-gradient(90deg, ${value.color}80 0%, ${value.color}60 100%)`,
-                          borderRadius: '4px 4px 0 0',
+                          height: 4,
+                          background: `linear-gradient(90deg, ${value.color} 0%, ${value.color}80 100%)`,
+                          borderRadius: '3px 3px 0 0',
+                          boxShadow: `0 2px 8px ${value.color}40`,
+                        },
+                        '&::after': {
+                          content: '""',
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          background: `linear-gradient(135deg, ${value.color}03 0%, transparent 50%, ${value.color}05 100%)`,
+                          borderRadius: 3,
+                          pointerEvents: 'none',
                         }
                       }}
                     >
@@ -911,20 +943,37 @@ function Home() {
                       <Avatar
                         className="value-icon"
                         sx={{
-                          width: 72,
-                          height: 72,
+                          width: 80,
+                          height: 80,
                           mx: 'auto',
                           mb: 3,
                           mt: 1,
-                          background: `linear-gradient(135deg, ${value.color}15 0%, ${value.color}08 100%)`,
-                          backdropFilter: 'blur(4px) saturate(130%)',
-                          WebkitBackdropFilter: 'blur(4px) saturate(130%)',
-                          border: `1px solid ${value.color}20`,
-                          boxShadow: `0 4px 16px ${value.color}10, 0 1px 4px rgba(0,0,0,0.02)`,
-                          transition: 'transform 0.2s ease-out',
+                          background: `linear-gradient(145deg, ${value.color}20 0%, ${value.color}10 50%, ${value.color}15 100%)`,
+                          border: `2px solid ${value.color}30`,
+                          borderRadius: '50%',
+                          boxShadow: `
+                            0 6px 20px ${value.color}15,
+                            0 2px 8px rgba(0,0,0,0.06),
+                            inset 0 2px 0 rgba(255,255,255,0.4),
+                            inset 0 -2px 0 rgba(0,0,0,0.05)
+                          `,
+                          transition: 'all 0.2s ease-out',
                           position: 'relative',
                           zIndex: 1,
                           color: value.color,
+                          transform: 'translateZ(0)',
+                          '&::before': {
+                            content: '""',
+                            position: 'absolute',
+                            top: -3,
+                            left: -3,
+                            right: -3,
+                            bottom: -3,
+                            background: `conic-gradient(from 0deg, ${value.color}20, transparent 50%, ${value.color}15, transparent)`,
+                            borderRadius: '50%',
+                            zIndex: -1,
+                            opacity: 0.6,
+                          }
                         }}
                       >
                         {value.icon}
