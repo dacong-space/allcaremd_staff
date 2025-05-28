@@ -100,21 +100,25 @@ function Home() {
         sx={{
           pt: { xs: 8, md: 12 },
           pb: { xs: 8, md: 16 },
-          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
-          color: 'white',
+          bgcolor: 'white',
+          color: 'text.primary',
+          minHeight: '80vh',
+          display: 'flex',
+          alignItems: 'center',
         }}
       >
         <Container maxWidth="lg">
           <Grid container spacing={6} alignItems="center">
             <Grid item xs={12} md={6}>
               <Chip
-                label="All People. All Heart. Allcare."
+                label="Allcare Health Care, LLC"
                 sx={{
-                  bgcolor: 'rgba(255,255,255,0.2)',
+                  bgcolor: 'primary.light',
                   color: 'white',
                   mb: 3,
-                  fontSize: '1rem',
-                  px: 2
+                  fontSize: '0.875rem',
+                  px: 2,
+                  py: 0.5
                 }}
               />
               <Typography
@@ -125,21 +129,26 @@ function Home() {
                   fontSize: { xs: '2.5rem', md: '3.5rem' },
                   fontWeight: 700,
                   lineHeight: 1.2,
-                  color: 'white',
+                  color: 'text.primary',
+                  mb: 3,
                 }}
               >
-                RSA 培训平台
+                All People. All Heart.{' '}
+                <Box component="span" sx={{ color: 'primary.main' }}>
+                  Allcare.
+                </Box>
               </Typography>
               <Typography
-                variant="h5"
+                variant="h6"
                 sx={{
                   mb: 4,
-                  color: 'rgba(255,255,255,0.9)',
+                  color: 'text.secondary',
                   fontSize: { xs: '1.125rem', md: '1.25rem' },
                   lineHeight: 1.6,
+                  fontWeight: 400,
                 }}
               >
-                为 Allcare Health Care 员工提供专业的培训资源、客户手册和文档管理系统
+                Allcare 将使您的培训体验现代化和专业化，同时为您节省宝贵的时间。
               </Typography>
               <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 4 }}>
                 <Button
@@ -147,15 +156,12 @@ function Home() {
                   size="large"
                   onClick={() => navigate('/training/elderly-manual')}
                   sx={{
-                    bgcolor: 'white',
-                    color: theme.palette.primary.main,
                     px: 4,
                     py: 1.5,
                     fontSize: '1rem',
                     fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'rgba(255,255,255,0.9)'
-                    }
+                    borderRadius: 2,
+                    textTransform: 'none',
                   }}
                 >
                   查看客户手册
@@ -165,16 +171,12 @@ function Home() {
                   size="large"
                   onClick={() => navigate('/training')}
                   sx={{
-                    borderColor: 'white',
-                    color: 'white',
                     px: 4,
                     py: 1.5,
                     fontSize: '1rem',
                     fontWeight: 600,
-                    '&:hover': {
-                      borderColor: 'white',
-                      bgcolor: 'rgba(255,255,255,0.1)'
-                    }
+                    borderRadius: 2,
+                    textTransform: 'none',
                   }}
                 >
                   开始培训
@@ -188,43 +190,68 @@ function Home() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
+                  height: { xs: 300, md: 400 },
                 }}
               >
+                {/* 模拟多个页面卡片的效果 */}
                 <Box
                   sx={{
-                    width: { xs: 300, md: 400 },
-                    height: { xs: 300, md: 400 },
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: '50%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
                     position: 'relative',
-                    backdropFilter: 'blur(10px)',
-                    border: '2px solid rgba(255,255,255,0.2)',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      width: '120%',
-                      height: '120%',
-                      background: 'rgba(255,255,255,0.05)',
-                      borderRadius: '50%',
-                      zIndex: -1,
-                    },
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
                 >
-                  <Box textAlign="center" sx={{ color: 'white' }}>
-                    <FavoriteIcon sx={{ fontSize: { xs: 60, md: 80 }, mb: 2 }} />
-                    <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
-                      Allcare
-                    </Typography>
-                    <Typography variant="h6">
-                      Health Care, LLC
-                    </Typography>
-                    <Typography variant="body2" sx={{ mt: 1, opacity: 0.8 }}>
-                      马里兰州居家护理服务
-                    </Typography>
-                  </Box>
+                  {/* 背景卡片 */}
+                  {[1, 2, 3, 4, 5].map((index) => (
+                    <Paper
+                      key={index}
+                      elevation={3}
+                      sx={{
+                        position: 'absolute',
+                        width: { xs: 200, md: 250 },
+                        height: { xs: 140, md: 180 },
+                        borderRadius: 2,
+                        bgcolor: 'white',
+                        transform: `rotate(${(index - 3) * 8}deg) translateX(${(index - 3) * 20}px) translateY(${(index - 3) * 10}px)`,
+                        zIndex: 6 - index,
+                        opacity: index === 3 ? 1 : 0.7,
+                        border: '1px solid',
+                        borderColor: 'grey.200',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        p: 2,
+                      }}
+                    >
+                      {index === 3 && (
+                        <>
+                          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                            <Avatar
+                              sx={{
+                                width: 32,
+                                height: 32,
+                                bgcolor: 'primary.main',
+                                mr: 1,
+                              }}
+                            >
+                              <FavoriteIcon sx={{ fontSize: 20 }} />
+                            </Avatar>
+                            <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                              Allcare
+                            </Typography>
+                          </Box>
+                          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                            Health Care, LLC
+                          </Typography>
+                          <Typography variant="caption" color="text.secondary">
+                            马里兰州专业居家护理服务
+                          </Typography>
+                        </>
+                      )}
+                    </Paper>
+                  ))}
                 </Box>
               </Box>
             </Grid>
