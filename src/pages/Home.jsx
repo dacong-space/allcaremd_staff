@@ -1115,18 +1115,157 @@ function Home() {
             {milestones.map((milestone, index) => (
               <TimelineItem key={index}>
                 <TimelineSeparator>
-                  <TimelineDot color="primary" variant="filled" />
+                  <TimelineDot
+                    color="primary"
+                    variant="filled"
+                    sx={{
+                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transform: 'translateZ(0)',
+                      position: 'relative',
+                      '&:hover': {
+                        transform: 'scale(1.2)',
+                        boxShadow: '0 0 20px rgba(25, 118, 210, 0.4), 0 0 40px rgba(25, 118, 210, 0.2)',
+                      },
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: -4,
+                        left: -4,
+                        right: -4,
+                        bottom: -4,
+                        background: 'radial-gradient(circle, rgba(25, 118, 210, 0.2), transparent 70%)',
+                        borderRadius: '50%',
+                        opacity: 0,
+                        transition: 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      },
+                      '&:hover::before': {
+                        opacity: 1,
+                      }
+                    }}
+                  />
                   {index < milestones.length - 1 && <TimelineConnector />}
                 </TimelineSeparator>
                 <TimelineContent>
-                  <Paper elevation={3} sx={{ p: 3 }}>
-                    <Typography variant="h6" color="primary" gutterBottom>
+                  <Paper
+                    elevation={3}
+                    sx={{
+                      p: 3,
+                      cursor: 'pointer',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      borderRadius: 3,
+                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transform: 'translateZ(0)',
+                      willChange: 'transform, box-shadow, border-color',
+                      '&:hover': {
+                        transform: 'translateY(-8px) scale(1.02)',
+                        background: 'linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%)',
+                        boxShadow: `
+                          0 20px 40px rgba(0,0,0,0.12),
+                          0 8px 16px rgba(0,0,0,0.08),
+                          inset 0 1px 0 rgba(255,255,255,0.9),
+                          0 0 0 1px rgba(25, 118, 210, 0.15)
+                        `,
+                        border: '1px solid rgba(25, 118, 210, 0.25)',
+                        '& .timeline-year': {
+                          transform: 'scale(1.05)',
+                          color: 'primary.main',
+                        },
+                        '& .timeline-title': {
+                          transform: 'translateX(4px)',
+                          color: 'text.primary',
+                        },
+                        '& .timeline-description': {
+                          transform: 'translateX(2px)',
+                          color: 'text.secondary',
+                        },
+                        '& .timeline-glow': {
+                          opacity: 0.6,
+                        }
+                      },
+                      '&::before': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 3,
+                        background: 'linear-gradient(90deg, rgba(25, 118, 210, 0.8) 0%, rgba(25, 118, 210, 0.6) 100%)',
+                        borderRadius: '3px 3px 0 0',
+                      },
+                      '&::after': {
+                        content: '""',
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'radial-gradient(circle at 50% 0%, rgba(25, 118, 210, 0.03), transparent 60%)',
+                        pointerEvents: 'none',
+                        borderRadius: 3,
+                      }
+                    }}
+                  >
+                    {/* Soft Glow Effect */}
+                    <Box
+                      className="timeline-glow"
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%)',
+                        opacity: 0,
+                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        pointerEvents: 'none',
+                        borderRadius: 3,
+                      }}
+                    />
+
+                    <Typography
+                      className="timeline-year"
+                      variant="h6"
+                      color="primary"
+                      gutterBottom
+                      sx={{
+                        position: 'relative',
+                        zIndex: 1,
+                        fontWeight: 700,
+                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        transform: 'translateZ(0)',
+                      }}
+                    >
                       {milestone.year}
                     </Typography>
-                    <Typography variant="h5" gutterBottom>
+                    <Typography
+                      className="timeline-title"
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        position: 'relative',
+                        zIndex: 1,
+                        fontWeight: 600,
+                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        transform: 'translateZ(0)',
+                      }}
+                    >
                       {milestone.title}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography
+                      className="timeline-description"
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{
+                        position: 'relative',
+                        zIndex: 1,
+                        lineHeight: 1.6,
+                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                        transform: 'translateZ(0)',
+                      }}
+                    >
                       {milestone.description}
                     </Typography>
                   </Paper>
