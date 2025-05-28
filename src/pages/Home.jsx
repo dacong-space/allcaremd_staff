@@ -9,7 +9,6 @@ import {
   Button,
   Avatar,
   Stack,
-  useTheme,
   Chip,
   Paper,
   IconButton
@@ -24,7 +23,6 @@ import {
 } from '@mui/lab'
 import {
   School as SchoolIcon,
-  Business as BusinessIcon,
   People as PeopleIcon,
   MenuBook as ManualIcon,
   Security as SecurityIcon,
@@ -32,8 +30,6 @@ import {
   CheckCircle as CheckIcon,
   Favorite as FavoriteIcon,
   Home as HomeIcon,
-  Phone as PhoneIcon,
-  Email as EmailIcon,
   Star as StarIcon,
   ArrowBackIos as ArrowBackIcon,
   ArrowForwardIos as ArrowForwardIcon,
@@ -197,7 +193,6 @@ const milestones = [
 ]
 
 function Home() {
-  const theme = useTheme()
   const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
   const autoScrollRef = useRef(null)
@@ -315,7 +310,7 @@ function Home() {
               <Chip
                 label="Allcare Health Care, LLC"
                 sx={{
-                  bgcolor: 'primary.light',
+                  bgcolor: '#f8a5c2', // 淡雅粉色马卡龙
                   color: 'white',
                   mb: 3,
                   fontSize: '0.875rem',
@@ -336,7 +331,7 @@ function Home() {
                 }}
               >
                 All People. All Heart.{' '}
-                <Box component="span" sx={{ color: 'primary.main' }}>
+                <Box component="span" sx={{ color: '#a8d8ea' }}>
                   Allcare.
                 </Box>
               </Typography>
@@ -382,12 +377,12 @@ function Home() {
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     borderRadius: '50%',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                    color: '#FF8C00', // 橙色箭头
+                    color: '#ffd3a5', // 淡雅橙色马卡龙
                     opacity: 1, // 一直显示
                     transition: 'all 0.2s ease-out',
                     '&:hover': {
                       background: 'rgba(255, 255, 255, 1)',
-                      color: '#FF6B00',
+                      color: '#ffb946', // 稍深的橙色马卡龙
                     },
                     '&:active': {
                       transform: 'translateY(-50%) scale(0.95)',
@@ -414,12 +409,12 @@ function Home() {
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     borderRadius: '50%',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                    color: '#FF8C00', // 橙色箭头
+                    color: '#ffd3a5', // 淡雅橙色马卡龙
                     opacity: 1, // 一直显示
                     transition: 'all 0.2s ease-out',
                     '&:hover': {
                       background: 'rgba(255, 255, 255, 1)',
-                      color: '#FF6B00',
+                      color: '#ffb946', // 稍深的橙色马卡龙
                     },
                     '&:active': {
                       transform: 'translateY(-50%) scale(0.95)',
@@ -554,7 +549,7 @@ function Home() {
             >
               关于 Allcare Health Care
             </Typography>
-            <Typography variant="h6" color="primary" gutterBottom>
+            <Typography variant="h6" sx={{ color: '#b8e6b8' }} gutterBottom>
               马里兰州值得信赖的居家护理服务提供商
             </Typography>
             <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
@@ -575,7 +570,7 @@ function Home() {
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                bgcolor: theme.palette.primary.light,
+                background: 'linear-gradient(135deg, #c8a2c8 0%, #b8e6b8 100%)', // 紫色到绿色的马卡龙渐变
                 borderRadius: 2,
                 p: 4,
                 textAlign: 'center'
