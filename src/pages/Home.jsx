@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {
   Container,
   Typography,
@@ -11,7 +11,8 @@ import {
   Stack,
   useTheme,
   Chip,
-  Paper
+  Paper,
+  IconButton
 } from '@mui/material'
 import {
   Timeline,
@@ -34,6 +35,8 @@ import {
   Phone as PhoneIcon,
   Email as EmailIcon,
   Star as StarIcon,
+  ArrowBackIos as ArrowBackIcon,
+  ArrowForwardIos as ArrowForwardIcon,
 } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 
@@ -186,6 +189,25 @@ const milestones = [
 function Home() {
   const theme = useTheme()
   const navigate = useNavigate()
+  const scrollContainerRef = useRef(null)
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -350,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 350,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   return (
     <Box>
@@ -419,100 +441,204 @@ function Home() {
             专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
           </Typography>
 
-          {/* Horizontal Scrollable Cards */}
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 3,
-              overflowX: 'auto',
-              pb: 2,
-              '&::-webkit-scrollbar': {
-                height: 8,
-              },
-              '&::-webkit-scrollbar-track': {
-                backgroundColor: 'rgba(0,0,0,0.1)',
-                borderRadius: 4,
-              },
-              '&::-webkit-scrollbar-thumb': {
-                backgroundColor: 'primary.main',
-                borderRadius: 4,
+          {/* Carousel Container */}
+          <Box sx={{ position: 'relative', px: 6 }}>
+            {/* Left Arrow */}
+            <IconButton
+              onClick={scrollLeft}
+              sx={{
+                position: 'absolute',
+                left: -10,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 2,
+                bgcolor: 'white',
+                boxShadow: theme.shadows[4],
+                width: 48,
+                height: 48,
                 '&:hover': {
-                  backgroundColor: 'primary.dark',
+                  bgcolor: 'primary.main',
+                  color: 'white',
+                  transform: 'translateY(-50%) scale(1.1)',
+                  boxShadow: theme.shadows[8],
                 },
-              },
-            }}
-          >
-            {servicesAndFeatures.map((item, index) => (
-              <Card
+                transition: 'all 0.3s ease-in-out',
+              }}
+            >
+              <ArrowBackIcon />
+            </IconButton>
+
+            {/* Right Arrow */}
+            <IconButton
+              onClick={scrollRight}
+              sx={{
+                position: 'absolute',
+                right: -10,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 2,
+                bgcolor: 'white',
+                boxShadow: theme.shadows[4],
+                width: 48,
+                height: 48,
+                '&:hover': {
+                  bgcolor: 'primary.main',
+                  color: 'white',
+                  transform: 'translateY(-50%) scale(1.1)',
+                  boxShadow: theme.shadows[8],
+                },
+                transition: 'all 0.3s ease-in-out',
+              }}
+            >
+              <ArrowForwardIcon />
+            </IconButton>
+
+            {/* Scrollable Cards Container */}
+            <Box
+              ref={scrollContainerRef}
+              sx={{
+                display: 'flex',
+                gap: 3,
+                overflowX: 'auto',
+                scrollBehavior: 'smooth',
+                pb: 2,
+                px: 2,
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
+            >
+              {servicesAndFeatures.map((item, index) => (
+                <Card
+                  key={index}
+                  sx={{
+                    minWidth: 320,
+                    maxWidth: 320,
+                    textAlign: 'center',
+                    p: 3,
+                    position: 'relative',
+                    overflow: 'hidden',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    cursor: 'pointer',
+                    borderRadius: 3,
+                    background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
+                    border: '1px solid',
+                    borderColor: 'grey.200',
+                    '&:hover': {
+                      transform: 'translateY(-12px) scale(1.03)',
+                      boxShadow: `0 20px 40px rgba(0,0,0,0.1), 0 0 0 1px ${item.color}20`,
+                      borderColor: item.color,
+                      '& .card-icon': {
+                        transform: 'scale(1.1) rotate(5deg)',
+                      },
+                      '& .card-badge': {
+                        transform: 'scale(1.05)',
+                      }
+                    },
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: 4,
+                      background: `linear-gradient(90deg, ${item.color}, ${item.color}aa)`,
+                    },
+                    '&::after': {
+                      content: '""',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      background: `linear-gradient(135deg, ${item.color}05, transparent 50%)`,
+                      pointerEvents: 'none',
+                    }
+                  }}
+                >
+                  <Box
+                    className="card-badge"
+                    sx={{
+                      position: 'absolute',
+                      top: 16,
+                      right: 16,
+                      bgcolor: item.category === 'service' ? 'success.main' : 'info.main',
+                      color: 'white',
+                      px: 1.5,
+                      py: 0.5,
+                      borderRadius: 2,
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      boxShadow: theme.shadows[2],
+                      transition: 'transform 0.3s ease-in-out',
+                    }}
+                  >
+                    {item.category === 'service' ? '护理服务' : '培训特色'}
+                  </Box>
+                  <Avatar
+                    className="card-icon"
+                    sx={{
+                      width: 80,
+                      height: 80,
+                      mx: 'auto',
+                      mb: 3,
+                      mt: 2,
+                      background: `linear-gradient(135deg, ${item.color}15, ${item.color}25)`,
+                      color: item.color,
+                      border: `2px solid ${item.color}20`,
+                      transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                      boxShadow: `0 8px 24px ${item.color}20`,
+                    }}
+                  >
+                    {item.icon}
+                  </Avatar>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 600,
+                      color: 'text.primary',
+                      mb: 2,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      lineHeight: 1.6,
+                      fontSize: '0.9rem',
+                    }}
+                  >
+                    {item.description}
+                  </Typography>
+                </Card>
+              ))}
+            </Box>
+          </Box>
+
+          {/* Navigation Dots */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4, gap: 1 }}>
+            {Array.from({ length: Math.ceil(servicesAndFeatures.length / 3) }).map((_, index) => (
+              <Box
                 key={index}
                 sx={{
-                  minWidth: 320,
-                  maxWidth: 320,
-                  textAlign: 'center',
-                  p: 3,
-                  position: 'relative',
-                  overflow: 'hidden',
+                  width: 8,
+                  height: 8,
+                  borderRadius: '50%',
+                  bgcolor: index === 0 ? 'primary.main' : 'grey.300',
                   transition: 'all 0.3s ease-in-out',
                   cursor: 'pointer',
                   '&:hover': {
-                    transform: 'translateY(-8px) scale(1.02)',
-                    boxShadow: theme.shadows[12]
-                  },
-                  '&::before': {
-                    content: '""',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: 4,
-                    background: `linear-gradient(90deg, ${item.color}, ${item.color}aa)`,
+                    bgcolor: 'primary.main',
+                    transform: 'scale(1.2)',
                   }
                 }}
-              >
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 16,
-                    right: 16,
-                    bgcolor: item.category === 'service' ? 'success.main' : 'info.main',
-                    color: 'white',
-                    px: 1.5,
-                    py: 0.5,
-                    borderRadius: 1,
-                    fontSize: '0.75rem',
-                    fontWeight: 600,
-                  }}
-                >
-                  {item.category === 'service' ? '护理服务' : '培训特色'}
-                </Box>
-                <Avatar
-                  sx={{
-                    width: 80,
-                    height: 80,
-                    mx: 'auto',
-                    mb: 3,
-                    mt: 2,
-                    background: `linear-gradient(135deg, ${item.color}20, ${item.color}40)`,
-                    color: item.color,
-                  }}
-                >
-                  {item.icon}
-                </Avatar>
-                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                  {item.description}
-                </Typography>
-              </Card>
+              />
             ))}
-          </Box>
-
-          {/* Scroll Hint */}
-          <Box sx={{ textAlign: 'center', mt: 3 }}>
-            <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-              ← 左右滑动查看更多服务与特色 →
-            </Typography>
           </Box>
         </Container>
       </Box>
