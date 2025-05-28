@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import {
   Container,
   Typography,
@@ -48,13 +48,29 @@ const HERO_IMAGE = {
   fallback: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
 };
 
-// 其他可用的图片选项（如需更换，复制文件名到上面的 src 字段）
-const AVAILABLE_IMAGES = {
-  gentleCare: "/images/20250521_2054_Gentle Caregiving Moment_simple_compose_01jvtqn1m5ev0aph6cw6p15pf0.png",
-  healthcareTeam: "/images/20250521_2107_Diverse Healthcare Team_simple_compose_01jvtrew1ee0zs0ad3k3csjh2g.png",
-  elderlyGathering: "/images/20250521_2114_Joyful Elderly Gathering_simple_compose_01jvtrv0n3fj19ech0z9097j60.png",
-  elderlyPark: "/images/20250521_2115_Elderly Joy in Park_simple_compose_01jvtrwkyce12r2h5px5v4fs7r.png"
-};
+// 图片轮播数组 - 包含所有可用图片
+const HERO_IMAGES = [
+  {
+    src: "/images/20250521_2054_Gentle Caregiving Moment_simple_compose_01jvtqn1m5ev0aph6cw6p15pf0.png",
+    alt: "Allcare Health Care 温柔护理服务展示",
+    title: "温柔护理时刻"
+  },
+  {
+    src: "/images/20250521_2107_Diverse Healthcare Team_simple_compose_01jvtrew1ee0zs0ad3k3csjh2g.png",
+    alt: "Allcare Health Care 专业医疗团队",
+    title: "多元化医疗团队"
+  },
+  {
+    src: "/images/20250521_2114_Joyful Elderly Gathering_simple_compose_01jvtrv0n3fj19ech0z9097j60.png",
+    alt: "Allcare Health Care 客户快乐生活",
+    title: "快乐的老年人聚会"
+  },
+  {
+    src: "/images/20250521_2115_Elderly Joy in Park_simple_compose_01jvtrwkyce12r2h5px5v4fs7r.png",
+    alt: "Allcare Health Care 户外护理服务",
+    title: "老年人在公园的快乐时光"
+  }
+];
 
 // 合并护理服务和培训平台特色
 const servicesAndFeatures = [
@@ -186,6 +202,18 @@ function Home() {
   const scrollContainerRef = useRef(null)
   const autoScrollRef = useRef(null)
 
+  // 图片轮播状态
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // 图片切换函数
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length)
+  }
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length)
+  }
+
   const scrollLeft = () => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollBy({
@@ -204,7 +232,16 @@ function Home() {
     }
   }
 
-  // 自动滚动功能
+  // 图片自动轮播功能
+  useEffect(() => {
+    const autoImageScroll = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length)
+    }, 4000) // 每4秒自动切换
+
+    return () => clearInterval(autoImageScroll)
+  }, [])
+
+  // 服务卡片自动滚动功能
   useEffect(() => {
     const startAutoScroll = () => {
       autoScrollRef.current = setInterval(() => {
@@ -321,30 +358,166 @@ function Home() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  height: { xs: 300, md: 400 },
+                  height: { xs: 400, md: 500 }, // 增大尺寸
                   px: 2,
                 }}
               >
+                {/* 图片容器 */}
                 <Box
-                  component="img"
-                  src={HERO_IMAGE.src}
-                  alt={HERO_IMAGE.alt}
-                  onError={(e) => {
-                    e.target.src = HERO_IMAGE.fallback;
-                  }}
                   sx={{
+                    position: 'relative',
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover',
-                    borderRadius: 3,
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.08)',
+                    borderRadius: 4,
+                    overflow: 'hidden',
+                    boxShadow: '0 24px 48px rgba(0,0,0,0.12), 0 12px 24px rgba(0,0,0,0.08)',
                     transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     '&:hover': {
-                      transform: 'translateY(-4px) scale(1.02)',
-                      boxShadow: '0 32px 64px rgba(0,0,0,0.15), 0 16px 32px rgba(0,0,0,0.12)',
+                      transform: 'translateY(-6px) scale(1.02)',
+                      boxShadow: '0 32px 64px rgba(0,0,0,0.16), 0 16px 32px rgba(0,0,0,0.12)',
+                      '& .image-nav-btn': {
+                        opacity: 1,
+                        transform: 'translateY(-50%) scale(1)',
+                      }
                     }
                   }}
-                />
+                >
+                  {/* 主图片 */}
+                  <Box
+                    component="img"
+                    src={HERO_IMAGES[currentImageIndex].src}
+                    alt={HERO_IMAGES[currentImageIndex].alt}
+                    onError={(e) => {
+                      e.target.src = HERO_IMAGE.fallback;
+                    }}
+                    sx={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      transition: 'all 0.5s ease-in-out',
+                    }}
+                  />
+
+                  {/* 左箭头 */}
+                  <IconButton
+                    className="image-nav-btn"
+                    onClick={prevImage}
+                    sx={{
+                      position: 'absolute',
+                      left: 16,
+                      top: '50%',
+                      transform: 'translateY(-50%) scale(0.9)',
+                      zIndex: 2,
+                      width: 48,
+                      height: 48,
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
+                      backdropFilter: 'blur(12px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                      border: '1px solid rgba(255,255,255,0.6)',
+                      borderRadius: '50%',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
+                      color: 'rgba(0,0,0,0.7)',
+                      opacity: 0,
+                      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      '&:hover': {
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
+                        transform: 'translateY(-50%) scale(1.1)',
+                        boxShadow: '0 12px 32px rgba(0,0,0,0.16), 0 6px 12px rgba(0,0,0,0.12)',
+                        color: 'rgba(0,0,0,0.85)',
+                      }
+                    }}
+                  >
+                    <ArrowBackIcon sx={{ fontSize: 20 }} />
+                  </IconButton>
+
+                  {/* 右箭头 */}
+                  <IconButton
+                    className="image-nav-btn"
+                    onClick={nextImage}
+                    sx={{
+                      position: 'absolute',
+                      right: 16,
+                      top: '50%',
+                      transform: 'translateY(-50%) scale(0.9)',
+                      zIndex: 2,
+                      width: 48,
+                      height: 48,
+                      background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
+                      backdropFilter: 'blur(12px) saturate(180%)',
+                      WebkitBackdropFilter: 'blur(12px) saturate(180%)',
+                      border: '1px solid rgba(255,255,255,0.6)',
+                      borderRadius: '50%',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08)',
+                      color: 'rgba(0,0,0,0.7)',
+                      opacity: 0,
+                      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                      '&:hover': {
+                        background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
+                        transform: 'translateY(-50%) scale(1.1)',
+                        boxShadow: '0 12px 32px rgba(0,0,0,0.16), 0 6px 12px rgba(0,0,0,0.12)',
+                        color: 'rgba(0,0,0,0.85)',
+                      }
+                    }}
+                  >
+                    <ArrowForwardIcon sx={{ fontSize: 20 }} />
+                  </IconButton>
+
+                  {/* 图片标题覆盖层 */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.6))',
+                      color: 'white',
+                      p: 3,
+                      opacity: 0,
+                      transition: 'opacity 0.3s ease-in-out',
+                      '.image-container:hover &': {
+                        opacity: 1,
+                      }
+                    }}
+                  >
+                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                      {HERO_IMAGES[currentImageIndex].title}
+                    </Typography>
+                  </Box>
+
+                  {/* 图片指示器 */}
+                  <Box
+                    sx={{
+                      position: 'absolute',
+                      bottom: 16,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      display: 'flex',
+                      gap: 1,
+                      zIndex: 3,
+                    }}
+                  >
+                    {HERO_IMAGES.map((_, index) => (
+                      <Box
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        sx={{
+                          width: 8,
+                          height: 8,
+                          borderRadius: '50%',
+                          background: index === currentImageIndex
+                            ? 'rgba(255,255,255,0.9)'
+                            : 'rgba(255,255,255,0.4)',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          '&:hover': {
+                            background: 'rgba(255,255,255,0.7)',
+                            transform: 'scale(1.2)',
+                          }
+                        }}
+                      />
+                    ))}
+                  </Box>
+                </Box>
               </Box>
             </Grid>
           </Grid>
