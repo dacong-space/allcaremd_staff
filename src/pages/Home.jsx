@@ -42,9 +42,10 @@ import { useNavigate } from 'react-router-dom'
 
 // 图片配置 - 方便快速更换
 const HERO_IMAGE = {
-  src: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+  // 使用本地图片：将您的图片放在 public/images/ 文件夹中，然后修改下面的文件名
+  src: "/images/hero-image.jpg", // 修改为您的图片文件名
   alt: "Allcare Health Care 专业护理服务展示",
-  fallback: "/api/placeholder/600/400"
+  fallback: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
 };
 
 // 合并护理服务和培训平台特色
