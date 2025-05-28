@@ -658,8 +658,8 @@ function Home() {
                 color: 'rgba(0,0,0,0.65)',
                 '&:hover': {
                   background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
-                  transform: 'translateY(-50%) scale(1.08)',
-                  boxShadow: '0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.15)',
+                  transform: 'translateY(-50%) scale(1.05)',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.06)',
                   color: 'rgba(0,0,0,0.8)',
                   '& .arrow-icon': {
                     transform: 'translateX(-1px)',
@@ -668,14 +668,14 @@ function Home() {
                 '&:active': {
                   transform: 'translateY(-50%) scale(1.02)',
                 },
-                transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               }}
             >
               <ArrowBackIcon
                 className="arrow-icon"
                 sx={{
                   fontSize: 22,
-                  transition: 'transform 0.25s ease-out'
+                  transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                 }}
               />
             </IconButton>
@@ -700,8 +700,8 @@ function Home() {
                 color: 'rgba(0,0,0,0.65)',
                 '&:hover': {
                   background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
-                  transform: 'translateY(-50%) scale(1.08)',
-                  boxShadow: '0 8px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.15)',
+                  transform: 'translateY(-50%) scale(1.05)',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.06)',
                   color: 'rgba(0,0,0,0.8)',
                   '& .arrow-icon': {
                     transform: 'translateX(1px)',
@@ -710,14 +710,14 @@ function Home() {
                 '&:active': {
                   transform: 'translateY(-50%) scale(1.02)',
                 },
-                transition: 'all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
               }}
             >
               <ArrowForwardIcon
                 className="arrow-icon"
                 sx={{
                   fontSize: 22,
-                  transition: 'transform 0.25s ease-out'
+                  transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                 }}
               />
             </IconButton>
@@ -749,7 +749,7 @@ function Home() {
                     p: 3,
                     position: 'relative',
                     overflow: 'hidden',
-                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     cursor: 'pointer',
                     borderRadius: 4,
                     background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
@@ -757,21 +757,23 @@ function Home() {
                     WebkitBackdropFilter: 'blur(6px) saturate(120%)',
                     border: '1px solid rgba(255,255,255,0.3)',
                     boxShadow: '0 4px 24px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.04)',
+                    transform: 'translateZ(0)',
+                    willChange: 'transform, box-shadow, border-color',
                     '&:hover': {
-                      transform: 'translateY(-8px) scale(1.02)',
+                      transform: 'translateY(-6px)',
                       background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
                       backdropFilter: 'blur(8px) saturate(140%)',
                       WebkitBackdropFilter: 'blur(8px) saturate(140%)',
-                      boxShadow: `0 12px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.06), 0 0 0 1px ${item.color}20`,
-                      border: `1px solid ${item.color}30`,
+                      boxShadow: `0 16px 32px rgba(0,0,0,0.08), 0 6px 16px rgba(0,0,0,0.04), 0 0 0 1px ${item.color}15`,
+                      border: `1px solid ${item.color}25`,
                       '& .card-icon': {
-                        transform: 'scale(1.08) rotate(3deg)',
+                        transform: 'scale(1.05) rotate(2deg)',
                       },
                       '& .card-badge': {
-                        transform: 'scale(1.03)',
+                        transform: 'scale(1.02)',
                       },
                       '& .soft-glow': {
-                        opacity: 0.6,
+                        opacity: 0.4,
                       }
                     },
                     '&::before': {
@@ -808,7 +810,7 @@ function Home() {
                       bottom: 0,
                       background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%)`,
                       opacity: 0,
-                      transition: 'opacity 0.3s ease-in-out',
+                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       pointerEvents: 'none',
                       borderRadius: 4,
                     }}
@@ -828,9 +830,11 @@ function Home() {
                       WebkitBackdropFilter: 'blur(4px) saturate(130%)',
                       color: item.color,
                       border: `1px solid rgba(255, 255, 255, 0.4)`,
-                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                       boxShadow: `0 6px 20px ${item.color}15, 0 2px 8px rgba(0,0,0,0.04)`,
                       position: 'relative',
+                      transform: 'translateZ(0)',
+                      willChange: 'transform, box-shadow',
                       '&::before': {
                         content: '""',
                         position: 'absolute',
