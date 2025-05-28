@@ -204,6 +204,7 @@ function Home() {
 
   // 图片轮播状态
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isImageHovered, setIsImageHovered] = useState(false)
 
   // 图片切换函数
   const nextImage = () => {
@@ -234,12 +235,14 @@ function Home() {
 
   // 图片自动轮播功能
   useEffect(() => {
+    if (isImageHovered) return // 悬停时暂停自动轮播
+
     const autoImageScroll = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length)
-    }, 4000) // 每4秒自动切换
+    }, 5000) // 每5秒自动切换，给用户更多时间欣赏
 
     return () => clearInterval(autoImageScroll)
-  }, [])
+  }, [isImageHovered])
 
   // 服务卡片自动滚动功能
   useEffect(() => {
@@ -364,6 +367,8 @@ function Home() {
               >
                 {/* 图片容器 */}
                 <Box
+                  onMouseEnter={() => setIsImageHovered(true)}
+                  onMouseLeave={() => setIsImageHovered(false)}
                   sx={{
                     position: 'relative',
                     width: '100%',
@@ -378,21 +383,38 @@ function Home() {
                     }
                   }}
                 >
-                  {/* 主图片 */}
+                  {/* 图片容器 - 支持淡入淡出效果 */}
                   <Box
-                    component="img"
-                    src={HERO_IMAGES[currentImageIndex].src}
-                    alt={HERO_IMAGES[currentImageIndex].alt}
-                    onError={(e) => {
-                      e.target.src = HERO_IMAGE.fallback;
-                    }}
                     sx={{
+                      position: 'relative',
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
-                      transition: 'all 0.5s ease-in-out',
+                      overflow: 'hidden',
                     }}
-                  />
+                  >
+                    {HERO_IMAGES.map((image, index) => (
+                      <Box
+                        key={index}
+                        component="img"
+                        src={image.src}
+                        alt={image.alt}
+                        onError={(e) => {
+                          e.target.src = HERO_IMAGE.fallback;
+                        }}
+                        sx={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          opacity: index === currentImageIndex ? 1 : 0,
+                          transition: 'opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                          zIndex: index === currentImageIndex ? 1 : 0,
+                        }}
+                      />
+                    ))}
+                  </Box>
 
                   {/* 左箭头 */}
                   <IconButton
@@ -488,12 +510,17 @@ function Home() {
                   <Box
                     sx={{
                       position: 'absolute',
-                      bottom: 16,
+                      bottom: 20,
                       left: '50%',
                       transform: 'translateX(-50%)',
                       display: 'flex',
-                      gap: 1,
+                      gap: 1.5,
                       zIndex: 3,
+                      background: 'rgba(0, 0, 0, 0.3)',
+                      backdropFilter: 'blur(8px)',
+                      borderRadius: 3,
+                      px: 2,
+                      py: 1,
                     }}
                   >
                     {HERO_IMAGES.map((_, index) => (
@@ -501,17 +528,17 @@ function Home() {
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
                         sx={{
-                          width: 8,
+                          width: index === currentImageIndex ? 24 : 8,
                           height: 8,
-                          borderRadius: '50%',
+                          borderRadius: 4,
                           background: index === currentImageIndex
-                            ? 'rgba(255,255,255,0.9)'
-                            : 'rgba(255,255,255,0.4)',
+                            ? 'rgba(255, 255, 255, 0.95)'
+                            : 'rgba(255, 255, 255, 0.5)',
                           cursor: 'pointer',
-                          transition: 'all 0.3s ease',
+                          transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
                           '&:hover': {
-                            background: 'rgba(255,255,255,0.7)',
-                            transform: 'scale(1.2)',
+                            background: 'rgba(255, 255, 255, 0.8)',
+                            transform: 'scale(1.1)',
                           }
                         }}
                       />
