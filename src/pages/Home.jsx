@@ -454,35 +454,7 @@ function Home() {
 
       </Container>
 
-      {/* Contact Section */}
-      <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
-        <Container maxWidth="lg">
-          <Box textAlign="center">
-            <Typography variant="h4" gutterBottom sx={{ fontWeight: 600 }}>
-              需要帮助？
-            </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
-              联系我们获取培训支持或技术帮助
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Chip
-                icon={<PhoneIcon />}
-                label="电话: (240) 668-4666"
-                variant="outlined"
-                size="large"
-                sx={{ fontSize: '1rem', py: 2 }}
-              />
-              <Chip
-                icon={<EmailIcon />}
-                label="邮箱: allcaremd@outlook.com"
-                variant="outlined"
-                size="large"
-                sx={{ fontSize: '1rem', py: 2 }}
-              />
-            </Box>
-          </Box>
-        </Container>
-      </Box>
+
     </Box>
   )
 }
