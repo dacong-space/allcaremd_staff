@@ -376,11 +376,6 @@ function Home() {
                     borderRadius: 4,
                     overflow: 'hidden',
                     boxShadow: '0 24px 48px rgba(0,0,0,0.12), 0 12px 24px rgba(0,0,0,0.08)',
-                    transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    '&:hover': {
-                      transform: 'translateY(-6px) scale(1.02)',
-                      boxShadow: '0 32px 64px rgba(0,0,0,0.16), 0 16px 32px rgba(0,0,0,0.12)',
-                    }
                   }}
                 >
                   {/* 图片容器 - 支持淡入淡出效果 */}
@@ -421,25 +416,23 @@ function Home() {
                     onClick={prevImage}
                     sx={{
                       position: 'absolute',
-                      left: 20,
+                      left: 16,
                       top: '50%',
                       transform: 'translateY(-50%)',
                       zIndex: 3,
-                      width: 56,
-                      height: 56,
+                      width: 44,
+                      height: 44,
                       background: 'rgba(255, 255, 255, 0.95)',
                       backdropFilter: 'blur(20px) saturate(180%)',
                       WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                       border: '1px solid rgba(255, 255, 255, 0.8)',
                       borderRadius: '50%',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)',
+                      boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
                       color: '#FF8C00', // 橙色箭头
                       opacity: 1, // 一直显示
-                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transition: 'all 0.2s ease-out',
                       '&:hover': {
                         background: 'rgba(255, 255, 255, 1)',
-                        transform: 'translateY(-50%) scale(1.1)',
-                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.16), 0 6px 20px rgba(0, 0, 0, 0.12)',
                         color: '#FF6B00',
                       },
                       '&:active': {
@@ -447,7 +440,7 @@ function Home() {
                       }
                     }}
                   >
-                    <ArrowBackIcon sx={{ fontSize: 24, fontWeight: 'bold' }} />
+                    <ArrowBackIcon sx={{ fontSize: 20 }} />
                   </IconButton>
 
                   {/* 右箭头 */}
@@ -455,25 +448,23 @@ function Home() {
                     onClick={nextImage}
                     sx={{
                       position: 'absolute',
-                      right: 20,
+                      right: 16,
                       top: '50%',
                       transform: 'translateY(-50%)',
                       zIndex: 3,
-                      width: 56,
-                      height: 56,
+                      width: 44,
+                      height: 44,
                       background: 'rgba(255, 255, 255, 0.95)',
                       backdropFilter: 'blur(20px) saturate(180%)',
                       WebkitBackdropFilter: 'blur(20px) saturate(180%)',
                       border: '1px solid rgba(255, 255, 255, 0.8)',
                       borderRadius: '50%',
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12), 0 4px 16px rgba(0, 0, 0, 0.08)',
+                      boxShadow: '0 6px 24px rgba(0, 0, 0, 0.1), 0 3px 12px rgba(0, 0, 0, 0.06)',
                       color: '#FF8C00', // 橙色箭头
                       opacity: 1, // 一直显示
-                      transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transition: 'all 0.2s ease-out',
                       '&:hover': {
                         background: 'rgba(255, 255, 255, 1)',
-                        transform: 'translateY(-50%) scale(1.1)',
-                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.16), 0 6px 20px rgba(0, 0, 0, 0.12)',
                         color: '#FF6B00',
                       },
                       '&:active': {
@@ -481,7 +472,7 @@ function Home() {
                       }
                     }}
                   >
-                    <ArrowForwardIcon sx={{ fontSize: 24, fontWeight: 'bold' }} />
+                    <ArrowForwardIcon sx={{ fontSize: 20 }} />
                   </IconButton>
 
                   {/* 图片标题覆盖层 */}
