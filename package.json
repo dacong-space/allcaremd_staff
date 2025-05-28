@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://dacong-space.github.io/allcaremd_staff",
+  "homepage": "https://training.allcaremd.com",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
