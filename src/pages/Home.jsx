@@ -42,10 +42,18 @@ import { useNavigate } from 'react-router-dom'
 
 // 图片配置 - 方便快速更换
 const HERO_IMAGE = {
-  // 使用本地图片：将您的图片放在 public/images/ 文件夹中，然后修改下面的文件名
-  src: "/images/hero-image.jpg", // 修改为您的图片文件名
-  alt: "Allcare Health Care 专业护理服务展示",
+  // 使用您上传的本地图片
+  src: "/images/20250521_2054_Gentle Caregiving Moment_simple_compose_01jvtqn1m5ev0aph6cw6p15pf0.png",
+  alt: "Allcare Health Care 温柔护理服务展示",
   fallback: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+};
+
+// 其他可用的图片选项（如需更换，复制文件名到上面的 src 字段）
+const AVAILABLE_IMAGES = {
+  gentleCare: "/images/20250521_2054_Gentle Caregiving Moment_simple_compose_01jvtqn1m5ev0aph6cw6p15pf0.png",
+  healthcareTeam: "/images/20250521_2107_Diverse Healthcare Team_simple_compose_01jvtrew1ee0zs0ad3k3csjh2g.png",
+  elderlyGathering: "/images/20250521_2114_Joyful Elderly Gathering_simple_compose_01jvtrv0n3fj19ech0z9097j60.png",
+  elderlyPark: "/images/20250521_2115_Elderly Joy in Park_simple_compose_01jvtrwkyce12r2h5px5v4fs7r.png"
 };
 
 // 合并护理服务和培训平台特色
