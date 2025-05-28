@@ -19,7 +19,7 @@ import {
   LocalHospital as CPRIcon,
   CheckCircle as CheckIcon,
   Schedule as ScheduleIcon,
-  Certificate as CertificateIcon,
+  Assignment as CertificateIcon,
   Group as GroupIcon,
 } from '@mui/icons-material'
 

@@ -1,10 +1,24 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Box } from '@mui/material'
+import { Box, Container, Typography } from '@mui/material'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
+import About from './pages/About'
+import Training from './pages/Training'
+import Files from './pages/Files'
 import ElderlyManual from './pages/ElderlyManual'
-import ComingSoon from './pages/ComingSoon'
+
+// 简单的 ComingSoon 组件
+const ComingSoon = ({ title }) => (
+  <Container maxWidth="lg" sx={{ py: 8, textAlign: 'center' }}>
+    <Typography variant="h3" gutterBottom>
+      {title}
+    </Typography>
+    <Typography variant="h6" color="text.secondary">
+      此功能正在开发中，敬请期待...
+    </Typography>
+  </Container>
+)
 
 function App() {
   return (
@@ -13,6 +27,9 @@ function App() {
       <Box component="main" sx={{ flexGrow: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/training" element={<Training />} />
+          <Route path="/files" element={<Files />} />
 
           {/* Training Routes */}
           <Route path="/training/elderly-manual" element={<ElderlyManual />} />
@@ -21,14 +38,13 @@ function App() {
           <Route path="/training/others" element={<ComingSoon title="其他培训" />} />
 
           {/* Files Routes */}
-          <Route path="/files/onboarding" element={<ComingSoon title="入职文件" />} />
-          <Route path="/files/client" element={<ComingSoon title="客户文件" />} />
-          <Route path="/files/employee" element={<ComingSoon title="员工文件" />} />
-          <Route path="/files/others" element={<ComingSoon title="其他文件" />} />
+          <Route path="/files/contracts" element={<ComingSoon title="合同文件" />} />
+          <Route path="/files/policies" element={<ComingSoon title="政策文件" />} />
+          <Route path="/files/training-materials" element={<ComingSoon title="培训资料" />} />
+          <Route path="/files/forms" element={<ComingSoon title="表格文件" />} />
 
           {/* Other Pages */}
           <Route path="/others" element={<ComingSoon title="其他服务" />} />
-          <Route path="/about" element={<ComingSoon title="关于我们" />} />
         </Routes>
       </Box>
     </Box>
