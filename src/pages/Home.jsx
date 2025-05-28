@@ -788,22 +788,7 @@ function Home() {
       <Container maxWidth="lg" sx={{ py: 8 }}>
 
         {/* Core Values Section */}
-        <Box sx={{ mb: 8, position: 'relative' }}>
-          {/* Background Pattern */}
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              background: 'radial-gradient(circle at 20% 20%, rgba(248,165,194,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168,216,234,0.08) 0%, transparent 50%), radial-gradient(circle at 50% 10%, rgba(200,162,200,0.06) 0%, transparent 40%)',
-              borderRadius: 4,
-              zIndex: 0,
-            }}
-          />
-
-          <Box sx={{ position: 'relative', zIndex: 1 }}>
+        <Box sx={{ mb: 8 }}>
             <Typography
               variant="h3"
               textAlign="center"
@@ -975,7 +960,6 @@ function Home() {
                 </Grid>
               ))}
             </Grid>
-          </Box>
         </Box>
 
         {/* Team Section */}
