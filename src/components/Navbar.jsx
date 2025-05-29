@@ -42,13 +42,13 @@ const navigationItems = [
     ]
   },
   {
-    label: '文件',
-    path: '/files',
+    label: '文档',
+    path: '/docs',
     type: 'single'
   },
   {
-    label: '其他',
-    path: '/others',
+    label: '帮助',
+    path: '/help',
     type: 'single'
   },
   {

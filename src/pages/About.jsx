@@ -31,8 +31,6 @@ import {
   Favorite as HeartIcon,
   ArrowBackIos as ArrowBackIcon,
   ArrowForwardIos as ArrowForwardIcon,
-  Schedule as ScheduleIcon,
-  Language as WebsiteIcon,
 } from '@mui/icons-material'
 
 
@@ -113,44 +111,7 @@ const companyInfo = {
   }
 }
 
-// 联系方式数据
-const contactMethods = [
-  {
-    id: 'phone',
-    title: '电话咨询',
-    value: '(240) 668-4666',
-    icon: <PhoneIcon />,
-    color: '#87ceeb',
-  },
-  {
-    id: 'email',
-    title: '邮件联系',
-    value: 'allcaremd@outlook.com',
-    icon: <EmailIcon />,
-    color: '#87ceeb',
-  },
-  {
-    id: 'address',
-    title: '服务地址',
-    value: '马里兰州巴尔的摩及周边地区',
-    icon: <LocationIcon />,
-    color: '#87ceeb',
-  },
-  {
-    id: 'hours',
-    title: '服务时间',
-    value: '24小时全天候服务',
-    icon: <ScheduleIcon />,
-    color: '#87ceeb',
-  },
-  {
-    id: 'website',
-    title: '官方网站',
-    value: 'allcaremd.com',
-    icon: <WebsiteIcon />,
-    color: '#87ceeb',
-  },
-]
+
 
 // 核心价值观数据
 const values = [
@@ -218,33 +179,52 @@ const milestones = [
   },
 ]
 
+// 服务区域数据
+const serviceAreas = [
+  {
+    name: 'Montgomery County',
+    description: '蒙哥马利县',
+    cities: ['Rockville', 'Bethesda', 'Silver Spring', 'Gaithersburg', 'Germantown'],
+    color: '#87ceeb',
+  },
+  {
+    name: 'Prince George\'s County',
+    description: '乔治王子县',
+    cities: ['College Park', 'Bowie', 'Laurel', 'Greenbelt', 'Hyattsville'],
+    color: '#98d8c8',
+  },
+  {
+    name: 'Frederick County',
+    description: '弗雷德里克县',
+    cities: ['Frederick', 'Urbana', 'Middletown', 'Brunswick', 'Walkersville'],
+    color: '#f7dc6f',
+  },
+  {
+    name: 'Washington County',
+    description: '华盛顿县',
+    cities: ['Hagerstown', 'Williamsport', 'Boonsboro', 'Smithsburg', 'Hancock'],
+    color: '#bb8fce',
+  },
+  {
+    name: 'Carroll County',
+    description: '卡罗尔县',
+    cities: ['Westminster', 'Eldersburg', 'Sykesville', 'Mount Airy', 'Taneytown'],
+    color: '#85c1e9',
+  },
+  {
+    name: 'Howard County',
+    description: '霍华德县',
+    cities: ['Columbia', 'Ellicott City', 'Clarksville', 'Fulton', 'Highland'],
+    color: '#f8c471',
+  },
+]
+
 
 
 function About() {
   const [selectedValue, setSelectedValue] = useState(0)
-  const [contactScrollPosition, setContactScrollPosition] = useState(0)
   const [teamScrollPosition, setTeamScrollPosition] = useState(0)
-  const contactScrollRef = useRef(null)
   const teamScrollRef = useRef(null)
-
-  // 联系方式滑动功能
-  const handleContactScroll = (direction) => {
-    if (contactScrollRef.current) {
-      const containerWidth = contactScrollRef.current.offsetWidth
-      const cardWidth = containerWidth / 4 // 每张卡片占容器宽度的1/4
-      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth
-      const newPosition = contactScrollPosition + scrollAmount
-      const maxScroll = (contactMethods.length - 4) * cardWidth // 最多显示4个卡片
-
-      const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll))
-      setContactScrollPosition(clampedPosition)
-
-      contactScrollRef.current.scrollTo({
-        left: clampedPosition,
-        behavior: 'smooth'
-      })
-    }
-  }
 
   // 团队成员滑动功能
   const handleTeamScroll = (direction) => {
@@ -266,7 +246,6 @@ function About() {
   }
 
   // 判断是否需要滑动功能
-  const needsContactScrolling = contactMethods.length > 4
   const needsTeamScrolling = teamMembers.length > 4
 
   return (
@@ -966,7 +945,7 @@ function About() {
         </Box>
       </Container>
 
-      {/* Contact Information */}
+      {/* Service Areas */}
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box
           sx={{
@@ -989,7 +968,7 @@ function About() {
                 mb: 2,
               }}
             >
-              联系我们
+              服务区域
             </Typography>
             <Typography
               variant="h6"
@@ -997,218 +976,103 @@ function About() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto' }}
             >
-              我们随时为您提供专业的护理咨询服务
+              我们为马里兰州Montgomery县及周边地区提供专业的居家护理服务
             </Typography>
           </Box>
 
-          {/* 联系方式卡片 */}
-          {needsContactScrolling ? (
-            // 可滑动布局（超过4个卡片时）
-            <Box sx={{
-              position: 'relative',
-              borderRadius: 4,
-              overflow: 'hidden',
-              backgroundColor: 'rgba(135, 206, 235, 0.05)',
-              p: 2,
-            }}>
-              {/* 滑动容器 */}
-              <Box
-                ref={contactScrollRef}
-                sx={{
-                  display: 'flex',
-                  gap: 3,
-                  overflowX: 'hidden',
-                  scrollBehavior: 'smooth',
-                  pb: 2,
-                  backgroundColor: 'rgba(135, 206, 235, 0.05)', // 与联系方式区域背景色一致
-                  width: '100%',
-                  '&::-webkit-scrollbar': {
-                    display: 'none',
-                  },
-                  msOverflowStyle: 'none',
-                  scrollbarWidth: 'none',
-                }}
-              >
-                {contactMethods.map((method) => (
-                  <Card
-                    key={method.id}
-                    sx={{
-                      minWidth: 'calc(25% - 18px)', // 4张卡片，减去gap的空间
-                      maxWidth: 'calc(25% - 18px)',
-                      p: 3,
-                      textAlign: 'center',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: 3,
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
-                      },
-                    }}
-                  >
-                    <Avatar
-                      sx={{
-                        width: 56,
-                        height: 56,
-                        mx: 'auto',
-                        mb: 2,
-                        bgcolor: method.color,
-                        color: 'white',
-                      }}
-                    >
-                      {method.icon}
-                    </Avatar>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                      {method.title}
-                    </Typography>
-                    <Typography
-                      variant={method.id === 'address' ? 'body2' : 'body1'}
-                      color={method.id === 'address' ? 'text.secondary' : 'primary'}
-                      sx={{
-                        fontWeight: method.id === 'address' ? 400 : 500,
-                        lineHeight: method.id === 'address' ? 1.6 : 1.2,
-                      }}
-                    >
-                      {method.value}
-                    </Typography>
-                  </Card>
-                ))}
-              </Box>
-
-              {/* 左箭头 */}
-              <IconButton
-                onClick={() => handleContactScroll('left')}
-                sx={{
-                  position: 'absolute',
-                  left: 16,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  zIndex: 2,
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(128, 128, 128, 0.3)',
-                  color: '#666',
-                  width: 40,
-                  height: 40,
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  '&:hover': {
-                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
-                    transform: 'translateY(-50%) scale(1.05)',
-                  },
-                  '&:disabled': {
-                    opacity: 0.3,
-                  },
-                }}
-                disabled={contactScrollPosition <= 0}
-              >
-                <ArrowBackIcon sx={{ fontSize: 20 }} />
-              </IconButton>
-
-              {/* 右箭头 */}
-              <IconButton
-                onClick={() => handleContactScroll('right')}
-                sx={{
-                  position: 'absolute',
-                  right: 16,
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  zIndex: 2,
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(128, 128, 128, 0.3)',
-                  color: '#666',
-                  width: 40,
-                  height: 40,
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  '&:hover': {
-                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
-                    transform: 'translateY(-50%) scale(1.05)',
-                  },
-                  '&:disabled': {
-                    opacity: 0.3,
-                  },
-                }}
-                disabled={contactScrollPosition >= (contactMethods.length - 4) * 320}
-              >
-                <ArrowForwardIcon sx={{ fontSize: 20 }} />
-              </IconButton>
-            </Box>
-          ) : (
-            // 普通Grid布局（4个或以下卡片时）
-            <Grid container spacing={4}>
-              {contactMethods.map((method) => (
-                <Grid item xs={12} sm={6} md={4} key={method.id}>
-                  <Card
-                    sx={{
-                      p: 3,
-                      textAlign: 'center',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: 3,
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                      height: '100%',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
-                      },
-                    }}
-                  >
-                    <Avatar
-                      sx={{
-                        width: 56,
-                        height: 56,
-                        mx: 'auto',
-                        mb: 2,
-                        bgcolor: method.color,
-                        color: 'white',
-                      }}
-                    >
-                      {method.icon}
-                    </Avatar>
-                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                      {method.title}
-                    </Typography>
-                    <Typography
-                      variant={method.id === 'address' ? 'body2' : 'body1'}
-                      color={method.id === 'address' ? 'text.secondary' : 'primary'}
-                      sx={{
-                        fontWeight: method.id === 'address' ? 400 : 500,
-                        lineHeight: method.id === 'address' ? 1.6 : 1.2,
-                      }}
-                    >
-                      {method.value}
-                    </Typography>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          )}
-
-          <Box sx={{ mt: 4, textAlign: 'center' }}>
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: 'text.primary' }}>
-              服务区域
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', flexWrap: 'wrap' }}>
-              {companyInfo.serviceAreas.map((area, index) => (
-                <Chip
-                  key={index}
-                  label={area}
+          {/* 服务区域卡片 */}
+          <Grid container spacing={4}>
+            {serviceAreas.map((area, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Card
                   sx={{
-                    bgcolor: 'rgba(135, 206, 235, 0.15)',
-                    color: '#87ceeb',
-                    border: '1px solid rgba(135, 206, 235, 0.3)',
+                    p: 3,
+                    textAlign: 'center',
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    borderRadius: 3,
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    height: '100%',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+                      borderColor: area.color,
+                    },
                   }}
-                />
-              ))}
+                >
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      mx: 'auto',
+                      mb: 2,
+                      bgcolor: area.color,
+                      color: 'white',
+                      fontSize: '24px',
+                    }}
+                  >
+                    <LocationIcon />
+                  </Avatar>
+                  <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+                    {area.description}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ mb: 2, fontStyle: 'italic' }}
+                  >
+                    {area.name}
+                  </Typography>
+                  <Box sx={{ display: 'flex', gap: 0.5, justifyContent: 'center', flexWrap: 'wrap' }}>
+                    {area.cities.map((city, cityIndex) => (
+                      <Chip
+                        key={cityIndex}
+                        label={city}
+                        size="small"
+                        sx={{
+                          bgcolor: `${area.color}20`,
+                          color: area.color,
+                          border: `1px solid ${area.color}40`,
+                          fontSize: '0.75rem',
+                        }}
+                      />
+                    ))}
+                  </Box>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+          <Box sx={{ mt: 6, textAlign: 'center' }}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: 'text.primary' }}>
+              联系我们了解更多服务信息
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mt: 2 }}>
+              <Chip
+                icon={<PhoneIcon />}
+                label="(240) 668-4666"
+                sx={{
+                  bgcolor: 'rgba(59, 130, 246, 0.1)',
+                  color: '#3b82f6',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  '&:hover': {
+                    bgcolor: 'rgba(59, 130, 246, 0.2)',
+                  },
+                }}
+              />
+              <Chip
+                icon={<EmailIcon />}
+                label="allcaremd@outlook.com"
+                sx={{
+                  bgcolor: 'rgba(16, 185, 129, 0.1)',
+                  color: '#10b981',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  '&:hover': {
+                    bgcolor: 'rgba(16, 185, 129, 0.2)',
+                  },
+                }}
+              />
             </Box>
           </Box>
         </Box>

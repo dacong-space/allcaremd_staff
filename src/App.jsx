@@ -36,7 +36,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/training" element={<Training />} />
-          <Route path="/files" element={<Files />} />
+          <Route path="/docs" element={<Files />} />
 
           {/* Training Routes */}
           <Route path="/training/elderly-manual" element={<ElderlyManual />} />
@@ -44,7 +44,11 @@ function App() {
           <Route path="/training/cpr" element={<ComingSoon title="CPR培训" />} />
           <Route path="/training/others" element={<ComingSoon title="其他培训" />} />
 
-          {/* Other Pages */}
+          {/* Help Page */}
+          <Route path="/help" element={<Others />} />
+
+          {/* 保持旧路径的兼容性 */}
+          <Route path="/files" element={<Files />} />
           <Route path="/others" element={<Others />} />
         </Routes>
       </Box>
