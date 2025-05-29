@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
   Container,
   Typography,
@@ -12,10 +12,8 @@ import {
 
 import {
   Business as BusinessIcon,
-  People as PeopleIcon,
   Star as StarIcon,
   CheckCircle as CheckIcon,
-  Favorite as HeartIcon,
   Security as SecurityIcon,
   Psychology as PsychologyIcon,
   HealthAndSafety as HealthIcon,
@@ -132,37 +130,7 @@ const teamMembers = [
   },
 ]
 
-// 核心价值观
-const values = [
-  {
-    title: '富有同情心',
-    description: '我们相信富有同情心的护理始于真诚的连接，用心倾听每一位客户的需求',
-    icon: <HeartIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: '以同理心为基础，建立信任关系，提供温暖的护理体验',
-  },
-  {
-    title: '尊严与尊重',
-    description: '以尊严、尊重和真诚的奉献精神为每位客户服务，维护个人隐私和选择权',
-    icon: <CheckIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: '尊重客户的文化背景、个人偏好和生活方式选择',
-  },
-  {
-    title: '专业护理',
-    description: '提供专业的ADLs协助和个性化护理计划，确保最高质量的护理标准',
-    icon: <StarIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: '持续的专业培训和认证，运用循证护理实践',
-  },
-  {
-    title: '可靠支持',
-    description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持伙伴',
-    icon: <PeopleIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: '建立长期的护理关系，提供持续稳定的支持服务',
-  },
-]
+
 
 // 公司信息
 const companyInfo = {
@@ -181,16 +149,15 @@ const companyInfo = {
 
 
 function About() {
-  const [selectedValue, setSelectedValue] = useState(0)
-  const [animatedStats, setAnimatedStats] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setAnimatedStats(true), 500)
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
-    <Box sx={{ bgcolor: '#fafafa', minHeight: '100vh' }}>
+    <Box sx={{
+      bgcolor: '#fafafa',
+      minHeight: '100vh',
+      // 优化滚动性能
+      willChange: 'scroll-position',
+      transform: 'translateZ(0)', // 启用硬件加速
+    }}>
       {/* Hero Section */}
       <Box
         sx={{
@@ -285,18 +252,14 @@ function About() {
                     sx={{
                       p: 3,
                       textAlign: 'center',
-                      background: 'rgba(255, 255, 255, 0.9)',
-                      backdropFilter: 'blur(10px)',
+                      background: 'rgba(255, 255, 255, 0.95)',
                       border: '1px solid rgba(255, 255, 255, 0.3)',
                       borderRadius: 3,
                       boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                      transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                      transform: animatedStats ? 'translateY(0)' : 'translateY(20px)',
-                      opacity: animatedStats ? 1 : 0,
-                      transitionDelay: `${index * 100}ms`,
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                       '&:hover': {
-                        transform: 'translateY(-8px)',
-                        boxShadow: '0 16px 48px rgba(0, 0, 0, 0.15)',
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
                       },
                     }}
                   >
@@ -352,8 +315,7 @@ function About() {
       <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box
           sx={{
-            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.7) 100%)',
-            backdropFilter: 'blur(20px)',
+            background: 'rgba(255, 255, 255, 0.95)',
             borderRadius: 4,
             p: { xs: 4, md: 6 },
             mb: 8,
@@ -495,138 +457,7 @@ function About() {
           </Grid>
         </Box>
 
-        {/* Core Values */}
-        <Box sx={{ mb: 8 }}>
-          <Box textAlign="center" sx={{ mb: 6 }}>
-            <Chip
-              label="核心价值观"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb', // 更蓝的天空蓝色
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
-            <Typography
-              variant="h3"
-              textAlign="center"
-              gutterBottom
-              sx={{
-                fontWeight: 700,
-                color: 'text.primary',
-                mb: 2,
-              }}
-            >
-              我们的核心价值观
-            </Typography>
-            <Typography
-              variant="h6"
-              textAlign="center"
-              color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto' }}
-            >
-              指导我们护理服务的核心原则，塑造我们的服务文化
-            </Typography>
-          </Box>
 
-          <Grid container spacing={4}>
-            {values.map((value, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card
-                  onClick={() => setSelectedValue(index)}
-                  sx={{
-                    textAlign: 'center',
-                    p: 4,
-                    height: '100%',
-                    cursor: 'pointer',
-                    position: 'relative',
-                    background: selectedValue === index
-                      ? `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`
-                      : 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
-                    border: selectedValue === index
-                      ? `2px solid ${value.color}`
-                      : '1px solid rgba(255, 255, 255, 0.3)',
-                    borderRadius: 3,
-                    boxShadow: selectedValue === index
-                      ? `0 16px 48px ${value.color}20`
-                      : '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                    transform: selectedValue === index ? 'translateY(-8px)' : 'translateY(0)',
-                    '&:hover': {
-                      transform: 'translateY(-12px)',
-                      boxShadow: `0 20px 60px ${value.color}25`,
-                      border: `2px solid ${value.color}`,
-                      background: `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`,
-                    },
-                  }}
-                >
-                  <Avatar
-                    sx={{
-                      width: 72,
-                      height: 72,
-                      mx: 'auto',
-                      mb: 3,
-                      bgcolor: value.color,
-                      color: 'white',
-                      boxShadow: `0 8px 24px ${value.color}40`,
-                      transition: 'all 0.3s ease',
-                      transform: selectedValue === index ? 'scale(1.1)' : 'scale(1)',
-                    }}
-                  >
-                    {value.icon}
-                  </Avatar>
-                  <Typography
-                    variant="h5"
-                    gutterBottom
-                    sx={{
-                      fontWeight: 600,
-                      color: 'text.primary',
-                      mb: 2,
-                    }}
-                  >
-                    {value.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{
-                      lineHeight: 1.6,
-                      mb: 2,
-                    }}
-                  >
-                    {value.description}
-                  </Typography>
-                  {selectedValue === index && (
-                    <Box
-                      sx={{
-                        mt: 2,
-                        p: 2,
-                        bgcolor: 'rgba(255, 255, 255, 0.8)',
-                        borderRadius: 2,
-                        border: `1px solid ${value.color}30`,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: 'text.secondary',
-                          fontSize: '0.875rem',
-                          fontStyle: 'italic',
-                        }}
-                      >
-                        {value.details}
-                      </Typography>
-                    </Box>
-                  )}
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
 
         {/* Service Features */}
         <Box sx={{ mb: 8 }}>
@@ -672,16 +503,14 @@ function About() {
                   sx={{
                     p: 4,
                     height: '100%',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
+                    background: 'rgba(255, 255, 255, 0.95)',
                     border: '1px solid rgba(255, 255, 255, 0.3)',
                     borderRadius: 3,
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                     '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: `0 16px 48px ${feature.color}20`,
-                      border: `1px solid ${feature.color}30`,
+                      transform: 'translateY(-4px)',
+                      boxShadow: `0 12px 32px ${feature.color}15`,
                     },
                   }}
                 >
@@ -795,15 +624,14 @@ function About() {
                     textAlign: 'center',
                     p: 4,
                     height: '100%',
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    backdropFilter: 'blur(10px)',
+                    background: 'rgba(255, 255, 255, 0.95)',
                     border: '1px solid rgba(255, 255, 255, 0.3)',
                     borderRadius: 3,
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                     '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: '0 16px 48px rgba(0, 0, 0, 0.15)',
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
                     },
                   }}
                 >
@@ -908,8 +736,7 @@ function About() {
                 sx={{
                   p: 3,
                   textAlign: 'center',
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
@@ -942,8 +769,7 @@ function About() {
                 sx={{
                   p: 3,
                   textAlign: 'center',
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
@@ -976,8 +802,7 @@ function About() {
                 sx={{
                   p: 3,
                   textAlign: 'center',
-                  background: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)',
+                  background: 'rgba(255, 255, 255, 0.95)',
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
