@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import {
   AppBar,
@@ -21,11 +21,6 @@ import {
 } from '@mui/material'
 import {
   Menu as MenuIcon,
-  Home as HomeIcon,
-  School as SchoolIcon,
-  Folder as FolderIcon,
-  MoreHoriz as MoreHorizIcon,
-  Info as InfoIcon,
   KeyboardArrowDown as ArrowDownIcon,
 } from '@mui/icons-material'
 
@@ -48,13 +43,8 @@ const navigationItems = [
   },
   {
     label: '文件',
-    type: 'dropdown',
-    items: [
-      { label: '入职文件', path: '/files/onboarding' },
-      { label: '客户文件', path: '/files/client' },
-      { label: '员工文件', path: '/files/employee' },
-      { label: '其他文件', path: '/files/others' },
-    ]
+    path: '/files',
+    type: 'single'
   },
   {
     label: '其他',
@@ -75,7 +65,6 @@ function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [mobileOpen, setMobileOpen] = useState(false)
   const [anchorEls, setAnchorEls] = useState({})
-  const timeoutRefs = useRef({})
 
   // 智能路径匹配函数
   const isPathActive = (path) => {
@@ -85,11 +74,6 @@ function Navbar() {
   // 检查下拉菜单是否包含当前活跃路径
   const isDropdownActive = (dropdownItems) => {
     return dropdownItems.some(item => isPathActive(item.path))
-  }
-
-  // 检查是否应该展开下拉菜单（基于当前路径）
-  const shouldExpandDropdown = (dropdownItems) => {
-    return dropdownItems.some(item => location.pathname.startsWith(item.path.split('/')[1] ? `/${item.path.split('/')[1]}` : item.path))
   }
 
   const handleDrawerToggle = () => {
@@ -103,13 +87,6 @@ function Navbar() {
     }
   }
 
-  const handleMenuOpen = (event, menuKey) => {
-    setAnchorEls(prev => ({
-      ...prev,
-      [menuKey]: event.currentTarget
-    }))
-  }
-
   const handleMenuClose = (menuKey) => {
     setAnchorEls(prev => ({
       ...prev,
@@ -117,47 +94,22 @@ function Navbar() {
     }))
   }
 
-  // 鼠标悬停打开菜单（只对有下拉菜单的项目）
-  const handleDropdownMouseEnter = (event, menuKey) => {
-    // 清除所有定时器
-    Object.keys(timeoutRefs.current).forEach(key => {
-      clearTimeout(timeoutRefs.current[key])
-      delete timeoutRefs.current[key]
-    })
+  // 点击打开/关闭下拉菜单
+  const handleDropdownClick = (event, menuKey) => {
+    const isCurrentlyOpen = Boolean(anchorEls[menuKey])
 
-    // 立即打开当前菜单，关闭其他菜单
-    // 这样可以实现菜单之间的快速切换
-    setAnchorEls({
-      [menuKey]: event.currentTarget
-    })
-  }
-
-  // 鼠标悬停到单页面按钮时关闭所有下拉菜单
-  const handleSingleItemMouseEnter = () => {
-    // 清除所有定时器
-    Object.keys(timeoutRefs.current).forEach(key => {
-      clearTimeout(timeoutRefs.current[key])
-      delete timeoutRefs.current[key]
-    })
-
-    // 检查是否有任何菜单已经打开
-    const hasOpenMenu = Object.values(anchorEls).some(anchor => anchor !== null)
-
-    // 只有在有菜单打开的情况下才关闭所有下拉菜单
-    if (hasOpenMenu) {
-      setAnchorEls({})
-    }
-  }
-
-  // 鼠标离开时延迟关闭菜单
-  const handleMouseLeave = (menuKey) => {
-    timeoutRefs.current[menuKey] = setTimeout(() => {
+    if (isCurrentlyOpen) {
+      // 如果当前菜单已打开，则关闭它
       setAnchorEls(prev => ({
         ...prev,
         [menuKey]: null
       }))
-      delete timeoutRefs.current[menuKey]
-    }, 150) // 150ms延迟，给用户时间移动到菜单
+    } else {
+      // 如果当前菜单未打开，则打开它并关闭其他菜单
+      setAnchorEls({
+        [menuKey]: event.currentTarget
+      })
+    }
   }
 
   const handleMenuItemClick = (path, menuKey) => {
@@ -476,7 +428,6 @@ function Navbar() {
                       <Button
                         color="inherit"
                         onClick={() => handleNavigation(item.path)}
-                        onMouseEnter={handleSingleItemMouseEnter}
                         sx={{
                           px: 3,
                           py: 1.5,
@@ -510,13 +461,10 @@ function Navbar() {
                         {item.label}
                       </Button>
                     ) : (
-                      <Box
-                        onMouseEnter={(e) => handleDropdownMouseEnter(e, item.label)}
-                        onMouseLeave={() => handleMouseLeave(item.label)}
-                        sx={{ position: 'relative' }}
-                      >
+                      <Box sx={{ position: 'relative' }}>
                         <Button
                           color="inherit"
+                          onClick={(e) => handleDropdownClick(e, item.label)}
                           endIcon={
                             <ArrowDownIcon
                               sx={{
@@ -565,14 +513,6 @@ function Navbar() {
                           disableAutoFocus
                           disableEnforceFocus
                           MenuListProps={{
-                            onMouseEnter: () => {
-                              // 清除关闭定时器
-                              if (timeoutRefs.current[item.label]) {
-                                clearTimeout(timeoutRefs.current[item.label])
-                                delete timeoutRefs.current[item.label]
-                              }
-                            },
-                            onMouseLeave: () => handleMouseLeave(item.label),
                             sx: {
                               py: 1.5,
                               px: 1,

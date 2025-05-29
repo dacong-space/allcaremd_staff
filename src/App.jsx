@@ -43,12 +43,6 @@ function App() {
           <Route path="/training/cpr" element={<ComingSoon title="CPR培训" />} />
           <Route path="/training/others" element={<ComingSoon title="其他培训" />} />
 
-          {/* Files Routes */}
-          <Route path="/files/contracts" element={<ComingSoon title="合同文件" />} />
-          <Route path="/files/policies" element={<ComingSoon title="政策文件" />} />
-          <Route path="/files/training-materials" element={<ComingSoon title="培训资料" />} />
-          <Route path="/files/forms" element={<ComingSoon title="表格文件" />} />
-
           {/* Other Pages */}
           <Route path="/others" element={<ComingSoon title="其他服务" />} />
         </Routes>

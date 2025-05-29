@@ -38,7 +38,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              Allcare
+              Allcare Health Care
             </Typography>
             <Typography
               variant="body2"
@@ -51,7 +51,9 @@ function Footer() {
             </Typography>
           </Grid>
 
-          {/* 产品 */}
+
+
+          {/* 培训项目 */}
           <Grid item xs={12} sm={6} md={2}>
             <Typography
               variant="subtitle1"
@@ -61,7 +63,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              产品
+              培训项目
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Link
@@ -77,68 +79,7 @@ function Footer() {
                   },
                 }}
               >
-                培训平台
-              </Link>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => handleNavigation('/training/elderly-manual')}
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  textDecoration: 'none',
-                  textAlign: 'left',
-                  '&:hover': {
-                    color: 'white',
-                  },
-                }}
-              >
-                客户手册
-              </Link>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => handleNavigation('/files')}
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  textDecoration: 'none',
-                  textAlign: 'left',
-                  '&:hover': {
-                    color: 'white',
-                  },
-                }}
-              >
-                文档库
-              </Link>
-            </Box>
-          </Grid>
-
-          {/* 关于 */}
-          <Grid item xs={12} sm={6} md={2}>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                fontWeight: 600,
-                mb: 2,
-                color: 'white',
-              }}
-            >
-              关于
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Link
-                component="button"
-                variant="body2"
-                onClick={() => handleNavigation('/about')}
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  textDecoration: 'none',
-                  textAlign: 'left',
-                  '&:hover': {
-                    color: 'white',
-                  },
-                }}
-              >
-                关于我们
+                培训总览
               </Link>
               <Link
                 component="button"
@@ -183,7 +124,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              服务
+              服务项目
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Typography
@@ -213,8 +154,10 @@ function Footer() {
             </Box>
           </Grid>
 
-          {/* 其他 */}
-          <Grid item xs={12} sm={6} md={3}>
+
+
+          {/* 关于我们 */}
+          <Grid item xs={12} sm={6} md={2}>
             <Typography
               variant="subtitle1"
               sx={{
@@ -223,40 +166,102 @@ function Footer() {
                 color: 'white',
               }}
             >
-              其他
+              关于我们
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              <Typography
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => handleNavigation('/about')}
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    textAlign: 'left',
+                    '&:hover': {
+                      color: 'white',
+                    },
+                  }}
+                >
+                  联系我们
+                </Link>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontSize: '0.8rem',
+                  }}
+                >
+                  电话: (240) 668-4666
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    fontSize: '0.8rem',
+                  }}
+                >
+                  allcaremd@outlook.com
+                </Typography>
+                <Link
+                  href="https://allcaremd.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="body2"
+                  sx={{
+                    color: 'rgba(255, 255, 255, 0.7)',
+                    textDecoration: 'none',
+                    fontSize: '0.8rem',
+                    '&:hover': {
+                      color: 'white',
+                    },
+                  }}
+                >
+                  allcaremd.com
+                </Link>
+            </Box>
+          </Grid>
+
+          {/* 扫码访问 */}
+          <Grid item xs={12} sm={6} md={2}>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                fontWeight: 600,
+                mb: 2,
+                color: 'white',
+              }}
+            >
+              扫一扫，访问官网
+            </Typography>
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: 1,
+            }}>
+              <Box
+                component="img"
+                src="/images/QR_Allcare.png"
+                alt="Allcare QR Code"
+                sx={{
+                  width: 120,
+                  height: 120,
+                  borderRadius: 2,
+                  backgroundColor: 'white',
+                  p: .5,
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)',
+                }}
+              />
+              {/* <Typography
                 variant="body2"
                 sx={{
                   color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: '0.8rem',
+                  textAlign: 'center',
                 }}
               >
-                电话: (240) 668-4666
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.7)',
-                }}
-              >
-                邮箱: allcaremd@outlook.com
-              </Typography>
-              <Link
-                href="https://allcaremd.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                variant="body2"
-                sx={{
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  textDecoration: 'none',
-                  '&:hover': {
-                    color: 'white',
-                  },
-                }}
-              >
-                allcaremd.com
-              </Link>
+                扫描二维码访问官网
+              </Typography> */}
             </Box>
           </Grid>
         </Grid>

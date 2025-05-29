@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   Container,
   Typography,
@@ -9,6 +9,7 @@ import {
   Chip,
   Divider,
   Paper,
+  IconButton,
 } from '@mui/material'
 import {
   Timeline,
@@ -28,6 +29,10 @@ import {
   Email as EmailIcon,
   People as PeopleIcon,
   Favorite as HeartIcon,
+  ArrowBackIos as ArrowBackIcon,
+  ArrowForwardIos as ArrowForwardIcon,
+  Schedule as ScheduleIcon,
+  Language as WebsiteIcon,
 } from '@mui/icons-material'
 
 
@@ -36,6 +41,15 @@ import {
 
 // 团队成员
 const teamMembers = [
+  {
+    name: 'Rui Gao',
+    position: 'CEO',
+    description: '666',
+    avatar: '👨‍💻',
+    credentials: ['CS', 'Web', 'App'],
+    experience: '10年',
+    specialties: ['管理', '网站开发', '软件开发'],
+  },
   {
     name: 'Sarah Johnson',
     position: '护理总监 & 注册护士',
@@ -47,7 +61,7 @@ const teamMembers = [
   },
   {
     name: 'Michael Chen',
-    position: 'PCA培训总监',
+    position: '总护士长',
     description: '资深护理培训专家，负责员工技能发展和认证管理',
     avatar: '👨‍🏫',
     credentials: ['CNA', 'CPR', 'First Aid'],
@@ -65,12 +79,21 @@ const teamMembers = [
   },
   {
     name: 'David Kim',
-    position: '质量保证专员',
+    position: 'HR主管',
     description: '负责服务质量监控和持续改进项目',
     avatar: '👨‍💻',
     credentials: ['QA', 'Six Sigma'],
     experience: '8年',
     specialties: ['质量控制', '流程改进', '数据分析'],
+  },
+  {
+    name: 'Rui Gao',
+    position: 'CEO',
+    description: '公司创始人兼首席执行官，致力于提供高质量的护理服务',
+    avatar: '👨‍💼',
+    credentials: ['CS', 'Web', 'App'],
+    experience: '10年',
+    specialties: ['管理', '网站开发', '软件开发'],
   },
 ]
 
@@ -89,6 +112,45 @@ const companyInfo = {
     address: '123 Healthcare Blvd, Baltimore, MD 21201',
   }
 }
+
+// 联系方式数据
+const contactMethods = [
+  {
+    id: 'phone',
+    title: '电话咨询',
+    value: '(240) 668-4666',
+    icon: <PhoneIcon />,
+    color: '#87ceeb',
+  },
+  {
+    id: 'email',
+    title: '邮件联系',
+    value: 'allcaremd@outlook.com',
+    icon: <EmailIcon />,
+    color: '#87ceeb',
+  },
+  {
+    id: 'address',
+    title: '服务地址',
+    value: '马里兰州巴尔的摩及周边地区',
+    icon: <LocationIcon />,
+    color: '#87ceeb',
+  },
+  {
+    id: 'hours',
+    title: '服务时间',
+    value: '24小时全天候服务',
+    icon: <ScheduleIcon />,
+    color: '#87ceeb',
+  },
+  {
+    id: 'website',
+    title: '官方网站',
+    value: 'allcaremd.com',
+    icon: <WebsiteIcon />,
+    color: '#87ceeb',
+  },
+]
 
 // 核心价值观数据
 const values = [
@@ -160,6 +222,52 @@ const milestones = [
 
 function About() {
   const [selectedValue, setSelectedValue] = useState(0)
+  const [contactScrollPosition, setContactScrollPosition] = useState(0)
+  const [teamScrollPosition, setTeamScrollPosition] = useState(0)
+  const contactScrollRef = useRef(null)
+  const teamScrollRef = useRef(null)
+
+  // 联系方式滑动功能
+  const handleContactScroll = (direction) => {
+    if (contactScrollRef.current) {
+      const containerWidth = contactScrollRef.current.offsetWidth
+      const cardWidth = containerWidth / 4 // 每张卡片占容器宽度的1/4
+      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth
+      const newPosition = contactScrollPosition + scrollAmount
+      const maxScroll = (contactMethods.length - 4) * cardWidth // 最多显示4个卡片
+
+      const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll))
+      setContactScrollPosition(clampedPosition)
+
+      contactScrollRef.current.scrollTo({
+        left: clampedPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  // 团队成员滑动功能
+  const handleTeamScroll = (direction) => {
+    if (teamScrollRef.current) {
+      const containerWidth = teamScrollRef.current.offsetWidth
+      const cardWidth = containerWidth / 4 // 每张卡片占容器宽度的1/4
+      const scrollAmount = direction === 'left' ? -cardWidth : cardWidth
+      const newPosition = teamScrollPosition + scrollAmount
+      const maxScroll = (teamMembers.length - 4) * cardWidth // 最多显示4个卡片
+
+      const clampedPosition = Math.max(0, Math.min(newPosition, maxScroll))
+      setTeamScrollPosition(clampedPosition)
+
+      teamScrollRef.current.scrollTo({
+        left: clampedPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+
+  // 判断是否需要滑动功能
+  const needsContactScrolling = contactMethods.length > 4
+  const needsTeamScrolling = teamMembers.length > 4
 
   return (
     <Box sx={{
@@ -211,18 +319,6 @@ function About() {
 
         <Container maxWidth="lg">
           <Box textAlign="center" sx={{ position: 'relative', zIndex: 1 }}>
-            <Chip
-              label="关于我们"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb',
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
             <Typography
               variant="h1"
               component="h1"
@@ -279,18 +375,6 @@ function About() {
           <Grid container spacing={6} alignItems="center">
             <Grid item xs={12} md={6}>
               <Box sx={{ mb: 4 }}>
-                <Chip
-                  label="我们的使命"
-                  sx={{
-                    bgcolor: 'rgba(135, 206, 235, 0.15)',
-                    color: '#87ceeb', // 更蓝的天空蓝色
-                    mb: 3,
-                    fontSize: '0.875rem',
-                    px: 3,
-                    py: 0.5,
-                    border: '1px solid rgba(135, 206, 235, 0.3)',
-                  }}
-                />
                 <Typography
                   variant="h3"
                   gutterBottom
@@ -416,18 +500,6 @@ function About() {
         {/* Core Values */}
         <Box sx={{ mb: 8 }}>
           <Box textAlign="center" sx={{ mb: 6 }}>
-            <Chip
-              label="核心价值观"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb', // 更蓝的天空蓝色
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
             <Typography
               variant="h3"
               textAlign="center"
@@ -550,18 +622,6 @@ function About() {
         {/* Team */}
         <Box sx={{ mb: 8 }}>
           <Box textAlign="center" sx={{ mb: 6 }}>
-            <Chip
-              label="专业团队"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb', // 更蓝的天空蓝色
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
             <Typography
               variant="h3"
               textAlign="center"
@@ -584,89 +644,240 @@ function About() {
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
-            {teamMembers.map((member, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
-                <Card
-                  sx={{
-                    textAlign: 'center',
-                    p: 4,
-                    height: '100%',
-                    background: 'rgba(255, 255, 255, 0.95)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    borderRadius: 3,
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                    '&:hover': {
-                      transform: 'translateY(-4px)',
-                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
-                    },
-                  }}
-                >
-                  <Box sx={{ fontSize: '4rem', mb: 3 }}>
-                    {member.avatar}
-                  </Box>
-                  <Typography
-                    variant="h5"
-                    gutterBottom
+          {/* 团队成员卡片 */}
+          {needsTeamScrolling ? (
+            // 可滑动布局（超过4个卡片时）
+            <Box sx={{
+              position: 'relative',
+              borderRadius: 4,
+              overflow: 'hidden',
+              backgroundColor: '#fafafa',
+              p: 2,
+            }}>
+              {/* 滑动容器 */}
+              <Box
+                ref={teamScrollRef}
+                sx={{
+                  display: 'flex',
+                  gap: 3,
+                  overflowX: 'hidden',
+                  scrollBehavior: 'smooth',
+                  pb: 2,
+                  backgroundColor: '#fafafa', // 与网页背景色一致
+                  width: '100%',
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
+                  msOverflowStyle: 'none',
+                  scrollbarWidth: 'none',
+                }}
+              >
+                {teamMembers.map((member) => (
+                  <Card
+                    key={member.name}
                     sx={{
-                      fontWeight: 600,
-                      color: 'text.primary',
-                      mb: 1,
+                      minWidth: 'calc(25% - 18px)', // 4张卡片，减去gap的空间
+                      maxWidth: 'calc(25% - 18px)',
+                      textAlign: 'center',
+                      p: 4,
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: 3,
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
+                      },
                     }}
                   >
-                    {member.name}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="primary"
-                    gutterBottom
-                    sx={{ fontWeight: 500, mb: 2 }}
-                  >
-                    {member.position}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mb: 3, lineHeight: 1.6 }}
-                  >
-                    {member.description}
-                  </Typography>
+                    <Box sx={{ fontSize: '4rem', mb: 3 }}>
+                      {member.avatar}
+                    </Box>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 1,
+                      }}
+                    >
+                      {member.name}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="primary"
+                      gutterBottom
+                      sx={{ fontWeight: 500, mb: 2 }}
+                    >
+                      {member.position}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mb: 3, lineHeight: 1.6 }}
+                    >
+                      {member.description}
+                    </Typography>
 
-                  <Divider sx={{ my: 2 }} />
+                    <Divider sx={{ my: 2 }} />
 
-                  <Box sx={{ textAlign: 'left' }}>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                      <strong>经验:</strong> {member.experience}
+                    <Box sx={{ textAlign: 'left' }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                        <strong>经验:</strong> {member.experience}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                        <strong>认证:</strong> {member.credentials.join(', ')}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        <strong>专长:</strong> {member.specialties.join(', ')}
+                      </Typography>
+                    </Box>
+                  </Card>
+                ))}
+              </Box>
+
+              {/* 左箭头 */}
+              <IconButton
+                onClick={() => handleTeamScroll('left')}
+                sx={{
+                  position: 'absolute',
+                  left: 16,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  zIndex: 2,
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(128, 128, 128, 0.3)',
+                  color: '#666',
+                  width: 40,
+                  height: 40,
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&:hover': {
+                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
+                    transform: 'translateY(-50%) scale(1.05)',
+                  },
+                  '&:disabled': {
+                    opacity: 0.3,
+                  },
+                }}
+                disabled={teamScrollPosition <= 0}
+              >
+                <ArrowBackIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+
+              {/* 右箭头 */}
+              <IconButton
+                onClick={() => handleTeamScroll('right')}
+                sx={{
+                  position: 'absolute',
+                  right: 16,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  zIndex: 2,
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(128, 128, 128, 0.3)',
+                  color: '#666',
+                  width: 40,
+                  height: 40,
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&:hover': {
+                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
+                    transform: 'translateY(-50%) scale(1.05)',
+                  },
+                  '&:disabled': {
+                    opacity: 0.3,
+                  },
+                }}
+                disabled={teamScrollPosition >= (teamMembers.length - 4) * 320}
+              >
+                <ArrowForwardIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+            </Box>
+          ) : (
+            // 普通Grid布局（4个或以下卡片时）
+            <Grid container spacing={4}>
+              {teamMembers.map((member, index) => (
+                <Grid item xs={12} sm={6} md={3} key={index}>
+                  <Card
+                    sx={{
+                      textAlign: 'center',
+                      p: 4,
+                      height: '100%',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: 3,
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
+                      },
+                    }}
+                  >
+                    <Box sx={{ fontSize: '4rem', mb: 3 }}>
+                      {member.avatar}
+                    </Box>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 1,
+                      }}
+                    >
+                      {member.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                      <strong>认证:</strong> {member.credentials.join(', ')}
+                    <Typography
+                      variant="subtitle1"
+                      color="primary"
+                      gutterBottom
+                      sx={{ fontWeight: 500, mb: 2 }}
+                    >
+                      {member.position}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      <strong>专长:</strong> {member.specialties.join(', ')}
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mb: 3, lineHeight: 1.6 }}
+                    >
+                      {member.description}
                     </Typography>
-                  </Box>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
+
+                    <Divider sx={{ my: 2 }} />
+
+                    <Box sx={{ textAlign: 'left' }}>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                        <strong>经验:</strong> {member.experience}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                        <strong>认证:</strong> {member.credentials.join(', ')}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        <strong>专长:</strong> {member.specialties.join(', ')}
+                      </Typography>
+                    </Box>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          )}
         </Box>
+      </Container>
 
-        {/* Timeline Section */}
+      {/* Timeline Section */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box sx={{ mb: 8 }}>
           <Box textAlign="center" sx={{ mb: 6 }}>
-            <Chip
-              label="发展历程"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb', // 更蓝的天空蓝色
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
             <Typography
               variant="h3"
               textAlign="center"
@@ -753,8 +964,10 @@ function About() {
             ))}
           </Timeline>
         </Box>
+      </Container>
 
-        {/* Contact Information */}
+      {/* Contact Information */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box
           sx={{
             background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0.1) 100%)',
@@ -766,18 +979,6 @@ function About() {
           }}
         >
           <Box textAlign="center" sx={{ mb: 6 }}>
-            <Chip
-              label="联系我们"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb', // 更蓝的天空蓝色
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
             <Typography
               variant="h3"
               textAlign="center"
@@ -800,106 +1001,197 @@ function About() {
             </Typography>
           </Box>
 
-          <Grid container spacing={4}>
-            <Grid item xs={12} md={4}>
-              <Card
+          {/* 联系方式卡片 */}
+          {needsContactScrolling ? (
+            // 可滑动布局（超过4个卡片时）
+            <Box sx={{
+              position: 'relative',
+              borderRadius: 4,
+              overflow: 'hidden',
+              backgroundColor: 'rgba(135, 206, 235, 0.05)',
+              p: 2,
+            }}>
+              {/* 滑动容器 */}
+              <Box
+                ref={contactScrollRef}
                 sx={{
-                  p: 3,
-                  textAlign: 'center',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  borderRadius: 3,
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  height: '100%',
+                  display: 'flex',
+                  gap: 3,
+                  overflowX: 'hidden',
+                  scrollBehavior: 'smooth',
+                  pb: 2,
+                  backgroundColor: 'rgba(135, 206, 235, 0.05)', // 与联系方式区域背景色一致
+                  width: '100%',
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
+                  msOverflowStyle: 'none',
+                  scrollbarWidth: 'none',
                 }}
               >
-                <Avatar
-                  sx={{
-                    width: 56,
-                    height: 56,
-                    mx: 'auto',
-                    mb: 2,
-                    bgcolor: '#87ceeb', // 更蓝的天空蓝色
-                    color: 'white',
-                  }}
-                >
-                  <PhoneIcon />
-                </Avatar>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                  电话咨询
-                </Typography>
-                <Typography variant="body1" color="primary" sx={{ fontWeight: 500 }}>
-                  {companyInfo.contact.phone}
-                </Typography>
-              </Card>
-            </Grid>
+                {contactMethods.map((method) => (
+                  <Card
+                    key={method.id}
+                    sx={{
+                      minWidth: 'calc(25% - 18px)', // 4张卡片，减去gap的空间
+                      maxWidth: 'calc(25% - 18px)',
+                      p: 3,
+                      textAlign: 'center',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: 3,
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+                      },
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        width: 56,
+                        height: 56,
+                        mx: 'auto',
+                        mb: 2,
+                        bgcolor: method.color,
+                        color: 'white',
+                      }}
+                    >
+                      {method.icon}
+                    </Avatar>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+                      {method.title}
+                    </Typography>
+                    <Typography
+                      variant={method.id === 'address' ? 'body2' : 'body1'}
+                      color={method.id === 'address' ? 'text.secondary' : 'primary'}
+                      sx={{
+                        fontWeight: method.id === 'address' ? 400 : 500,
+                        lineHeight: method.id === 'address' ? 1.6 : 1.2,
+                      }}
+                    >
+                      {method.value}
+                    </Typography>
+                  </Card>
+                ))}
+              </Box>
 
-            <Grid item xs={12} md={4}>
-              <Card
+              {/* 左箭头 */}
+              <IconButton
+                onClick={() => handleContactScroll('left')}
                 sx={{
-                  p: 3,
-                  textAlign: 'center',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  borderRadius: 3,
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  height: '100%',
+                  position: 'absolute',
+                  left: 16,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  zIndex: 2,
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(128, 128, 128, 0.3)',
+                  color: '#666',
+                  width: 40,
+                  height: 40,
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&:hover': {
+                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
+                    transform: 'translateY(-50%) scale(1.05)',
+                  },
+                  '&:disabled': {
+                    opacity: 0.3,
+                  },
                 }}
+                disabled={contactScrollPosition <= 0}
               >
-                <Avatar
-                  sx={{
-                    width: 56,
-                    height: 56,
-                    mx: 'auto',
-                    mb: 2,
-                    bgcolor: '#87ceeb', // 更蓝的天空蓝色
-                    color: 'white',
-                  }}
-                >
-                  <EmailIcon />
-                </Avatar>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                  邮件联系
-                </Typography>
-                <Typography variant="body1" color="primary" sx={{ fontWeight: 500 }}>
-                  {companyInfo.contact.email}
-                </Typography>
-              </Card>
-            </Grid>
+                <ArrowBackIcon sx={{ fontSize: 20 }} />
+              </IconButton>
 
-            <Grid item xs={12} md={4}>
-              <Card
+              {/* 右箭头 */}
+              <IconButton
+                onClick={() => handleContactScroll('right')}
                 sx={{
-                  p: 3,
-                  textAlign: 'center',
-                  background: 'rgba(255, 255, 255, 0.95)',
-                  border: '1px solid rgba(255, 255, 255, 0.3)',
-                  borderRadius: 3,
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  height: '100%',
+                  position: 'absolute',
+                  right: 16,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  zIndex: 2,
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                  backdropFilter: 'blur(10px)',
+                  border: '1px solid rgba(128, 128, 128, 0.3)',
+                  color: '#666',
+                  width: 40,
+                  height: 40,
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  '&:hover': {
+                    backgroundColor: 'rgba(128, 128, 128, 0.1)',
+                    transform: 'translateY(-50%) scale(1.05)',
+                  },
+                  '&:disabled': {
+                    opacity: 0.3,
+                  },
                 }}
+                disabled={contactScrollPosition >= (contactMethods.length - 4) * 320}
               >
-                <Avatar
-                  sx={{
-                    width: 56,
-                    height: 56,
-                    mx: 'auto',
-                    mb: 2,
-                    bgcolor: '#87ceeb', // 更蓝的天空蓝色
-                    color: 'white',
-                  }}
-                >
-                  <LocationIcon />
-                </Avatar>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                  服务地址
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.6 }}>
-                  {companyInfo.contact.address}
-                </Typography>
-              </Card>
+                <ArrowForwardIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+            </Box>
+          ) : (
+            // 普通Grid布局（4个或以下卡片时）
+            <Grid container spacing={4}>
+              {contactMethods.map((method) => (
+                <Grid item xs={12} sm={6} md={4} key={method.id}>
+                  <Card
+                    sx={{
+                      p: 3,
+                      textAlign: 'center',
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      border: '1px solid rgba(255, 255, 255, 0.3)',
+                      borderRadius: 3,
+                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                      height: '100%',
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      '&:hover': {
+                        transform: 'translateY(-4px)',
+                        boxShadow: '0 12px 40px rgba(0, 0, 0, 0.15)',
+                      },
+                    }}
+                  >
+                    <Avatar
+                      sx={{
+                        width: 56,
+                        height: 56,
+                        mx: 'auto',
+                        mb: 2,
+                        bgcolor: method.color,
+                        color: 'white',
+                      }}
+                    >
+                      {method.icon}
+                    </Avatar>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+                      {method.title}
+                    </Typography>
+                    <Typography
+                      variant={method.id === 'address' ? 'body2' : 'body1'}
+                      color={method.id === 'address' ? 'text.secondary' : 'primary'}
+                      sx={{
+                        fontWeight: method.id === 'address' ? 400 : 500,
+                        lineHeight: method.id === 'address' ? 1.6 : 1.2,
+                      }}
+                    >
+                      {method.value}
+                    </Typography>
+                  </Card>
+                </Grid>
+              ))}
             </Grid>
-          </Grid>
+          )}
 
           <Box sx={{ mt: 4, textAlign: 'center' }}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: 'text.primary' }}>
