@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import { Box, Container, Typography } from '@mui/material'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
+import ScrollToTopOnRouteChange from './components/ScrollToTopOnRouteChange'
 import Home from './pages/Home'
 import About from './pages/About'
 import Training from './pages/Training'
@@ -24,6 +26,9 @@ const ComingSoon = ({ title }) => (
 function App() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      {/* 路由变化时自动滚动到顶部 */}
+      <ScrollToTopOnRouteChange />
+
       <Navbar />
       <Box component="main" sx={{ flexGrow: 1 }}>
         <Routes>
@@ -49,6 +54,9 @@ function App() {
         </Routes>
       </Box>
       <Footer />
+
+      {/* 回到顶部按钮 */}
+      <ScrollToTop />
     </Box>
   )
 }

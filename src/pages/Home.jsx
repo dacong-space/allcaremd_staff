@@ -293,7 +293,8 @@ function Home() {
                   mb: 3,
                 }}
               >
-                All People. All Heart.{' '}
+                All People.<br />
+                All Heart.<br />
                 <Box component="span" sx={{ color: '#87ceeb' }}>
                   Allcare.
                 </Box>
@@ -308,7 +309,7 @@ function Home() {
                   fontWeight: 400,
                 }}
               >
-                Allcare 将使您的培训体验现代化和专业化，同时为您节省宝贵的时间。
+                Allcare 将使您的培训体验现代化和专业化，同时为您节省宝贵的时间。我们将为您提供最先进的护理培训，确保您在护理领域的专业发展。
               </Typography>
 
             </Grid>
@@ -1137,14 +1138,16 @@ function Home() {
                     maxWidth: 320,
                     textAlign: 'center',
                     p: 3,
-                    background: 'rgba(255, 255, 255, 0.95)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    background: 'rgba(248, 250, 252, 0.8)',
+                    border: '1px solid rgba(226, 232, 240, 0.6)',
                     borderRadius: 3,
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                     transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                     '&:hover': {
                       transform: 'translateY(-4px)',
+                      background: 'rgba(248, 250, 252, 0.95)',
                       boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
+                      border: '1px solid rgba(226, 232, 240, 0.8)',
                     },
                   }}
                 >

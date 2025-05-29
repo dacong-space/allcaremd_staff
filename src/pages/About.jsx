@@ -166,8 +166,8 @@ function About() {
       bgcolor: '#fafafa',
       minHeight: '100vh',
       // 优化滚动性能
-      willChange: 'scroll-position',
-      transform: 'translateZ(0)', // 启用硬件加速
+      overflowX: 'hidden',
+      scrollBehavior: 'smooth',
     }}>
       {/* Hero Section */}
       <Box
@@ -190,6 +190,8 @@ function About() {
             borderRadius: '50%',
             background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.15), rgba(135, 206, 235, 0.1))',
             filter: 'blur(40px)',
+            willChange: 'auto',
+            transform: 'translateZ(0)',
           }}
         />
         <Box
@@ -202,6 +204,8 @@ function About() {
             borderRadius: '50%',
             background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(135, 206, 235, 0.1))',
             filter: 'blur(30px)',
+            willChange: 'auto',
+            transform: 'translateZ(0)',
           }}
         />
 
@@ -374,7 +378,6 @@ function About() {
                     right: 0,
                     bottom: 0,
                     background: 'rgba(255, 255, 255, 0.1)',
-                    backdropFilter: 'blur(10px)',
                   },
                 }}
               >
@@ -468,11 +471,12 @@ function About() {
                     boxShadow: selectedValue === index
                       ? `0 16px 48px ${value.color}20`
                       : '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'all 0.3s ease',
-                    transform: selectedValue === index ? 'translateY(-8px)' : 'translateY(0)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease',
+                    transform: selectedValue === index ? 'translateY(-4px)' : 'translateY(0)',
+                    willChange: 'transform, box-shadow',
                     '&:hover': {
-                      transform: 'translateY(-12px)',
-                      boxShadow: `0 20px 60px ${value.color}25`,
+                      transform: 'translateY(-6px)',
+                      boxShadow: `0 12px 32px ${value.color}20`,
                       border: `2px solid ${value.color}`,
                       background: `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`,
                     },
@@ -487,8 +491,9 @@ function About() {
                       bgcolor: value.color,
                       color: 'white',
                       boxShadow: `0 8px 24px ${value.color}40`,
-                      transition: 'all 0.3s ease',
-                      transform: selectedValue === index ? 'scale(1.1)' : 'scale(1)',
+                      transition: 'transform 0.2s ease',
+                      transform: selectedValue === index ? 'scale(1.05)' : 'scale(1)',
+                      willChange: 'transform',
                     }}
                   >
                     {value.icon}
@@ -691,10 +696,9 @@ function About() {
                   <TimelineDot
                     sx={{
                       bgcolor: '#87ceeb', // 更蓝的天空蓝色
-                      transition: 'all 0.3s ease',
+                      transition: 'transform 0.2s ease',
                       '&:hover': {
-                        transform: 'scale(1.1)',
-                        boxShadow: '0 0 16px rgba(135, 206, 235, 0.4)',
+                        transform: 'scale(1.05)',
                       },
                     }}
                   />
