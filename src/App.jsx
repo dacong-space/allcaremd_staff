@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { Box, Container, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -11,18 +11,11 @@ import Training from './pages/Training'
 import Files from './pages/Files'
 import ElderlyManual from './pages/ElderlyManual'
 import Others from './pages/Others'
+import PCATraining from './pages/PCATraining'
+import CPRTraining from './pages/CPRTraining'
+import OtherTraining from './pages/OtherTraining'
 
-// 简单的 ComingSoon 组件
-const ComingSoon = ({ title }) => (
-  <Container maxWidth="lg" sx={{ py: 8, textAlign: 'center' }}>
-    <Typography variant="h3" gutterBottom>
-      {title}
-    </Typography>
-    <Typography variant="h6" color="text.secondary">
-      此功能正在开发中，敬请期待...
-    </Typography>
-  </Container>
-)
+
 
 function App() {
   return (
@@ -40,9 +33,9 @@ function App() {
 
           {/* Training Routes */}
           <Route path="/training/elderly-manual" element={<ElderlyManual />} />
-          <Route path="/training/pca" element={<ComingSoon title="PCA培训" />} />
-          <Route path="/training/cpr" element={<ComingSoon title="CPR培训" />} />
-          <Route path="/training/others" element={<ComingSoon title="其他培训" />} />
+          <Route path="/training/pca" element={<PCATraining />} />
+          <Route path="/training/cpr" element={<CPRTraining />} />
+          <Route path="/training/others" element={<OtherTraining />} />
 
           {/* Help Page */}
           <Route path="/help" element={<Others />} />
