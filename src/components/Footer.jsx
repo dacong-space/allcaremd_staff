@@ -277,7 +277,7 @@ function Footer() {
               textAlign: 'center',
             }}
           >
-            Copyright © 2024 The Project by{' '}
+            Copyright © 2025{' '}
             <Link
               href="https://allcaremd.com"
               target="_blank"
@@ -290,9 +290,23 @@ function Footer() {
                 },
               }}
             >
-              Allcare
+              Allcare Health Care, LLC
             </Link>
-            . All Rights Reserved.
+            . Designed and developed by {' '}
+            <Link
+              href="https://allcaremd.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: 'rgba(255, 255, 255, 0.7)',
+                textDecoration: 'none',
+                '&:hover': {
+                  color: 'white',
+                },
+              }}
+            >
+              Rui Gao
+            </Link>
           </Typography>
         </Box>
       </Container>

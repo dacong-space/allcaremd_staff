@@ -10,27 +10,16 @@ import {
   Avatar,
   Stack,
   Chip,
-  Paper,
   IconButton
 } from '@mui/material'
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-} from '@mui/lab'
+
 import {
   School as SchoolIcon,
-  People as PeopleIcon,
   MenuBook as ManualIcon,
   Security as SecurityIcon,
   Support as SupportIcon,
-  CheckCircle as CheckIcon,
   Favorite as FavoriteIcon,
   Home as HomeIcon,
-  Star as StarIcon,
   ArrowBackIos as ArrowBackIcon,
   ArrowForwardIos as ArrowForwardIcon,
 } from '@mui/icons-material'
@@ -67,6 +56,38 @@ const HERO_IMAGES = [
     title: "老年人在公园的快乐时光"
   }
 ];
+
+// 统计数据
+const statistics = [
+  {
+    number: '200+',
+    label: '服务家庭',
+    description: '累计为超过500个家庭提供护理服务',
+    icon: <SchoolIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+  },
+  {
+    number: '100%',
+    label: '客户满意度',
+    description: '客户对我们服务的满意度评分',
+    icon: <SecurityIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+  },
+  {
+    number: '24/7',
+    label: '全天候服务',
+    description: '提供全天候紧急护理支持',
+    icon: <SupportIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+  },
+  {
+    number: '25+',
+    label: '专业认证',
+    description: '团队持有的专业护理认证数量',
+    icon: <FavoriteIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+  },
+]
 
 // 合并护理服务和培训平台特色 - 统一使用天空蓝色
 const servicesAndFeatures = [
@@ -128,69 +149,11 @@ const servicesAndFeatures = [
   },
 ]
 
-// 核心价值观数据
-const values = [
-  {
-    title: '富有同情心',
-    description: '我们相信富有同情心的护理始于真诚的连接',
-    icon: <SchoolIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-  {
-    title: '尊严与尊重',
-    description: '以尊严、尊重和真诚的奉献精神为每位客户服务',
-    icon: <CheckIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-  {
-    title: '专业护理',
-    description: '提供专业的ADLs协助和个性化护理计划',
-    icon: <StarIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-  {
-    title: '可靠支持',
-    description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持',
-    icon: <PeopleIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-]
 
 
 
-// 发展历程数据
-const milestones = [
-  {
-    year: '成立',
-    title: 'Allcare Health Care 成立',
-    description: '在马里兰州成立，专注于提供高质量的居家护理服务',
-  },
-  {
-    year: '认证',
-    title: '专业认证获得',
-    description: '获得马里兰州居家护理服务认证，成为官方认可的护理服务提供商',
-  },
-  {
-    year: '扩展',
-    title: '服务范围扩展',
-    description: '扩大服务范围，为老年人、慢性疾病患者和残疾人士提供全面护理',
-  },
-  {
-    year: '培训',
-    title: '员工培训体系建立',
-    description: '建立完善的PCA培训体系，确保所有护理人员持有CPR和急救认证',
-  },
-  {
-    year: '质量',
-    title: '质量保证体系',
-    description: '建立注册护士监督体系，定期进行家访和护理质量评估',
-  },
-  {
-    year: '现在',
-    title: '持续服务',
-    description: '继续为马里兰州社区提供优质的居家护理服务，帮助客户在家中安全舒适地生活',
-  },
-]
+
+
 
 function Home() {
   const navigate = useNavigate()
@@ -291,7 +254,7 @@ function Home() {
   }, [])
 
   return (
-    <Box>
+    <Box sx={{ bgcolor: '#fafafa' }}>
       {/* Hero Section */}
       <Box
         sx={{
@@ -553,7 +516,7 @@ function Home() {
             >
               关于 Allcare Health Care
             </Typography>
-            <Typography variant="h6" sx={{ color: '#b8e6b8' }} gutterBottom>
+            <Typography variant="h6" sx={{ color: '#87ceeb' }} gutterBottom>
               马里兰州值得信赖的居家护理服务提供商
             </Typography>
             <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
@@ -592,6 +555,432 @@ function Home() {
         </Container>
       </Box>
 
+      {/* Statistics Section */}
+      <Box sx={{ bgcolor: 'white', py: 8 }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            gutterBottom
+            sx={{ mb: 2, fontWeight: 600 }}
+          >
+            我们的服务成果
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
+            用数据展现我们的专业实力和服务质量
+          </Typography>
+
+          <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
+            {statistics.map((stat, index) => (
+              <Grid item xs={6} sm={3} key={index}>
+                <Card
+                  sx={{
+                    p: 3,
+                    textAlign: 'center',
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    borderRadius: 3,
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    height: '100%', // 确保所有卡片高度一致
+                    minHeight: 200, // 设置最小高度
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
+                    },
+                  }}
+                >
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      mx: 'auto',
+                      mb: 2,
+                      bgcolor: stat.color,
+                      color: 'white',
+                    }}
+                  >
+                    {stat.icon}
+                  </Avatar>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      fontWeight: 700,
+                      color: stat.color,
+                      mb: 1,
+                      fontSize: { xs: '1.5rem', md: '2rem' },
+                    }}
+                  >
+                    {stat.number}
+                  </Typography>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      color: 'text.primary',
+                      mb: 1,
+                    }}
+                  >
+                    {stat.label}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ fontSize: '0.875rem', lineHeight: 1.4 }}
+                  >
+                    {stat.description}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* Service Features Section */}
+      <Box sx={{ bgcolor: '#f5f5f5', py: 8 }}>
+        <Container maxWidth="lg">
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            gutterBottom
+            sx={{ mb: 2, fontWeight: 600 }}
+          >
+            我们的服务特色
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
+            专业、全面、个性化的护理服务体系
+          </Typography>
+
+          <Grid container spacing={4}>
+            <Grid item xs={12} md={6}>
+              <Card
+                sx={{
+                  p: 4,
+                  height: '100%',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: 3,
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                  },
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 3 }}>
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      bgcolor: '#87ceeb',
+                      color: 'white',
+                      mr: 3,
+                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                    }}
+                  >
+                    <SchoolIcon />
+                  </Avatar>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 1,
+                      }}
+                    >
+                      个性化护理计划
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.6, mb: 2 }}
+                    >
+                      根据每位客户的具体需求制定专属护理方案
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{ pl: 9 }}>
+                  <Grid container spacing={1}>
+                    {['全面健康评估', '定制护理目标', '定期计划调整', '家属参与决策'].map((detail, detailIndex) => (
+                      <Grid item xs={6} key={detailIndex}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                          <Box
+                            sx={{
+                              width: 6,
+                              height: 6,
+                              borderRadius: '50%',
+                              bgcolor: '#87ceeb',
+                              mr: 1,
+                            }}
+                          />
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ fontSize: '0.875rem' }}
+                          >
+                            {detail}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card
+                sx={{
+                  p: 4,
+                  height: '100%',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: 3,
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                  },
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 3 }}>
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      bgcolor: '#87ceeb',
+                      color: 'white',
+                      mr: 3,
+                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                    }}
+                  >
+                    <SecurityIcon />
+                  </Avatar>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 1,
+                      }}
+                    >
+                      专业团队监督
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.6, mb: 2 }}
+                    >
+                      注册护士全程监督，确保护理质量
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{ pl: 9 }}>
+                  <Grid container spacing={1}>
+                    {['RN护士监督', '定期质量评估', '持续培训更新', '24小时支持'].map((detail, detailIndex) => (
+                      <Grid item xs={6} key={detailIndex}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                          <Box
+                            sx={{
+                              width: 6,
+                              height: 6,
+                              borderRadius: '50%',
+                              bgcolor: '#87ceeb',
+                              mr: 1,
+                            }}
+                          />
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ fontSize: '0.875rem' }}
+                          >
+                            {detail}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card
+                sx={{
+                  p: 4,
+                  height: '100%',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: 3,
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                  },
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 3 }}>
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      bgcolor: '#87ceeb',
+                      color: 'white',
+                      mr: 3,
+                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                    }}
+                  >
+                    <SupportIcon />
+                  </Avatar>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 1,
+                      }}
+                    >
+                      全面安全保障
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.6, mb: 2 }}
+                    >
+                      完善的安全协议和应急响应机制
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{ pl: 9 }}>
+                  <Grid container spacing={1}>
+                    {['安全评估', '应急预案', '医疗协调', '家属沟通'].map((detail, detailIndex) => (
+                      <Grid item xs={6} key={detailIndex}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                          <Box
+                            sx={{
+                              width: 6,
+                              height: 6,
+                              borderRadius: '50%',
+                              bgcolor: '#87ceeb',
+                              mr: 1,
+                            }}
+                          />
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ fontSize: '0.875rem' }}
+                          >
+                            {detail}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Card>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Card
+                sx={{
+                  p: 4,
+                  height: '100%',
+                  background: 'rgba(255, 255, 255, 0.95)',
+                  border: '1px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: 3,
+                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                  },
+                }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 3 }}>
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      bgcolor: '#87ceeb',
+                      color: 'white',
+                      mr: 3,
+                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                    }}
+                  >
+                    <FavoriteIcon />
+                  </Avatar>
+                  <Box sx={{ flex: 1 }}>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 1,
+                      }}
+                    >
+                      持续质量改进
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.6, mb: 2 }}
+                    >
+                      不断优化服务流程，提升护理标准
+                    </Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{ pl: 9 }}>
+                  <Grid container spacing={1}>
+                    {['服务反馈', '流程优化', '技能提升', '创新实践'].map((detail, detailIndex) => (
+                      <Grid item xs={6} key={detailIndex}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+                          <Box
+                            sx={{
+                              width: 6,
+                              height: 6,
+                              borderRadius: '50%',
+                              bgcolor: '#87ceeb',
+                              mr: 1,
+                            }}
+                          />
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ fontSize: '0.875rem' }}
+                          >
+                            {detail}
+                          </Typography>
+                        </Box>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </Box>
+              </Card>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+
       {/* Services and Features Section with Horizontal Scroll */}
       <Box sx={{ bgcolor: 'white', py: 8 }}>
         <Container maxWidth="lg">
@@ -609,16 +998,16 @@ function Home() {
           </Typography>
 
           {/* Carousel Container with Soft Fade Effects */}
-          <Box sx={{ position: 'relative', px: 6 }}>
+          <Box sx={{ position: 'relative', px: 6, py: 2 }}>
             {/* Left Soft Fade Overlay */}
             <Box
               sx={{
                 position: 'absolute',
                 left: 0,
-                top: 0,
-                bottom: 0,
+                top: 16,
+                bottom: 16,
                 width: 100,
-                background: 'linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                background: 'linear-gradient(to right, white 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
                 zIndex: 2,
                 pointerEvents: 'none',
               }}
@@ -629,10 +1018,10 @@ function Home() {
               sx={{
                 position: 'absolute',
                 right: 0,
-                top: 0,
-                bottom: 0,
+                top: 16,
+                bottom: 16,
                 width: 100,
-                background: 'linear-gradient(to left, #ffffff 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                background: 'linear-gradient(to left, white 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
                 zIndex: 2,
                 pointerEvents: 'none',
               }}
@@ -732,6 +1121,7 @@ function Home() {
                 scrollBehavior: 'smooth',
                 pb: 2,
                 px: 2,
+                py: 1,
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
@@ -747,115 +1137,35 @@ function Home() {
                     maxWidth: 320,
                     textAlign: 'center',
                     p: 3,
-                    position: 'relative',
-                    overflow: 'hidden',
-                    transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                    cursor: 'pointer',
-                    borderRadius: 4,
-                    background: 'linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%)',
-                    backdropFilter: 'blur(6px) saturate(120%)',
-                    WebkitBackdropFilter: 'blur(6px) saturate(120%)',
-                    border: '1px solid rgba(255,255,255,0.3)',
-                    boxShadow: '0 4px 24px rgba(0,0,0,0.06), 0 1px 6px rgba(0,0,0,0.04)',
-                    transform: 'translateZ(0)',
-                    willChange: 'transform, box-shadow, border-color',
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    borderRadius: 3,
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                     '&:hover': {
-                      transform: 'translateY(-6px)',
-                      background: 'linear-gradient(145deg, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.9) 100%)',
-                      backdropFilter: 'blur(8px) saturate(140%)',
-                      WebkitBackdropFilter: 'blur(8px) saturate(140%)',
-                      boxShadow: `0 16px 32px rgba(0,0,0,0.08), 0 6px 16px rgba(0,0,0,0.04), 0 0 0 1px ${item.color}15`,
-                      border: `1px solid ${item.color}25`,
-                      '& .card-icon': {
-                        transform: 'scale(1.05) rotate(2deg)',
-                      },
-                      '& .card-badge': {
-                        transform: 'scale(1.02)',
-                      },
-                      '& .soft-glow': {
-                        opacity: 0.4,
-                      }
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
                     },
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      height: 3,
-                      background: `linear-gradient(90deg, ${item.color}80, ${item.color}60)`,
-                      borderRadius: '4px 4px 0 0',
-                    },
-                    '&::after': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: `radial-gradient(circle at 50% 0%, ${item.color}06, transparent 60%)`,
-                      pointerEvents: 'none',
-                      borderRadius: 4,
-                    }
                   }}
                 >
-                  {/* Soft Glow Effect */}
-                  <Box
-                    className="soft-glow"
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: `linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%)`,
-                      opacity: 0,
-                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      pointerEvents: 'none',
-                      borderRadius: 4,
-                    }}
-                  />
-
-
                   <Avatar
-                    className="card-icon"
                     sx={{
-                      width: 80,
-                      height: 80,
+                      width: 56,
+                      height: 56,
                       mx: 'auto',
-                      mb: 3,
-                      mt: 2,
-                      background: `linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)`,
-                      backdropFilter: 'blur(4px) saturate(130%)',
-                      WebkitBackdropFilter: 'blur(4px) saturate(130%)',
-                      color: item.color,
-                      border: `1px solid rgba(255, 255, 255, 0.4)`,
-                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      boxShadow: `0 6px 20px ${item.color}15, 0 2px 8px rgba(0,0,0,0.04)`,
-                      position: 'relative',
-                      transform: 'translateZ(0)',
-                      willChange: 'transform, box-shadow',
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: `radial-gradient(circle at 30% 30%, ${item.color}08, transparent 70%)`,
-                        borderRadius: '50%',
-                      }
+                      mb: 2,
+                      bgcolor: item.color,
+                      color: 'white',
                     }}
                   >
                     {item.icon}
                   </Avatar>
                   <Typography
-                    variant="h5"
-                    gutterBottom
+                    variant="h6"
                     sx={{
                       fontWeight: 600,
                       color: 'text.primary',
-                      mb: 2,
+                      mb: 1,
                     }}
                   >
                     {item.title}
@@ -863,10 +1173,7 @@ function Home() {
                   <Typography
                     variant="body2"
                     color="text.secondary"
-                    sx={{
-                      lineHeight: 1.6,
-                      fontSize: '0.9rem',
-                    }}
+                    sx={{ fontSize: '0.875rem', lineHeight: 1.4 }}
                   >
                     {item.description}
                   </Typography>
@@ -879,404 +1186,11 @@ function Home() {
 
       <Container maxWidth="lg" sx={{ py: 8 }}>
 
-        {/* Core Values Section */}
-        <Box sx={{ mb: 8 }}>
-            <Typography
-              variant="h3"
-              textAlign="center"
-              gutterBottom
-              sx={{
-                color: 'text.primary',
-                fontWeight: 600,
-                mb: 2
-              }}
-            >
-              我们的核心价值观
-            </Typography>
-            <Typography
-              variant="h6"
-              textAlign="center"
-              color="text.secondary"
-              sx={{ mb: 8, maxWidth: 600, mx: 'auto' }}
-            >
-              指导我们护理服务的核心原则
-            </Typography>
-
-            <Grid container spacing={4} sx={{ mt: 2 }}>
-              {values.map((value, index) => (
-                <Grid item xs={12} sm={6} md={3} key={index}>
-                  <Box
-                    sx={{
-                      position: 'relative',
-                      height: '100%',
-                      cursor: 'pointer',
-                      transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      '&:hover': {
-                        transform: 'translateY(-6px)',
-                        '& .value-card': {
-                          background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
-                          boxShadow: `
-                            0 20px 40px rgba(0,0,0,0.08),
-                            0 8px 16px rgba(0,0,0,0.04),
-                            inset 0 1px 0 rgba(255,255,255,0.9),
-                            0 0 0 1px ${value.color}15
-                          `,
-                          border: `2px solid ${value.color}40`,
-                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                          '&::before': {
-                            boxShadow: `0 4px 12px ${value.color}50`,
-                          }
-                        },
-                        '& .value-icon': {
-                          transform: 'scale(1.05) translateY(-1px)',
-                          boxShadow: `
-                            0 8px 20px ${value.color}20,
-                            0 4px 8px rgba(0,0,0,0.06),
-                            inset 0 1px 0 rgba(255,255,255,0.3)
-                          `,
-                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        },
-                        '& .value-number': {
-                          opacity: 0.6,
-                          transform: 'scale(1.02)',
-                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        },
-                        '& .floating-elements': {
-                          opacity: 0.4,
-                          transform: 'scale(1.1)',
-                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        }
-                      }
-                    }}
-                  >
-                    {/* Floating Background Elements */}
-                    <Box
-                      className="floating-elements"
-                      sx={{
-                        position: 'absolute',
-                        top: -10,
-                        right: -10,
-                        width: 40,
-                        height: 40,
-                        background: `radial-gradient(circle, ${value.color}20, transparent 70%)`,
-                        borderRadius: '50%',
-                        opacity: 0,
-                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        zIndex: 0,
-                      }}
-                    />
-
-                    <Card
-                      className="value-card"
-                      sx={{
-                        textAlign: 'center',
-                        p: 4,
-                        height: '100%',
-                        position: 'relative',
-                        overflow: 'hidden',
-                        background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
-                        border: `2px solid ${value.color}30`,
-                        borderRadius: 3,
-                        boxShadow: `
-                          0 8px 32px rgba(0,0,0,0.08),
-                          0 4px 16px rgba(0,0,0,0.04),
-                          inset 0 1px 0 rgba(255,255,255,0.9),
-                          inset 0 -1px 0 rgba(0,0,0,0.02)
-                        `,
-                        transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: 'translateZ(0)',
-                        willChange: 'transform, box-shadow, border-color',
-                        '&::before': {
-                          content: '""',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          height: 4,
-                          background: `linear-gradient(90deg, ${value.color} 0%, ${value.color}80 100%)`,
-                          borderRadius: '3px 3px 0 0',
-                          boxShadow: `0 2px 8px ${value.color}40`,
-                        },
-                        '&::after': {
-                          content: '""',
-                          position: 'absolute',
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          bottom: 0,
-                          background: `linear-gradient(135deg, ${value.color}03 0%, transparent 50%, ${value.color}05 100%)`,
-                          borderRadius: 3,
-                          pointerEvents: 'none',
-                        }
-                      }}
-                    >
-                      {/* Value Number */}
-                      <Typography
-                        className="value-number"
-                        sx={{
-                          position: 'absolute',
-                          top: 16,
-                          right: 16,
-                          fontSize: '2.5rem',
-                          fontWeight: 300,
-                          color: `${value.color}30`,
-                          opacity: 0,
-                          transform: 'scale(0.9)',
-                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                          zIndex: 0,
-                        }}
-                      >
-                        {String(index + 1).padStart(2, '0')}
-                      </Typography>
-
-                      <Avatar
-                        className="value-icon"
-                        sx={{
-                          width: 80,
-                          height: 80,
-                          mx: 'auto',
-                          mb: 3,
-                          mt: 1,
-                          background: `linear-gradient(145deg, ${value.color}20 0%, ${value.color}10 50%, ${value.color}15 100%)`,
-                          border: `2px solid ${value.color}30`,
-                          borderRadius: '50%',
-                          boxShadow: `
-                            0 6px 20px ${value.color}15,
-                            0 2px 8px rgba(0,0,0,0.06),
-                            inset 0 2px 0 rgba(255,255,255,0.4),
-                            inset 0 -2px 0 rgba(0,0,0,0.05)
-                          `,
-                          transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                          position: 'relative',
-                          zIndex: 1,
-                          color: value.color,
-                          transform: 'translateZ(0)',
-                          willChange: 'transform, box-shadow',
-                          '&::before': {
-                            content: '""',
-                            position: 'absolute',
-                            top: -3,
-                            left: -3,
-                            right: -3,
-                            bottom: -3,
-                            background: `conic-gradient(from 0deg, ${value.color}20, transparent 50%, ${value.color}15, transparent)`,
-                            borderRadius: '50%',
-                            zIndex: -1,
-                            opacity: 0.6,
-                          }
-                        }}
-                      >
-                        {value.icon}
-                      </Avatar>
-
-                      <Typography
-                        variant="h5"
-                        gutterBottom
-                        sx={{
-                          fontWeight: 700,
-                          color: 'text.primary',
-                          mb: 2,
-                          position: 'relative',
-                          zIndex: 1,
-                        }}
-                      >
-                        {value.title}
-                      </Typography>
-
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{
-                          lineHeight: 1.6,
-                          position: 'relative',
-                          zIndex: 1,
-                        }}
-                      >
-                        {value.description}
-                      </Typography>
-                    </Card>
-                  </Box>
-                </Grid>
-              ))}
-            </Grid>
-        </Box>
 
 
 
-        {/* Timeline Section */}
-        <Box sx={{ mb: 8 }}>
-          <Typography variant="h3" textAlign="center" gutterBottom>
-            我们的发展历程
-          </Typography>
-          <Typography variant="h6" textAlign="center" color="text.secondary" sx={{ mb: 6 }}>
-            Allcare Health Care 的成长足迹
-          </Typography>
-          <Timeline position="alternate">
-            {milestones.map((milestone, index) => (
-              <TimelineItem key={index}>
-                <TimelineSeparator>
-                  <TimelineDot
-                    color="primary"
-                    variant="filled"
-                    sx={{
-                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      transform: 'translateZ(0)',
-                      position: 'relative',
-                      '&:hover': {
-                        transform: 'scale(1.2)',
-                        boxShadow: '0 0 20px rgba(25, 118, 210, 0.4), 0 0 40px rgba(25, 118, 210, 0.2)',
-                      },
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: -4,
-                        left: -4,
-                        right: -4,
-                        bottom: -4,
-                        background: 'radial-gradient(circle, rgba(25, 118, 210, 0.2), transparent 70%)',
-                        borderRadius: '50%',
-                        opacity: 0,
-                        transition: 'opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      },
-                      '&:hover::before': {
-                        opacity: 1,
-                      }
-                    }}
-                  />
-                  {index < milestones.length - 1 && <TimelineConnector />}
-                </TimelineSeparator>
-                <TimelineContent>
-                  <Paper
-                    elevation={3}
-                    sx={{
-                      p: 3,
-                      cursor: 'pointer',
-                      position: 'relative',
-                      overflow: 'hidden',
-                      background: 'linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%)',
-                      border: '1px solid rgba(0,0,0,0.08)',
-                      borderRadius: 3,
-                      transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      transform: 'translateZ(0)',
-                      willChange: 'transform, box-shadow, border-color',
-                      '&:hover': {
-                        transform: 'translateY(-6px) rotateX(2deg)',
-                        background: 'linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%)',
-                        boxShadow: `
-                          0 16px 32px rgba(0,0,0,0.1),
-                          0 6px 16px rgba(0,0,0,0.06),
-                          inset 0 1px 0 rgba(255,255,255,0.9),
-                          0 0 0 1px rgba(25, 118, 210, 0.2)
-                        `,
-                        border: '1px solid rgba(25, 118, 210, 0.3)',
-                        '& .timeline-year': {
-                          color: 'primary.dark',
-                          textShadow: '0 2px 4px rgba(25, 118, 210, 0.2)',
-                        },
-                        '& .timeline-title': {
-                          color: 'text.primary',
-                          textShadow: '0 1px 2px rgba(0,0,0,0.1)',
-                        },
-                        '& .timeline-description': {
-                          color: 'text.secondary',
-                        },
-                        '& .timeline-glow': {
-                          opacity: 0.8,
-                        },
-                        '&::before': {
-                          transform: 'scaleX(1.1)',
-                          background: 'linear-gradient(90deg, rgba(25, 118, 210, 1) 0%, rgba(25, 118, 210, 0.8) 100%)',
-                        }
-                      },
-                      '&::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        height: 3,
-                        background: 'linear-gradient(90deg, rgba(25, 118, 210, 0.8) 0%, rgba(25, 118, 210, 0.6) 100%)',
-                        borderRadius: '3px 3px 0 0',
-                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        transform: 'scaleX(1)',
-                        transformOrigin: 'left center',
-                      },
-                      '&::after': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'radial-gradient(circle at 50% 0%, rgba(25, 118, 210, 0.03), transparent 60%)',
-                        pointerEvents: 'none',
-                        borderRadius: 3,
-                      }
-                    }}
-                  >
-                    {/* Soft Glow Effect */}
-                    <Box
-                      className="timeline-glow"
-                      sx={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%)',
-                        opacity: 0,
-                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                        pointerEvents: 'none',
-                        borderRadius: 3,
-                      }}
-                    />
 
-                    <Typography
-                      className="timeline-year"
-                      variant="h6"
-                      color="primary"
-                      gutterBottom
-                      sx={{
-                        position: 'relative',
-                        zIndex: 1,
-                        fontWeight: 700,
-                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      }}
-                    >
-                      {milestone.year}
-                    </Typography>
-                    <Typography
-                      className="timeline-title"
-                      variant="h5"
-                      gutterBottom
-                      sx={{
-                        position: 'relative',
-                        zIndex: 1,
-                        fontWeight: 600,
-                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      }}
-                    >
-                      {milestone.title}
-                    </Typography>
-                    <Typography
-                      className="timeline-description"
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{
-                        position: 'relative',
-                        zIndex: 1,
-                        lineHeight: 1.6,
-                        transition: 'all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                      }}
-                    >
-                      {milestone.description}
-                    </Typography>
-                  </Paper>
-                </TimelineContent>
-              </TimelineItem>
-            ))}
-          </Timeline>
-        </Box>
+
 
       </Container>
 

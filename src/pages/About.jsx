@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Container,
   Typography,
@@ -8,87 +8,31 @@ import {
   Avatar,
   Chip,
   Divider,
+  Paper,
 } from '@mui/material'
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+} from '@mui/lab'
 
 import {
   Business as BusinessIcon,
   Star as StarIcon,
   CheckCircle as CheckIcon,
-  Security as SecurityIcon,
-  Psychology as PsychologyIcon,
-  HealthAndSafety as HealthIcon,
-  Groups as GroupsIcon,
-  TrendingUp as TrendingUpIcon,
   LocationOn as LocationIcon,
   Phone as PhoneIcon,
   Email as EmailIcon,
-  Schedule as ScheduleIcon,
-  Verified as VerifiedIcon,
+  People as PeopleIcon,
+  Favorite as HeartIcon,
 } from '@mui/icons-material'
 
-// 统计数据
-const statistics = [
-  {
-    number: '500+',
-    label: '服务家庭',
-    description: '累计为超过500个家庭提供护理服务',
-    icon: <GroupsIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-  {
-    number: '98%',
-    label: '客户满意度',
-    description: '客户对我们服务的满意度评分',
-    icon: <StarIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-  {
-    number: '24/7',
-    label: '全天候服务',
-    description: '提供全天候紧急护理支持',
-    icon: <ScheduleIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-  {
-    number: '15+',
-    label: '专业认证',
-    description: '团队持有的专业护理认证数量',
-    icon: <VerifiedIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-  },
-]
 
-// 服务特色
-const serviceFeatures = [
-  {
-    title: '个性化护理计划',
-    description: '根据每位客户的具体需求制定专属护理方案',
-    icon: <PsychologyIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: ['全面健康评估', '定制护理目标', '定期计划调整', '家属参与决策'],
-  },
-  {
-    title: '专业团队监督',
-    description: '注册护士全程监督，确保护理质量',
-    icon: <SecurityIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: ['RN护士监督', '定期质量评估', '持续培训更新', '24小时支持'],
-  },
-  {
-    title: '全面安全保障',
-    description: '完善的安全协议和应急响应机制',
-    icon: <HealthIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: ['安全评估', '应急预案', '医疗协调', '家属沟通'],
-  },
-  {
-    title: '持续质量改进',
-    description: '不断优化服务流程，提升护理标准',
-    icon: <TrendingUpIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
-    details: ['服务反馈', '流程优化', '技能提升', '创新实践'],
-  },
-]
+
+
 
 // 团队成员
 const teamMembers = [
@@ -146,9 +90,76 @@ const companyInfo = {
   }
 }
 
+// 核心价值观数据
+const values = [
+  {
+    title: '富有同情心',
+    description: '我们相信富有同情心的护理始于真诚的连接，用心倾听每一位客户的需求',
+    icon: <HeartIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+    details: '以同理心为基础，建立信任关系，提供温暖的护理体验',
+  },
+  {
+    title: '尊严与尊重',
+    description: '以尊严、尊重和真诚的奉献精神为每位客户服务，维护个人隐私和选择权',
+    icon: <CheckIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+    details: '尊重客户的文化背景、个人偏好和生活方式选择',
+  },
+  {
+    title: '专业护理',
+    description: '提供专业的ADLs协助和个性化护理计划，确保最高质量的护理标准',
+    icon: <StarIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+    details: '持续的专业培训和认证，运用循证护理实践',
+  },
+  {
+    title: '可靠支持',
+    description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持伙伴',
+    icon: <PeopleIcon />,
+    color: '#87ceeb', // 更蓝的天空蓝色
+    details: '建立长期的护理关系，提供持续稳定的支持服务',
+  },
+]
+
+// 发展历程数据
+const milestones = [
+  {
+    year: '成立',
+    title: 'Allcare Health Care 成立',
+    description: '在马里兰州成立，专注于提供高质量的居家护理服务',
+  },
+  {
+    year: '认证',
+    title: '专业认证获得',
+    description: '获得马里兰州居家护理服务认证，成为官方认可的护理服务提供商',
+  },
+  {
+    year: '扩展',
+    title: '服务范围扩展',
+    description: '扩大服务范围，为老年人、慢性疾病患者和残疾人士提供全面护理',
+  },
+  {
+    year: '培训',
+    title: '员工培训体系建立',
+    description: '建立完善的PCA培训体系，确保所有护理人员持有CPR和急救认证',
+  },
+  {
+    year: '质量',
+    title: '质量保证体系',
+    description: '建立注册护士监督体系，定期进行家访和护理质量评估',
+  },
+  {
+    year: '现在',
+    title: '持续服务',
+    description: '继续为马里兰州社区提供优质的居家护理服务，帮助客户在家中安全舒适地生活',
+  },
+]
+
 
 
 function About() {
+  const [selectedValue, setSelectedValue] = useState(0)
 
   return (
     <Box sx={{
@@ -237,76 +248,14 @@ function About() {
                 mx: 'auto',
               }}
             >
-              马里兰州值得信赖的居家护理服务提供商
-              <br />
               <Box component="span" sx={{ color: '#87ceeb', fontWeight: 500 }}>
-                致力于为每个家庭提供富有同情心的专业护理服务
+                马里兰州值得信赖的居家护理服务提供商
               </Box>
+              <br />
+              致力于为每个家庭提供富有同情心的专业护理服务
             </Typography>
 
-            {/* 统计数据卡片 */}
-            <Grid container spacing={3} sx={{ mt: 6, justifyContent: 'center' }}>
-              {statistics.map((stat, index) => (
-                <Grid item xs={6} sm={3} key={index}>
-                  <Card
-                    sx={{
-                      p: 3,
-                      textAlign: 'center',
-                      background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid rgba(255, 255, 255, 0.3)',
-                      borderRadius: 3,
-                      boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
-                      },
-                    }}
-                  >
-                    <Avatar
-                      sx={{
-                        width: 56,
-                        height: 56,
-                        mx: 'auto',
-                        mb: 2,
-                        bgcolor: stat.color,
-                        color: 'white',
-                      }}
-                    >
-                      {stat.icon}
-                    </Avatar>
-                    <Typography
-                      variant="h3"
-                      sx={{
-                        fontWeight: 700,
-                        color: stat.color,
-                        mb: 1,
-                        fontSize: { xs: '1.5rem', md: '2rem' },
-                      }}
-                    >
-                      {stat.number}
-                    </Typography>
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontWeight: 600,
-                        color: 'text.primary',
-                        mb: 1,
-                      }}
-                    >
-                      {stat.label}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ fontSize: '0.875rem' }}
-                    >
-                      {stat.description}
-                    </Typography>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
+
           </Box>
         </Container>
       </Box>
@@ -459,11 +408,13 @@ function About() {
 
 
 
-        {/* Service Features */}
+
+
+        {/* Core Values */}
         <Box sx={{ mb: 8 }}>
           <Box textAlign="center" sx={{ mb: 6 }}>
             <Chip
-              label="服务特色"
+              label="核心价值观"
               sx={{
                 bgcolor: 'rgba(135, 206, 235, 0.15)',
                 color: '#87ceeb', // 更蓝的天空蓝色
@@ -484,7 +435,7 @@ function About() {
                 mb: 2,
               }}
             >
-              我们的服务特色
+              我们的核心价值观
             </Typography>
             <Typography
               variant="h6"
@@ -492,87 +443,99 @@ function About() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto' }}
             >
-              专业、全面、个性化的护理服务体系
+              指导我们护理服务的核心原则，塑造我们的服务文化
             </Typography>
           </Box>
 
           <Grid container spacing={4}>
-            {serviceFeatures.map((feature, index) => (
-              <Grid item xs={12} md={6} key={index}>
+            {values.map((value, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
                 <Card
+                  onClick={() => setSelectedValue(index)}
                   sx={{
+                    textAlign: 'center',
                     p: 4,
                     height: '100%',
-                    background: 'rgba(255, 255, 255, 0.95)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
+                    cursor: 'pointer',
+                    position: 'relative',
+                    background: selectedValue === index
+                      ? `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`
+                      : 'rgba(255, 255, 255, 0.95)',
+                    border: selectedValue === index
+                      ? `2px solid ${value.color}`
+                      : '1px solid rgba(255, 255, 255, 0.3)',
                     borderRadius: 3,
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    boxShadow: selectedValue === index
+                      ? `0 16px 48px ${value.color}20`
+                      : '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    transition: 'all 0.3s ease',
+                    transform: selectedValue === index ? 'translateY(-8px)' : 'translateY(0)',
                     '&:hover': {
-                      transform: 'translateY(-4px)',
-                      boxShadow: `0 12px 32px ${feature.color}15`,
+                      transform: 'translateY(-12px)',
+                      boxShadow: `0 20px 60px ${value.color}25`,
+                      border: `2px solid ${value.color}`,
+                      background: `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`,
                     },
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'flex-start', mb: 3 }}>
-                    <Avatar
+                  <Avatar
+                    sx={{
+                      width: 72,
+                      height: 72,
+                      mx: 'auto',
+                      mb: 3,
+                      bgcolor: value.color,
+                      color: 'white',
+                      boxShadow: `0 8px 24px ${value.color}40`,
+                      transition: 'all 0.3s ease',
+                      transform: selectedValue === index ? 'scale(1.1)' : 'scale(1)',
+                    }}
+                  >
+                    {value.icon}
+                  </Avatar>
+                  <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 600,
+                      color: 'text.primary',
+                      mb: 2,
+                    }}
+                  >
+                    {value.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      lineHeight: 1.6,
+                      mb: 2,
+                    }}
+                  >
+                    {value.description}
+                  </Typography>
+                  {selectedValue === index && (
+                    <Box
                       sx={{
-                        width: 56,
-                        height: 56,
-                        bgcolor: feature.color,
-                        color: 'white',
-                        mr: 3,
-                        boxShadow: `0 4px 16px ${feature.color}40`,
+                        mt: 2,
+                        p: 2,
+                        bgcolor: 'rgba(255, 255, 255, 0.8)',
+                        borderRadius: 2,
+                        border: `1px solid ${value.color}30`,
                       }}
                     >
-                      {feature.icon}
-                    </Avatar>
-                    <Box sx={{ flex: 1 }}>
                       <Typography
-                        variant="h5"
-                        gutterBottom
+                        variant="body2"
                         sx={{
-                          fontWeight: 600,
-                          color: 'text.primary',
-                          mb: 1,
+                          color: 'text.secondary',
+                          fontSize: '0.875rem',
+                          fontStyle: 'italic',
                         }}
                       >
-                        {feature.title}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        sx={{ lineHeight: 1.6, mb: 2 }}
-                      >
-                        {feature.description}
+                        {value.details}
                       </Typography>
                     </Box>
-                  </Box>
-
-                  <Box sx={{ pl: 9 }}>
-                    <Grid container spacing={1}>
-                      {feature.details.map((detail, detailIndex) => (
-                        <Grid item xs={6} key={detailIndex}>
-                          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                            <CheckIcon
-                              sx={{
-                                fontSize: 16,
-                                color: feature.color,
-                                mr: 1,
-                              }}
-                            />
-                            <Typography
-                              variant="body2"
-                              color="text.secondary"
-                              sx={{ fontSize: '0.875rem' }}
-                            >
-                              {detail}
-                            </Typography>
-                          </Box>
-                        </Grid>
-                      ))}
-                    </Grid>
-                  </Box>
+                  )}
                 </Card>
               </Grid>
             ))}
@@ -682,6 +645,109 @@ function About() {
               </Grid>
             ))}
           </Grid>
+        </Box>
+
+        {/* Timeline Section */}
+        <Box sx={{ mb: 8 }}>
+          <Box textAlign="center" sx={{ mb: 6 }}>
+            <Chip
+              label="发展历程"
+              sx={{
+                bgcolor: 'rgba(135, 206, 235, 0.15)',
+                color: '#87ceeb', // 更蓝的天空蓝色
+                mb: 3,
+                fontSize: '0.875rem',
+                px: 3,
+                py: 0.5,
+                border: '1px solid rgba(135, 206, 235, 0.3)',
+              }}
+            />
+            <Typography
+              variant="h3"
+              textAlign="center"
+              gutterBottom
+              sx={{
+                fontWeight: 700,
+                color: 'text.primary',
+                mb: 2,
+              }}
+            >
+              我们的发展历程
+            </Typography>
+            <Typography
+              variant="h6"
+              textAlign="center"
+              color="text.secondary"
+              sx={{ maxWidth: 600, mx: 'auto' }}
+            >
+              Allcare Health Care 的成长足迹
+            </Typography>
+          </Box>
+
+          <Timeline position="alternate">
+            {milestones.map((milestone, index) => (
+              <TimelineItem key={index}>
+                <TimelineSeparator>
+                  <TimelineDot
+                    sx={{
+                      bgcolor: '#87ceeb', // 更蓝的天空蓝色
+                      transition: 'all 0.3s ease',
+                      '&:hover': {
+                        transform: 'scale(1.1)',
+                        boxShadow: '0 0 16px rgba(135, 206, 235, 0.4)',
+                      },
+                    }}
+                  />
+                  {index < milestones.length - 1 && <TimelineConnector />}
+                </TimelineSeparator>
+                <TimelineContent>
+                  <Paper
+                    elevation={2}
+                    sx={{
+                      p: 3,
+                      background: 'rgba(255, 255, 255, 0.95)',
+                      border: '1px solid rgba(135, 206, 235, 0.2)',
+                      borderRadius: 3,
+                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                      '&:hover': {
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 8px 24px rgba(135, 206, 235, 0.15)',
+                      },
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        color: '#87ceeb',
+                        fontWeight: 700,
+                        mb: 1,
+                      }}
+                    >
+                      {milestone.year}
+                    </Typography>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 2,
+                      }}
+                    >
+                      {milestone.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ lineHeight: 1.6 }}
+                    >
+                      {milestone.description}
+                    </Typography>
+                  </Paper>
+                </TimelineContent>
+              </TimelineItem>
+            ))}
+          </Timeline>
         </Box>
 
         {/* Contact Information */}

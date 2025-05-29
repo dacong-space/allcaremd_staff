@@ -168,7 +168,13 @@ function Navbar() {
 
   return (
     <>
-      <AppBar position="fixed" elevation={1}>
+      <AppBar
+        position="fixed"
+        elevation={1}
+        sx={{
+          borderRadius: 0, // 设置为直角
+        }}
+      >
         <Container maxWidth="lg">
           <Toolbar sx={{ py: 2 }}>
             <Typography
