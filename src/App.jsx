@@ -10,6 +10,7 @@ import About from './pages/About'
 import Training from './pages/Training'
 import Files from './pages/Files'
 import ElderlyManual from './pages/ElderlyManual'
+import Others from './pages/Others'
 
 // 简单的 ComingSoon 组件
 const ComingSoon = ({ title }) => (
@@ -44,7 +45,7 @@ function App() {
           <Route path="/training/others" element={<ComingSoon title="其他培训" />} />
 
           {/* Other Pages */}
-          <Route path="/others" element={<ComingSoon title="其他服务" />} />
+          <Route path="/others" element={<Others />} />
         </Routes>
       </Box>
       <Footer />
