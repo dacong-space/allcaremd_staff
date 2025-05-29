@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Container,
   Typography,
@@ -19,6 +19,8 @@ import {
   InputAdornment,
   Tabs,
   Tab,
+  CircularProgress,
+  Alert,
 } from '@mui/material'
 import {
   Folder as FolderIcon,
@@ -29,7 +31,9 @@ import {
   People as ClientIcon,
   Badge as EmployeeIcon,
   MoreHoriz as OthersIcon,
+  Refresh as RefreshIcon,
 } from '@mui/icons-material'
+import { scanAllFiles, refreshCategory } from '../utils/dynamicFileDetector'
 
 const fileCategories = [
   {
@@ -38,7 +42,7 @@ const fileCategories = [
     description: '新员工入职所需的各类文件和表格',
     icon: <OnboardingIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
-    count: 8,
+    count: 2,
   },
   {
     id: 'client',
@@ -46,97 +50,120 @@ const fileCategories = [
     description: '客户服务相关的合同、协议和政策文件',
     icon: <ClientIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
-    count: 12,
+    count: 1,
   },
   {
-    id: 'employee',
-    title: '员工文件',
-    description: '员工培训资料、操作指南和工作表格',
+    id: 'training',
+    title: '培训资料',
+    description: '员工培训资料、操作指南和培训手册',
     icon: <EmployeeIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
-    count: 15,
+    count: 2,
   },
   {
-    id: 'others',
-    title: '其他文件',
-    description: '其他重要文件和资源下载',
+    id: 'forms',
+    title: '工作表格',
+    description: '日常工作所需的各类表格和记录单',
     icon: <OthersIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
-    count: 10,
+    count: 1,
   },
 ]
 
-const sampleFiles = {
-  onboarding: [
-    { name: '护理服务协议模板.pdf', size: '245 KB', date: '2024-01-15' },
-    { name: '客户服务合同.docx', size: '189 KB', date: '2024-01-20' },
-    { name: '护理责任协议.pdf', size: '167 KB', date: '2024-01-18' },
-    { name: '服务终止协议.pdf', size: '145 KB', date: '2024-01-12' },
-    { name: '紧急联系授权书.pdf', size: '128 KB', date: '2024-01-10' },
-    { name: '医疗信息发布同意书.pdf', size: '156 KB', date: '2024-01-08' },
-    { name: '护理计划同意书.pdf', size: '134 KB', date: '2024-01-05' },
-    { name: '费用支付协议.pdf', size: '178 KB', date: '2024-01-03' },
-  ],
-  client: [
-    { name: '客户权利法案.pdf', size: '356 KB', date: '2024-01-25' },
-    { name: 'HIPAA隐私保护政策.pdf', size: '445 KB', date: '2024-01-22' },
-    { name: '投诉处理程序.docx', size: '234 KB', date: '2024-01-20' },
-    { name: '护理质量标准.pdf', size: '567 KB', date: '2024-01-18' },
-    { name: '员工行为准则.pdf', size: '289 KB', date: '2024-01-15' },
-    { name: '安全操作政策.pdf', size: '378 KB', date: '2024-01-12' },
-    { name: '紧急情况处理程序.pdf', size: '423 KB', date: '2024-01-10' },
-    { name: '感染控制政策.pdf', size: '345 KB', date: '2024-01-08' },
-    { name: '药物管理政策.pdf', size: '267 KB', date: '2024-01-05' },
-    { name: '客户信息保密政策.pdf', size: '198 KB', date: '2024-01-03' },
-    { name: '护理文档标准.pdf', size: '234 KB', date: '2024-01-01' },
-    { name: '质量改进程序.pdf', size: '312 KB', date: '2023-12-28' },
-  ],
-  employee: [
-    { name: 'PCA培训手册.pdf', size: '2.1 MB', date: '2024-01-25' },
-    { name: 'CPR认证指南.pdf', size: '1.8 MB', date: '2024-01-22' },
-    { name: 'ADLs协助培训.pdf', size: '1.5 MB', date: '2024-01-20' },
-    { name: '安全护理操作指南.pdf', size: '1.2 MB', date: '2024-01-18' },
-    { name: '客户沟通技巧培训.pdf', size: '890 KB', date: '2024-01-15' },
-    { name: '紧急情况应对培训.pdf', size: '1.1 MB', date: '2024-01-12' },
-    { name: '感染控制培训.pdf', size: '756 KB', date: '2024-01-10' },
-    { name: '护理记录培训.pdf', size: '634 KB', date: '2024-01-08' },
-    { name: '职业道德培训.pdf', size: '567 KB', date: '2024-01-05' },
-    { name: '隐私保护培训.pdf', size: '445 KB', date: '2024-01-03' },
-    { name: '急救培训视频.mp4', size: '45.2 MB', date: '2024-01-01' },
-    { name: '护理技能演示.mp4', size: '38.7 MB', date: '2023-12-28' },
-    { name: '培训考核标准.pdf', size: '289 KB', date: '2023-12-25' },
-    { name: '继续教育要求.pdf', size: '234 KB', date: '2023-12-22' },
-    { name: '培训记录模板.xlsx', size: '89 KB', date: '2023-12-20' },
-  ],
-  others: [
-    { name: '护理评估表.pdf', size: '234 KB', date: '2024-01-25' },
-    { name: '日常护理记录表.pdf', size: '189 KB', date: '2024-01-22' },
-    { name: '药物管理记录表.pdf', size: '167 KB', date: '2024-01-20' },
-    { name: '事故报告表.pdf', size: '145 KB', date: '2024-01-18' },
-    { name: '客户满意度调查表.pdf', size: '178 KB', date: '2024-01-15' },
-    { name: '护理计划表.pdf', size: '156 KB', date: '2024-01-12' },
-    { name: '家属沟通记录表.pdf', size: '134 KB', date: '2024-01-10' },
-    { name: '健康状况变化报告.pdf', size: '198 KB', date: '2024-01-08' },
-    { name: '服务时间记录表.pdf', size: '123 KB', date: '2024-01-05' },
-    { name: '护理用品清单.xlsx', size: '67 KB', date: '2024-01-03' },
-  ],
-}
+// 动态文件数据将通过 useEffect 加载
 
 function Files() {
   const [selectedCategory, setSelectedCategory] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
+  const [files, setFiles] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [refreshing, setRefreshing] = useState(false)
+  const [error, setError] = useState(null)
+
+  // 加载所有文件
+  const loadFiles = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      console.log('🔄 开始加载文件...')
+      const scannedFiles = await scanAllFiles()
+      setFiles(scannedFiles)
+
+      // 更新分类计数
+      fileCategories.forEach(category => {
+        category.count = scannedFiles[category.id]?.length || 0
+      })
+
+      console.log('✅ 文件加载完成:', scannedFiles)
+    } catch (err) {
+      console.error('❌ 文件加载失败:', err)
+      setError('文件加载失败，请稍后重试')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  // 刷新指定分类的文件
+  const refreshCategoryFiles = async (category) => {
+    try {
+      setRefreshing(true)
+      console.log(`🔄 刷新 ${category} 分类...`)
+      const refreshedFiles = await refreshCategory(category)
+      setFiles(prev => ({
+        ...prev,
+        [category]: refreshedFiles
+      }))
+
+      // 更新分类计数
+      const categoryConfig = fileCategories.find(cat => cat.id === category)
+      if (categoryConfig) {
+        categoryConfig.count = refreshedFiles.length
+      }
+
+      console.log(`✅ ${category} 分类刷新完成`)
+    } catch (err) {
+      console.error(`❌ ${category} 分类刷新失败:`, err)
+      setError(`${category} 分类刷新失败`)
+    } finally {
+      setRefreshing(false)
+    }
+  }
+
+  // 组件挂载时加载文件
+  useEffect(() => {
+    loadFiles()
+  }, [])
 
   const handleCategoryChange = (_, newValue) => {
     setSelectedCategory(newValue)
   }
 
-  const filteredFiles = sampleFiles[selectedCategory]?.filter(file =>
-    file.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredFiles = files[selectedCategory]?.filter(file =>
+    file.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (file.displayName && file.displayName.toLowerCase().includes(searchTerm.toLowerCase()))
   ) || []
 
-  const handleDownload = (fileName) => {
-    // 这里可以实现实际的下载逻辑
-    console.log('下载文件:', fileName)
+  const handleDownload = (file) => {
+    // 实际的下载逻辑
+    try {
+      // 根据文件分类构建正确的路径
+      const filePath = `/files/${file.category}/${file.name}`
+
+      // 创建下载链接
+      const link = document.createElement('a')
+      link.href = filePath
+      link.download = file.name
+      link.target = '_blank'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+
+      // 显示下载成功提示
+      console.log('开始下载文件:', file.displayName || file.name, '路径:', filePath)
+    } catch (error) {
+      console.error('下载失败:', error)
+      alert('下载失败，请稍后重试')
+    }
   }
 
   return (
@@ -146,9 +173,48 @@ function Files() {
         <Typography variant="h2" component="h1" gutterBottom>
           Allcare 文档中心
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto' }}>
+        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', mb: 3 }}>
           提供护理服务相关的各类文件下载，包括合同文件、政策文件、培训资料和工作表格
         </Typography>
+
+        {/* 状态指示器和刷新按钮 */}
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
+          {loading && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <CircularProgress size={20} sx={{ color: '#87ceeb' }} />
+              <Typography variant="body2" color="text.secondary">
+                正在扫描文件...
+              </Typography>
+            </Box>
+          )}
+
+          {!loading && (
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={refreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
+              onClick={loadFiles}
+              disabled={refreshing}
+              sx={{
+                borderColor: '#87ceeb',
+                color: '#87ceeb',
+                '&:hover': {
+                  borderColor: '#87ceeb',
+                  backgroundColor: 'rgba(135, 206, 235, 0.1)',
+                },
+              }}
+            >
+              {refreshing ? '刷新中...' : '刷新文件列表'}
+            </Button>
+          )}
+        </Box>
+
+        {/* 错误提示 */}
+        {error && (
+          <Alert severity="error" sx={{ mt: 2, maxWidth: 600, mx: 'auto' }}>
+            {error}
+          </Alert>
+        )}
       </Box>
 
       {/* File Categories Overview */}
@@ -308,11 +374,30 @@ function Files() {
 
         {selectedCategory ? (
           <>
-            <Typography variant="h5" gutterBottom>
-              {fileCategories.find(cat => cat.id === selectedCategory)?.title}
-            </Typography>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+              <Typography variant="h5">
+                {fileCategories.find(cat => cat.id === selectedCategory)?.title}
+              </Typography>
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={refreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
+                onClick={() => refreshCategoryFiles(selectedCategory)}
+                disabled={refreshing}
+                sx={{
+                  borderColor: '#87ceeb',
+                  color: '#87ceeb',
+                  '&:hover': {
+                    borderColor: '#87ceeb',
+                    backgroundColor: 'rgba(135, 206, 235, 0.1)',
+                  },
+                }}
+              >
+                {refreshing ? '刷新中...' : '刷新此分类'}
+              </Button>
+            </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              共 {filteredFiles.length} 个文件
+              共 {filteredFiles.length} 个文件 {loading && '(扫描中...)'}
             </Typography>
 
             <List>
@@ -381,14 +466,14 @@ function Files() {
                     </Avatar>
                   </ListItemIcon>
                   <ListItemText
-                    primary={file.name}
-                    secondary={`大小: ${file.size} | 更新时间: ${file.date}`}
+                    primary={file.displayName || file.name}
+                    secondary={`文件名: ${file.name} | 大小: ${file.size} | 更新时间: ${file.date}`}
                     primaryTypographyProps={{ fontWeight: 500 }}
                   />
                   <ListItemSecondaryAction>
                     <IconButton
                       edge="end"
-                      onClick={() => handleDownload(file.name)}
+                      onClick={() => handleDownload(file)}
                       sx={{
                         background: 'linear-gradient(145deg, #87ceeb, #87ceebcc)',
                         color: 'white',

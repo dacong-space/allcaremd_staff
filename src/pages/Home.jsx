@@ -4,14 +4,14 @@ import {
   Typography,
   Box,
   Card,
-  CardContent,
   Grid,
   Button,
   Avatar,
-  Stack,
   Chip,
   IconButton
 } from '@mui/material'
+import LazyImage from '../components/LazyImage'
+import SEOHead from '../components/SEOHead'
 
 import {
   School as SchoolIcon,
@@ -255,6 +255,11 @@ function Home() {
 
   return (
     <Box sx={{ bgcolor: '#fafafa' }}>
+      <SEOHead
+        title="首页"
+        description="Allcare Health Care 员工培训平台 - 为马里兰州居家护理服务提供专业的PCA培训、CPR认证和客户手册。All People. All Heart. Allcare."
+        keywords={['首页', '员工培训', '护理服务', '培训平台']}
+      />
       {/* Hero Section */}
       <Box
         sx={{
@@ -413,24 +418,27 @@ function Home() {
                     {HERO_IMAGES.map((image, index) => (
                       <Box
                         key={index}
-                        component="img"
-                        src={image.src}
-                        alt={image.alt}
-                        onError={(e) => {
-                          e.target.src = HERO_IMAGE.fallback;
-                        }}
                         sx={{
                           position: 'absolute',
                           top: 0,
                           left: 0,
                           width: '100%',
                           height: '100%',
-                          objectFit: 'cover',
                           opacity: index === currentImageIndex ? 1 : 0,
                           transition: 'opacity 0.8s cubic-bezier(0.4, 0.0, 0.2, 1)',
                           zIndex: index === currentImageIndex ? 1 : 0,
                         }}
-                      />
+                      >
+                        <LazyImage
+                          src={image.src}
+                          alt={image.alt}
+                          fallback={HERO_IMAGE.fallback}
+                          width="100%"
+                          height="100%"
+                          objectFit="cover"
+                          borderRadius={0}
+                        />
+                      </Box>
                     ))}
                   </Box>
 

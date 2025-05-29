@@ -21,7 +21,6 @@ import {
   Group as GroupIcon,
   MenuBook as MenuBookIcon,
 } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
 
 const trainingPrograms = [
   {
@@ -99,8 +98,6 @@ const trainingPrograms = [
 ]
 
 function Training() {
-  const navigate = useNavigate()
-
   return (
     <Box sx={{ bgcolor: '#fafafa', minHeight: '100vh' }}>
       {/* Hero Section */}
