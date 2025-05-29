@@ -21,6 +21,7 @@ import {
   Group as GroupIcon,
   MenuBook as MenuBookIcon,
 } from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const trainingPrograms = [
   {
@@ -98,6 +99,8 @@ const trainingPrograms = [
 ]
 
 function Training() {
+  const navigate = useNavigate()
+
   return (
     <Box sx={{ bgcolor: '#fafafa', minHeight: '100vh' }}>
       {/* Hero Section */}
@@ -735,6 +738,7 @@ function Training() {
               <Button
                 variant="outlined"
                 size="large"
+                onClick={() => navigate('/about')}
                 sx={{
                   borderColor: 'rgba(255, 255, 255, 0.8)',
                   color: 'white',
@@ -750,7 +754,7 @@ function Training() {
                   // 完全移除过渡动画
                 }}
               >
-                查看客户手册
+                了解更多
               </Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
