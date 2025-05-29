@@ -5,15 +5,15 @@ const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#377dff',
-      light: '#5a8fff',
-      dark: '#2563eb',
+      main: '#87ceeb', // 更蓝的天空蓝色
+      light: '#87ceeb',
+      dark: '#87ceeb',
       contrastText: '#ffffff',
     },
     secondary: {
-      main: '#00c9a7',
-      light: '#26d0ce',
-      dark: '#00a085',
+      main: '#87ceeb', // 更蓝的天空蓝色
+      light: '#87ceeb',
+      dark: '#87ceeb',
       contrastText: '#ffffff',
     },
     background: {
@@ -188,9 +188,9 @@ const theme = createTheme({
           transition: 'all 0.2s ease-in-out',
         },
         contained: {
-          boxShadow: '0px 8px 25px rgba(55, 125, 255, 0.24)',
+          boxShadow: '0px 8px 25px rgba(135, 206, 235, 0.24)', // 更蓝的天空蓝色阴影
           '&:hover': {
-            boxShadow: '0px 8px 25px rgba(55, 125, 255, 0.32)',
+            boxShadow: '0px 8px 25px rgba(135, 206, 235, 0.32)', // 更蓝的天空蓝色悬停阴影
             transform: 'translateY(-1px)',
           },
         },
@@ -198,12 +198,12 @@ const theme = createTheme({
           borderWidth: '2px',
           '&:hover': {
             borderWidth: '2px',
-            backgroundColor: 'rgba(55, 125, 255, 0.04)',
+            backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停背景
           },
         },
         text: {
           '&:hover': {
-            backgroundColor: 'rgba(55, 125, 255, 0.04)',
+            backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停背景
           },
         },
       },

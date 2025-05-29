@@ -193,10 +193,10 @@ function ElderlyManual() {
                                 borderRadius: 2,
                                 backgroundColor:
                                   currentContent?.section?.id === section.id
-                                    ? 'rgba(55, 125, 255, 0.08)'
+                                    ? 'rgba(135, 206, 235, 0.15)'
                                     : 'transparent',
                                 '&:hover': {
-                                  backgroundColor: 'rgba(55, 125, 255, 0.04)',
+                                  backgroundColor: 'rgba(135, 206, 235, 0.08)',
                                 },
                               }}
                               onClick={() => handleSectionSelect(chapter.id, section.id)}

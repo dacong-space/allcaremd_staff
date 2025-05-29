@@ -109,7 +109,7 @@ function Navbar() {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', pt: 3 }}>
       <Typography variant="h5" sx={{ mb: 4, fontWeight: 700, color: 'primary.main' }}>
-        RSA 培训平台
+        Allcare 员工平台
       </Typography>
       <List>
         {navigationItems.map((item, index) => (
@@ -182,7 +182,7 @@ function Navbar() {
               }}
               onClick={() => handleNavigation('/')}
             >
-              RSA 培训平台
+              Allcare 员工平台
             </Typography>
 
             {isMobile ? (
@@ -211,10 +211,10 @@ function Navbar() {
                           color: 'text.primary',
                           fontWeight: 500,
                           backgroundColor: location.pathname === item.path
-                            ? 'rgba(55, 125, 255, 0.08)'
+                            ? 'rgba(135, 206, 235, 0.15)' // 更蓝的天空蓝色背景
                             : 'transparent',
                           '&:hover': {
-                            backgroundColor: 'rgba(55, 125, 255, 0.04)',
+                            backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停
                           },
                         }}
                       >
@@ -232,7 +232,7 @@ function Navbar() {
                             color: 'text.primary',
                             fontWeight: 500,
                             '&:hover': {
-                              backgroundColor: 'rgba(55, 125, 255, 0.04)',
+                              backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停
                             },
                           }}
                         >
@@ -261,10 +261,10 @@ function Navbar() {
                                 px: 2,
                                 fontWeight: 500,
                                 '&:hover': {
-                                  backgroundColor: 'rgba(55, 125, 255, 0.04)',
+                                  backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停
                                 },
                                 '&.Mui-selected': {
-                                  backgroundColor: 'rgba(55, 125, 255, 0.08)',
+                                  backgroundColor: 'rgba(135, 206, 235, 0.15)', // 更蓝的天空蓝色选中
                                   color: 'primary.main',
                                 },
                               }}

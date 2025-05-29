@@ -68,62 +68,62 @@ const HERO_IMAGES = [
   }
 ];
 
-// 合并护理服务和培训平台特色 - 使用马卡龙色调与核心价值观保持一致
+// 合并护理服务和培训平台特色 - 统一使用天空蓝色
 const servicesAndFeatures = [
   {
     icon: <HomeIcon sx={{ fontSize: 48 }} />,
     title: '日常生活协助 (ADLs)',
     description: '协助洗澡、穿衣、进食、移动等日常活动',
-    color: '#a8d8ea', // 淡雅蓝色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'service'
   },
   {
     icon: <FavoriteIcon sx={{ fontSize: 48 }} />,
     title: '陪伴与情感支持',
     description: '提供友好的陪伴和心理支持服务',
-    color: '#f8a5c2', // 淡雅粉色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'service'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: '安全监督',
     description: '确保客户在家中的安全和健康',
-    color: '#ffd3a5', // 淡雅橙色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'service'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '专业护理监督',
     description: '注册护士定期监督和评估护理质量',
-    color: '#b8e6b8', // 淡雅绿色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'service'
   },
   {
     icon: <ManualIcon sx={{ fontSize: 48 }} />,
     title: '客户信息手册',
     description: 'Allcare Health Care 完整的客户信息手册，包含权利法案、隐私政策等',
-    color: '#c8a2c8', // 淡雅紫色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'feature'
   },
   {
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
     title: 'PCA专业培训',
     description: '个人护理助理培训课程，掌握ADLs协助、安全护理等专业技能',
-    color: '#b8e6b8', // 淡雅绿色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'feature'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: 'CPR & 急救培训',
     description: '心肺复苏术和急救培训，确保紧急情况下的专业应对能力',
-    color: '#ffd3a5', // 淡雅橙色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'feature'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '护理监督支持',
     description: '注册护士监督指导，确保护理质量和服务标准',
-    color: '#f8a5c2', // 淡雅粉色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
     category: 'feature'
   },
 ]
@@ -134,25 +134,25 @@ const values = [
     title: '富有同情心',
     description: '我们相信富有同情心的护理始于真诚的连接',
     icon: <SchoolIcon />,
-    color: '#f8a5c2', // 淡雅粉色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
   },
   {
     title: '尊严与尊重',
     description: '以尊严、尊重和真诚的奉献精神为每位客户服务',
     icon: <CheckIcon />,
-    color: '#c8a2c8', // 淡雅紫色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
   },
   {
     title: '专业护理',
     description: '提供专业的ADLs协助和个性化护理计划',
     icon: <StarIcon />,
-    color: '#a8d8ea', // 淡雅蓝色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
   },
   {
     title: '可靠支持',
     description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持',
     icon: <PeopleIcon />,
-    color: '#b8e6b8', // 淡雅绿色马卡龙
+    color: '#87ceeb', // 更蓝的天空蓝色
   },
 ]
 
@@ -295,8 +295,8 @@ function Home() {
       {/* Hero Section */}
       <Box
         sx={{
-          pt: { xs: 8, md: 12 },
-          pb: { xs: 8, md: 16 },
+          pt: { xs: 1, md: 2 }, // 大幅减少上边距，让整个网页更靠近导航栏
+          pb: { xs: 4, md: 6 }, // 减少下边距，缩小与About Section的间距
           bgcolor: 'white',
           color: 'text.primary',
           minHeight: '80vh',
@@ -310,7 +310,7 @@ function Home() {
               <Chip
                 label="Allcare Health Care, LLC"
                 sx={{
-                  bgcolor: '#f8a5c2', // 淡雅粉色马卡龙
+                  bgcolor: '#87ceeb', // 更蓝的天空蓝色
                   color: 'white',
                   mb: 3,
                   fontSize: '0.875rem',
@@ -331,7 +331,7 @@ function Home() {
                 }}
               >
                 All People. All Heart.{' '}
-                <Box component="span" sx={{ color: '#a8d8ea' }}>
+                <Box component="span" sx={{ color: '#87ceeb' }}>
                   Allcare.
                 </Box>
               </Typography>
@@ -377,12 +377,12 @@ function Home() {
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     borderRadius: '50%',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                    color: '#ffd3a5', // 淡雅橙色马卡龙
+                    color: '#87ceeb', // 更蓝的天空蓝色
                     opacity: 1, // 一直显示
                     transition: 'all 0.2s ease-out',
                     '&:hover': {
                       background: 'rgba(255, 255, 255, 1)',
-                      color: '#ffb946', // 稍深的橙色马卡龙
+                      color: '#87ceeb', // 更蓝的天空蓝色
                     },
                     '&:active': {
                       transform: 'translateY(-50%) scale(0.95)',
@@ -409,12 +409,12 @@ function Home() {
                     border: '1px solid rgba(255, 255, 255, 0.8)',
                     borderRadius: '50%',
                     boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                    color: '#ffd3a5', // 淡雅橙色马卡龙
+                    color: '#87ceeb', // 更蓝的天空蓝色
                     opacity: 1, // 一直显示
                     transition: 'all 0.2s ease-out',
                     '&:hover': {
                       background: 'rgba(255, 255, 255, 1)',
-                      color: '#ffb946', // 稍深的橙色马卡龙
+                      color: '#87ceeb', // 更蓝的天空蓝色
                     },
                     '&:active': {
                       transform: 'translateY(-50%) scale(0.95)',
@@ -574,7 +574,7 @@ function Home() {
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                background: 'linear-gradient(135deg, #c8a2c8 0%, #b8e6b8 100%)', // 紫色到绿色的马卡龙渐变
+                background: 'linear-gradient(135deg, #87ceeb 0%, #87ceeb 100%)', // 更蓝的天空蓝色
                 borderRadius: 2,
                 p: 4,
                 textAlign: 'center'

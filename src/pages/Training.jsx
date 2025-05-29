@@ -30,7 +30,7 @@ const trainingPrograms = [
     subtitle: 'Personal Care Assistant Training',
     description: 'Allcare Health Care 专业的个人护理助理培训课程，专注于ADLs协助、安全护理和客户沟通技巧。',
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
-    color: '#377dff',
+    color: '#87ceeb', // 更蓝的天空蓝色
     duration: '持续培训',
     certification: 'Allcare认证',
     features: [
@@ -49,7 +49,7 @@ const trainingPrograms = [
     subtitle: 'CPR & First Aid Certification',
     description: '心肺复苏术和急救培训，确保所有护理人员具备紧急救护技能，保障客户安全。',
     icon: <CPRIcon sx={{ fontSize: 48 }} />,
-    color: '#dc2626',
+    color: '#87ceeb', // 更蓝的天空蓝色
     duration: '年度更新',
     certification: 'CPR认证',
     features: [
@@ -68,7 +68,7 @@ const trainingPrograms = [
     subtitle: 'Client Information Manual',
     description: '完整的客户信息手册，包含权利法案、隐私政策、护理标准等重要信息。',
     icon: <CertificateIcon sx={{ fontSize: 48 }} />,
-    color: '#00c9a7',
+    color: '#87ceeb', // 更蓝的天空蓝色
     duration: '随时学习',
     certification: '必读材料',
     features: [
@@ -270,7 +270,7 @@ function Training() {
         sx={{
           p: 6,
           textAlign: 'center',
-          background: 'linear-gradient(135deg, #377dff 0%, #00c9a7 100%)',
+          background: 'linear-gradient(135deg, #87ceeb 0%, #87ceeb 100%)', // 更蓝的天空蓝色
           color: 'white',
         }}
       >

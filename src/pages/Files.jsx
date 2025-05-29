@@ -37,7 +37,7 @@ const fileCategories = [
     title: '合同文件',
     description: '护理服务合同、协议和相关法律文件',
     icon: <OnboardingIcon sx={{ fontSize: 48 }} />,
-    color: '#377dff',
+    color: '#87ceeb', // 更蓝的天空蓝色
     count: 8,
   },
   {
@@ -45,7 +45,7 @@ const fileCategories = [
     title: '政策文件',
     description: '公司政策、隐私保护和权利法案文件',
     icon: <ClientIcon sx={{ fontSize: 48 }} />,
-    color: '#00c9a7',
+    color: '#87ceeb', // 更蓝的天空蓝色
     count: 12,
   },
   {
@@ -53,7 +53,7 @@ const fileCategories = [
     title: '培训资料',
     description: 'PCA培训、CPR认证和护理操作指南',
     icon: <EmployeeIcon sx={{ fontSize: 48 }} />,
-    color: '#ffb946',
+    color: '#87ceeb', // 更蓝的天空蓝色
     count: 15,
   },
   {
@@ -61,7 +61,7 @@ const fileCategories = [
     title: '表格文件',
     description: '护理记录表、评估表和其他工作表格',
     icon: <OthersIcon sx={{ fontSize: 48 }} />,
-    color: '#de4437',
+    color: '#87ceeb', // 更蓝的天空蓝色
     count: 10,
   },
 ]
@@ -306,7 +306,7 @@ function Files() {
           mt: 6,
           p: 4,
           textAlign: 'center',
-          background: 'linear-gradient(135deg, #377dff 0%, #00c9a7 100%)',
+          background: 'linear-gradient(135deg, #87ceeb 0%, #87ceeb 100%)', // 更蓝的天空蓝色
           color: 'white',
         }}
       >
