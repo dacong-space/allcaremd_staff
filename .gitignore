@@ -46,4 +46,4 @@ manual_content.txt
 # Document files (should not be in repo)
 *.docx
 *.doc
-*.pdf
+# *.pdf  # 注释掉PDF忽略规则，允许上传PDF文件到public/files/目录
