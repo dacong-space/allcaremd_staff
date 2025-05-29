@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import {
   AppBar,
@@ -75,6 +75,22 @@ function Navbar() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [mobileOpen, setMobileOpen] = useState(false)
   const [anchorEls, setAnchorEls] = useState({})
+  const timeoutRefs = useRef({})
+
+  // 智能路径匹配函数
+  const isPathActive = (path) => {
+    return location.pathname === path
+  }
+
+  // 检查下拉菜单是否包含当前活跃路径
+  const isDropdownActive = (dropdownItems) => {
+    return dropdownItems.some(item => isPathActive(item.path))
+  }
+
+  // 检查是否应该展开下拉菜单（基于当前路径）
+  const shouldExpandDropdown = (dropdownItems) => {
+    return dropdownItems.some(item => location.pathname.startsWith(item.path.split('/')[1] ? `/${item.path.split('/')[1]}` : item.path))
+  }
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -101,16 +117,102 @@ function Navbar() {
     }))
   }
 
+  // 鼠标悬停打开菜单（只对有下拉菜单的项目）
+  const handleDropdownMouseEnter = (event, menuKey) => {
+    // 清除所有定时器
+    Object.keys(timeoutRefs.current).forEach(key => {
+      clearTimeout(timeoutRefs.current[key])
+      delete timeoutRefs.current[key]
+    })
+
+    // 立即打开当前菜单，关闭其他菜单
+    // 这样可以实现菜单之间的快速切换
+    setAnchorEls({
+      [menuKey]: event.currentTarget
+    })
+  }
+
+  // 鼠标悬停到单页面按钮时关闭所有下拉菜单
+  const handleSingleItemMouseEnter = () => {
+    // 清除所有定时器
+    Object.keys(timeoutRefs.current).forEach(key => {
+      clearTimeout(timeoutRefs.current[key])
+      delete timeoutRefs.current[key]
+    })
+
+    // 检查是否有任何菜单已经打开
+    const hasOpenMenu = Object.values(anchorEls).some(anchor => anchor !== null)
+
+    // 只有在有菜单打开的情况下才关闭所有下拉菜单
+    if (hasOpenMenu) {
+      setAnchorEls({})
+    }
+  }
+
+  // 鼠标离开时延迟关闭菜单
+  const handleMouseLeave = (menuKey) => {
+    timeoutRefs.current[menuKey] = setTimeout(() => {
+      setAnchorEls(prev => ({
+        ...prev,
+        [menuKey]: null
+      }))
+      delete timeoutRefs.current[menuKey]
+    }, 150) // 150ms延迟，给用户时间移动到菜单
+  }
+
   const handleMenuItemClick = (path, menuKey) => {
     navigate(path)
     handleMenuClose(menuKey)
   }
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', pt: 3 }}>
-      <Typography variant="h5" sx={{ mb: 4, fontWeight: 700, color: 'primary.main' }}>
-        Allcare 员工平台
-      </Typography>
+    <Box onClick={handleDrawerToggle} sx={{ pt: 3, px: 2 }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          mb: 4,
+          pb: 3,
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            fontWeight: 600,
+            color: 'white',
+            fontSize: '1.25rem',
+            letterSpacing: '-0.02em',
+          }}
+        >
+          Allcare
+        </Typography>
+        <Box
+          sx={{
+            ml: 1.5,
+            px: 1.5,
+            py: 0.25,
+            borderRadius: '6px',
+            background: 'rgba(255, 255, 255, 0.1)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+          }}
+        >
+          <Typography
+            variant="caption"
+            sx={{
+              color: 'rgba(255, 255, 255, 0.8)',
+              fontWeight: 500,
+              fontSize: '0.7rem',
+              letterSpacing: '0.02em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Staff
+          </Typography>
+        </Box>
+      </Box>
       <List>
         {navigationItems.map((item, index) => (
           <Box key={index}>
@@ -118,43 +220,117 @@ function Navbar() {
               <ListItem disablePadding>
                 <ListItemButton
                   onClick={() => handleNavigation(item.path)}
-                  selected={location.pathname === item.path}
+                  selected={isPathActive(item.path)}
                   sx={{
-                    mx: 2,
-                    borderRadius: 2,
-                    mb: 1,
-                    '&.Mui-selected': {
-                      backgroundColor: 'primary.main',
+                    mx: 0,
+                    borderRadius: 0,
+                    mb: 0,
+                    py: 1.5,
+                    px: 2,
+                    background: 'transparent',
+                    color: isPathActive(item.path) ? 'white' : 'rgba(255, 255, 255, 0.7)',
+                    fontWeight: isPathActive(item.path) ? 600 : 500,
+                    transition: 'all 0.15s ease',
+                    position: 'relative',
+                    '&:hover': {
+                      background: 'rgba(255, 255, 255, 0.1)',
                       color: 'white',
                     },
+                    '&.Mui-selected': {
+                      background: 'transparent',
+                      color: 'white',
+                      fontWeight: 600,
+                    },
+                    '&::before': isPathActive(item.path) ? {
+                      content: '""',
+                      position: 'absolute',
+                      left: 0,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      width: '3px',
+                      height: '20px',
+                      background: 'white',
+                      borderRadius: '0 2px 2px 0',
+                    } : {},
                   }}
                 >
-                  <ListItemText primary={item.label} />
+                  <ListItemText
+                    primary={item.label}
+                    primaryTypographyProps={{
+                      fontWeight: isPathActive(item.path) ? 600 : 500,
+                      fontSize: '0.9rem',
+                    }}
+                  />
                 </ListItemButton>
               </ListItem>
             ) : (
               <Box>
                 <ListItem disablePadding>
-                  <ListItemButton sx={{ mx: 2, borderRadius: 2, mb: 1 }}>
-                    <ListItemText primary={item.label} />
+                  <ListItemButton
+                    sx={{
+                      mx: 0,
+                      borderRadius: 0,
+                      mb: 0,
+                      py: 1.5,
+                      px: 2,
+                      background: isDropdownActive(item.items) ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+                      color: 'white',
+                      fontWeight: isDropdownActive(item.items) ? 700 : 600,
+                    }}
+                  >
+                    <ListItemText
+                      primary={item.label}
+                      primaryTypographyProps={{
+                        fontWeight: isDropdownActive(item.items) ? 700 : 600,
+                        fontSize: '0.9rem',
+                      }}
+                    />
                   </ListItemButton>
                 </ListItem>
                 {item.items?.map((subItem, subIndex) => (
                   <ListItem key={subIndex} disablePadding>
                     <ListItemButton
                       onClick={() => handleNavigation(subItem.path)}
-                      selected={location.pathname === subItem.path}
+                      selected={isPathActive(subItem.path)}
                       sx={{
-                        mx: 4,
-                        borderRadius: 2,
-                        mb: 0.5,
-                        '&.Mui-selected': {
-                          backgroundColor: 'primary.main',
+                        mx: 0,
+                        borderRadius: 0,
+                        mb: 0,
+                        py: 1.2,
+                        px: 3,
+                        background: 'transparent',
+                        color: isPathActive(subItem.path) ? 'white' : 'rgba(255, 255, 255, 0.6)',
+                        transition: 'all 0.15s ease',
+                        position: 'relative',
+                        '&:hover': {
+                          background: 'rgba(255, 255, 255, 0.08)',
                           color: 'white',
                         },
+                        '&.Mui-selected': {
+                          background: 'transparent',
+                          color: 'white',
+                          fontWeight: 600,
+                        },
+                        '&::before': isPathActive(subItem.path) ? {
+                          content: '""',
+                          position: 'absolute',
+                          left: 0,
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          width: '3px',
+                          height: '16px',
+                          background: 'white',
+                          borderRadius: '0 2px 2px 0',
+                        } : {},
                       }}
                     >
-                      <ListItemText primary={subItem.label} />
+                      <ListItemText
+                        primary={subItem.label}
+                        primaryTypographyProps={{
+                          fontWeight: isPathActive(subItem.path) ? 600 : 500,
+                          fontSize: '0.85rem',
+                        }}
+                      />
                     </ListItemButton>
                   </ListItem>
                 ))}
@@ -170,26 +346,98 @@ function Navbar() {
     <>
       <AppBar
         position="fixed"
-        elevation={1}
+        elevation={0}
         sx={{
-          borderRadius: 0, // 设置为直角
+          background: 'rgba(45, 55, 72, 0.95)',
+          backdropFilter: 'blur(20px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: 0,
         }}
       >
         <Container maxWidth="lg">
-          <Toolbar sx={{ py: 2 }}>
-            <Typography
-              variant="h5"
-              component="div"
-              sx={{
-                flexGrow: 1,
-                fontWeight: 700,
-                cursor: 'pointer',
-                color: 'text.primary',
-              }}
+          <Toolbar sx={{ py: 1, minHeight: '70px' }}>
+            <Box
               onClick={() => handleNavigation('/')}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                cursor: 'pointer',
+                flexGrow: 1,
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                '&:hover': {
+                  transform: 'translateY(-1px)',
+                },
+              }}
             >
-              Allcare 员工平台
-            </Typography>
+              <Box
+                sx={{
+                  width: 42,
+                  height: 42,
+                  borderRadius: '12px',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  mr: 3,
+                  position: 'relative',
+                  boxShadow: '0 4px 20px rgba(59, 130, 246, 0.3)',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: '12px',
+                    padding: '1px',
+                    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(29, 78, 216, 0.6))',
+                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    maskComposite: 'xor',
+                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                    WebkitMaskComposite: 'xor',
+                  },
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 700,
+                    fontSize: '1.1rem',
+                    fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+                  }}
+                >
+                  A
+                </Typography>
+              </Box>
+              <Box>
+                <Typography
+                  variant="h6"
+                  component="div"
+                  sx={{
+                    fontWeight: 700,
+                    color: 'white',
+                    fontSize: '1.4rem',
+                    letterSpacing: '-0.025em',
+                    fontFamily: '"SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Allcare
+                </Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: 'rgba(148, 163, 184, 0.8)',
+                    fontWeight: 500,
+                    fontSize: '0.75rem',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
+                  }}
+                >
+                  Training Platform
+                </Typography>
+              </Box>
+            </Box>
 
             {isMobile ? (
               <IconButton
@@ -198,47 +446,112 @@ function Navbar() {
                 edge="start"
                 onClick={handleDrawerToggle}
                 sx={{
-                  color: 'text.primary',
+                  color: 'white',
+                  width: 44,
+                  height: 44,
+                  borderRadius: '12px',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  '&:hover': {
+                    background: 'rgba(255, 255, 255, 0.15)',
+                    transform: 'translateY(-1px)',
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                  },
                 }}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ fontSize: '1.3rem' }} />
               </IconButton>
             ) : (
-              <Box sx={{ display: 'flex', gap: 0.5 }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 2,
+                  alignItems: 'center',
+                }}
+              >
                 {navigationItems.map((item, index) => (
                   <Box key={index}>
                     {item.type === 'single' ? (
                       <Button
                         color="inherit"
                         onClick={() => handleNavigation(item.path)}
+                        onMouseEnter={handleSingleItemMouseEnter}
                         sx={{
-                          px: 2,
-                          py: 1,
-                          color: 'text.primary',
-                          fontWeight: 500,
-                          backgroundColor: location.pathname === item.path
-                            ? 'rgba(135, 206, 235, 0.15)' // 更蓝的天空蓝色背景
+                          px: 3,
+                          py: 1.5,
+                          minHeight: '42px',
+                          color: isPathActive(item.path) ? '#1e293b' : 'rgba(255, 255, 255, 0.8)',
+                          fontWeight: 600,
+                          fontSize: '0.875rem',
+                          borderRadius: '12px',
+                          textTransform: 'none',
+                          position: 'relative',
+                          background: isPathActive(item.path)
+                            ? 'rgba(255, 255, 255, 0.95)'
                             : 'transparent',
+                          boxShadow: isPathActive(item.path)
+                            ? '0 4px 12px rgba(0, 0, 0, 0.1)'
+                            : 'none',
+                          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                          fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
                           '&:hover': {
-                            backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停
+                            background: isPathActive(item.path)
+                              ? 'rgba(255, 255, 255, 0.95)'
+                              : 'rgba(255, 255, 255, 0.12)',
+                            color: isPathActive(item.path) ? '#1e293b' : 'white',
+                            transform: 'translateY(-1px)',
+                            boxShadow: isPathActive(item.path)
+                              ? '0 6px 16px rgba(0, 0, 0, 0.15)'
+                              : '0 2px 8px rgba(0, 0, 0, 0.1)',
                           },
                         }}
                       >
                         {item.label}
                       </Button>
                     ) : (
-                      <>
+                      <Box
+                        onMouseEnter={(e) => handleDropdownMouseEnter(e, item.label)}
+                        onMouseLeave={() => handleMouseLeave(item.label)}
+                        sx={{ position: 'relative' }}
+                      >
                         <Button
                           color="inherit"
-                          onClick={(e) => handleMenuOpen(e, item.label)}
-                          endIcon={<ArrowDownIcon />}
+                          endIcon={
+                            <ArrowDownIcon
+                              sx={{
+                                fontSize: '1rem',
+                                transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                transform: Boolean(anchorEls[item.label]) ? 'rotate(180deg)' : 'rotate(0deg)',
+                              }}
+                            />
+                          }
                           sx={{
-                            px: 2,
-                            py: 1,
-                            color: 'text.primary',
-                            fontWeight: 500,
+                            px: 3,
+                            py: 1.5,
+                            minHeight: '42px',
+                            color: (Boolean(anchorEls[item.label]) || isDropdownActive(item.items)) ? '#1e293b' : 'rgba(255, 255, 255, 0.8)',
+                            fontWeight: 600,
+                            fontSize: '0.875rem',
+                            borderRadius: '12px',
+                            textTransform: 'none',
+                            background: (Boolean(anchorEls[item.label]) || isDropdownActive(item.items))
+                              ? 'rgba(255, 255, 255, 0.95)'
+                              : 'transparent',
+                            boxShadow: (Boolean(anchorEls[item.label]) || isDropdownActive(item.items))
+                              ? '0 4px 12px rgba(0, 0, 0, 0.1)'
+                              : 'none',
+                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                            fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
                             '&:hover': {
-                              backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停
+                              background: (Boolean(anchorEls[item.label]) || isDropdownActive(item.items))
+                                ? 'rgba(255, 255, 255, 0.95)'
+                                : 'rgba(255, 255, 255, 0.12)',
+                              color: (Boolean(anchorEls[item.label]) || isDropdownActive(item.items)) ? '#1e293b' : 'white',
+                              transform: 'translateY(-1px)',
+                              boxShadow: (Boolean(anchorEls[item.label]) || isDropdownActive(item.items))
+                                ? '0 6px 16px rgba(0, 0, 0, 0.15)'
+                                : '0 2px 8px rgba(0, 0, 0, 0.1)',
                             },
                           }}
                         >
@@ -249,11 +562,32 @@ function Navbar() {
                           open={Boolean(anchorEls[item.label])}
                           onClose={() => handleMenuClose(item.label)}
                           TransitionComponent={Fade}
+                          disableAutoFocus
+                          disableEnforceFocus
+                          MenuListProps={{
+                            onMouseEnter: () => {
+                              // 清除关闭定时器
+                              if (timeoutRefs.current[item.label]) {
+                                clearTimeout(timeoutRefs.current[item.label])
+                                delete timeoutRefs.current[item.label]
+                              }
+                            },
+                            onMouseLeave: () => handleMouseLeave(item.label),
+                            sx: {
+                              py: 1.5,
+                              px: 1,
+                            }
+                          }}
                           sx={{
                             '& .MuiPaper-root': {
                               mt: 1,
-                              minWidth: 200,
-                              boxShadow: '0px 8px 25px rgba(145, 158, 171, 0.24)',
+                              minWidth: 220,
+                              borderRadius: '16px',
+                              background: 'rgba(255, 255, 255, 0.95)',
+                              backdropFilter: 'blur(20px) saturate(180%)',
+                              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                              border: '1px solid rgba(148, 163, 184, 0.2)',
+                              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.08)',
                             },
                           }}
                         >
@@ -261,25 +595,56 @@ function Navbar() {
                             <MenuItem
                               key={subIndex}
                               onClick={() => handleMenuItemClick(subItem.path, item.label)}
-                              selected={location.pathname === subItem.path}
                               sx={{
                                 py: 1.5,
-                                px: 2,
-                                fontWeight: 500,
-                                '&:hover': {
-                                  backgroundColor: 'rgba(135, 206, 235, 0.08)', // 更蓝的天空蓝色悬停
+                                px: 2.5,
+                                mx: 0.5,
+                                my: 0.25,
+                                borderRadius: '12px',
+                                fontWeight: 600,
+                                fontSize: '0.875rem',
+                                color: '#475569 !important',
+                                background: 'transparent !important',
+                                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
+                                position: 'relative',
+                                // 确保所有菜单项都有一致的hover效果
+                                '&:hover, &:hover:first-of-type, &:hover:last-of-type': {
+                                  background: 'rgba(59, 130, 246, 0.08) !important',
+                                  color: '#1e293b !important',
+                                  transform: 'translateX(4px)',
+                                },
+                                // 重置第一个和最后一个项目的默认样式
+                                '&:first-of-type, &:last-of-type': {
+                                  background: 'transparent !important',
+                                  color: '#475569 !important',
                                 },
                                 '&.Mui-selected': {
-                                  backgroundColor: 'rgba(135, 206, 235, 0.15)', // 更蓝的天空蓝色选中
-                                  color: 'primary.main',
+                                  background: 'transparent !important',
+                                  color: '#475569 !important',
+                                  '&:hover': {
+                                    background: 'rgba(59, 130, 246, 0.08) !important',
+                                    color: '#1e293b !important',
+                                  },
                                 },
+                                '&.Mui-focusVisible': {
+                                  background: 'transparent !important',
+                                },
+                                // 额外确保第一个项目的hover效果
+                                ...(subIndex === 0 && {
+                                  '&:hover': {
+                                    background: 'rgba(59, 130, 246, 0.08) !important',
+                                    color: '#1e293b !important',
+                                    transform: 'translateX(4px)',
+                                  },
+                                }),
                               }}
                             >
                               {subItem.label}
                             </MenuItem>
                           ))}
                         </Menu>
-                      </>
+                      </Box>
                     )}
                   </Box>
                 ))}
@@ -300,9 +665,12 @@ function Navbar() {
           display: { xs: 'block', md: 'none' },
           '& .MuiDrawer-paper': {
             boxSizing: 'border-box',
-            width: 280,
-            background: 'rgba(255, 255, 255, 0.95)',
-            backdropFilter: 'blur(20px)',
+            width: 320,
+            background: 'rgba(45, 55, 72, 0.98)',
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+            border: 'none',
+            borderLeft: '1px solid rgba(255, 255, 255, 0.1)',
           },
         }}
       >

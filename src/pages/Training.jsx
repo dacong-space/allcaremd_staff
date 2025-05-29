@@ -738,7 +738,6 @@ function Training() {
               <Button
                 variant="outlined"
                 size="large"
-                onClick={() => navigate('/about')}
                 sx={{
                   borderColor: 'rgba(255, 255, 255, 0.8)',
                   color: 'white',
@@ -754,7 +753,7 @@ function Training() {
                   // 完全移除过渡动画
                 }}
               >
-                了解更多
+                查看客户手册
               </Button>
             </Box>
             <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
