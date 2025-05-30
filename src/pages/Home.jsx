@@ -7,7 +7,10 @@ import {
   Grid,
   Avatar,
   Chip,
-  IconButton
+  IconButton,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails
 } from '@mui/material'
 import LazyImage from '../components/LazyImage'
 import SEOHead from '../components/SEOHead'
@@ -21,6 +24,7 @@ import {
   Home as HomeIcon,
   ArrowBackIos as ArrowBackIcon,
   ArrowForwardIos as ArrowForwardIcon,
+  ExpandMore as ExpandMoreIcon,
 } from '@mui/icons-material'
 
 
@@ -147,6 +151,33 @@ const servicesAndFeatures = [
     category: 'feature'
   },
 ]
+// FAQ 常见问题数据
+const faqData = [
+  {
+    question: "What services do you offer?",
+    answer: "We provide personalized Activities of Daily Living (ADLs) and Instrumental Activities of Daily Living (IADLs) support based on each client's needs. This includes companionship, daily assistance, and routine support to help ensure safety, independence, and comfort at home."
+  },
+  {
+    question: "How do you ensure the quality of care?",
+    answer: "We are committed to providing consistent, high-quality care. Our nurses conduct routine home visits, oversee caregiver performance, and ensure each care plan is followed with compassion and precision."
+  },
+  {
+    question: "How do I get started with your services?",
+    answer: "Simply contact us to determine eligibility. If you’re unsure whether you qualify, we can guide you through the application process step-by-step."
+  },
+  {
+    question: "What if my loved one's condition changes?",
+    answer: "Our clinical team will conduct a home reassessment and, if necessary, update the care plan to reflect new needs. Caregivers receive additional training based on the revised plan to ensure continuity of care."
+  },
+  {
+    question: "What qualifications do your caregivers have?",
+    answer: "All our caregivers hold valid CPR and First Aid certifications. In addition, they receive annual in-service training, and their performance is regularly supervised by a registered nurse during home visits."
+  },
+  {
+    question: "How can I contact you for support or questions?",
+    answer: "You can reach us by phone or email. Our team is here to assist you with any questions or concerns you may have."
+  }
+]
 
 
 
@@ -162,6 +193,9 @@ function Home() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isImageHovered, setIsImageHovered] = useState(false)
 
+  // FAQ展开状态
+  const [expandedFAQ, setExpandedFAQ] = useState(null)
+
   // 图片切换函数
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % HERO_IMAGES.length)
@@ -169,6 +203,11 @@ function Home() {
 
   const prevImage = () => {
     setCurrentImageIndex((prev) => (prev - 1 + HERO_IMAGES.length) % HERO_IMAGES.length)
+  }
+
+  // FAQ展开处理函数
+  const handleFAQChange = (panel) => (_, isExpanded) => {
+    setExpandedFAQ(isExpanded ? panel : null)
   }
 
   const scrollLeft = () => {
@@ -654,6 +693,316 @@ function Home() {
         </Container>
       </Box>
 
+      {/* Steps to Start Your Care Journey Section */}
+      <Box sx={{
+        bgcolor: '#ffffff',
+        py: 8
+      }}>
+
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
+          <Box textAlign="center" sx={{ mb: 6 }}>
+            <Typography
+              variant="h3"
+              component="h2"
+              gutterBottom
+              sx={{
+                fontWeight: 700,
+                color: 'text.primary',
+                mb: 2,
+                fontSize: { xs: '2rem', md: '2.75rem' },
+              }}
+            >
+              Steps to Start Your Care Journey with Us
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: 'text.secondary',
+                maxWidth: 700,
+                mx: 'auto',
+                lineHeight: 1.6,
+              }}
+            >
+              我们的专业团队将指导您完成每一个步骤，确保您获得最适合的护理服务
+            </Typography>
+          </Box>
+
+          <Grid container spacing={4}>
+            {[
+              {
+                step: '01',
+                title: 'Understanding Your Needs',
+                description: 'Contact us to explore your eligibility and care options. Whether you need help applying for services or identifying the right level of Activities of Daily Living support, our team is here to guide you every step of the way.'
+              },
+              {
+                step: '02',
+                title: 'Personalized Care Planning',
+                description: 'Once everything is in place, we will match you with a caregiver and arrange an in-home visit. Our professional team will design a care plan and train the caregiver to meet your unique needs and goals.'
+              },
+              {
+                step: '03',
+                title: 'Ongoing Support & Quality Assurance',
+                description: 'We stay by your side throughout your care journey. With regular check-ins and home visits, we ensure that your care remains consistent, high-quality, and responsive to your changing needs.'
+              }
+            ].map((item, index) => (
+              <Grid item xs={12} md={4} key={index}>
+                <Card
+                  sx={{
+                    p: 4,
+                    height: '100%',
+                    background: '#ffffff',
+                    border: 'none',
+                    borderRadius: 4,
+                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+                    position: 'relative',
+                    willChange: 'transform',
+                    transition: 'transform 0.2s ease-out',
+                    '&:hover': {
+                      transform: 'translateY(-4px)',
+                    },
+                  }}
+                >
+                  {/* Step number - Square Design */}
+                  <Box
+                    sx={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 2,
+                      background: '#5B9BD5',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mb: 3,
+                    }}
+                  >
+                    <Typography
+                      variant="h5"
+                      sx={{
+                        color: 'white',
+                        fontWeight: 700,
+                        fontSize: '1.2rem',
+                      }}
+                    >
+                      {item.step}
+                    </Typography>
+                  </Box>
+
+                  <Box>
+                    <Typography
+                      variant="h5"
+                      gutterBottom
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        mb: 3,
+                        fontSize: '1.25rem',
+                      }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: 'text.secondary',
+                        lineHeight: 1.7,
+                        fontSize: '0.95rem',
+                      }}
+                    >
+                      {item.description}
+                    </Typography>
+                  </Box>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+
+        </Container>
+      </Box>
+
+      {/* Services and Features Section with Horizontal Scroll */}
+      <Box sx={{ bgcolor: '#ffffff', py: 8 }}>
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
+          <Typography
+            variant="h3"
+            component="h2"
+            textAlign="center"
+            gutterBottom
+            sx={{ mb: 2, fontWeight: 600 }}
+          >
+            我们的护理服务与培训特色
+          </Typography>
+          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 800, mx: 'auto' }}>
+            专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
+          </Typography>
+
+          {/* Carousel Container with Soft Fade Effects */}
+          <Box sx={{ position: 'relative', px: 6, py: 2 }}>
+            {/* Left Soft Fade Overlay */}
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                top: 16,
+                bottom: 16,
+                width: 100,
+                background: 'linear-gradient(to right, white 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                zIndex: 2,
+                pointerEvents: 'none',
+              }}
+            />
+
+            {/* Right Soft Fade Overlay */}
+            <Box
+              sx={{
+                position: 'absolute',
+                right: 0,
+                top: 16,
+                bottom: 16,
+                width: 100,
+                background: 'linear-gradient(to left, white 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
+                zIndex: 2,
+                pointerEvents: 'none',
+              }}
+            />
+
+            {/* Left Arrow with Soft Glass Effect */}
+            <IconButton
+              onClick={scrollLeft}
+              sx={{
+                position: 'absolute',
+                left: 15,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 3,
+                width: 52,
+                height: 52,
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
+                backdropFilter: 'blur(8px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+                border: '1px solid rgba(255,255,255,0.5)',
+                borderRadius: '50%',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)',
+                color: 'rgba(0,0,0,0.65)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
+                  color: 'rgba(0,0,0,0.8)',
+                },
+                transition: 'background 0.2s ease-out, color 0.2s ease-out',
+              }}
+            >
+              <ArrowBackIcon
+                sx={{
+                  fontSize: 22,
+                }}
+              />
+            </IconButton>
+
+            {/* Right Arrow with Soft Glass Effect */}
+            <IconButton
+              onClick={scrollRight}
+              sx={{
+                position: 'absolute',
+                right: 15,
+                top: '50%',
+                transform: 'translateY(-50%)',
+                zIndex: 3,
+                width: 52,
+                height: 52,
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
+                backdropFilter: 'blur(8px) saturate(180%)',
+                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
+                border: '1px solid rgba(255,255,255,0.5)',
+                borderRadius: '50%',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)',
+                color: 'rgba(0,0,0,0.65)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
+                  color: 'rgba(0,0,0,0.8)',
+                },
+                transition: 'background 0.2s ease-out, color 0.2s ease-out',
+              }}
+            >
+              <ArrowForwardIcon
+                sx={{
+                  fontSize: 22,
+                }}
+              />
+            </IconButton>
+
+            {/* Scrollable Cards Container */}
+            <Box
+              ref={scrollContainerRef}
+              sx={{
+                display: 'flex',
+                gap: 3,
+                overflowX: 'auto',
+                scrollBehavior: 'smooth',
+                pb: 2,
+                px: 2,
+                py: 1,
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+              }}
+            >
+              {servicesAndFeatures.map((item, index) => (
+                <Card
+                  key={index}
+                  sx={{
+                    minWidth: 320,
+                    maxWidth: 320,
+                    textAlign: 'center',
+                    p: 3,
+                    background: '#ffffff',
+                    border: '1px solid rgba(226, 232, 240, 0.6)',
+                    borderRadius: 3,
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    willChange: 'transform',
+                    transition: 'transform 0.15s ease-out',
+                    '&:hover': {
+                      transform: 'translateY(-2px)',
+                    },
+                  }}
+                >
+                  <Avatar
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      mx: 'auto',
+                      mb: 2,
+                      bgcolor: item.color,
+                      color: 'white',
+                    }}
+                  >
+                    {item.icon}
+                  </Avatar>
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: 600,
+                      color: 'text.primary',
+                      mb: 1,
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ fontSize: '0.875rem', lineHeight: 1.4 }}
+                  >
+                    {item.description}
+                  </Typography>
+                </Card>
+              ))}
+            </Box>
+          </Box>
+        </Container>
+      </Box>
+
       {/* Statistics Section */}
       <Box sx={{ bgcolor: 'white', py: 8 }}>
         <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
@@ -686,10 +1035,10 @@ function Home() {
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                    willChange: 'transform',
+                    transition: 'transform 0.15s ease-out',
                     '&:hover': {
-                      transform: 'translateY(-4px)',
-                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
+                      transform: 'translateY(-2px)',
                     },
                   }}
                 >
@@ -741,7 +1090,7 @@ function Home() {
       </Box>
 
       {/* Service Features Section */}
-      <Box sx={{ bgcolor: '#f5f5f5', py: 8 }}>
+      <Box sx={{ bgcolor: '#ffffff', py: 8 }}>
         <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Typography
             variant="h3"
@@ -766,10 +1115,10 @@ function Home() {
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  willChange: 'transform',
+                  transition: 'transform 0.15s ease-out',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                    transform: 'translateY(-2px)',
                   },
                 }}
               >
@@ -846,10 +1195,10 @@ function Home() {
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  willChange: 'transform',
+                  transition: 'transform 0.15s ease-out',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(91, 155, 213, 0.15)',
+                    transform: 'translateY(-2px)',
                   },
                 }}
               >
@@ -926,10 +1275,10 @@ function Home() {
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  willChange: 'transform',
+                  transition: 'transform 0.15s ease-out',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(91, 155, 213, 0.15)',
+                    transform: 'translateY(-2px)',
                   },
                 }}
               >
@@ -1006,10 +1355,10 @@ function Home() {
                   border: '1px solid rgba(255, 255, 255, 0.3)',
                   borderRadius: 3,
                   boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                  willChange: 'transform',
+                  transition: 'transform 0.15s ease-out',
                   '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(91, 155, 213, 0.15)',
+                    transform: 'translateY(-2px)',
                   },
                 }}
               >
@@ -1080,7 +1429,9 @@ function Home() {
         </Container>
       </Box>
 
-      {/* Services and Features Section with Horizontal Scroll */}
+
+
+      {/* FAQ Section */}
       <Box sx={{ bgcolor: '#ffffff', py: 8 }}>
         <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Typography
@@ -1088,210 +1439,139 @@ function Home() {
             component="h2"
             textAlign="center"
             gutterBottom
-            sx={{ mb: 2, fontWeight: 600 }}
+            sx={{
+              mb: 2,
+              fontWeight: 600,
+              color: 'text.primary',
+              fontSize: { xs: '2rem', md: '2.75rem' }
+            }}
           >
-            我们的护理服务与培训特色
+            Some common questions
           </Typography>
-          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 800, mx: 'auto' }}>
-            专业的居家护理服务与全面的员工培训体系，为您提供高质量的护理体验
+          <Typography
+            variant="h4"
+            component="h3"
+            textAlign="center"
+            gutterBottom
+            sx={{
+              mb: 6,
+              fontWeight: 600,
+              color: 'text.primary',
+              fontSize: { xs: '1.5rem', md: '2rem' }
+            }}
+          >
+            were often asked
           </Typography>
 
-          {/* Carousel Container with Soft Fade Effects */}
-          <Box sx={{ position: 'relative', px: 6, py: 2 }}>
-            {/* Left Soft Fade Overlay */}
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                top: 16,
-                bottom: 16,
-                width: 100,
-                background: 'linear-gradient(to right, white 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
-                zIndex: 2,
-                pointerEvents: 'none',
-              }}
-            />
-
-            {/* Right Soft Fade Overlay */}
-            <Box
-              sx={{
-                position: 'absolute',
-                right: 0,
-                top: 16,
-                bottom: 16,
-                width: 100,
-                background: 'linear-gradient(to left, white 0%, rgba(255,255,255,0.9) 30%, rgba(255,255,255,0.6) 60%, rgba(255,255,255,0.2) 80%, transparent 100%)',
-                zIndex: 2,
-                pointerEvents: 'none',
-              }}
-            />
-
-            {/* Left Arrow with Soft Glass Effect */}
-            <IconButton
-              onClick={scrollLeft}
-              sx={{
-                position: 'absolute',
-                left: 15,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 3,
-                width: 52,
-                height: 52,
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
-                backdropFilter: 'blur(8px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
-                border: '1px solid rgba(255,255,255,0.5)',
-                borderRadius: '50%',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)',
-                color: 'rgba(0,0,0,0.65)',
-                '&:hover': {
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
-                  transform: 'translateY(-50%) scale(1.05)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.06)',
-                  color: 'rgba(0,0,0,0.8)',
-                  '& .arrow-icon': {
-                    transform: 'translateX(-1px)',
-                  }
-                },
-                '&:active': {
-                  transform: 'translateY(-50%) scale(1.02)',
-                },
-                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              }}
-            >
-              <ArrowBackIcon
-                className="arrow-icon"
-                sx={{
-                  fontSize: 22,
-                  transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                }}
-              />
-            </IconButton>
-
-            {/* Right Arrow with Soft Glass Effect */}
-            <IconButton
-              onClick={scrollRight}
-              sx={{
-                position: 'absolute',
-                right: 15,
-                top: '50%',
-                transform: 'translateY(-50%)',
-                zIndex: 3,
-                width: 52,
-                height: 52,
-                background: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)',
-                backdropFilter: 'blur(8px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(8px) saturate(180%)',
-                border: '1px solid rgba(255,255,255,0.5)',
-                borderRadius: '50%',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.1)',
-                color: 'rgba(0,0,0,0.65)',
-                '&:hover': {
-                  background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 100%)',
-                  transform: 'translateY(-50%) scale(1.05)',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.06)',
-                  color: 'rgba(0,0,0,0.8)',
-                  '& .arrow-icon': {
-                    transform: 'translateX(1px)',
-                  }
-                },
-                '&:active': {
-                  transform: 'translateY(-50%) scale(1.02)',
-                },
-                transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              }}
-            >
-              <ArrowForwardIcon
-                className="arrow-icon"
-                sx={{
-                  fontSize: 22,
-                  transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-                }}
-              />
-            </IconButton>
-
-            {/* Scrollable Cards Container */}
-            <Box
-              ref={scrollContainerRef}
-              sx={{
-                display: 'flex',
-                gap: 3,
-                overflowX: 'auto',
-                scrollBehavior: 'smooth',
-                pb: 2,
-                px: 2,
-                py: 1,
-                '&::-webkit-scrollbar': {
-                  display: 'none',
-                },
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
-              }}
-            >
-              {servicesAndFeatures.map((item, index) => (
-                <Card
-                  key={index}
+          <Grid container spacing={3}>
+            {faqData.map((faq, index) => (
+              <Grid item xs={12} md={6} key={index}>
+                <Accordion
+                  expanded={expandedFAQ === `panel${index}`}
+                  onChange={handleFAQChange(`panel${index}`)}
                   sx={{
-                    minWidth: 320,
-                    maxWidth: 320,
-                    textAlign: 'center',
-                    p: 3,
                     background: '#ffffff',
                     border: '1px solid rgba(226, 232, 240, 0.6)',
                     borderRadius: 3,
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                    '&:hover': {
-                      transform: 'translateY(-4px)',
+                    boxShadow: 'none',
+                    mb: 2,
+                    overflow: 'hidden',
+                    willChange: 'transform, box-shadow, border-color',
+                    '&:before': {
+                      display: 'none',
+                    },
+                    '&.Mui-expanded': {
+                      margin: '0 0 16px 0',
                       background: '#ffffff',
-                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
-                      border: '1px solid rgba(226, 232, 240, 0.8)',
+                      border: '1px solid rgba(91, 155, 213, 0.3)',
+                      boxShadow: '0 4px 20px rgba(91, 155, 213, 0.08)',
+                      transform: 'translateY(-2px) translateZ(0)',
+                    },
+                    '&:hover': {
+                      border: '1px solid rgba(91, 155, 213, 0.4)',
+                      boxShadow: '0 2px 12px rgba(91, 155, 213, 0.06)',
+                    },
+                    transition: 'all 0.2s ease-out',
+                    '& .MuiCollapse-root': {
+                      transition: 'height 0.2s ease-out !important',
                     },
                   }}
                 >
-                  <Avatar
+                  <AccordionSummary
+                    expandIcon={
+                      <ExpandMoreIcon
+                        sx={{
+                          fontSize: 28,
+                          transition: 'transform 0.15s ease-out, color 0.15s ease-out',
+                          transform: expandedFAQ === `panel${index}` ? 'rotate(180deg)' : 'rotate(0deg)',
+                          color: expandedFAQ === `panel${index}` ? '#4A90C2' : '#5B9BD5',
+                        }}
+                      />
+                    }
                     sx={{
-                      width: 56,
-                      height: 56,
-                      mx: 'auto',
-                      mb: 2,
-                      bgcolor: item.color,
-                      color: 'white',
+                      px: 3,
+                      py: 2,
+                      minHeight: 64,
+                      willChange: 'background-color',
+                      '& .MuiAccordionSummary-content': {
+                        margin: '12px 0',
+                        transition: 'margin 0.2s ease-out',
+                      },
+                      '& .MuiAccordionSummary-expandIconWrapper': {
+                        transform: 'none !important', // 禁用默认的旋转
+                      },
+                      '&:hover': {
+                        bgcolor: 'rgba(91, 155, 213, 0.06)',
+                      },
+                      '&.Mui-expanded': {
+                        bgcolor: 'rgba(91, 155, 213, 0.04)',
+                        borderBottom: '1px solid rgba(91, 155, 213, 0.1)',
+                      },
+                      transition: 'background-color 0.2s ease-out',
                     }}
                   >
-                    {item.icon}
-                  </Avatar>
-                  <Typography
-                    variant="h6"
+                    <Typography
+                      variant="h6"
+                      sx={{
+                        fontWeight: 600,
+                        color: 'text.primary',
+                        fontSize: '1.1rem',
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {faq.question}
+                    </Typography>
+                  </AccordionSummary>
+                  <AccordionDetails
                     sx={{
-                      fontWeight: 600,
-                      color: 'text.primary',
-                      mb: 1,
+                      px: 3,
+                      pb: 3,
+                      pt: 2,
+                      bgcolor: 'rgba(91, 155, 213, 0.02)',
+                      borderTop: '1px solid rgba(91, 155, 213, 0.08)',
+                      opacity: expandedFAQ === `panel${index}` ? 1 : 0,
+                      transition: 'opacity 0.15s ease-out',
                     }}
                   >
-                    {item.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ fontSize: '0.875rem', lineHeight: 1.4 }}
-                  >
-                    {item.description}
-                  </Typography>
-                </Card>
-              ))}
-            </Box>
-          </Box>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: 'text.secondary',
+                        lineHeight: 1.7,
+                        fontSize: '1rem',
+                      }}
+                    >
+                      {faq.answer}
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </Box>
 
       <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 8 }}>
-
-
-
-
-
-
 
       </Container>
 
