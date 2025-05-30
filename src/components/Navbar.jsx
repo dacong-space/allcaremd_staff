@@ -307,7 +307,7 @@ function Navbar() {
           borderRadius: 0,
         }}
       >
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Toolbar sx={{ py: 1, minHeight: '70px' }}>
             <Box
               onClick={() => handleNavigation('/')}

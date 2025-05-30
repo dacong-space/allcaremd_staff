@@ -296,7 +296,7 @@ function About() {
           }}
         />
 
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Box textAlign="center" sx={{ position: 'relative', zIndex: 1 }}>
             <Typography
               variant="h1"
@@ -340,7 +340,7 @@ function About() {
       </Box>
 
       {/* Company Overview */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 8 }}>
         <Box
           sx={{
             background: 'rgba(255, 255, 255, 0.95)',
@@ -946,7 +946,7 @@ function About() {
       </Container>
 
       {/* Service Areas */}
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 8 }}>
         <Box
           sx={{
             background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0.1) 100%)',

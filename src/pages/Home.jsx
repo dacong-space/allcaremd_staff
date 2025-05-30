@@ -5,7 +5,6 @@ import {
   Box,
   Card,
   Grid,
-  Button,
   Avatar,
   Chip,
   IconButton
@@ -23,7 +22,7 @@ import {
   ArrowBackIos as ArrowBackIcon,
   ArrowForwardIos as ArrowForwardIcon,
 } from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
+
 
 // 图片配置 - 方便快速更换
 const HERO_IMAGE = {
@@ -64,87 +63,87 @@ const statistics = [
     label: '服务家庭',
     description: '累计为超过500个家庭提供护理服务',
     icon: <SchoolIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
   },
   {
     number: '100%',
     label: '客户满意度',
     description: '客户对我们服务的满意度评分',
     icon: <SecurityIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
   },
   {
     number: '24/7',
     label: '全天候服务',
     description: '提供全天候紧急护理支持',
     icon: <SupportIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
   },
   {
     number: '25+',
     label: '专业认证',
     description: '团队持有的专业护理认证数量',
     icon: <FavoriteIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
   },
 ]
 
-// 合并护理服务和培训平台特色 - 统一使用天空蓝色
+// 合并护理服务和培训平台特色 - 统一使用匹配的蓝色
 const servicesAndFeatures = [
   {
     icon: <HomeIcon sx={{ fontSize: 48 }} />,
     title: '日常生活协助 (ADLs)',
     description: '协助洗澡、穿衣、进食、移动等日常活动',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'service'
   },
   {
     icon: <FavoriteIcon sx={{ fontSize: 48 }} />,
     title: '陪伴与情感支持',
     description: '提供友好的陪伴和心理支持服务',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'service'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: '安全监督',
     description: '确保客户在家中的安全和健康',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'service'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '专业护理监督',
     description: '注册护士定期监督和评估护理质量',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'service'
   },
   {
     icon: <ManualIcon sx={{ fontSize: 48 }} />,
     title: '客户信息手册',
     description: 'Allcare Health Care 完整的客户信息手册，包含权利法案、隐私政策等',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'feature'
   },
   {
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
     title: 'PCA专业培训',
     description: '个人护理助理培训课程，掌握ADLs协助、安全护理等专业技能',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'feature'
   },
   {
     icon: <SecurityIcon sx={{ fontSize: 48 }} />,
     title: 'CPR & 急救培训',
     description: '心肺复苏术和急救培训，确保紧急情况下的专业应对能力',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'feature'
   },
   {
     icon: <SupportIcon sx={{ fontSize: 48 }} />,
     title: '护理监督支持',
     description: '注册护士监督指导，确保护理质量和服务标准',
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配图片中的蓝色
     category: 'feature'
   },
 ]
@@ -156,7 +155,6 @@ const servicesAndFeatures = [
 
 
 function Home() {
-  const navigate = useNavigate()
   const scrollContainerRef = useRef(null)
   const autoScrollRef = useRef(null)
 
@@ -263,131 +261,147 @@ function Home() {
       {/* Hero Section */}
       <Box
         sx={{
-          pt: { xs: 1, md: 2 }, // 大幅减少上边距，让整个网页更靠近导航栏
-          pb: { xs: 4, md: 6 }, // 减少下边距，缩小与About Section的间距
+          pt: { xs: 2, md: 4 },
+          pb: { xs: 6, md: 8 },
           bgcolor: 'white',
           color: 'text.primary',
-          minHeight: '80vh',
+          minHeight: '85vh',
           display: 'flex',
           alignItems: 'center',
         }}
       >
-        <Container maxWidth="lg">
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={6}>
-              <Chip
-                label="Allcare Health Care, LLC"
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
+          <Grid container spacing={6} alignItems="center" sx={{ minHeight: '70vh' }}>
+            <Grid item xs={12} md={5}>
+              <Box
                 sx={{
-                  bgcolor: '#87ceeb', // 更蓝的天空蓝色
-                  color: 'white',
-                  mb: 3,
-                  fontSize: '0.875rem',
-                  px: 2,
-                  py: 0.5
-                }}
-              />
-              <Typography
-                variant="h1"
-                component="h1"
-                gutterBottom
-                sx={{
-                  fontSize: { xs: '2.5rem', md: '3.5rem' },
-                  fontWeight: 700,
-                  lineHeight: 1.2,
-                  color: 'text.primary',
-                  mb: 3,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'center',
+                  height: '100%',
+                  py: { xs: 2, md: 4 }
                 }}
               >
-                All People.<br />
-                All Heart.<br />
-                <Box component="span" sx={{ color: '#87ceeb' }}>
-                  Allcare.
-                </Box>
-              </Typography>
-              <Typography
-                variant="h6"
-                sx={{
-                  mb: 4,
-                  color: 'text.secondary',
-                  fontSize: { xs: '1.125rem', md: '1.25rem' },
-                  lineHeight: 1.6,
-                  fontWeight: 400,
-                }}
-              >
-                Allcare 将使您的培训体验现代化和专业化，同时为您节省宝贵的时间。我们将为您提供最先进的护理培训，确保您在护理领域的专业发展。
-              </Typography>
-
+                <Chip
+                  label="Allcare Health Care, LLC"
+                  sx={{
+                    bgcolor: '#5B9BD5', // 匹配图片中的蓝色
+                    color: 'white',
+                    mb: 4,
+                    fontSize: '0.875rem',
+                    px: 3,
+                    py: 0.8,
+                    fontWeight: 500,
+                    alignSelf: 'flex-start'
+                  }}
+                />
+                <Typography
+                  variant="h1"
+                  component="h1"
+                  sx={{
+                    fontSize: { xs: '2.8rem', md: '4rem', lg: '4.5rem' },
+                    fontWeight: 800,
+                    lineHeight: 1.1,
+                    color: 'text.primary',
+                    mb: 4,
+                    letterSpacing: '-0.02em'
+                  }}
+                >
+                  All People.<br />
+                  All Heart.<br />
+                  <Box component="span" sx={{
+                    color: '#5B9BD5',
+                    background: 'linear-gradient(135deg, #5B9BD5 0%, #7BB3E0 100%)',
+                    backgroundClip: 'text',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent'
+                  }}>
+                    Allcare.
+                  </Box>
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 0,
+                    color: 'text.secondary',
+                    fontSize: { xs: '1.2rem', md: '1.35rem' },
+                    lineHeight: 1.7,
+                    fontWeight: 400,
+                    maxWidth: '95%'
+                  }}
+                >
+                  At Allcare Health Care, we believe that compassionate care begins with genuine connection.
+                  We proudly serve seniors, individuals with chronic illnesses, and people with
+                  disabilities—including children—with dignity, respect, and heartfelt dedication.
+                </Typography>
+              </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={7}>
               <Box
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   position: 'relative',
-                  height: { xs: 400, md: 500 }, // 增大尺寸
-                  px: { xs: 4, md: 5 }, // 进一步减少左右间距，让箭头更靠近图片
+                  height: { xs: 450, md: 550 },
+                  px: { xs: 2, md: 3 },
                 }}
+                onMouseEnter={() => setIsImageHovered(true)}
+                onMouseLeave={() => setIsImageHovered(false)}
               >
-                {/* 左箭头 - 外部 */}
+                {/* 左箭头 */}
                 <IconButton
                   onClick={prevImage}
                   sx={{
                     position: 'absolute',
-                    left: { xs: -6, md: -8 }, // 更加靠近图片边界
+                    left: { xs: 12, md: 16 },
                     top: '50%',
                     transform: 'translateY(-50%)',
                     zIndex: 3,
-                    width: 32, // 进一步缩小尺寸
+                    width: 32,
                     height: 32,
-                    background: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(20px) saturate(180%)',
-                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                    border: '1px solid rgba(255, 255, 255, 0.8)',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                    color: '#87ceeb', // 更蓝的天空蓝色
-                    opacity: 1, // 一直显示
-                    transition: 'all 0.2s ease-out',
+                    bgcolor: 'rgba(255, 255, 255, 0.6)',
+                    backdropFilter: 'blur(6px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#5B9BD5',
+                    opacity: 0.4,
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                     '&:hover': {
-                      background: 'rgba(255, 255, 255, 1)',
-                      color: '#87ceeb', // 更蓝的天空蓝色
+                      bgcolor: 'rgba(255, 255, 255, 0.9)',
+                      opacity: 1,
+                      transform: 'translateY(-50%) scale(1.1)',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.12)',
                     },
-                    '&:active': {
-                      transform: 'translateY(-50%) scale(0.95)',
-                    }
+                    transition: 'all 0.3s ease',
                   }}
                 >
                   <ArrowBackIcon sx={{ fontSize: 16 }} />
                 </IconButton>
 
-                {/* 右箭头 - 外部 */}
+                {/* 右箭头 */}
                 <IconButton
                   onClick={nextImage}
                   sx={{
                     position: 'absolute',
-                    right: { xs: -6, md: -8 }, // 更加靠近图片边界
+                    right: { xs: 12, md: 16 },
                     top: '50%',
                     transform: 'translateY(-50%)',
                     zIndex: 3,
-                    width: 32, // 进一步缩小尺寸
+                    width: 32,
                     height: 32,
-                    background: 'rgba(255, 255, 255, 0.95)',
-                    backdropFilter: 'blur(20px) saturate(180%)',
-                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                    border: '1px solid rgba(255, 255, 255, 0.8)',
-                    borderRadius: '50%',
-                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-                    color: '#87ceeb', // 更蓝的天空蓝色
-                    opacity: 1, // 一直显示
-                    transition: 'all 0.2s ease-out',
+                    bgcolor: 'rgba(255, 255, 255, 0.6)',
+                    backdropFilter: 'blur(6px)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#5B9BD5',
+                    opacity: 0.4,
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                     '&:hover': {
-                      background: 'rgba(255, 255, 255, 1)',
-                      color: '#87ceeb', // 更蓝的天空蓝色
+                      bgcolor: 'rgba(255, 255, 255, 0.9)',
+                      opacity: 1,
+                      transform: 'translateY(-50%) scale(1.1)',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.12)',
                     },
-                    '&:active': {
-                      transform: 'translateY(-50%) scale(0.95)',
-                    }
+                    transition: 'all 0.3s ease',
                   }}
                 >
                   <ArrowForwardIcon sx={{ fontSize: 16 }} />
@@ -395,15 +409,15 @@ function Home() {
 
                 {/* 图片容器 */}
                 <Box
-                  onMouseEnter={() => setIsImageHovered(true)}
-                  onMouseLeave={() => setIsImageHovered(false)}
                   sx={{
                     position: 'relative',
                     width: '100%',
                     height: '100%',
-                    borderRadius: 4,
+                    borderRadius: 6,
                     overflow: 'hidden',
-                    boxShadow: '0 24px 48px rgba(0,0,0,0.12), 0 12px 24px rgba(0,0,0,0.08)',
+                    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+                    mx: { xs: 2, md: 3 },
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                   }}
                 >
                   {/* 图片容器 - 支持淡入淡出效果 */}
@@ -468,17 +482,22 @@ function Home() {
                   <Box
                     sx={{
                       position: 'absolute',
-                      bottom: 20,
+                      bottom: 16,
                       left: '50%',
                       transform: 'translateX(-50%)',
                       display: 'flex',
-                      gap: 1.5,
+                      gap: 1,
                       zIndex: 3,
-                      background: 'rgba(0, 0, 0, 0.3)',
+                      background: 'rgba(0, 0, 0, 0.1)',
                       backdropFilter: 'blur(8px)',
-                      borderRadius: 3,
+                      borderRadius: 2,
                       px: 2,
                       py: 1,
+                      opacity: 0.6,
+                      '&:hover': {
+                        opacity: 1,
+                      },
+                      transition: 'opacity 0.3s ease',
                     }}
                   >
                     {HERO_IMAGES.map((_, index) => (
@@ -486,17 +505,16 @@ function Home() {
                         key={index}
                         onClick={() => setCurrentImageIndex(index)}
                         sx={{
-                          width: index === currentImageIndex ? 24 : 8,
-                          height: 8,
-                          borderRadius: 4,
+                          width: index === currentImageIndex ? 20 : 6,
+                          height: 6,
+                          borderRadius: 3,
                           background: index === currentImageIndex
-                            ? 'rgba(255, 255, 255, 0.95)'
-                            : 'rgba(255, 255, 255, 0.5)',
+                            ? 'rgba(255, 255, 255, 0.9)'
+                            : 'rgba(255, 255, 255, 0.4)',
                           cursor: 'pointer',
-                          transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                          transition: 'all 0.4s ease',
                           '&:hover': {
                             background: 'rgba(255, 255, 255, 0.8)',
-                            transform: 'scale(1.1)',
                           }
                         }}
                       />
@@ -509,56 +527,128 @@ function Home() {
         </Container>
       </Box>
 
-      {/* About Allcare Section */}
+      {/* Who we really are & why choose us Section */}
       <Box sx={{
         bgcolor: '#f5f5f5',
         py: 8
       }}>
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
         <Grid container spacing={6} alignItems="center">
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6.5}>
+            <Box
+              sx={{
+                borderRadius: 6,
+                overflow: 'hidden',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.15)',
+                height: { xs: 450, md: 550 },
+                position: 'relative',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+              }}
+            >
+              <img
+                src="/images/20250521_2054_Gentle Caregiving Moment_simple_compose_01jvtqn1m5ev0aph6cw6p15pf0.png"
+                alt="Gentle Caregiving Moment"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center 45%'
+                }}
+              />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={5.5}>
             <Typography
               variant="h3"
               component="h2"
               gutterBottom
-              sx={{ fontWeight: 600, mb: 3 }}
-            >
-              关于 Allcare Health Care
-            </Typography>
-            <Typography variant="h6" sx={{ color: '#87ceeb' }} gutterBottom>
-              马里兰州值得信赖的居家护理服务提供商
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.7 }}>
-              在 Allcare Health Care，我们相信富有同情心的护理始于真诚的连接。我们自豪地为老年人、慢性疾病患者和残疾人士（包括儿童）提供服务，以尊严、尊重和真诚的奉献精神为他们服务。
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 4, lineHeight: 1.7 }}>
-              我们不仅仅是护理人员，我们是陪伴者、倡导者，是您日常生活中值得信赖的支持。我们的使命是将可靠、尊重和以心为中心的护理带到我们服务的每一个家庭。
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              onClick={() => navigate('/about')}
-              sx={{ px: 4 }}
-            >
-              了解更多
-            </Button>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box
               sx={{
-                background: 'linear-gradient(135deg, #87ceeb 0%, #87ceeb 100%)', // 更蓝的天空蓝色
-                borderRadius: 2,
-                p: 4,
-                textAlign: 'center'
+                fontWeight: 700,
+                mb: 4,
+                color: 'text.primary',
+                fontSize: { xs: '2rem', md: '2.75rem' },
+                lineHeight: 1.2
               }}
             >
-              <Typography variant="h4" sx={{ fontWeight: 600, mb: 2, color: 'white' }}>
-                我们的服务理念
-              </Typography>
-              <Typography variant="h6" sx={{ color: 'white', opacity: 0.9 }}>
-                "以客户为中心，用心护理每一天"
-              </Typography>
+              Who we really are &<br />
+              why choose us
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                mb: 5,
+                lineHeight: 1.8,
+                color: 'text.secondary',
+                fontSize: '1.15rem',
+                maxWidth: '90%'
+              }}
+            >
+              At Allcare Health Care, we are more than caregivers.
+              We are companions, advocates, and trusted support
+              for your daily life. Our mission is to bring reliable,
+              respectful, and heart-centered care into every home
+              we serve.
+            </Typography>
+
+            {/* Checkbox List */}
+            <Box sx={{ mb: 4 }}>
+              {[
+                "We prioritize your loved one's well-being with our expert support for Activities of Daily Living (ADLs).",
+                "Our skilled nursing team ensures that care is delivered with the highest standards and attention to detail.",
+                "We offer ongoing support and check-ins to ensure that all needs are met effectively.",
+                "Your satisfaction is our priority, and we are committed to delivering outstanding service with a focus on quality and reliability."
+              ].map((text, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    mb: 3,
+                    pl: 0
+                  }}
+                >
+                  <Box
+                    sx={{
+                      width: 20,
+                      height: 20,
+                      border: '2px solid #5B9BD5',
+                      borderRadius: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      mr: 2,
+                      mt: 0.2,
+                      bgcolor: '#5B9BD5',
+                      flexShrink: 0
+                    }}
+                  >
+                    <Box
+                      sx={{
+                        width: 6,
+                        height: 10,
+                        border: '2px solid white',
+                        borderTop: 'none',
+                        borderLeft: 'none',
+                        transform: 'rotate(45deg)',
+                        mt: -0.5
+                      }}
+                    />
+                  </Box>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      lineHeight: 1.7,
+                      color: 'text.secondary',
+                      fontSize: '1.05rem',
+                      fontWeight: 400
+                    }}
+                  >
+                    {text}
+                  </Typography>
+                </Box>
+              ))}
             </Box>
+
           </Grid>
         </Grid>
         </Container>
@@ -566,7 +656,7 @@ function Home() {
 
       {/* Statistics Section */}
       <Box sx={{ bgcolor: 'white', py: 8 }}>
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Typography
             variant="h3"
             component="h2"
@@ -652,7 +742,7 @@ function Home() {
 
       {/* Service Features Section */}
       <Box sx={{ bgcolor: '#f5f5f5', py: 8 }}>
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Typography
             variant="h3"
             component="h2"
@@ -688,10 +778,10 @@ function Home() {
                     sx={{
                       width: 56,
                       height: 56,
-                      bgcolor: '#87ceeb',
+                      bgcolor: '#5B9BD5',
                       color: 'white',
                       mr: 3,
-                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                      boxShadow: '0 4px 16px rgba(91, 155, 213, 0.4)',
                     }}
                   >
                     <SchoolIcon />
@@ -728,7 +818,7 @@ function Home() {
                               width: 6,
                               height: 6,
                               borderRadius: '50%',
-                              bgcolor: '#87ceeb',
+                              bgcolor: '#5B9BD5',
                               mr: 1,
                             }}
                           />
@@ -759,7 +849,7 @@ function Home() {
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                    boxShadow: '0 12px 32px rgba(91, 155, 213, 0.15)',
                   },
                 }}
               >
@@ -768,10 +858,10 @@ function Home() {
                     sx={{
                       width: 56,
                       height: 56,
-                      bgcolor: '#87ceeb',
+                      bgcolor: '#5B9BD5',
                       color: 'white',
                       mr: 3,
-                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                      boxShadow: '0 4px 16px rgba(91, 155, 213, 0.4)',
                     }}
                   >
                     <SecurityIcon />
@@ -808,7 +898,7 @@ function Home() {
                               width: 6,
                               height: 6,
                               borderRadius: '50%',
-                              bgcolor: '#87ceeb',
+                              bgcolor: '#5B9BD5',
                               mr: 1,
                             }}
                           />
@@ -839,7 +929,7 @@ function Home() {
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                    boxShadow: '0 12px 32px rgba(91, 155, 213, 0.15)',
                   },
                 }}
               >
@@ -848,10 +938,10 @@ function Home() {
                     sx={{
                       width: 56,
                       height: 56,
-                      bgcolor: '#87ceeb',
+                      bgcolor: '#5B9BD5',
                       color: 'white',
                       mr: 3,
-                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                      boxShadow: '0 4px 16px rgba(91, 155, 213, 0.4)',
                     }}
                   >
                     <SupportIcon />
@@ -888,7 +978,7 @@ function Home() {
                               width: 6,
                               height: 6,
                               borderRadius: '50%',
-                              bgcolor: '#87ceeb',
+                              bgcolor: '#5B9BD5',
                               mr: 1,
                             }}
                           />
@@ -919,7 +1009,7 @@ function Home() {
                   transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                   '&:hover': {
                     transform: 'translateY(-4px)',
-                    boxShadow: '0 12px 32px rgba(135, 206, 235, 0.15)',
+                    boxShadow: '0 12px 32px rgba(91, 155, 213, 0.15)',
                   },
                 }}
               >
@@ -928,10 +1018,10 @@ function Home() {
                     sx={{
                       width: 56,
                       height: 56,
-                      bgcolor: '#87ceeb',
+                      bgcolor: '#5B9BD5',
                       color: 'white',
                       mr: 3,
-                      boxShadow: '0 4px 16px rgba(135, 206, 235, 0.4)',
+                      boxShadow: '0 4px 16px rgba(91, 155, 213, 0.4)',
                     }}
                   >
                     <FavoriteIcon />
@@ -968,7 +1058,7 @@ function Home() {
                               width: 6,
                               height: 6,
                               borderRadius: '50%',
-                              bgcolor: '#87ceeb',
+                              bgcolor: '#5B9BD5',
                               mr: 1,
                             }}
                           />
@@ -991,8 +1081,8 @@ function Home() {
       </Box>
 
       {/* Services and Features Section with Horizontal Scroll */}
-      <Box sx={{ bgcolor: 'white', py: 8 }}>
-        <Container maxWidth="lg">
+      <Box sx={{ bgcolor: '#ffffff', py: 8 }}>
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Typography
             variant="h3"
             component="h2"
@@ -1146,14 +1236,14 @@ function Home() {
                     maxWidth: 320,
                     textAlign: 'center',
                     p: 3,
-                    background: 'rgba(248, 250, 252, 0.8)',
+                    background: '#ffffff',
                     border: '1px solid rgba(226, 232, 240, 0.6)',
                     borderRadius: 3,
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
                     transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                     '&:hover': {
                       transform: 'translateY(-4px)',
-                      background: 'rgba(248, 250, 252, 0.95)',
+                      background: '#ffffff',
                       boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
                       border: '1px solid rgba(226, 232, 240, 0.8)',
                     },
@@ -1195,7 +1285,7 @@ function Home() {
         </Container>
       </Box>
 
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 8 }}>
 
 
 

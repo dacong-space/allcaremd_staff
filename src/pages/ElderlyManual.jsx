@@ -88,7 +88,7 @@ function ElderlyManual() {
 
   return (
     <Box sx={{ pt: 4, pb: 8, backgroundColor: '#f8fafc', minHeight: '100vh' }}>
-      <Container maxWidth="xl">
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
         {/* Header */}
         <Box sx={{ mb: 6, textAlign: 'center' }}>
           <Avatar

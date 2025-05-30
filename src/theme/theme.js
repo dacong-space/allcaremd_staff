@@ -162,8 +162,12 @@ const theme = createTheme({
   components: {
     MuiCssBaseline: {
       styleOverrides: {
+        html: {
+          overscrollBehavior: 'none', // 禁用过度滚动效果
+        },
         body: {
           backgroundColor: '#ffffff',
+          overscrollBehavior: 'none', // 禁用过度滚动效果
         },
       },
     },

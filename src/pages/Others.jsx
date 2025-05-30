@@ -276,7 +276,7 @@ function Others() {
   }
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
+    <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 4 }}>
       {/* 页面标题 */}
       <Box textAlign="center" mb={6}>
         <Typography

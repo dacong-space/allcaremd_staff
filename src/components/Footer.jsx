@@ -26,7 +26,7 @@ function Footer() {
         mt: 'auto',
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
         <Grid container spacing={4}>
           {/* Logo and Company Info */}
           <Grid item xs={12} md={3}>
@@ -200,7 +200,7 @@ function Footer() {
                     fontSize: '0.8rem',
                   }}
                 >
-                  allcaremd@outlook.com
+                  邮箱: allcaremd@outlook.com
                 </Typography>
                 <Link
                   href="https://allcaremd.com"
@@ -216,7 +216,7 @@ function Footer() {
                     },
                   }}
                 >
-                  allcaremd.com
+                  官网: allcaremd.com
                 </Link>
             </Box>
           </Grid>

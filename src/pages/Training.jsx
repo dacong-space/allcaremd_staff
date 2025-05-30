@@ -136,7 +136,7 @@ function Training() {
           }}
         />
 
-        <Container maxWidth="lg">
+        <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Box textAlign="center" sx={{ position: 'relative', zIndex: 1 }}>
             <Chip
               label="专业培训"
