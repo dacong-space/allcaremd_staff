@@ -63,7 +63,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              培训项目
+              Training Projects
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Link
@@ -79,7 +79,7 @@ function Footer() {
                   },
                 }}
               >
-                培训总览
+                Training Overview
               </Link>
               <Link
                 component="button"
@@ -94,7 +94,7 @@ function Footer() {
                   },
                 }}
               >
-                PCA培训
+                PCA Training
               </Link>
               <Link
                 component="button"
@@ -109,7 +109,7 @@ function Footer() {
                   },
                 }}
               >
-                CPR培训
+                CPR Training
               </Link>
             </Box>
           </Grid>
@@ -124,7 +124,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              服务项目
+              Services
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               <Typography
@@ -133,7 +133,7 @@ function Footer() {
                   color: 'rgba(255, 255, 255, 0.7)',
                 }}
               >
-                居家护理
+                Home Care
               </Typography>
               <Typography
                 variant="body2"
@@ -141,7 +141,7 @@ function Footer() {
                   color: 'rgba(255, 255, 255, 0.7)',
                 }}
               >
-                ADLs协助
+                ADLs Assistance
               </Typography>
               <Typography
                 variant="body2"
@@ -149,7 +149,7 @@ function Footer() {
                   color: 'rgba(255, 255, 255, 0.7)',
                 }}
               >
-                护理监督
+                Nursing Supervision
               </Typography>
             </Box>
           </Grid>
@@ -166,7 +166,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              关于我们
+              About Us
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                 <Link
@@ -182,7 +182,7 @@ function Footer() {
                     },
                   }}
                 >
-                  联系我们
+                  Contact Us
                 </Link>
                 <Typography
                   variant="body2"
@@ -191,7 +191,7 @@ function Footer() {
                     fontSize: '0.8rem',
                   }}
                 >
-                  电话: (240) 668-4666
+                  Phone: (240) 668-4666
                 </Typography>
                 <Typography
                   variant="body2"
@@ -200,7 +200,7 @@ function Footer() {
                     fontSize: '0.8rem',
                   }}
                 >
-                  邮箱: allcaremd@outlook.com
+                  Email: allcaremd@outlook.com
                 </Typography>
                 <Link
                   href="https://allcaremd.com"
@@ -216,7 +216,7 @@ function Footer() {
                     },
                   }}
                 >
-                  官网: allcaremd.com
+                  Web: allcaremd.com
                 </Link>
             </Box>
           </Grid>
@@ -231,7 +231,7 @@ function Footer() {
                 color: 'white',
               }}
             >
-              扫一扫，访问官网
+              Scan to visit the website
             </Typography>
             <Box sx={{
               display: 'flex',

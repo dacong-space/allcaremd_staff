@@ -26,33 +26,33 @@ import {
 
 const navigationItems = [
   {
-    label: '首页',
+    label: 'Home',
     path: '/',
     type: 'single'
   },
   {
-    label: '培训',
+    label: 'Training',
     type: 'dropdown',
     items: [
-      { label: '培训总览', path: '/training' },
-      { label: '老人文件', path: '/training/elderly-manual' },
-      { label: 'PCA培训', path: '/training/pca' },
-      { label: 'CPR培训', path: '/training/cpr' },
-      { label: '其他培训', path: '/training/others' },
+      { label: 'Training Overview', path: '/training' },
+      { label: 'Elderly Manual', path: '/training/elderly-manual' },
+      { label: 'PCA Training', path: '/training/pca' },
+      { label: 'CPR Training', path: '/training/cpr' },
+      { label: 'Other Training', path: '/training/others' },
     ]
   },
   {
-    label: '文档',
+    label: 'Documents',
     path: '/docs',
     type: 'single'
   },
   {
-    label: '帮助',
+    label: 'Help',
     path: '/help',
     type: 'single'
   },
   {
-    label: '关于',
+    label: 'About Us',
     path: '/about',
     type: 'single'
   },
@@ -386,7 +386,7 @@ function Navbar() {
                     fontFamily: '"SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif',
                   }}
                 >
-                  Training Platform
+                  Residential Services Agency
                 </Typography>
               </Box>
             </Box>

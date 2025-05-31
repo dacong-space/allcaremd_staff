@@ -127,8 +127,8 @@ function Others() {
   ]
 
   const scheduleInfo = [
-    { time: '周一 - 周五', schedule: '8:00 AM - 6:00 PM', status: '正常班次' },
-    { time: '周六', schedule: '9:00 AM - 3:00 PM', status: '周末班次' },
+    { time: '周一 - 周五', schedule: '09:00 AM - 05:00 PM', status: '正常班次' },
+    { time: '周六', schedule: '休息', status: '休息日' },
     { time: '周日', schedule: '休息', status: '休息日' },
     { time: '节假日', schedule: '按需安排', status: '特殊安排' }
   ]

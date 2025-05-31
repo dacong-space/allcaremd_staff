@@ -38,7 +38,7 @@ import { scanAllFiles, refreshCategory } from '../utils/dynamicFileDetector'
 const fileCategories = [
   {
     id: 'onboarding',
-    title: '入职文件',
+    title: 'Onboarding Documents',
     description: '新员工入职所需的各类文件和表格',
     icon: <OnboardingIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
@@ -46,7 +46,7 @@ const fileCategories = [
   },
   {
     id: 'client',
-    title: '客户文件',
+    title: 'Client Documents',
     description: '客户服务相关的合同、协议和政策文件',
     icon: <ClientIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
@@ -54,7 +54,7 @@ const fileCategories = [
   },
   {
     id: 'training',
-    title: '培训资料',
+    title: 'Training Documents',
     description: '员工培训资料、操作指南和培训手册',
     icon: <EmployeeIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
@@ -62,7 +62,7 @@ const fileCategories = [
   },
   {
     id: 'forms',
-    title: '工作表格',
+    title: 'Forms',
     description: '日常工作所需的各类表格和记录单',
     icon: <OthersIcon sx={{ fontSize: 48 }} />,
     color: '#87ceeb', // 更蓝的天空蓝色
