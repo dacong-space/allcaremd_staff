@@ -1,1 +1,0 @@
-import{i as o,j as r}from"./index-DSlpJD8e.js";const s=o(r.jsx("path",{d:"M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"}),"ArrowBackIos"),t=o(r.jsx("path",{d:"M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"}),"ArrowForwardIos");export{s as A,t as a};
