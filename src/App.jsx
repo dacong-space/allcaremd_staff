@@ -40,6 +40,11 @@ function App() {
 
               {/* Training Routes */}
               <Route path="/training/elderly-manual" element={<ElderlyManual />} />
+              <Route path="/pca-training" element={<PCATraining />} />
+              <Route path="/cpr-training" element={<CPRTraining />} />
+              <Route path="/other-training" element={<OtherTraining />} />
+
+              {/* Keep old training routes for compatibility */}
               <Route path="/training/pca" element={<PCATraining />} />
               <Route path="/training/cpr" element={<CPRTraining />} />
               <Route path="/training/others" element={<OtherTraining />} />
