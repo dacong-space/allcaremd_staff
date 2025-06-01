@@ -721,6 +721,7 @@ function Home() {
                 maxWidth: 700,
                 mx: 'auto',
                 lineHeight: 1.6,
+                fontStyle: 'italic',
               }}
             >
               Our professional team will guide you through every step to ensure you receive the care that best fits your needs
@@ -1023,7 +1024,7 @@ function Home() {
           >
             Our Commitment to Quality Care
           </Typography>
-          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
+          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto', fontStyle: 'italic' }}>
             Showcasing Our Professionalism and Quality<br></br> Through Measurable Results
           </Typography>
 
@@ -1123,6 +1124,7 @@ function Home() {
               lineHeight: 1.6,
               textAlign: 'center',
               mb: 6,
+              fontStyle: 'italic',
             }}
           >
             We provide compassionate in-home support<br></br>
@@ -1174,7 +1176,7 @@ function Home() {
                     <Typography
                       variant="body1"
                       color="text.secondary"
-                      sx={{ lineHeight: 1.6, mb: 2 }}
+                      sx={{ lineHeight: 1.6, mb: 2, fontStyle: 'italic' }}
                     >
                       Personalized care plans tailored to each client’s needs, regularly reviewed to ensure quality and safety.
                     </Typography>
@@ -1254,7 +1256,7 @@ function Home() {
                     <Typography
                       variant="body1"
                       color="text.secondary"
-                      sx={{ lineHeight: 1.6, mb: 2 }}
+                      sx={{ lineHeight: 1.6, mb: 2, fontStyle: 'italic' }}
                     >
                       Care quality ensured through RN oversight and continuous staff development.
                     </Typography>
@@ -1334,7 +1336,7 @@ function Home() {
                     <Typography
                       variant="body1"
                       color="text.secondary"
-                      sx={{ lineHeight: 1.6, mb: 2 }}
+                      sx={{ lineHeight: 1.6, mb: 2, fontStyle: 'italic' }}
                     >
                       Robust protocols and emergency readiness to protect every client.
                     </Typography>
@@ -1414,7 +1416,7 @@ function Home() {
                     <Typography
                       variant="body1"
                       color="text.secondary"
-                      sx={{ lineHeight: 1.6, mb: 2 }}
+                      sx={{ lineHeight: 1.6, mb: 2, fontStyle: 'italic' }}
                     >
                       We refine our care through feedback, training, and innovation.
                     </Typography>
@@ -1583,6 +1585,7 @@ function Home() {
                         color: 'text.secondary',
                         lineHeight: 1.7,
                         fontSize: '1rem',
+                        fontStyle: 'italic',
                       }}
                     >
                       {faq.answer}

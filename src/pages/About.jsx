@@ -489,7 +489,7 @@ function About() {
               variant="h6"
               textAlign="center"
               color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto' }}
+              sx={{ maxWidth: 600, mx: 'auto', fontStyle: 'italic' }}
             >
               Guiding our care philosophy and shaping our service culture
             </Typography>
@@ -586,7 +586,7 @@ function About() {
               variant="h6"
               textAlign="center"
               color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto' }}
+              sx={{ maxWidth: 600, mx: 'auto', fontStyle: 'italic' }}
             >
               A diverse team of experienced<br></br> professionals across care, management, and operations
             </Typography>
@@ -842,7 +842,7 @@ function About() {
               variant="h6"
               textAlign="center"
               color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto' }}
+              sx={{ maxWidth: 600, mx: 'auto', fontStyle: 'italic' }}
             >
               Tracing the Growth of Allcare Health Care
             </Typography>
@@ -943,7 +943,7 @@ function About() {
               variant="h6"
               textAlign="center"
               color="text.secondary"
-              sx={{ maxWidth: 600, mx: 'auto' }}
+              sx={{ maxWidth: 600, mx: 'auto', fontStyle: 'italic' }}
             >
               We provide professional in-home care services throughout Montgomery County, Maryland and surrounding areas.
             </Typography>

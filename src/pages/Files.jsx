@@ -38,34 +38,34 @@ import { scanAllFiles, refreshCategory } from '../utils/dynamicFileDetector'
 const fileCategories = [
   {
     id: 'onboarding',
-    title: 'Onboarding Documents',
-    description: '新员工入职所需的各类文件和表格',
+    title: 'Employment Forms',
+    description: 'Employee onboarding files and required forms',
     icon: <OnboardingIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     count: 2,
   },
   {
     id: 'client',
     title: 'Client Documents',
-    description: '客户服务相关的合同、协议和政策文件',
+    description: 'Service-related agreements, consents, and policy documents',
     icon: <ClientIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     count: 1,
   },
   {
     id: 'training',
     title: 'Training Documents',
-    description: '员工培训资料、操作指南和培训手册',
+    description: 'Staff training guides, manuals, and instructional materials',
     icon: <EmployeeIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     count: 2,
   },
   {
     id: 'forms',
     title: 'Forms',
-    description: '日常工作所需的各类表格和记录单',
+    description: 'Daily use forms and record-keeping templates',
     icon: <OthersIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     count: 1,
   },
 ]
@@ -85,7 +85,7 @@ function Files() {
     try {
       setLoading(true)
       setError(null)
-      console.log('🔄 开始加载文件...')
+      console.log('🔄 Starting to load files....')
       const scannedFiles = await scanAllFiles()
       setFiles(scannedFiles)
 
@@ -94,10 +94,10 @@ function Files() {
         category.count = scannedFiles[category.id]?.length || 0
       })
 
-      console.log('✅ 文件加载完成:', scannedFiles)
+      console.log('✅ Files loaded successfully:', scannedFiles)
     } catch (err) {
-      console.error('❌ 文件加载失败:', err)
-      setError('文件加载失败，请稍后重试')
+      console.error('❌ Failed to load files:', err)
+      setError('Failed to load files. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -107,7 +107,7 @@ function Files() {
   const refreshCategoryFiles = async (category) => {
     try {
       setRefreshing(true)
-      console.log(`🔄 刷新 ${category} 分类...`)
+      console.log(`🔄 Refreshing ${category} category...`)
       const refreshedFiles = await refreshCategory(category)
       setFiles(prev => ({
         ...prev,
@@ -120,10 +120,10 @@ function Files() {
         categoryConfig.count = refreshedFiles.length
       }
 
-      console.log(`✅ ${category} 分类刷新完成`)
+      console.log(`✅ ${category} refreshed successfully`)
     } catch (err) {
-      console.error(`❌ ${category} 分类刷新失败:`, err)
-      setError(`${category} 分类刷新失败`)
+      console.error(`❌ ${category} Failed to refresh category:`, err)
+      setError(`${category} Failed to refresh category`)
     } finally {
       setRefreshing(false)
     }
@@ -159,10 +159,10 @@ function Files() {
       document.body.removeChild(link)
 
       // 显示下载成功提示
-      console.log('开始下载文件:', file.displayName || file.name, '路径:', filePath)
+      console.log('Starting file download:', file.displayName || file.name, 'Path:', filePath)
     } catch (error) {
-      console.error('下载失败:', error)
-      alert('下载失败，请稍后重试')
+      console.error('Download failed:', error)
+      alert('Download failed. Please try again later.')
     }
   }
 
@@ -171,43 +171,21 @@ function Files() {
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 6 }}>
         <Typography variant="h2" component="h1" gutterBottom>
-          Allcare 文档中心
+          Allcare Document Center
         </Typography>
         <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', mb: 3 }}>
-          提供护理服务相关的各类文件下载，包括合同文件、政策文件、培训资料和工作表格
+          Access essential care-related documents, including<br></br> agreements, policies, training materials, <br></br>and operational forms.
         </Typography>
 
-        {/* 状态指示器和刷新按钮 */}
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 2 }}>
-          {loading && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-              <CircularProgress size={20} sx={{ color: '#87ceeb' }} />
-              <Typography variant="body2" color="text.secondary">
-                正在扫描文件...
-              </Typography>
-            </Box>
-          )}
-
-          {!loading && (
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={refreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
-              onClick={loadFiles}
-              disabled={refreshing}
-              sx={{
-                borderColor: '#87ceeb',
-                color: '#87ceeb',
-                '&:hover': {
-                  borderColor: '#87ceeb',
-                  backgroundColor: 'rgba(135, 206, 235, 0.1)',
-                },
-              }}
-            >
-              {refreshing ? '刷新中...' : '刷新文件列表'}
-            </Button>
-          )}
-        </Box>
+        {/* 状态指示器 */}
+        {loading && (
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+            <CircularProgress size={20} sx={{ color: '#5B9BD5' }} />
+            <Typography variant="body2" color="text.secondary">
+              Loading...
+            </Typography>
+          </Box>
+        )}
 
         {/* 错误提示 */}
         {error && (
@@ -233,7 +211,7 @@ function Files() {
                   ? `linear-gradient(145deg, ${category.color}08, ${category.color}15)`
                   : 'linear-gradient(145deg, #ffffff, #f8f9fa)',
                 boxShadow: selectedCategory === category.id
-                  ? `0 8px 32px rgba(135, 206, 235, 0.3), 0 4px 16px rgba(135, 206, 235, 0.2)`
+                  ? `0 8px 32px rgba(91, 155, 213, 0.3), 0 4px 16px rgba(91, 155, 213, 0.2)`
                   : '0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
                 position: 'relative',
                 overflow: 'hidden',
@@ -250,7 +228,7 @@ function Files() {
                 },
                 '&:hover': {
                   transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: `0 12px 40px rgba(135, 206, 235, 0.25), 0 6px 20px rgba(135, 206, 235, 0.15)`,
+                  boxShadow: `0 12px 40px rgba(91, 155, 213, 0.25), 0 6px 20px rgba(91, 155, 213, 0.15)`,
                   '&::before': {
                     opacity: 1,
                   },
@@ -270,7 +248,7 @@ function Files() {
                     boxShadow: `
                       inset 0 2px 4px rgba(255, 255, 255, 0.8),
                       inset 0 -2px 4px rgba(0, 0, 0, 0.1),
-                      0 4px 12px rgba(135, 206, 235, 0.2)
+                      0 4px 12px rgba(91, 155, 213, 0.2)
                     `,
                     border: `2px solid ${category.color}30`,
                     transition: 'all 0.3s ease',
@@ -297,13 +275,13 @@ function Files() {
                   {category.description}
                 </Typography>
                 <Chip
-                  label={`${category.count} 个文件`}
+                  label={`${category.count} Files`}
                   sx={{
                     background: `linear-gradient(145deg, ${category.color}, ${category.color}cc)`,
                     color: 'white',
                     fontWeight: 600,
                     boxShadow: `
-                      0 2px 8px rgba(135, 206, 235, 0.3),
+                      0 2px 8px rgba(91, 155, 213, 0.3),
                       inset 0 1px 2px rgba(255, 255, 255, 0.2),
                       inset 0 -1px 2px rgba(0, 0, 0, 0.1)
                     `,
@@ -312,7 +290,7 @@ function Files() {
                     '&:hover': {
                       transform: 'scale(1.05)',
                       boxShadow: `
-                        0 4px 12px rgba(135, 206, 235, 0.4),
+                        0 4px 12px rgba(91, 155, 213, 0.4),
                         inset 0 1px 2px rgba(255, 255, 255, 0.3),
                         inset 0 -1px 2px rgba(0, 0, 0, 0.15)
                       `,
@@ -335,30 +313,56 @@ function Files() {
           0 4px 16px rgba(0, 0, 0, 0.04),
           inset 0 1px 2px rgba(255, 255, 255, 0.8)
         `,
-        border: '1px solid rgba(135, 206, 235, 0.1)',
+        border: '1px solid rgba(91, 155, 213, 0.1)',
       }}>
         <Box sx={{ mb: 3 }}>
-          <Tabs
-            value={selectedCategory || false}
-            onChange={handleCategoryChange}
-            variant="scrollable"
-            scrollButtons="auto"
-            sx={{ mb: 3 }}
-          >
-            {fileCategories.map((category) => (
-              <Tab
-                key={category.id}
-                label={category.title}
-                value={category.id}
-                icon={React.cloneElement(category.icon, { sx: { fontSize: 24 } })}
-                iconPosition="start"
-              />
-            ))}
-          </Tabs>
+          {/* Tabs和刷新按钮在同一行 */}
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
+            <Tabs
+              value={selectedCategory || false}
+              onChange={handleCategoryChange}
+              variant="scrollable"
+              scrollButtons="auto"
+              sx={{ flex: 1 }}
+            >
+              {fileCategories.map((category) => (
+                <Tab
+                  key={category.id}
+                  label={category.title}
+                  value={category.id}
+                  icon={React.cloneElement(category.icon, { sx: { fontSize: 24 } })}
+                  iconPosition="start"
+                />
+              ))}
+            </Tabs>
+
+            {/* 刷新文件列表按钮 */}
+            {!loading && (
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={refreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
+                onClick={loadFiles}
+                disabled={refreshing}
+                sx={{
+                  borderColor: '#5B9BD5',
+                  color: '#5B9BD5',
+                  ml: 2,
+                  minWidth: 'auto',
+                  '&:hover': {
+                    borderColor: '#5B9BD5',
+                    backgroundColor: 'rgba(91, 155, 213, 0.1)',
+                  },
+                }}
+              >
+                {refreshing ? 'Refreshing...' : 'Refresh List'}
+              </Button>
+            )}
+          </Box>
 
           <TextField
             fullWidth
-            placeholder="搜索文件..."
+            placeholder="Searching..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             InputProps={{
@@ -378,26 +382,29 @@ function Files() {
               <Typography variant="h5">
                 {fileCategories.find(cat => cat.id === selectedCategory)?.title}
               </Typography>
-              <Button
-                variant="outlined"
-                size="small"
-                startIcon={refreshing ? <CircularProgress size={16} /> : <RefreshIcon />}
+              <IconButton
                 onClick={() => refreshCategoryFiles(selectedCategory)}
                 disabled={refreshing}
                 sx={{
-                  borderColor: '#87ceeb',
-                  color: '#87ceeb',
+                  color: '#5B9BD5',
+                  border: '1px solid #5B9BD5',
+                  borderRadius: 2,
+                  padding: 1,
                   '&:hover': {
-                    borderColor: '#87ceeb',
-                    backgroundColor: 'rgba(135, 206, 235, 0.1)',
+                    backgroundColor: 'rgba(91, 155, 213, 0.1)',
+                    borderColor: '#5B9BD5',
+                  },
+                  '&:disabled': {
+                    color: 'rgba(91, 155, 213, 0.5)',
+                    borderColor: 'rgba(91, 155, 213, 0.3)',
                   },
                 }}
               >
-                {refreshing ? '刷新中...' : '刷新此分类'}
-              </Button>
+                {refreshing ? <CircularProgress size={20} sx={{ color: '#5B9BD5' }} /> : <RefreshIcon />}
+              </IconButton>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
-              共 {filteredFiles.length} 个文件 {loading && '(扫描中...)'}
+              Found {filteredFiles.length} files {loading && '(Scanning...)'}
             </Typography>
 
             <List>
@@ -405,7 +412,7 @@ function Files() {
                 <ListItem
                   key={index}
                   sx={{
-                    border: '1px solid rgba(135, 206, 235, 0.15)',
+                    border: '1px solid rgba(91, 155, 213, 0.15)',
                     borderRadius: 3,
                     mb: 2,
                     background: 'linear-gradient(145deg, #ffffff, #f8f9fa)',
@@ -424,16 +431,16 @@ function Files() {
                       top: 0,
                       bottom: 0,
                       width: '4px',
-                      background: 'linear-gradient(180deg, #87ceeb, #87ceeb80)',
+                      background: 'linear-gradient(180deg, #5B9BD5, #5B9BD580)',
                       opacity: 0,
                       transition: 'opacity 0.3s ease',
                     },
                     '&:hover': {
-                      backgroundColor: 'rgba(135, 206, 235, 0.05)',
+                      backgroundColor: 'rgba(91, 155, 213, 0.05)',
                       transform: 'translateX(4px)',
                       boxShadow: `
-                        0 4px 16px rgba(135, 206, 235, 0.15),
-                        0 2px 8px rgba(135, 206, 235, 0.1),
+                        0 4px 16px rgba(91, 155, 213, 0.15),
+                        0 2px 8px rgba(91, 155, 213, 0.1),
                         inset 0 1px 2px rgba(255, 255, 255, 0.9)
                       `,
                       '&::before': {
@@ -444,21 +451,21 @@ function Files() {
                 >
                   <ListItemIcon>
                     <Avatar sx={{
-                      background: 'linear-gradient(145deg, #87ceeb25, #87ceeb15)',
-                      color: '#87ceeb',
+                      background: 'linear-gradient(145deg, #5B9BD525, #5B9BD515)',
+                      color: '#5B9BD5',
                       boxShadow: `
                         inset 0 1px 2px rgba(255, 255, 255, 0.8),
                         inset 0 -1px 2px rgba(0, 0, 0, 0.1),
-                        0 2px 6px rgba(135, 206, 235, 0.2)
+                        0 2px 6px rgba(91, 155, 213, 0.2)
                       `,
-                      border: '1px solid rgba(135, 206, 235, 0.3)',
+                      border: '1px solid rgba(91, 155, 213, 0.3)',
                       transition: 'all 0.3s ease',
                       '&:hover': {
                         transform: 'scale(1.1)',
                         boxShadow: `
                           inset 0 1px 3px rgba(255, 255, 255, 0.9),
                           inset 0 -1px 3px rgba(0, 0, 0, 0.15),
-                          0 4px 12px rgba(135, 206, 235, 0.3)
+                          0 4px 12px rgba(91, 155, 213, 0.3)
                         `,
                       },
                     }}>
@@ -467,7 +474,7 @@ function Files() {
                   </ListItemIcon>
                   <ListItemText
                     primary={file.displayName || file.name}
-                    secondary={`文件名: ${file.name} | 大小: ${file.size} | 更新时间: ${file.date}`}
+                    secondary={`Name: ${file.name} | Size: ${file.size} | Updated: ${file.date}`}
                     primaryTypographyProps={{ fontWeight: 500 }}
                   />
                   <ListItemSecondaryAction>
@@ -475,20 +482,20 @@ function Files() {
                       edge="end"
                       onClick={() => handleDownload(file)}
                       sx={{
-                        background: 'linear-gradient(145deg, #87ceeb, #87ceebcc)',
+                        background: 'linear-gradient(145deg, #5B9BD5, #5B9BD5cc)',
                         color: 'white',
                         boxShadow: `
-                          0 3px 12px rgba(135, 206, 235, 0.4),
+                          0 3px 12px rgba(91, 155, 213, 0.4),
                           inset 0 1px 2px rgba(255, 255, 255, 0.3),
                           inset 0 -1px 2px rgba(0, 0, 0, 0.1)
                         `,
-                        border: '1px solid rgba(135, 206, 235, 0.8)',
+                        border: '1px solid rgba(91, 155, 213, 0.8)',
                         transition: 'all 0.3s ease',
                         '&:hover': {
-                          background: 'linear-gradient(145deg, #87ceebdd, #87ceebaa)',
+                          background: 'linear-gradient(145deg, #5B9BD5dd, #5B9BD5aa)',
                           transform: 'scale(1.1) translateY(-1px)',
                           boxShadow: `
-                            0 6px 20px rgba(135, 206, 235, 0.5),
+                            0 6px 20px rgba(91, 155, 213, 0.5),
                             inset 0 1px 3px rgba(255, 255, 255, 0.4),
                             inset 0 -1px 3px rgba(0, 0, 0, 0.15)
                           `,
@@ -496,7 +503,7 @@ function Files() {
                         '&:active': {
                           transform: 'scale(0.95)',
                           boxShadow: `
-                            0 2px 8px rgba(135, 206, 235, 0.3),
+                            0 2px 8px rgba(91, 155, 213, 0.3),
                             inset 0 2px 4px rgba(0, 0, 0, 0.2)
                           `,
                         },
@@ -513,22 +520,22 @@ function Files() {
               <Box textAlign="center" sx={{ py: 4 }}>
                 <FolderIcon sx={{ fontSize: 64, color: 'grey.400', mb: 2 }} />
                 <Typography variant="h6" color="text.secondary">
-                  没有找到相关文件
+                  No matching documents found
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  请尝试其他搜索关键词或选择不同的文件类别
+                  Please try a different keyword or select another document category.
                 </Typography>
               </Box>
             )}
           </>
         ) : (
           <Box textAlign="center" sx={{ py: 8 }}>
-            <FolderIcon sx={{ fontSize: 80, color: '#87ceeb', mb: 3 }} />
+            <FolderIcon sx={{ fontSize: 80, color: '#5B9BD5', mb: 3 }} />
             <Typography variant="h5" gutterBottom sx={{ color: '#2c3e50', fontWeight: 600 }}>
-              请选择文件分类
+              Please Select a Document Category
             </Typography>
             <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-              点击上方的分类卡片或标签页来浏览相应的文件
+              Click on a category card or tab above to browse the corresponding documents.
             </Typography>
             <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
               {fileCategories.map((category) => (
@@ -559,12 +566,12 @@ function Files() {
           mt: 6,
           p: 4,
           textAlign: 'center',
-          background: 'linear-gradient(135deg, #87ceeb 0%, #87ceeb 100%)',
+          background: 'linear-gradient(135deg, #5B9BD5 0%, #5B9BD5 100%)',
           color: 'white',
           borderRadius: 4,
           position: 'relative',
           overflow: 'hidden',
-          boxShadow: '0 8px 32px rgba(135, 206, 235, 0.3)',
+          boxShadow: '0 8px 32px rgba(91, 155, 213, 0.3)',
           '&::before': {
             content: '""',
             position: 'absolute',
@@ -579,10 +586,10 @@ function Files() {
       >
         <Box sx={{ position: 'relative', zIndex: 1 }}>
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
-            需要文档支持？
+            Need Help Finding a Document?
           </Typography>
           <Typography variant="h6" sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}>
-            如果您找不到需要的文件，或者需要其他文档支持，请联系 Allcare Health Care
+            If you’re unable to find the document you need or require assistance <br></br>with other files, lease contact Allcare Health Care.
           </Typography>
           <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap', mb: 4 }}>
             <Button
@@ -590,7 +597,7 @@ function Files() {
               size="large"
               sx={{
                 backgroundColor: 'white',
-                color: '#87ceeb',
+                color: '#5B9BD5',
                 px: 4,
                 py: 1.5,
                 borderRadius: 3,
@@ -603,7 +610,7 @@ function Files() {
                 // 完全移除过渡动画
               }}
             >
-              联系文档支持
+              Contact Us
             </Button>
             <Button
               variant="outlined"
@@ -623,12 +630,12 @@ function Files() {
                 // 完全移除过渡动画
               }}
             >
-              查看客户手册
+              View Customer Manual
             </Button>
           </Box>
           <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Chip
-              label="电话: (240) 668-4666"
+              label="Phone: (240) 668-4666"
               sx={{
                 bgcolor: 'rgba(255,255,255,0.2)',
                 color: 'white',
@@ -642,7 +649,7 @@ function Files() {
               }}
             />
             <Chip
-              label="邮箱: allcaremd@outlook.com"
+              label="Email: allcaremd@outlook.com"
               sx={{
                 bgcolor: 'rgba(255,255,255,0.2)',
                 color: 'white',
