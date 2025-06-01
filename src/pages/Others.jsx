@@ -71,43 +71,43 @@ function Others() {
 
   const quickAccessItems = [
     {
-      title: '工作排班',
-      description: '查看您的工作时间表和排班安排',
+      title: 'Work Schedule',
+      description: 'View our work hours and shift assignments',
       icon: <ScheduleIcon sx={{ fontSize: 40, color: '#3b82f6' }} />,
       action: 'schedule',
       color: '#3b82f6'
     },
     {
-      title: '紧急联系',
-      description: '24小时紧急联系方式和应急程序',
+      title: 'Emergency Contacts',
+      description: '24/7 emergency contact info and response procedures',
       icon: <EmergencyIcon sx={{ fontSize: 40, color: '#ef4444' }} />,
       action: 'emergency',
       color: '#ef4444'
     },
     {
-      title: '意见反馈',
-      description: '提交工作建议或问题反馈',
+      title: 'Feedback & Suggestions',
+      description: 'Submit suggestions or report work-related issues',
       icon: <FeedbackIcon sx={{ fontSize: 40, color: '#10b981' }} />,
       action: 'feedback',
       color: '#10b981'
     },
     {
-      title: '政策制度',
-      description: '公司政策、制度和操作规范',
+      title: 'Policies & Procedures',
+      description: 'Company policies, procedures, and operating standards',
       icon: <PolicyIcon sx={{ fontSize: 40, color: '#8b5cf6' }} />,
       action: 'policy',
       color: '#8b5cf6'
     },
     {
-      title: '安全须知',
-      description: '工作安全指南和注意事项',
+      title: 'Safety Guidelines',
+      description: 'Workplace safety instructions and precautions',
       icon: <SecurityIcon sx={{ fontSize: 40, color: '#f59e0b' }} />,
       action: 'safety',
       color: '#f59e0b'
     },
     {
-      title: '技术支持',
-      description: '系统使用帮助和技术问题解决',
+      title: 'Technical Support',
+      description: 'System usage help and technical issue resolution',
       icon: <HelpIcon sx={{ fontSize: 40, color: '#06b6d4' }} />,
       action: 'support',
       color: '#06b6d4'
@@ -115,17 +115,17 @@ function Others() {
   ]
 
   const emergencyContacts = [
-    { name: '公司总部', phone: '(240) 668-4666', type: '工作时间' },
-    { name: '紧急热线', phone: '(240) 668-4666', type: '24小时' },
-    { name: '医疗急救', phone: '911', type: '紧急情况' },
-    { name: '主管经理', phone: '(240) 668-4666', type: '工作相关' }
+    { name: 'Corporate Headquarters', phone: '(240) 668-4666', type: 'Business Hours' },
+    // { name: 'Emergency Hotline', phone: '(240) 668-4666', type: '24/7 Available' },
+    { name: 'Medical Emergency', phone: '911', type: 'Emergency Only' },
+    { name: 'Supervisor Manager', phone: '(240) 668-4666', type: 'Work Related' }
   ]
 
   const scheduleInfo = [
-    { time: '周一 - 周五', schedule: '09:00 AM - 05:00 PM', status: '正常班次' },
-    { time: '周六', schedule: '休息', status: '休息日' },
-    { time: '周日', schedule: '休息', status: '休息日' },
-    { time: '节假日', schedule: '按需安排', status: '特殊安排' }
+    { time: 'Monday - Friday', schedule: '09:00 AM - 05:00 PM', status: 'Regular Shift' },
+    { time: 'Saturday', schedule: 'Off', status: 'Day Off' },
+    { time: 'Sunday', schedule: 'Off', status: 'Day Off' },
+    { time: 'Holidays', schedule: 'As Needed', status: 'Special Arrangement' }
   ]
 
   const renderDialogContent = () => {
@@ -133,7 +133,7 @@ function Others() {
       case 'schedule':
         return (
           <>
-            <DialogTitle>工作排班信息</DialogTitle>
+            <DialogTitle>Work Schedule Information</DialogTitle>
             <DialogContent>
               <List>
                 {scheduleInfo.map((item, index) => (
@@ -152,7 +152,7 @@ function Others() {
                 ))}
               </List>
               <Alert severity="info" sx={{ mt: 2 }}>
-                具体排班安排请联系您的直属主管确认
+                Please contact your direct supervisor to confirm specific schedule arrangements
               </Alert>
             </DialogContent>
           </>
@@ -161,7 +161,7 @@ function Others() {
       case 'emergency':
         return (
           <>
-            <DialogTitle sx={{ color: '#ef4444' }}>紧急联系方式</DialogTitle>
+            <DialogTitle sx={{ color: '#ef4444' }}>Emergency Contacts</DialogTitle>
             <DialogContent>
               <List>
                 {emergencyContacts.map((contact, index) => (
@@ -180,7 +180,7 @@ function Others() {
                             <Chip
                               label={contact.type}
                               size="small"
-                              color={contact.type === '24小时' ? 'error' : 'default'}
+                              color={contact.type === '24/7 Available' ? 'error' : 'default'}
                               sx={{ mt: 0.5 }}
                             />
                           </Box>
@@ -198,64 +198,64 @@ function Others() {
       case 'feedback':
         return (
           <>
-            <DialogTitle sx={{ color: '#10b981' }}>意见反馈</DialogTitle>
+            <DialogTitle sx={{ color: '#10b981' }}>Feedback & Suggestions</DialogTitle>
             <DialogContent>
               {submitSuccess ? (
                 <Box textAlign="center" py={4}>
                   <CheckCircleIcon sx={{ fontSize: 60, color: '#10b981', mb: 2 }} />
                   <Typography variant="h6" gutterBottom>
-                    反馈提交成功
+                    Feedback Submitted Successfully
                   </Typography>
                   <Typography color="text.secondary">
-                    感谢您的宝贵意见，我们会认真处理您的反馈
+                    Thank you for your valuable feedback. We will carefully review and address your suggestions.
                   </Typography>
                 </Box>
               ) : (
                 <Box>
                   <Typography variant="h6" gutterBottom sx={{ color: '#10b981', fontWeight: 'bold' }}>
-                    员工意见反馈系统
+                    Employee Feedback System
                   </Typography>
 
                   <Box sx={{ mt: 3 }}>
                     <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                      反馈类型
+                      Feedback Type
                     </Typography>
                     <List dense>
                       <ListItem>
                         <TextField
                           select
                           fullWidth
-                          label="请选择反馈类型"
+                          label="Please select feedback type"
                           value={feedbackForm.type}
                           onChange={(e) => setFeedbackForm({...feedbackForm, type: e.target.value})}
                           sx={{ mb: 2 }}
                         >
-                          <MenuItem value="suggestion">工作建议</MenuItem>
-                          <MenuItem value="complaint">问题投诉</MenuItem>
-                          <MenuItem value="question">疑问咨询</MenuItem>
-                          <MenuItem value="praise">表扬反馈</MenuItem>
+                          <MenuItem value="suggestion">Work Suggestion</MenuItem>
+                          <MenuItem value="complaint">Issue Complaint</MenuItem>
+                          <MenuItem value="question">Question/Inquiry</MenuItem>
+                          <MenuItem value="praise">Praise/Recognition</MenuItem>
                         </TextField>
                       </ListItem>
                     </List>
 
                     <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                      反馈主题
+                      Subject
                     </Typography>
                     <List dense>
                       <ListItem>
                         <TextField
                           fullWidth
-                          label="主题"
+                          label="Subject"
                           value={feedbackForm.subject}
                           onChange={(e) => setFeedbackForm({...feedbackForm, subject: e.target.value})}
-                          placeholder="请简要描述反馈主题"
+                          placeholder="Please briefly describe the feedback subject"
                           sx={{ mb: 2 }}
                         />
                       </ListItem>
                     </List>
 
                     <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                      详细内容
+                      Detailed Content
                     </Typography>
                     <List dense>
                       <ListItem>
@@ -263,32 +263,32 @@ function Others() {
                           fullWidth
                           multiline
                           rows={4}
-                          label="详细内容"
+                          label="Detailed Content"
                           value={feedbackForm.message}
                           onChange={(e) => setFeedbackForm({...feedbackForm, message: e.target.value})}
-                          placeholder="请详细描述您的反馈内容，包括具体情况、建议或问题"
+                          placeholder="Please provide detailed feedback including specific situations, suggestions, or issues"
                           sx={{ mb: 2 }}
                         />
                       </ListItem>
                     </List>
 
                     <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                      联系方式
+                      Contact Information
                     </Typography>
                     <List dense>
                       <ListItem>
                         <ListItemText
-                          primary="联系方式（可选）"
-                          secondary="请留下您的电话或邮箱，以便我们及时回复"
+                          primary="Contact Information (Optional)"
+                          secondary="Please provide your phone number or email for timely response"
                         />
                       </ListItem>
                       <ListItem>
                         <TextField
                           fullWidth
-                          label="联系方式（可选）"
+                          label="Contact Information (Optional)"
                           value={feedbackForm.contact}
                           onChange={(e) => setFeedbackForm({...feedbackForm, contact: e.target.value})}
-                          placeholder="电话或邮箱"
+                          placeholder="Phone or Email"
                         />
                       </ListItem>
                     </List>
@@ -296,7 +296,7 @@ function Others() {
 
                   <Alert severity="info" sx={{ mt: 3 }}>
                     <Typography variant="body2">
-                      我们重视每一条反馈，会在1-2个工作日内给予回复。紧急问题请直接拨打 (240) 668-4666。
+                      We value every feedback and will respond within 1-2 business days. For urgent matters, please call (240) 668-4666 directly.
                     </Typography>
                   </Alert>
                 </Box>
@@ -308,81 +308,81 @@ function Others() {
       case 'policy':
         return (
           <>
-            <DialogTitle sx={{ color: '#8b5cf6' }}>政策制度</DialogTitle>
+            <DialogTitle sx={{ color: '#8b5cf6' }}>Policies & Procedures</DialogTitle>
             <DialogContent>
               <Typography variant="h6" gutterBottom sx={{ color: '#8b5cf6', fontWeight: 'bold' }}>
-                公司政策与制度规范
+                Company Policies and Procedural Standards
               </Typography>
 
               <Box sx={{ mt: 3 }}>
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                  📋 员工行为准则
+                  📋 Employee Code of Conduct
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="专业服务态度"
-                      secondary="始终保持专业、友善、耐心的服务态度，尊重每一位客户"
+                      primary="Professional Service Attitude"
+                      secondary="Always maintain professional, friendly, and patient service attitude, respecting every client"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="准时到岗"
-                      secondary="按时到达工作地点，如有特殊情况需提前通知主管"
+                      primary="Punctuality"
+                      secondary="Arrive at work location on time; notify supervisor in advance for any special circumstances"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="保密义务"
-                      secondary="严格保护客户隐私信息，不得向第三方泄露任何客户资料"
+                      primary="Confidentiality Obligation"
+                      secondary="Strictly protect client privacy information; do not disclose any client data to third parties"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  🏥 护理服务标准
+                  🏥 Care Service Standards
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="个人卫生护理"
-                      secondary="协助客户进行洗浴、更衣、口腔护理等日常卫生活动"
+                      primary="Personal Hygiene Care"
+                      secondary="Assist clients with bathing, dressing, oral care, and other daily hygiene activities"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="生活起居协助"
-                      secondary="帮助客户进行日常活动，如用餐、行走、转移等"
+                      primary="Daily Living Assistance"
+                      secondary="Help clients with daily activities such as eating, walking, transferring, etc."
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="健康监测"
-                      secondary="观察并记录客户的身体状况变化，及时报告异常情况"
+                      primary="Health Monitoring"
+                      secondary="Observe and record changes in client's physical condition, report abnormalities promptly"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  📞 沟通与报告制度
+                  📞 Communication & Reporting System
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="定期汇报"
-                      secondary="每日向主管汇报客户状况和服务完成情况"
+                      primary="Regular Reporting"
+                      secondary="Report client status and service completion to supervisor daily"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="紧急情况处理"
-                      secondary="遇到紧急情况立即联系主管和相关医疗机构"
+                      primary="Emergency Response"
+                      secondary="Immediately contact supervisor and relevant medical institutions in emergency situations"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="家属沟通"
-                      secondary="与客户家属保持良好沟通，及时反馈护理情况"
+                      primary="Family Communication"
+                      secondary="Maintain good communication with client families, provide timely feedback on care status"
                     />
                   </ListItem>
                 </List>
@@ -390,7 +390,7 @@ function Others() {
 
               <Alert severity="warning" sx={{ mt: 3 }}>
                 <Typography variant="body2">
-                  <strong>重要提醒：</strong>所有员工必须严格遵守公司政策制度，违反者将面临相应的纪律处分。
+                  <strong>Important Notice:</strong> All employees must strictly comply with company policies and procedures. Violations will result in appropriate disciplinary action.
                 </Typography>
               </Alert>
             </DialogContent>
@@ -400,81 +400,81 @@ function Others() {
       case 'safety':
         return (
           <>
-            <DialogTitle sx={{ color: '#f59e0b' }}>安全须知</DialogTitle>
+            <DialogTitle sx={{ color: '#f59e0b' }}>Safety Guidelines</DialogTitle>
             <DialogContent>
               <Typography variant="h6" gutterBottom sx={{ color: '#f59e0b', fontWeight: 'bold' }}>
-                工作安全指南与注意事项
+                Workplace Safety Guidelines and Precautions
               </Typography>
 
               <Box sx={{ mt: 3 }}>
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                  🛡️ 个人安全防护
+                  🛡️ Personal Safety Protection
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="佩戴防护用品"
-                      secondary="根据护理需要正确佩戴手套、口罩等防护用品"
+                      primary="Wear Protective Equipment"
+                      secondary="Properly wear gloves, masks, and other protective equipment as required for care"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="手部卫生"
-                      secondary="护理前后必须彻底清洁双手，使用洗手液或消毒剂"
+                      primary="Hand Hygiene"
+                      secondary="Thoroughly clean hands before and after care using hand soap or sanitizer"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="避免交叉感染"
-                      secondary="严格按照感染控制程序操作，防止疾病传播"
+                      primary="Prevent Cross-Infection"
+                      secondary="Strictly follow infection control procedures to prevent disease transmission"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  🏠 环境安全检查
+                  🏠 Environmental Safety Inspection
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="防跌倒措施"
-                      secondary="检查地面是否湿滑，确保通道畅通，协助客户安全行走"
+                      primary="Fall Prevention Measures"
+                      secondary="Check for slippery floors, ensure clear pathways, assist clients with safe walking"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="用电安全"
-                      secondary="检查电器设备是否正常，避免使用损坏的电器"
+                      primary="Electrical Safety"
+                      secondary="Check electrical equipment for proper function, avoid using damaged appliances"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="药物安全"
-                      secondary="协助客户按医嘱服药，注意药物保存和有效期"
+                      primary="Medication Safety"
+                      secondary="Assist clients with medication per doctor's orders, monitor storage and expiration dates"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  🚨 紧急情况处理
+                  🚨 Emergency Response
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="医疗急救"
-                      secondary="发现客户身体异常立即拨打911，同时通知家属和主管"
+                      primary="Medical Emergency"
+                      secondary="Call 911 immediately if client shows physical abnormalities, notify family and supervisor"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="意外伤害"
-                      secondary="如发生跌倒、烫伤等意外，立即采取急救措施并报告"
+                      primary="Accidental Injury"
+                      secondary="For falls, burns, or other accidents, immediately provide first aid and report incident"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="火灾逃生"
-                      secondary="熟悉客户住所的逃生路线，确保在紧急情况下能安全撤离"
+                      primary="Fire Evacuation"
+                      secondary="Familiarize with client's residence evacuation routes, ensure safe evacuation in emergencies"
                     />
                   </ListItem>
                 </List>
@@ -482,7 +482,7 @@ function Others() {
 
               <Alert severity="error" sx={{ mt: 3 }}>
                 <Typography variant="body2">
-                  <strong>紧急联系电话：</strong>医疗急救 911 | 公司热线 (240) 668-4666
+                  <strong>Emergency Contact Numbers:</strong> Medical Emergency 911 | Company Hotline (240) 668-4666
                 </Typography>
               </Alert>
             </DialogContent>
@@ -492,97 +492,97 @@ function Others() {
       case 'support':
         return (
           <>
-            <DialogTitle sx={{ color: '#06b6d4' }}>技术支持</DialogTitle>
+            <DialogTitle sx={{ color: '#06b6d4' }}>Technical Support</DialogTitle>
             <DialogContent>
               <Typography variant="h6" gutterBottom sx={{ color: '#06b6d4', fontWeight: 'bold' }}>
-                系统使用帮助与技术问题解决
+                System Usage Help and Technical Issue Resolution
               </Typography>
 
               <Box sx={{ mt: 3 }}>
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-                  💻 系统使用指南
+                  💻 System Usage Guide
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="登录系统"
-                      secondary="使用公司提供的用户名和密码登录员工系统"
+                      primary="System Login"
+                      secondary="Use company-provided username and password to log into the employee system"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="查看排班"
-                      secondary="在系统中查看个人工作排班和客户信息"
+                      primary="View Schedule"
+                      secondary="Check personal work schedule and client information in the system"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="提交报告"
-                      secondary="按要求在系统中提交工作报告和客户护理记录"
+                      primary="Submit Reports"
+                      secondary="Submit work reports and client care records in the system as required"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  📱 移动应用使用
+                  📱 Mobile Application Usage
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="下载APP"
-                      secondary="从应用商店下载公司官方移动应用"
+                      primary="Download App"
+                      secondary="Download the company's official mobile application from app store"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="实时打卡"
-                      secondary="使用手机APP进行上下班打卡和位置签到"
+                      primary="Real-time Clock In/Out"
+                      secondary="Use mobile app for work clock in/out and location check-in"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="接收通知"
-                      secondary="及时接收公司通知、排班变更等重要信息"
+                      primary="Receive Notifications"
+                      secondary="Receive company notifications, schedule changes, and other important information promptly"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  🔧 常见问题解决
+                  🔧 Common Issue Resolution
                 </Typography>
                 <List dense>
                   <ListItem>
                     <ListItemText
-                      primary="忘记密码"
-                      secondary="联系IT支持重置密码，或使用系统的密码重置功能"
+                      primary="Forgot Password"
+                      secondary="Contact IT support to reset password, or use the system's password reset function"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="系统故障"
-                      secondary="遇到系统问题时，先尝试刷新页面或重新登录"
+                      primary="System Malfunction"
+                      secondary="When encountering system issues, first try refreshing the page or logging in again"
                     />
                   </ListItem>
                   <ListItem>
                     <ListItemText
-                      primary="数据同步"
-                      secondary="确保网络连接正常，数据会自动同步到服务器"
+                      primary="Data Synchronization"
+                      secondary="Ensure network connection is stable; data will automatically sync to the server"
                     />
                   </ListItem>
                 </List>
 
                 <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
-                  📞 技术支持联系方式
+                  📞 Technical Support Contact
                 </Typography>
                 <Box sx={{ bgcolor: '#f0f9ff', p: 2, borderRadius: 1, mt: 2 }}>
                   <Typography variant="body2" gutterBottom>
-                    <strong>IT支持热线：</strong> (240) 668-4666 转分机 IT
+                    <strong>IT Support Hotline:</strong> (240) 668-4666 ext. IT
                   </Typography>
                   <Typography variant="body2" gutterBottom>
-                    <strong>邮箱支持：</strong> it-support@allcaremd.com
+                    <strong>Email Support:</strong> it-support@allcaremd.com
                   </Typography>
                   <Typography variant="body2">
-                    <strong>支持时间：</strong> 周一至周五 9:00 AM - 6:00 PM
+                    <strong>Support Hours:</strong> Monday - Friday 9:00 AM - 6:00 PM
                   </Typography>
                 </Box>
               </Box>
@@ -627,14 +627,14 @@ function Others() {
             mb: 2,
           }}
         >
-          Employee Services Center
+          Employee Service Center
         </Typography>
         <Typography
           variant="h6"
           color="text.secondary"
-          sx={{ maxWidth: 600, mx: 'auto' }}
+          sx={{ maxWidth: 600, mx: 'auto', fontStyle: 'italic' }}
         >
-          Provide convenient work support and services
+          Your hub for essential tools, support, and resources
         </Typography>
       </Box>
 
@@ -676,7 +676,7 @@ function Others() {
       {/* 联系信息 */}
       <Paper sx={{ mt: 6, p: 4, background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}>
         <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center">
-          Contact Us 
+          Need Help? Get in Touch 
         </Typography>
         <Grid container spacing={3} sx={{ mt: 2 }}>
           <Grid item xs={12} md={4} textAlign="center">
@@ -726,11 +726,11 @@ function Others() {
               startIcon={<SendIcon />}
               disabled={!feedbackForm.type || !feedbackForm.subject || !feedbackForm.message}
             >
-              提交反馈
+              Submit Feedback
             </Button>
           )}
           <Button onClick={handleDialogClose} variant="outlined">
-            {submitSuccess ? '完成' : '关闭'}
+            {submitSuccess ? 'Finish' : 'Close'}
           </Button>
         </DialogActions>
       </Dialog>

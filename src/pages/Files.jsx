@@ -21,6 +21,7 @@ import {
   Tab,
   CircularProgress,
   Alert,
+  GlobalStyles,
 } from '@mui/material'
 import {
   Folder as FolderIcon,
@@ -34,6 +35,23 @@ import {
   Refresh as RefreshIcon,
 } from '@mui/icons-material'
 import { scanAllFiles, refreshCategory } from '../utils/dynamicFileDetector'
+
+// 轻量级CSS优化，提升动画性能
+const globalStyles = (
+  <GlobalStyles
+    styles={{
+      // 只优化滚动性能，避免全局样式冲突
+      body: {
+        overflowX: 'hidden',
+      },
+      // 针对特定动画元素的轻量优化
+      '.MuiCard-root:hover, .MuiListItem-root:hover': {
+        // 仅在悬停时启用硬件加速
+        willChange: 'transform',
+      },
+    }}
+  />
+)
 
 const fileCategories = [
   {
@@ -167,14 +185,16 @@ function Files() {
   }
 
   return (
-    <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 4 }}>
+    <>
+      {globalStyles}
+      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 4 }}>
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 6 }}>
         <Typography variant="h2" component="h1" gutterBottom>
           Allcare Document Center
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', mb: 3 }}>
-          Access essential care-related documents, including<br></br> agreements, policies, training materials, <br></br>and operational forms.
+        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', mb: 3, fontStyle: 'italic' }}>
+          Access key care documents, including agreements, <br></br>policies, and training materials.
         </Typography>
 
         {/* 状态指示器 */}
@@ -203,7 +223,9 @@ function Files() {
               sx={{
                 height: '100%',
                 cursor: 'pointer',
-                transition: 'all 0.3s ease-in-out',
+                // 最优化的动画设置 - 使用最平滑的缓动函数
+                transition: 'transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)',
+                willChange: 'transform, box-shadow',
                 border: selectedCategory === category.id ? 2 : 0,
                 borderColor: selectedCategory === category.id ? category.color : 'transparent',
                 borderRadius: 4,
@@ -215,6 +237,10 @@ function Files() {
                   : '0 4px 20px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
                 position: 'relative',
                 overflow: 'hidden',
+                // 强制硬件加速
+                transform: 'translate3d(0, 0, 0)',
+                backfaceVisibility: 'hidden',
+                perspective: 1000,
                 '&::before': {
                   content: '""',
                   position: 'absolute',
@@ -224,15 +250,18 @@ function Files() {
                   height: '4px',
                   background: `linear-gradient(90deg, ${category.color}, ${category.color}80)`,
                   opacity: selectedCategory === category.id ? 1 : 0,
-                  transition: 'opacity 0.3s ease',
+                  transition: 'opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
+                  willChange: 'opacity',
                 },
                 '&:hover': {
-                  transform: 'translateY(-8px) scale(1.02)',
-                  boxShadow: `0 12px 40px rgba(91, 155, 213, 0.25), 0 6px 20px rgba(91, 155, 213, 0.15)`,
+                  // 极其微妙的悬停效果，减少跳动感
+                  transform: 'translate3d(0, -6px, 0) scale(1.01)',
+                  boxShadow: `0 12px 40px rgba(91, 155, 213, 0.2), 0 6px 20px rgba(91, 155, 213, 0.1)`,
                   '&::before': {
                     opacity: 1,
                   },
                 },
+                // 移除active状态避免冲突
               }}
               onClick={() => setSelectedCategory(category.id)}
             >
@@ -251,7 +280,8 @@ function Files() {
                       0 4px 12px rgba(91, 155, 213, 0.2)
                     `,
                     border: `2px solid ${category.color}30`,
-                    transition: 'all 0.3s ease',
+                    // 简化Avatar动画，避免冲突
+                    transition: 'none', // 移除独立动画，跟随父元素
                     position: 'relative',
                     '&::before': {
                       content: '""',
@@ -286,15 +316,8 @@ function Files() {
                       inset 0 -1px 2px rgba(0, 0, 0, 0.1)
                     `,
                     border: `1px solid ${category.color}80`,
-                    transition: 'all 0.3s ease',
-                    '&:hover': {
-                      transform: 'scale(1.05)',
-                      boxShadow: `
-                        0 4px 12px rgba(91, 155, 213, 0.4),
-                        inset 0 1px 2px rgba(255, 255, 255, 0.3),
-                        inset 0 -1px 2px rgba(0, 0, 0, 0.15)
-                      `,
-                    },
+                    // 简化Chip动画，避免冲突
+                    transition: 'none', // 移除独立动画，跟随父元素
                   }}
                 />
               </CardContent>
@@ -314,6 +337,17 @@ function Files() {
           inset 0 1px 2px rgba(255, 255, 255, 0.8)
         `,
         border: '1px solid rgba(91, 155, 213, 0.1)',
+        // 禁用悬停动画
+        transition: 'none',
+        '&:hover': {
+          // 禁用所有悬停效果
+          transform: 'none',
+          boxShadow: `
+            0 8px 32px rgba(0, 0, 0, 0.08),
+            0 4px 16px rgba(0, 0, 0, 0.04),
+            inset 0 1px 2px rgba(255, 255, 255, 0.8)
+          `,
+        },
       }}>
         <Box sx={{ mb: 3 }}>
           {/* Tabs和刷新按钮在同一行 */}
@@ -421,7 +455,10 @@ function Files() {
                       0 1px 4px rgba(0, 0, 0, 0.04),
                       inset 0 1px 1px rgba(255, 255, 255, 0.8)
                     `,
-                    transition: 'all 0.3s ease',
+                    // 最平滑的动画设置
+                    transition: 'transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), background-color 0.4s ease',
+                    willChange: 'transform',
+                    transform: 'translate3d(0, 0, 0)',
                     position: 'relative',
                     overflow: 'hidden',
                     '&::before': {
@@ -433,16 +470,11 @@ function Files() {
                       width: '4px',
                       background: 'linear-gradient(180deg, #5B9BD5, #5B9BD580)',
                       opacity: 0,
-                      transition: 'opacity 0.3s ease',
+                      transition: 'opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1)',
                     },
                     '&:hover': {
                       backgroundColor: 'rgba(91, 155, 213, 0.05)',
-                      transform: 'translateX(4px)',
-                      boxShadow: `
-                        0 4px 16px rgba(91, 155, 213, 0.15),
-                        0 2px 8px rgba(91, 155, 213, 0.1),
-                        inset 0 1px 2px rgba(255, 255, 255, 0.9)
-                      `,
+                      transform: 'translate3d(2px, 0, 0)', // 更微妙的移动
                       '&::before': {
                         opacity: 1,
                       },
@@ -459,15 +491,8 @@ function Files() {
                         0 2px 6px rgba(91, 155, 213, 0.2)
                       `,
                       border: '1px solid rgba(91, 155, 213, 0.3)',
-                      transition: 'all 0.3s ease',
-                      '&:hover': {
-                        transform: 'scale(1.1)',
-                        boxShadow: `
-                          inset 0 1px 3px rgba(255, 255, 255, 0.9),
-                          inset 0 -1px 3px rgba(0, 0, 0, 0.15),
-                          0 4px 12px rgba(91, 155, 213, 0.3)
-                        `,
-                      },
+                      // 移除独立动画
+                      transition: 'none',
                     }}>
                       <FileIcon />
                     </Avatar>
@@ -490,22 +515,14 @@ function Files() {
                           inset 0 -1px 2px rgba(0, 0, 0, 0.1)
                         `,
                         border: '1px solid rgba(91, 155, 213, 0.8)',
-                        transition: 'all 0.3s ease',
+                        // 简化按钮动画
+                        transition: 'transform 0.2s ease, background 0.2s ease',
                         '&:hover': {
                           background: 'linear-gradient(145deg, #5B9BD5dd, #5B9BD5aa)',
-                          transform: 'scale(1.1) translateY(-1px)',
-                          boxShadow: `
-                            0 6px 20px rgba(91, 155, 213, 0.5),
-                            inset 0 1px 3px rgba(255, 255, 255, 0.4),
-                            inset 0 -1px 3px rgba(0, 0, 0, 0.15)
-                          `,
+                          transform: 'scale(1.05)',
                         },
                         '&:active': {
                           transform: 'scale(0.95)',
-                          boxShadow: `
-                            0 2px 8px rgba(91, 155, 213, 0.3),
-                            inset 0 2px 4px rgba(0, 0, 0, 0.2)
-                          `,
                         },
                       }}
                     >
@@ -529,8 +546,26 @@ function Files() {
             )}
           </>
         ) : (
-          <Box textAlign="center" sx={{ py: 8 }}>
-            <FolderIcon sx={{ fontSize: 80, color: '#5B9BD5', mb: 3 }} />
+          <Box textAlign="center" sx={{
+            py: 8,
+            // 禁用整个模块的所有动画
+            '& *': {
+              transition: 'none !important',
+              '&:hover': {
+                transform: 'none !important',
+              },
+            },
+          }}>
+            <FolderIcon sx={{
+              fontSize: 80,
+              color: '#5B9BD5',
+              mb: 3,
+              // 禁用图标动画
+              transition: 'none',
+              '&:hover': {
+                transform: 'none',
+              },
+            }} />
             <Typography variant="h5" gutterBottom sx={{ color: '#2c3e50', fontWeight: 600 }}>
               Please Select a Document Category
             </Typography>
@@ -546,9 +581,14 @@ function Files() {
                   sx={{
                     borderColor: category.color,
                     color: category.color,
+                    // 禁用所有悬停动画
+                    transition: 'none',
                     '&:hover': {
+                      // 保持原始样式，无任何变化
                       borderColor: category.color,
-                      backgroundColor: `${category.color}10`,
+                      color: category.color,
+                      backgroundColor: 'transparent',
+                      transform: 'none',
                     },
                   }}
                 >
@@ -588,7 +628,16 @@ function Files() {
           <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>
             Need Help Finding a Document?
           </Typography>
-          <Typography variant="h6" sx={{ mb: 4, opacity: 0.9, fontWeight: 400 }}>
+          <Typography
+            variant="body1"
+            sx={{
+              mb: 4,
+              color: 'rgba(255, 255, 255, 1) !important',
+              fontWeight: 400,
+              fontStyle: 'italic',
+              '& *': { color: 'rgba(255, 255, 255, 1) !important' }
+            }}
+          >
             If you’re unable to find the document you need or require assistance <br></br>with other files, lease contact Allcare Health Care.
           </Typography>
           <Box sx={{ display: 'flex', gap: 3, justifyContent: 'center', flexWrap: 'wrap', mb: 4 }}>
@@ -666,6 +715,7 @@ function Files() {
         </Box>
       </Card>
     </Container>
+    </>
   )
 }
 
