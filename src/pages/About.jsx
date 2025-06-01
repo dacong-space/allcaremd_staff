@@ -40,59 +40,51 @@ import {
 // 团队成员
 const teamMembers = [
   {
-    name: 'Rui Gao',
+    name: 'Ray Gao',
     position: 'CEO',
-    description: '666',
+    description: 'Founder and CEO with expertise in management, software, and system architecture.',
     avatar: '👨‍💻',
     credentials: ['CS', 'Web', 'App'],
-    experience: '10年',
-    specialties: ['管理', '网站开发', '软件开发'],
+    experience: '10 years',
+    specialties: ['Management', 'Web Development', 'Software Engineering'],
   },
   {
-    name: 'Sarah Johnson',
-    position: '护理总监 & 注册护士',
-    description: '拥有15年临床护理经验，专注于居家护理质量管理',
+    name: 'Erin Xie',
+    position: 'Supervising Nurse',
+    description: '10 years of clinical nursing experience, focused on quality assurance in home care.',
     avatar: '👩‍⚕️',
-    credentials: ['RN', 'BSN', 'CCM'],
-    experience: '15年',
-    specialties: ['临床护理', '质量管理', '团队培训'],
+    credentials: ['RN', 'BSN', 'First Aid', 'CPR'],
+    experience: '15 years',
+    specialties: ['Clinical Care', 'Quality Management', 'Team Training'],
   },
   {
     name: 'Michael Chen',
-    position: '总护士长',
-    description: '资深护理培训专家，负责员工技能发展和认证管理',
+    position: 'RN',
+    description: 'Senior training expert responsible for caregiver development and certification.',
     avatar: '👨‍🏫',
     credentials: ['CNA', 'CPR', 'First Aid'],
-    experience: '12年',
-    specialties: ['员工培训', 'ADL协助', '安全护理'],
-  },
-  {
-    name: 'Emily Rodriguez',
-    position: '客户关系经理',
-    description: '专注于客户体验优化和护理计划协调',
-    avatar: '👩‍💼',
-    credentials: ['LSW', 'CCM'],
-    experience: '10年',
-    specialties: ['客户服务', '护理协调', '家庭支持'],
+    experience: '12 years',
+    specialties: ['Caregiver Training', 'ADL Assistance', 'Safety Supervision'],
   },
   {
     name: 'David Kim',
-    position: 'HR主管',
-    description: '负责服务质量监控和持续改进项目',
+    position: 'HR Manager',
+    description: 'Oversees service quality monitoring and continuous improvement initiatives.',
     avatar: '👨‍💻',
     credentials: ['QA', 'Six Sigma'],
-    experience: '8年',
-    specialties: ['质量控制', '流程改进', '数据分析'],
+    experience: '8 years',
+    specialties: ['Quality Control', 'Process Optimization', 'Data Analysis'],
   },
-  {
-    name: 'Rui Gao',
-    position: 'CEO',
-    description: '公司创始人兼首席执行官，致力于提供高质量的护理服务',
-    avatar: '👨‍💼',
-    credentials: ['CS', 'Web', 'App'],
-    experience: '10年',
-    specialties: ['管理', '网站开发', '软件开发'],
-  },
+  // 超过4个就会变成滑动卡片
+  // {
+  //   name: 'Rui Gao',
+  //   position: 'CEO',
+  //   description: '公司创始人兼首席执行官，致力于提供高质量的护理服务',
+  //   avatar: '👨‍💼',
+  //   credentials: ['CS', 'Web', 'App'],
+  //   experience: '10年',
+  //   specialties: ['管理', '网站开发', '软件开发'],
+  // },
 ]
 
 
@@ -100,14 +92,14 @@ const teamMembers = [
 // 公司信息
 const companyInfo = {
   founded: '2018',
-  location: '马里兰州',
+  location: 'Maryland',
   employees: '50+',
-  certifications: ['州政府认证', 'Medicare认证', 'Medicaid认证'],
-  serviceAreas: ['巴尔的摩', '安纳波利斯', '哥伦比亚', '银泉'],
+  certifications: ['State Licensed', 'Medicare Certified', 'Medicaid Certified'],
+  serviceAreas: ['Baltimore', 'Annapolis', 'Columbia', 'Silver Spring'],
   contact: {
-    phone: '(410) 555-0123',
-    email: 'info@allcaremd.com',
-    address: '123 Healthcare Blvd, Baltimore, MD 21201',
+    phone: '(240) 668-4666',
+    email: 'allcaremd@outlook.com',
+    address: 'Harvest Glen Way, Germanton, MD 20874',
   }
 }
 
@@ -116,66 +108,66 @@ const companyInfo = {
 // 核心价值观数据
 const values = [
   {
-    title: '富有同情心',
-    description: '我们相信富有同情心的护理始于真诚的连接，用心倾听每一位客户的需求',
+    title: 'Compassion',
+    description: 'We believe compassionate care begins with genuine connection—listening attentively and building trust to deliver warm, personalized support.',
     icon: <HeartIcon />,
     color: '#5B9BD5', // 匹配首页的蓝色
-    details: '以同理心为基础，建立信任关系，提供温暖的护理体验',
+    // details: 'We listen to each client’s needs and build trust through empathy, delivering warm and attentive support.',
   },
   {
-    title: '尊严与尊重',
-    description: '以尊严、尊重和真诚的奉献精神为每位客户服务，维护个人隐私和选择权',
+    title: 'Respect & Dignity',
+    description: 'We honor each client’s privacy, choices, and background with respectful, person-centered care grounded in integrity and understanding.',
     icon: <CheckIcon />,
     color: '#5B9BD5', // 匹配首页的蓝色
-    details: '尊重客户的文化背景、个人偏好和生活方式选择',
+    // details: '尊重客户的文化背景、个人偏好和生活方式选择',
   },
   {
-    title: '专业护理',
-    description: '提供专业的ADLs协助和个性化护理计划，确保最高质量的护理标准',
+    title: 'Professional Care',
+    description: 'We provide expert ADLs support and individualized care plans, backed by ongoing training and certified best practices to ensure quality.',
     icon: <StarIcon />,
     color: '#5B9BD5', // 匹配首页的蓝色
-    details: '持续的专业培训和认证，运用循证护理实践',
+    // details: '持续的专业培训和认证，运用循证护理实践',
   },
   {
-    title: '可靠支持',
-    description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持伙伴',
+    title: 'Dependable Support',
+    description: 'As trusted companions, we build lasting care relationships and offer consistent, reliable support in clients’ everyday lives.',
     icon: <PeopleIcon />,
     color: '#5B9BD5', // 匹配首页的蓝色
-    details: '建立长期的护理关系，提供持续稳定的支持服务',
+    // details: '建立长期的护理关系，提供持续稳定的支持服务',
   },
 ]
 
 // 发展历程数据
 const milestones = [
   {
-    year: '成立',
-    title: 'Allcare Health Care 成立',
-    description: '在马里兰州成立，专注于提供高质量的居家护理服务',
+    year: 'Established',
+    title: 'Allcare Health Care Founded',
+    description: 'Founded in Maryland, dedicated to delivering high-quality in-home care services.',
   },
   {
-    year: '认证',
-    title: '专业认证获得',
-    description: '获得马里兰州居家护理服务认证，成为官方认可的护理服务提供商',
+    year: 'Certified',
+    title: 'Professional Accreditation Achieved',
+    description: 'Received Maryland Residential Service Agency certification, becoming a state-recognized care provider.',
   },
   {
-    year: '扩展',
-    title: '服务范围扩展',
-    description: '扩大服务范围，为老年人、慢性疾病患者和残疾人士提供全面护理',
+    year: 'Expanded',
+    title: 'Service Area Growth',
+    description: 'Expanded services to support seniors, individuals with chronic conditions, and people with disabilities.',
   },
   {
-    year: '培训',
-    title: '员工培训体系建立',
-    description: '建立完善的PCA培训体系，确保所有护理人员持有CPR和急救认证',
+    year: 'Training',
+    title: 'Staff Training System Established',
+    description: 'Developed a complete PCA training system to ensure all caregivers are CPR- and First Aid-certified.',
   },
   {
-    year: '质量',
-    title: '质量保证体系',
-    description: '建立注册护士监督体系，定期进行家访和护理质量评估',
+    year: 'Quality',
+    title: 'Quality Assurance System Launched',
+    description: 'Established RN supervision procedures with scheduled home visits and care quality assessments.',
   },
   {
-    year: '现在',
-    title: '持续服务',
-    description: '继续为马里兰州社区提供优质的居家护理服务，帮助客户在家中安全舒适地生活',
+    year: 'Today',
+    title: 'Continuing Service',
+    description: 'Continuing to provide exceptional in-home care across Maryland communities, helping clients live safely and comfortably.',
   },
 ]
 
@@ -183,37 +175,37 @@ const milestones = [
 const serviceAreas = [
   {
     name: 'Montgomery County',
-    description: '蒙哥马利县',
+    description: 'Montgomery County',
     cities: ['Rockville', 'Bethesda', 'Silver Spring', 'Gaithersburg', 'Germantown'],
     color: '#5B9BD5',
   },
   {
     name: 'Prince George\'s County',
-    description: '乔治王子县',
+    description: 'George\'s County',
     cities: ['College Park', 'Bowie', 'Laurel', 'Greenbelt', 'Hyattsville'],
     color: '#98d8c8',
   },
   {
     name: 'Frederick County',
-    description: '弗雷德里克县',
+    description: 'Frederick County',
     cities: ['Frederick', 'Urbana', 'Middletown', 'Brunswick', 'Walkersville'],
     color: '#f7dc6f',
   },
   {
     name: 'Washington County',
-    description: '华盛顿县',
+    description: 'Washington County',
     cities: ['Hagerstown', 'Williamsport', 'Boonsboro', 'Smithsburg', 'Hancock'],
     color: '#bb8fce',
   },
   {
     name: 'Carroll County',
-    description: '卡罗尔县',
+    description: 'Carroll County',
     cities: ['Westminster', 'Eldersburg', 'Sykesville', 'Mount Airy', 'Taneytown'],
     color: '#85c1e9',
   },
   {
     name: 'Howard County',
-    description: '霍华德县',
+    description: 'Howard County',
     cities: ['Columbia', 'Ellicott City', 'Clarksville', 'Fulton', 'Highland'],
     color: '#f8c471',
   },
@@ -327,10 +319,10 @@ function About() {
               }}
             >
               <Box component="span" sx={{ color: '#5B9BD5', fontWeight: 500 }}>
-                马里兰州值得信赖的居家护理服务提供商
+                Maryland’s Trusted Provider of In-Home Care Services
               </Box>
               <br />
-              致力于为每个家庭提供富有同情心的专业护理服务
+              Delivering compassionate, professional care to every home we serve
             </Typography>
 
 
@@ -379,7 +371,9 @@ function About() {
                   mb: 3,
                 }}
               >
-                在 Allcare Health Care，我们相信富有同情心的护理始于真诚的连接。我们自豪地为老年人、慢性疾病患者和残疾人士（包括儿童）提供服务，以尊严、尊重和真诚的奉献精神为他们服务。
+                At Allcare Health Care, we believe that compassionate care begins with genuine connection. 
+                We proudly serve seniors, individuals with chronic conditions, and people with disabilities—including 
+                children—with respect, dignity, and unwavering dedication.
               </Typography>
 
               <Typography
@@ -392,7 +386,8 @@ function About() {
                   mb: 3,
                 }}
               >
-                我们不仅仅是护理人员，我们是陪伴者、倡导者，是您日常生活中值得信赖的支持。我们的使命是将可靠、尊重和以心为中心的护理带到我们服务的每一个家庭。
+                We are more than caregivers — we are companions, guides, and trusted support in daily life. 
+                Our mission is to bring dependable, respectful, and person-centered care to every home we serve.
               </Typography>
 
               {/* 公司信息卡片 */}
@@ -403,7 +398,7 @@ function About() {
                       {companyInfo.founded}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      成立年份
+                      Established
                     </Typography>
                   </Box>
                 </Grid>
@@ -413,7 +408,7 @@ function About() {
                       {companyInfo.employees}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                      专业团队
+                      Professionally Team
                     </Typography>
                   </Box>
                 </Grid>
@@ -449,7 +444,7 @@ function About() {
                     Allcare Health Care
                   </Typography>
                   <Typography variant="h6" sx={{ opacity: 0.9, mb: 3 }}>
-                    马里兰州居家护理服务领导者
+                    A Trusted Leader in Home Care Services Across Maryland
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1, justifyContent: 'center', flexWrap: 'wrap' }}>
                     {companyInfo.certifications.map((cert, index) => (
@@ -488,7 +483,7 @@ function About() {
                 mb: 2,
               }}
             >
-              我们的核心价值观
+              Our Core Values
             </Typography>
             <Typography
               variant="h6"
@@ -496,7 +491,7 @@ function About() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto' }}
             >
-              指导我们护理服务的核心原则，塑造我们的服务文化
+              Guiding our care philosophy and shaping our service culture
             </Typography>
           </Box>
 
@@ -585,7 +580,7 @@ function About() {
                 mb: 2,
               }}
             >
-              我们的专业团队
+              Our Professional Team
             </Typography>
             <Typography
               variant="h6"
@@ -593,7 +588,7 @@ function About() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto' }}
             >
-              经验丰富的护理专业人员和培训师团队
+              A diverse team of experienced<br></br> professionals across care, management, and operations
             </Typography>
           </Box>
 
@@ -678,13 +673,13 @@ function About() {
 
                     <Box sx={{ textAlign: 'left' }}>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        <strong>经验:</strong> {member.experience}
+                        <strong>Experience:</strong> {member.experience}
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        <strong>认证:</strong> {member.credentials.join(', ')}
+                        <strong>Credentials:</strong> {member.credentials.join(', ')}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        <strong>专长:</strong> {member.specialties.join(', ')}
+                        <strong>Specialties:</strong> {member.specialties.join(', ')}
                       </Typography>
                     </Box>
                   </Card>
@@ -810,13 +805,13 @@ function About() {
 
                     <Box sx={{ textAlign: 'left' }}>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        <strong>经验:</strong> {member.experience}
+                        <strong>Experience:</strong> {member.experience}
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        <strong>认证:</strong> {member.credentials.join(', ')}
+                        <strong>Credentials:</strong> {member.credentials.join(', ')}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
-                        <strong>专长:</strong> {member.specialties.join(', ')}
+                        <strong>Specialties:</strong> {member.specialties.join(', ')}
                       </Typography>
                     </Box>
                   </Card>
@@ -841,7 +836,7 @@ function About() {
                 mb: 2,
               }}
             >
-              我们的发展历程
+              Company Milestones
             </Typography>
             <Typography
               variant="h6"
@@ -849,7 +844,7 @@ function About() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto' }}
             >
-              Allcare Health Care 的成长足迹
+              Tracing the Growth of Allcare Health Care
             </Typography>
           </Box>
 
@@ -942,7 +937,7 @@ function About() {
                 mb: 2,
               }}
             >
-              服务区域
+              Service Areas
             </Typography>
             <Typography
               variant="h6"
@@ -950,7 +945,7 @@ function About() {
               color="text.secondary"
               sx={{ maxWidth: 600, mx: 'auto' }}
             >
-              我们为马里兰州Montgomery县及周边地区提供专业的居家护理服务
+              We provide professional in-home care services throughout Montgomery County, Maryland and surrounding areas.
             </Typography>
           </Box>
 
@@ -1020,7 +1015,7 @@ function About() {
 
           <Box sx={{ mt: 6, textAlign: 'center' }}>
             <Typography variant="h6" gutterBottom sx={{ fontWeight: 600, color: 'text.primary' }}>
-              联系我们了解更多服务信息
+              Contact Us to Learn More About Our Services
             </Typography>
             <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap', mt: 2 }}>
               <Chip

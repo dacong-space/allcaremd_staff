@@ -1024,7 +1024,7 @@ function Home() {
             Our Commitment to Quality Care
           </Typography>
           <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
-            Showcasing Our Professionalism and Quality Through Measurable Results
+            Showcasing Our Professionalism and Quality<br></br> Through Measurable Results
           </Typography>
 
           <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
@@ -1125,7 +1125,8 @@ function Home() {
               mb: 6,
             }}
           >
-            We provide compassionate in-home support to help clients maintain safety, comfort, and independence in their daily lives
+            We provide compassionate in-home support<br></br>
+            to help clients maintain safety, comfort, and independence.
           </Typography>
 
           <Grid container spacing={4}>
@@ -1168,21 +1169,21 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      Care Plans Designed Just for You
+                      Care Plans Designed Just for You 
                     </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       sx={{ lineHeight: 1.6, mb: 2 }}
                     >
-                      We create customized care plans based on each client’s unique needs, with periodic updates to ensure the highest level of service quality and client safety.
+                      Personalized care plans tailored to each client’s needs, regularly reviewed to ensure quality and safety.
                     </Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ pl: 9 }}>
                   <Grid container spacing={1}>
-                    {['全面健康评估', '定制护理目标', '定期计划调整', '家属参与决策'].map((detail, detailIndex) => (
+                    {['Comprehensive health assessments', 'Individualized care goals', 'Family participation in care decisions', 'Ongoing plan adjustments'].map((detail, detailIndex) => (
                       <Grid item xs={6} key={detailIndex}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                           <Box
@@ -1248,21 +1249,21 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      Expert Supervision and Continuous Training
+                      Expert Supervision & Ongoing Training
                     </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       sx={{ lineHeight: 1.6, mb: 2 }}
                     >
-                      注册护士全程监督，确保护理质量
+                      Care quality ensured through RN oversight and continuous staff development.
                     </Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ pl: 9 }}>
                   <Grid container spacing={1}>
-                    {['RN护士监督', '定期质量评估', '持续培训更新', '24小时支持'].map((detail, detailIndex) => (
+                    {['RN-led supervision and evaluations', 'Regular skill-building sessions', 'Quality assessments and updates', '24/7 support availability'].map((detail, detailIndex) => (
                       <Grid item xs={6} key={detailIndex}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                           <Box
@@ -1328,20 +1329,21 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      Your Safety, Our Priority                    </Typography>
+                      Your Safety, Our Priority                   
+                    </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       sx={{ lineHeight: 1.6, mb: 2 }}
                     >
-                      完善的安全协议和应急响应机制
+                      Robust protocols and emergency readiness to protect every client.
                     </Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ pl: 9 }}>
                   <Grid container spacing={1}>
-                    {['安全评估', '应急预案', '医疗协调', '家属沟通'].map((detail, detailIndex) => (
+                    {['Home safety evaluations', 'Emergency response planning', 'Medical coordination', 'Transparent family communication'].map((detail, detailIndex) => (
                       <Grid item xs={6} key={detailIndex}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                           <Box
@@ -1407,20 +1409,21 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      Committed to Constant Improvement                    </Typography>
+                      Committed to Continuous Improvement                    
+                    </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       sx={{ lineHeight: 1.6, mb: 2 }}
                     >
-                      不断优化服务流程，提升护理标准
+                      We refine our care through feedback, training, and innovation.
                     </Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ pl: 9 }}>
                   <Grid container spacing={1}>
-                    {['服务反馈', '流程优化', '技能提升', '创新实践'].map((detail, detailIndex) => (
+                    {['Service feedback loops', 'Caregiver upskilling', 'Process optimization', 'Innovative care practices'].map((detail, detailIndex) => (
                       <Grid item xs={6} key={detailIndex}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                           <Box
