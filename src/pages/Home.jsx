@@ -64,29 +64,29 @@ const HERO_IMAGES = [
 const statistics = [
   {
     number: '200+',
-    label: '服务家庭',
-    description: '累计为超过500个家庭提供护理服务',
+    label: 'Serving Families',
+    description: 'Providing care and compassion to over 200 families and counting',
     icon: <SchoolIcon />,
     color: '#5B9BD5', // 匹配图片中的蓝色
   },
   {
     number: '100%',
-    label: '客户满意度',
-    description: '客户对我们服务的满意度评分',
+    label: 'Customer Satisfaction',
+    description: 'Our clients give us a perfect score for care and service',
     icon: <SecurityIcon />,
     color: '#5B9BD5', // 匹配图片中的蓝色
   },
   {
     number: '24/7',
-    label: '全天候服务',
-    description: '提供全天候紧急护理支持',
+    label: 'Service Availability',
+    description: 'Always available when you need us most \u00A0\u00A0\u00A0\u00A0',
     icon: <SupportIcon />,
     color: '#5B9BD5', // 匹配图片中的蓝色
   },
   {
     number: '25+',
-    label: '专业认证',
-    description: '团队持有的专业护理认证数量',
+    label: 'Professionally Team',
+    description: 'Licensed, trained, and trusted to deliver quality care',
     icon: <FavoriteIcon />,
     color: '#5B9BD5', // 匹配图片中的蓝色
   },
@@ -723,7 +723,7 @@ function Home() {
                 lineHeight: 1.6,
               }}
             >
-              我们的专业团队将指导您完成每一个步骤，确保您获得最适合的护理服务
+              Our professional team will guide you through every step to ensure you receive the care that best fits your needs
             </Typography>
           </Box>
 
@@ -1021,10 +1021,10 @@ function Home() {
             gutterBottom
             sx={{ mb: 2, fontWeight: 600 }}
           >
-            我们的服务成果
+            Our Commitment to Quality Care
           </Typography>
           <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
-            用数据展现我们的专业实力和服务质量
+            Showcasing Our Professionalism and Quality Through Measurable Results
           </Typography>
 
           <Grid container spacing={3} sx={{ justifyContent: 'center' }}>
@@ -1103,14 +1103,29 @@ function Home() {
           <Typography
             variant="h3"
             component="h2"
-            textAlign="center"
             gutterBottom
-            sx={{ mb: 2, fontWeight: 600 }}
+            sx={{
+              fontWeight: 700,
+              color: 'text.primary',
+              mb: 2,
+              fontSize: { xs: '2rem', md: '2.75rem' },
+              textAlign: 'center',
+            }}
           >
-            我们的服务特色
+            Our Services
           </Typography>
-          <Typography variant="h6" sx={{ mb: 6, color: 'text.secondary', textAlign: 'center', maxWidth: 600, mx: 'auto' }}>
-            专业、全面、个性化的护理服务体系
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'text.secondary',
+              maxWidth: 700,
+              mx: 'auto',
+              lineHeight: 1.6,
+              textAlign: 'center',
+              mb: 6,
+            }}
+          >
+            We provide compassionate in-home support to help clients maintain safety, comfort, and independence in their daily lives
           </Typography>
 
           <Grid container spacing={4}>
@@ -1153,14 +1168,14 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      个性化护理计划
+                      Care Plans Designed Just for You
                     </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
                       sx={{ lineHeight: 1.6, mb: 2 }}
                     >
-                      根据每位客户的具体需求制定专属护理方案
+                      We create customized care plans based on each client’s unique needs, with periodic updates to ensure the highest level of service quality and client safety.
                     </Typography>
                   </Box>
                 </Box>
@@ -1233,7 +1248,7 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      专业团队监督
+                      Expert Supervision and Continuous Training
                     </Typography>
                     <Typography
                       variant="body1"
@@ -1313,8 +1328,7 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      全面安全保障
-                    </Typography>
+                      Your Safety, Our Priority                    </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
@@ -1393,8 +1407,7 @@ function Home() {
                         mb: 1,
                       }}
                     >
-                      持续质量改进
-                    </Typography>
+                      Committed to Constant Improvement                    </Typography>
                     <Typography
                       variant="body1"
                       color="text.secondary"
@@ -1456,7 +1469,7 @@ function Home() {
           >
             Some common questions
           </Typography>
-          <Typography
+          {/* <Typography
             variant="h4"
             component="h3"
             textAlign="center"
@@ -1469,7 +1482,7 @@ function Home() {
             }}
           >
             were often asked
-          </Typography>
+          </Typography> */}
 
           <Grid container spacing={3}>
             {faqData.map((faq, index) => (

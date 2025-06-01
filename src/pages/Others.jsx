@@ -292,14 +292,14 @@ function Others() {
             mb: 2,
           }}
         >
-          员工服务中心
+          Employee Services Center
         </Typography>
         <Typography
           variant="h6"
           color="text.secondary"
           sx={{ maxWidth: 600, mx: 'auto' }}
         >
-          为您提供便捷的工作支持和服务
+          Provide convenient work support and services
         </Typography>
       </Box>
 
@@ -341,13 +341,13 @@ function Others() {
       {/* 联系信息 */}
       <Paper sx={{ mt: 6, p: 4, background: 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)' }}>
         <Typography variant="h5" gutterBottom fontWeight="bold" textAlign="center">
-          联系我们
+          Contact Us 
         </Typography>
         <Grid container spacing={3} sx={{ mt: 2 }}>
           <Grid item xs={12} md={4} textAlign="center">
             <PhoneIcon sx={{ fontSize: 40, color: '#3b82f6', mb: 1 }} />
             <Typography variant="h6" gutterBottom>
-              电话
+              Phone      
             </Typography>
             <Typography color="text.secondary">
               (240) 668-4666
@@ -356,7 +356,7 @@ function Others() {
           <Grid item xs={12} md={4} textAlign="center">
             <EmailIcon sx={{ fontSize: 40, color: '#10b981', mb: 1 }} />
             <Typography variant="h6" gutterBottom>
-              邮箱
+              Email
             </Typography>
             <Typography color="text.secondary">
               allcaremd@outlook.com
@@ -365,7 +365,7 @@ function Others() {
           <Grid item xs={12} md={4} textAlign="center">
             <LocationIcon sx={{ fontSize: 40, color: '#f59e0b', mb: 1 }} />
             <Typography variant="h6" gutterBottom>
-              网站
+              Website
             </Typography>
             <Typography color="text.secondary">
               allcaremd.com
@@ -391,7 +391,7 @@ function Others() {
               startIcon={<SendIcon />}
               disabled={!feedbackForm.type || !feedbackForm.subject || !feedbackForm.message}
             >
-              提交反馈
+              Submit Feedback
             </Button>
           )}
           <Button onClick={handleDialogClose} variant="outlined">

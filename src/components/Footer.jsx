@@ -36,6 +36,7 @@ function Footer() {
                 fontWeight: 700,
                 mb: 2,
                 color: 'white',
+                fontSize: '1.35rem',
               }}
             >
               Allcare Health Care
@@ -47,7 +48,7 @@ function Footer() {
                 lineHeight: 1.6,
               }}
             >
-              马里兰州专业居家护理服务提供商，致力于为客户提供高质量的护理服务。
+              Maryland’s Trusted Home Care Provider, Committed to Quality and Compassionate Service.
             </Typography>
           </Grid>
 
@@ -56,11 +57,12 @@ function Footer() {
           {/* 培训项目 */}
           <Grid item xs={12} sm={6} md={2}>
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
-                fontWeight: 600,
+                fontWeight: 700,
                 mb: 2,
                 color: 'white',
+                fontSize: '1.25rem',
               }}
             >
               Training Projects
@@ -117,11 +119,12 @@ function Footer() {
           {/* 服务 */}
           <Grid item xs={12} sm={6} md={2}>
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
-                fontWeight: 600,
+                fontWeight: 700,
                 mb: 2,
                 color: 'white',
+                fontSize: '1.25rem',
               }}
             >
               Services
@@ -159,11 +162,12 @@ function Footer() {
           {/* 关于我们 */}
           <Grid item xs={12} sm={6} md={2}>
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
-                fontWeight: 600,
+                fontWeight: 700,
                 mb: 2,
                 color: 'white',
+                fontSize: '1.25rem',
               }}
             >
               About Us
@@ -224,14 +228,15 @@ function Footer() {
           {/* 扫码访问 */}
           <Grid item xs={12} sm={6} md={2}>
             <Typography
-              variant="subtitle1"
+              variant="h6"
               sx={{
-                fontWeight: 600,
+                fontWeight: 700,
                 mb: 2,
                 color: 'white',
+                fontSize: '1.25rem',
               }}
             >
-              Scan to visit the website
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scan to visit
             </Typography>
             <Box sx={{
               display: 'flex',
@@ -297,7 +302,7 @@ function Footer() {
             >
               Allcare Health Care, LLC
             </Link>
-            . Designed and developed by {' '}
+            . &nbsp;&nbsp;Designed and developed by {' '}
             <Link
               href="https://allcaremd.com"
               target="_blank"

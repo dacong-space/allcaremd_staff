@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {
   Container,
   Typography,
@@ -29,9 +30,10 @@ const trainingPrograms = [
     subtitle: 'Personal Care Assistant Training',
     description: 'Allcare Health Care 专业的个人护理助理培训课程，专注于ADLs协助、安全护理和客户沟通技巧。',
     icon: <SchoolIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 首页主蓝色
     duration: '持续培训',
     certification: 'Allcare认证',
+    linkTo: '/pca-training',
     features: [
       '日常生活活动(ADLs)协助',
       '安全护理操作规程',
@@ -40,7 +42,7 @@ const trainingPrograms = [
       '护理记录与报告',
       '职业道德与隐私保护',
     ],
-    price: '员工培训',
+    price: 'Employee Training',
     schedules: [
       { date: '2024年1月16日', time: '上午 9:00-12:00', status: '即将开始' },
       { date: '2024年2月20日', time: '下午 2:00-5:00', status: '报名中' },
@@ -53,9 +55,10 @@ const trainingPrograms = [
     subtitle: 'CPR & First Aid Certification',
     description: '心肺复苏术和急救培训，确保所有护理人员具备紧急救护技能，保障客户安全。',
     icon: <CPRIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 首页主蓝色
     duration: '年度更新',
     certification: 'CPR认证',
+    linkTo: '/cpr-training',
     features: [
       '心肺复苏基础理论与实践',
       '胸外按压标准技术',
@@ -64,7 +67,7 @@ const trainingPrograms = [
       '常见急救情况处理',
       '团队急救配合训练',
     ],
-    price: '必修课程',
+    price: 'Required Course',
     schedules: [
       { date: '2024年1月22日', time: '上午 8:30-11:30', status: '即将开始' },
       { date: '2024年2月25日', time: '下午 1:30-4:30', status: '报名中' },
@@ -77,9 +80,10 @@ const trainingPrograms = [
     subtitle: 'Client Information Handbook',
     description: '为护理人员提供客户权利、隐私保护和护理标准等重要信息，确保合规的护理服务。',
     icon: <MenuBookIcon sx={{ fontSize: 48 }} />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 首页主蓝色
     duration: '随时学习',
     certification: '信息资源',
+    linkTo: '/other-training',
     features: [
       '客户权利法案',
       '隐私保护政策(HIPAA)',
@@ -88,7 +92,7 @@ const trainingPrograms = [
       '紧急联系信息',
       '护理计划指导',
     ],
-    price: '免费资源',
+    price: 'Free Resource',
     schedules: [
       { date: '2024年1月18日', time: '下午 3:00-5:00', status: '即将开始' },
       { date: '2024年2月28日', time: '上午 10:00-12:00', status: '报名中' },
@@ -103,7 +107,7 @@ function Training() {
       {/* Hero Section */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0.05) 100%)',
+          background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(91, 155, 213, 0.05) 100%)',
           pt: { xs: 6, md: 8 },
           pb: { xs: 4, md: 6 },
           position: 'relative',
@@ -119,7 +123,7 @@ function Training() {
             width: 300,
             height: 300,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(135, 206, 235, 0.05))',
+            background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.1), rgba(91, 155, 213, 0.05))',
             filter: 'blur(60px)',
           }}
         />
@@ -131,25 +135,13 @@ function Training() {
             width: 200,
             height: 200,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.08), rgba(135, 206, 235, 0.03))',
+            background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.08), rgba(91, 155, 213, 0.03))',
             filter: 'blur(40px)',
           }}
         />
 
         <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3 }}>
           <Box textAlign="center" sx={{ position: 'relative', zIndex: 1 }}>
-            <Chip
-              label="专业培训"
-              sx={{
-                bgcolor: 'rgba(135, 206, 235, 0.15)',
-                color: '#87ceeb',
-                mb: 3,
-                fontSize: '0.875rem',
-                px: 3,
-                py: 0.5,
-                border: '1px solid rgba(135, 206, 235, 0.3)',
-              }}
-            />
             <Typography
               variant="h1"
               component="h1"
@@ -158,7 +150,7 @@ function Training() {
                 fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
                 fontWeight: 700,
                 lineHeight: 1.2,
-                background: 'linear-gradient(135deg, #2c3e50 0%, #87ceeb 50%, #87ceeb 100%)',
+                background: 'linear-gradient(135deg, #2c3e50 0%, #5B9BD5 50%, #5B9BD5 100%)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -199,8 +191,8 @@ function Training() {
                   position: 'relative',
                   overflow: 'hidden', // 改为hidden，确保装饰线不超出边框
                   borderRadius: 4,
-                  boxShadow: '0 8px 32px rgba(135, 206, 235, 0.15)',
-                  border: '1px solid rgba(135, 206, 235, 0.1)',
+                  boxShadow: '0 8px 32px rgba(91, 155, 213, 0.15)',
+                  border: '1px solid rgba(91, 155, 213, 0.1)',
                   // 完全移除过渡动画，确保无跳动效果
                   '&:hover': {
                     // 完全静态，无任何动画效果
@@ -222,7 +214,7 @@ function Training() {
                 <Box sx={{
                   p: 5,
                   pb: 4,
-                  background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.03) 0%, rgba(135, 206, 235, 0.01) 100%)',
+                  background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.03) 0%, rgba(91, 155, 213, 0.01) 100%)',
                 }}>
                   <Box textAlign="center">
                     <Box
@@ -282,8 +274,8 @@ function Training() {
                         sx={{
                           p: 3,
                           borderRadius: 3,
-                          bgcolor: 'rgba(135, 206, 235, 0.05)',
-                          border: '1px solid rgba(135, 206, 235, 0.1)',
+                          bgcolor: 'rgba(91, 155, 213, 0.05)',
+                          border: '1px solid rgba(91, 155, 213, 0.1)',
                           height: 150, // 增加并统一所有小卡片高度
                           width: '100%',
                           display: 'flex',
@@ -337,8 +329,8 @@ function Training() {
                         sx={{
                           p: 3,
                           borderRadius: 3,
-                          bgcolor: 'rgba(135, 206, 235, 0.05)',
-                          border: '1px solid rgba(135, 206, 235, 0.1)',
+                          bgcolor: 'rgba(91, 155, 213, 0.05)',
+                          border: '1px solid rgba(91, 155, 213, 0.1)',
                           height: 150, // 增加并统一所有小卡片高度
                           width: '100%',
                           display: 'flex',
@@ -411,7 +403,7 @@ function Training() {
                           py: featureIndex === program.features.length - 1 ? 0.4 : 0.8, // 最后一项减小间距
                           px: 0,
                           '&:hover': {
-                            bgcolor: 'rgba(135, 206, 235, 0.05)',
+                            bgcolor: 'rgba(91, 155, 213, 0.05)',
                             borderRadius: 2,
                           },
                         }}
@@ -441,7 +433,7 @@ function Training() {
                 </Box>
 
                 {/* Training Schedule Section */}
-                <Box sx={{ px: 5, py: 3, borderTop: '1px solid rgba(135, 206, 235, 0.1)' }}>
+                <Box sx={{ px: 5, py: 3, borderTop: '1px solid rgba(91, 155, 213, 0.1)' }}>
                   <Typography
                     variant="h6"
                     gutterBottom
@@ -464,12 +456,15 @@ function Training() {
                           alignItems: 'center',
                           p: 2,
                           borderRadius: 2,
-                          bgcolor: index === 0 ? 'rgba(135, 206, 235, 0.08)' : 'rgba(135, 206, 235, 0.03)',
-                          border: `1px solid ${index === 0 ? 'rgba(135, 206, 235, 0.2)' : 'rgba(135, 206, 235, 0.1)'}`,
-                          transition: 'all 0.2s ease',
+                          bgcolor: index === 0 ? 'rgba(91, 155, 213, 0.06)' : 'rgba(91, 155, 213, 0.02)',
+                          border: `1px solid ${index === 0 ? 'rgba(91, 155, 213, 0.15)' : 'rgba(91, 155, 213, 0.08)'}`,
+                          boxShadow: index === 0 ? '0 4px 12px rgba(91, 155, 213, 0.15)' : '0 2px 8px rgba(91, 155, 213, 0.08)',
+                          transition: 'all 0.3s ease',
                           '&:hover': {
-                            bgcolor: 'rgba(135, 206, 235, 0.1)',
-                            borderColor: 'rgba(135, 206, 235, 0.3)',
+                            bgcolor: 'rgba(91, 155, 213, 0.08)',
+                            borderColor: 'rgba(91, 155, 213, 0.2)',
+                            boxShadow: '0 6px 20px rgba(91, 155, 213, 0.2)',
+                            transform: 'translateY(-2px)',
                           },
                         }}
                       >
@@ -550,6 +545,8 @@ function Training() {
                   }} />
 
                   <Button
+                    component={Link}
+                    to={program.linkTo}
                     variant="contained"
                     fullWidth
                     size="large"
@@ -561,13 +558,16 @@ function Training() {
                       fontWeight: 600,
                       fontSize: '1.1rem',
                       textTransform: 'none',
+                      textDecoration: 'none',
                       '&:hover': {
                         // 完全静态，无任何动画效果
                       },
                       // 完全移除过渡动画
                     }}
                   >
-                    立即报名
+                    {program.id === 'pca' ? 'Learn More' :
+                     program.id === 'cpr' ? 'Learn More' :
+                     'Learn More'}
                   </Button>
                 </Box>
               </Card>
@@ -688,9 +688,9 @@ function Training() {
             p: 6,
             textAlign: 'center',
             borderRadius: 4,
-            background: 'linear-gradient(135deg, #87ceeb 0%, #6bb6ff 100%)',
+            background: 'linear-gradient(135deg, #5B9BD5 0%, #6bb6ff 100%)',
             color: 'white',
-            boxShadow: '0 20px 40px rgba(135, 206, 235, 0.3)',
+            boxShadow: '0 20px 40px rgba(91, 155, 213, 0.3)',
             position: 'relative',
             overflow: 'hidden',
             '&::before': {
@@ -717,7 +717,7 @@ function Training() {
                 size="large"
                 sx={{
                   backgroundColor: 'white',
-                  color: '#87ceeb',
+                  color: '#5B9BD5',
                   px: 4,
                   py: 1.5,
                   borderRadius: 3,

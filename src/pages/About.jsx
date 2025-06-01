@@ -119,28 +119,28 @@ const values = [
     title: '富有同情心',
     description: '我们相信富有同情心的护理始于真诚的连接，用心倾听每一位客户的需求',
     icon: <HeartIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     details: '以同理心为基础，建立信任关系，提供温暖的护理体验',
   },
   {
     title: '尊严与尊重',
     description: '以尊严、尊重和真诚的奉献精神为每位客户服务，维护个人隐私和选择权',
     icon: <CheckIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     details: '尊重客户的文化背景、个人偏好和生活方式选择',
   },
   {
     title: '专业护理',
     description: '提供专业的ADLs协助和个性化护理计划，确保最高质量的护理标准',
     icon: <StarIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     details: '持续的专业培训和认证，运用循证护理实践',
   },
   {
     title: '可靠支持',
     description: '我们是陪伴者、倡导者，是您日常生活中值得信赖的支持伙伴',
     icon: <PeopleIcon />,
-    color: '#87ceeb', // 更蓝的天空蓝色
+    color: '#5B9BD5', // 匹配首页的蓝色
     details: '建立长期的护理关系，提供持续稳定的支持服务',
   },
 ]
@@ -185,7 +185,7 @@ const serviceAreas = [
     name: 'Montgomery County',
     description: '蒙哥马利县',
     cities: ['Rockville', 'Bethesda', 'Silver Spring', 'Gaithersburg', 'Germantown'],
-    color: '#87ceeb',
+    color: '#5B9BD5',
   },
   {
     name: 'Prince George\'s County',
@@ -222,7 +222,6 @@ const serviceAreas = [
 
 
 function About() {
-  const [selectedValue, setSelectedValue] = useState(0)
   const [teamScrollPosition, setTeamScrollPosition] = useState(0)
   const teamScrollRef = useRef(null)
 
@@ -259,7 +258,7 @@ function About() {
       {/* Hero Section */}
       <Box
         sx={{
-          background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0.1) 50%, rgba(135, 206, 235, 0.1) 100%)',
+          background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(91, 155, 213, 0.1) 50%, rgba(91, 155, 213, 0.1) 100%)',
           pt: { xs: 4, md: 8 },
           pb: { xs: 6, md: 10 },
           position: 'relative',
@@ -275,7 +274,7 @@ function About() {
             width: 200,
             height: 200,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.15), rgba(135, 206, 235, 0.1))',
+            background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.15), rgba(91, 155, 213, 0.1))',
             filter: 'blur(40px)',
             willChange: 'auto',
             transform: 'translateZ(0)',
@@ -289,7 +288,7 @@ function About() {
             width: 150,
             height: 150,
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(135, 206, 235, 0.1))',
+            background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.1), rgba(91, 155, 213, 0.1))',
             filter: 'blur(30px)',
             willChange: 'auto',
             transform: 'translateZ(0)',
@@ -306,7 +305,7 @@ function About() {
                 fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
                 fontWeight: 700,
                 lineHeight: 1.2,
-                background: 'linear-gradient(135deg, #2c3e50 0%, #87ceeb 50%, #87ceeb 100%)',
+                background: 'linear-gradient(135deg, #2c3e50 0%, #5B9BD5 50%, #5B9BD5 100%)',
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
@@ -327,7 +326,7 @@ function About() {
                 mx: 'auto',
               }}
             >
-              <Box component="span" sx={{ color: '#87ceeb', fontWeight: 500 }}>
+              <Box component="span" sx={{ color: '#5B9BD5', fontWeight: 500 }}>
                 马里兰州值得信赖的居家护理服务提供商
               </Box>
               <br />
@@ -364,7 +363,7 @@ function About() {
                   }}
                 >
                   All People. All Heart.{' '}
-                  <Box component="span" sx={{ color: '#87ceeb' }}>
+                  <Box component="span" sx={{ color: '#5B9BD5' }}>
                     Allcare.
                   </Box>
                 </Typography>
@@ -400,7 +399,7 @@ function About() {
               <Grid container spacing={2} sx={{ mt: 2 }}>
                 <Grid item xs={6}>
                   <Box sx={{ textAlign: 'center', p: 2 }}>
-                    <Typography variant="h4" sx={{ color: '#87ceeb', fontWeight: 700 }}>
+                    <Typography variant="h4" sx={{ color: '#5B9BD5', fontWeight: 700 }}>
                       {companyInfo.founded}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -410,7 +409,7 @@ function About() {
                 </Grid>
                 <Grid item xs={6}>
                   <Box sx={{ textAlign: 'center', p: 2 }}>
-                    <Typography variant="h4" sx={{ color: '#87ceeb', fontWeight: 700 }}>
+                    <Typography variant="h4" sx={{ color: '#5B9BD5', fontWeight: 700 }}>
                       {companyInfo.employees}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
@@ -426,7 +425,7 @@ function About() {
                 sx={{
                   position: 'relative',
                   height: 400,
-                  background: 'linear-gradient(135deg, #87ceeb 0%, #87ceeb 50%, #87ceeb 100%)',
+                  background: 'linear-gradient(135deg, #5B9BD5 0%, #5B9BD5 50%, #5B9BD5 100%)',
                   borderRadius: 4,
                   display: 'flex',
                   alignItems: 'center',
@@ -505,31 +504,20 @@ function About() {
             {values.map((value, index) => (
               <Grid item xs={12} sm={6} md={3} key={index}>
                 <Card
-                  onClick={() => setSelectedValue(index)}
                   sx={{
                     textAlign: 'center',
                     p: 4,
                     height: '100%',
-                    cursor: 'pointer',
                     position: 'relative',
-                    background: selectedValue === index
-                      ? `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`
-                      : 'rgba(255, 255, 255, 0.95)',
-                    border: selectedValue === index
-                      ? `2px solid ${value.color}`
-                      : '1px solid rgba(255, 255, 255, 0.3)',
+                    background: 'white',
+                    border: '1px solid rgba(0, 0, 0, 0.1)',
                     borderRadius: 3,
-                    boxShadow: selectedValue === index
-                      ? `0 16px 48px ${value.color}20`
-                      : '0 8px 32px rgba(0, 0, 0, 0.1)',
-                    transition: 'transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease',
-                    transform: selectedValue === index ? 'translateY(-4px)' : 'translateY(0)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+                    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                     willChange: 'transform, box-shadow',
                     '&:hover': {
-                      transform: 'translateY(-6px)',
-                      boxShadow: `0 12px 32px ${value.color}20`,
-                      border: `2px solid ${value.color}`,
-                      background: `linear-gradient(135deg, ${value.color}15 0%, ${value.color}25 100%)`,
+                      transform: 'translateY(-4px)',
+                      boxShadow: '0 12px 32px rgba(0, 0, 0, 0.12)',
                     },
                   }}
                 >
@@ -542,9 +530,6 @@ function About() {
                       bgcolor: value.color,
                       color: 'white',
                       boxShadow: `0 8px 24px ${value.color}40`,
-                      transition: 'transform 0.2s ease',
-                      transform: selectedValue === index ? 'scale(1.05)' : 'scale(1)',
-                      willChange: 'transform',
                     }}
                   >
                     {value.icon}
@@ -570,28 +555,17 @@ function About() {
                   >
                     {value.description}
                   </Typography>
-                  {selectedValue === index && (
-                    <Box
-                      sx={{
-                        mt: 2,
-                        p: 2,
-                        bgcolor: 'rgba(255, 255, 255, 0.8)',
-                        borderRadius: 2,
-                        border: `1px solid ${value.color}30`,
-                      }}
-                    >
-                      <Typography
-                        variant="body2"
-                        sx={{
-                          color: 'text.secondary',
-                          fontSize: '0.875rem',
-                          fontStyle: 'italic',
-                        }}
-                      >
-                        {value.details}
-                      </Typography>
-                    </Box>
-                  )}
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: 'text.secondary',
+                      fontSize: '0.875rem',
+                      fontStyle: 'italic',
+                      mt: 2,
+                    }}
+                  >
+                    {value.details}
+                  </Typography>
                 </Card>
               </Grid>
             ))}
@@ -885,7 +859,7 @@ function About() {
                 <TimelineSeparator>
                   <TimelineDot
                     sx={{
-                      bgcolor: '#87ceeb', // 更蓝的天空蓝色
+                      bgcolor: '#5B9BD5', // 使用首页主蓝色
                       transition: 'transform 0.2s ease',
                       '&:hover': {
                         transform: 'scale(1.05)',
@@ -900,19 +874,19 @@ function About() {
                     sx={{
                       p: 3,
                       background: 'rgba(255, 255, 255, 0.95)',
-                      border: '1px solid rgba(135, 206, 235, 0.2)',
+                      border: '1px solid rgba(91, 155, 213, 0.2)',
                       borderRadius: 3,
                       transition: 'transform 0.2s ease, box-shadow 0.2s ease',
                       '&:hover': {
                         transform: 'translateY(-2px)',
-                        boxShadow: '0 8px 24px rgba(135, 206, 235, 0.15)',
+                        boxShadow: '0 8px 24px rgba(91, 155, 213, 0.15)',
                       },
                     }}
                   >
                     <Typography
                       variant="h6"
                       sx={{
-                        color: '#87ceeb',
+                        color: '#5B9BD5',
                         fontWeight: 700,
                         mb: 1,
                       }}
@@ -949,7 +923,7 @@ function About() {
       <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 8 }}>
         <Box
           sx={{
-            background: 'linear-gradient(135deg, rgba(135, 206, 235, 0.1) 0%, rgba(135, 206, 235, 0.1) 100%)',
+            background: 'linear-gradient(135deg, rgba(91, 155, 213, 0.1) 0%, rgba(91, 155, 213, 0.1) 100%)',
             borderRadius: 4,
             p: { xs: 4, md: 6 },
             mb: 4,
@@ -1053,11 +1027,11 @@ function About() {
                 icon={<PhoneIcon />}
                 label="(240) 668-4666"
                 sx={{
-                  bgcolor: 'rgba(59, 130, 246, 0.1)',
-                  color: '#3b82f6',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  bgcolor: 'rgba(91, 155, 213, 0.1)',
+                  color: '#5B9BD5',
+                  border: '1px solid rgba(91, 155, 213, 0.3)',
                   '&:hover': {
-                    bgcolor: 'rgba(59, 130, 246, 0.2)',
+                    bgcolor: 'rgba(91, 155, 213, 0.2)',
                   },
                 }}
               />
@@ -1065,11 +1039,11 @@ function About() {
                 icon={<EmailIcon />}
                 label="allcaremd@outlook.com"
                 sx={{
-                  bgcolor: 'rgba(16, 185, 129, 0.1)',
-                  color: '#10b981',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  bgcolor: 'rgba(91, 155, 213, 0.1)',
+                  color: '#5B9BD5',
+                  border: '1px solid rgba(91, 155, 213, 0.3)',
                   '&:hover': {
-                    bgcolor: 'rgba(16, 185, 129, 0.2)',
+                    bgcolor: 'rgba(91, 155, 213, 0.2)',
                   },
                 }}
               />
