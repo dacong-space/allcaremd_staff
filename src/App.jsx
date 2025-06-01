@@ -19,6 +19,7 @@ const Others = React.lazy(() => import('./pages/Others'))
 const PCATraining = React.lazy(() => import('./pages/PCATraining'))
 const CPRTraining = React.lazy(() => import('./pages/CPRTraining'))
 const OtherTraining = React.lazy(() => import('./pages/OtherTraining'))
+const NotFound = React.lazy(() => import('./pages/NotFound'))
 
 
 
@@ -55,6 +56,9 @@ function App() {
               {/* 保持旧路径的兼容性 */}
               <Route path="/files" element={<Files />} />
               <Route path="/others" element={<Others />} />
+
+              {/* 404 Page - 必须放在最后 */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </Box>
