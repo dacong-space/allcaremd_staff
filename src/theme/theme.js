@@ -86,18 +86,27 @@ const theme = createTheme({
       fontWeight: 600,
       lineHeight: 1.4,
       color: '#1e2022',
+      '@media (max-width:600px)': {
+        fontSize: '1.5rem',
+      },
     },
     h5: {
       fontSize: '1.5rem',
       fontWeight: 600,
       lineHeight: 1.5,
       color: '#1e2022',
+      '@media (max-width:600px)': {
+        fontSize: '1.25rem',
+      },
     },
     h6: {
       fontSize: '1.25rem',
       fontWeight: 600,
       lineHeight: 1.6,
       color: '#1e2022',
+      '@media (max-width:600px)': {
+        fontSize: '1.1rem',
+      },
     },
     subtitle1: {
       fontSize: '1.125rem',
@@ -164,10 +173,19 @@ const theme = createTheme({
       styleOverrides: {
         html: {
           overscrollBehavior: 'none', // 禁用过度滚动效果
+          // 移动端优化
+          '@media (max-width: 768px)': {
+            fontSize: '14px', // 移动端基础字体稍小
+          },
         },
         body: {
           backgroundColor: '#ffffff',
           overscrollBehavior: 'none', // 禁用过度滚动效果
+          // 移动端优化
+          '@media (max-width: 768px)': {
+            fontSize: '14px',
+            lineHeight: 1.6,
+          },
         },
       },
     },
@@ -190,6 +208,12 @@ const theme = createTheme({
           fontSize: '0.875rem',
           padding: '10px 20px',
           transition: 'all 0.2s ease-in-out',
+          // 移动端触摸友好
+          '@media (max-width: 768px)': {
+            minHeight: '44px', // 触摸友好的最小高度
+            padding: '12px 24px', // 更大的触摸区域
+            fontSize: '0.9rem', // 稍大的字体便于阅读
+          },
         },
         contained: {
           boxShadow: '0px 8px 25px rgba(135, 206, 235, 0.24)', // 更蓝的天空蓝色阴影
@@ -223,6 +247,14 @@ const theme = createTheme({
             boxShadow: '0px 8px 25px rgba(145, 158, 171, 0.24)',
             transform: 'translateY(-4px)',
           },
+          // 移动端优化
+          '@media (max-width: 768px)': {
+            borderRadius: 12, // 稍小的圆角
+            margin: '0 4px', // 左右留白
+            '&:hover': {
+              transform: 'none', // 移动端禁用悬停动画
+            },
+          },
         },
       },
     },
@@ -242,6 +274,10 @@ const theme = createTheme({
         root: {
           paddingLeft: '24px',
           paddingRight: '24px',
+          '@media (max-width: 480px)': {
+            paddingLeft: '16px', // 小屏幕减少内边距
+            paddingRight: '16px',
+          },
           '@media (min-width: 600px)': {
             paddingLeft: '32px',
             paddingRight: '32px',

@@ -22,6 +22,8 @@ import {
   CircularProgress,
   Alert,
   GlobalStyles,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material'
 import {
   Folder as FolderIcon,
@@ -91,6 +93,10 @@ const fileCategories = [
 // 动态文件数据将通过 useEffect 加载
 
 function Files() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'))
+
   const [selectedCategory, setSelectedCategory] = useState('')
   const [searchTerm, setSearchTerm] = useState('')
   const [files, setFiles] = useState({})
@@ -187,14 +193,34 @@ function Files() {
   return (
     <>
       {globalStyles}
-      <Container maxWidth={false} sx={{ maxWidth: '1400px', mx: 'auto', px: 3, py: 4 }}>
+      <Container maxWidth={false} sx={{
+        maxWidth: '1400px',
+        mx: 'auto',
+        px: isMobile ? 2 : 3,
+        py: isMobile ? 2 : 4
+      }}>
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 6 }}>
-        <Typography variant="h2" component="h1" gutterBottom>
+        <Typography
+          variant={isMobile ? "h3" : "h2"}
+          component="h1"
+          gutterBottom
+          sx={{ fontSize: isSmallMobile ? '1.75rem' : 'inherit' }}
+        >
           Allcare Document Center
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', mb: 3, fontStyle: 'italic' }}>
-          Access key care documents, including agreements, <br></br>policies, and training materials.
+        <Typography
+          variant={isMobile ? "body1" : "h6"}
+          color="text.secondary"
+          sx={{
+            maxWidth: 600,
+            mx: 'auto',
+            mb: 3,
+            fontStyle: 'italic',
+            px: isMobile ? 2 : 0
+          }}
+        >
+          Access key care documents, including agreements, {isMobile ? '' : <br/>}policies, and training materials.
         </Typography>
 
         {/* 状态指示器 */}
@@ -216,7 +242,7 @@ function Files() {
       </Box>
 
       {/* File Categories Overview */}
-      <Grid container spacing={4} sx={{ mb: 6 }}>
+      <Grid container spacing={isMobile ? 2 : 4} sx={{ mb: 6 }}>
         {fileCategories.map((category) => (
           <Grid item xs={12} sm={6} md={3} key={category.id}>
             <Card
@@ -253,8 +279,12 @@ function Files() {
                   transition: 'opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
                   willChange: 'opacity',
                 },
-                '&:hover': {
-                  // 极其微妙的悬停效果，减少跳动感
+                '&:hover': isMobile ? {
+                  // 移动端禁用悬停动画
+                  transform: 'none',
+                  boxShadow: 'inherit',
+                } : {
+                  // 桌面端保留微妙的悬停效果
                   transform: 'translate3d(0, -6px, 0) scale(1.01)',
                   boxShadow: `0 12px 40px rgba(91, 155, 213, 0.2), 0 6px 20px rgba(91, 155, 213, 0.1)`,
                   '&::before': {
