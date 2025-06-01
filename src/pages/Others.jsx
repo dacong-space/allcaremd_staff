@@ -6,9 +6,7 @@ import {
   Grid,
   Card,
   CardContent,
-  CardActions,
   Button,
-  IconButton,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -22,7 +20,6 @@ import {
   Divider,
   Alert,
   Paper,
-  Avatar,
   useTheme,
   useMediaQuery,
 } from '@mui/material'
@@ -31,15 +28,12 @@ import {
   Phone as PhoneIcon,
   Email as EmailIcon,
   LocationOn as LocationIcon,
-  Assignment as AssignmentIcon,
   Help as HelpIcon,
   Feedback as FeedbackIcon,
   Security as SecurityIcon,
   Policy as PolicyIcon,
-  ContactSupport as ContactSupportIcon,
   AccessTime as AccessTimeIcon,
   LocalHospital as EmergencyIcon,
-  Close as CloseIcon,
   Send as SendIcon,
   CheckCircle as CheckCircleIcon,
 } from '@mui/icons-material'
@@ -257,6 +251,297 @@ function Others() {
                   />
                 </Box>
               )}
+            </DialogContent>
+          </>
+        )
+
+      case 'policy':
+        return (
+          <>
+            <DialogTitle sx={{ color: '#8b5cf6' }}>政策制度</DialogTitle>
+            <DialogContent>
+              <Typography variant="h6" gutterBottom sx={{ color: '#8b5cf6', fontWeight: 'bold' }}>
+                公司政策与制度规范
+              </Typography>
+
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                  📋 员工行为准则
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="专业服务态度"
+                      secondary="始终保持专业、友善、耐心的服务态度，尊重每一位客户"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="准时到岗"
+                      secondary="按时到达工作地点，如有特殊情况需提前通知主管"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="保密义务"
+                      secondary="严格保护客户隐私信息，不得向第三方泄露任何客户资料"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  🏥 护理服务标准
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="个人卫生护理"
+                      secondary="协助客户进行洗浴、更衣、口腔护理等日常卫生活动"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="生活起居协助"
+                      secondary="帮助客户进行日常活动，如用餐、行走、转移等"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="健康监测"
+                      secondary="观察并记录客户的身体状况变化，及时报告异常情况"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  📞 沟通与报告制度
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="定期汇报"
+                      secondary="每日向主管汇报客户状况和服务完成情况"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="紧急情况处理"
+                      secondary="遇到紧急情况立即联系主管和相关医疗机构"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="家属沟通"
+                      secondary="与客户家属保持良好沟通，及时反馈护理情况"
+                    />
+                  </ListItem>
+                </List>
+              </Box>
+
+              <Alert severity="warning" sx={{ mt: 3 }}>
+                <Typography variant="body2">
+                  <strong>重要提醒：</strong>所有员工必须严格遵守公司政策制度，违反者将面临相应的纪律处分。
+                </Typography>
+              </Alert>
+            </DialogContent>
+          </>
+        )
+
+      case 'safety':
+        return (
+          <>
+            <DialogTitle sx={{ color: '#f59e0b' }}>安全须知</DialogTitle>
+            <DialogContent>
+              <Typography variant="h6" gutterBottom sx={{ color: '#f59e0b', fontWeight: 'bold' }}>
+                工作安全指南与注意事项
+              </Typography>
+
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                  🛡️ 个人安全防护
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="佩戴防护用品"
+                      secondary="根据护理需要正确佩戴手套、口罩等防护用品"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="手部卫生"
+                      secondary="护理前后必须彻底清洁双手，使用洗手液或消毒剂"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="避免交叉感染"
+                      secondary="严格按照感染控制程序操作，防止疾病传播"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  🏠 环境安全检查
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="防跌倒措施"
+                      secondary="检查地面是否湿滑，确保通道畅通，协助客户安全行走"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="用电安全"
+                      secondary="检查电器设备是否正常，避免使用损坏的电器"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="药物安全"
+                      secondary="协助客户按医嘱服药，注意药物保存和有效期"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  🚨 紧急情况处理
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="医疗急救"
+                      secondary="发现客户身体异常立即拨打911，同时通知家属和主管"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="意外伤害"
+                      secondary="如发生跌倒、烫伤等意外，立即采取急救措施并报告"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="火灾逃生"
+                      secondary="熟悉客户住所的逃生路线，确保在紧急情况下能安全撤离"
+                    />
+                  </ListItem>
+                </List>
+              </Box>
+
+              <Alert severity="error" sx={{ mt: 3 }}>
+                <Typography variant="body2">
+                  <strong>紧急联系电话：</strong>医疗急救 911 | 公司热线 (240) 668-4666
+                </Typography>
+              </Alert>
+            </DialogContent>
+          </>
+        )
+
+      case 'support':
+        return (
+          <>
+            <DialogTitle sx={{ color: '#06b6d4' }}>技术支持</DialogTitle>
+            <DialogContent>
+              <Typography variant="h6" gutterBottom sx={{ color: '#06b6d4', fontWeight: 'bold' }}>
+                系统使用帮助与技术问题解决
+              </Typography>
+
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                  💻 系统使用指南
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="登录系统"
+                      secondary="使用公司提供的用户名和密码登录员工系统"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="查看排班"
+                      secondary="在系统中查看个人工作排班和客户信息"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="提交报告"
+                      secondary="按要求在系统中提交工作报告和客户护理记录"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  📱 移动应用使用
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="下载APP"
+                      secondary="从应用商店下载公司官方移动应用"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="实时打卡"
+                      secondary="使用手机APP进行上下班打卡和位置签到"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="接收通知"
+                      secondary="及时接收公司通知、排班变更等重要信息"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  🔧 常见问题解决
+                </Typography>
+                <List dense>
+                  <ListItem>
+                    <ListItemText
+                      primary="忘记密码"
+                      secondary="联系IT支持重置密码，或使用系统的密码重置功能"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="系统故障"
+                      secondary="遇到系统问题时，先尝试刷新页面或重新登录"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="数据同步"
+                      secondary="确保网络连接正常，数据会自动同步到服务器"
+                    />
+                  </ListItem>
+                </List>
+
+                <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                  📞 技术支持联系方式
+                </Typography>
+                <Box sx={{ bgcolor: '#f0f9ff', p: 2, borderRadius: 1, mt: 2 }}>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>IT支持热线：</strong> (240) 668-4666 转分机 IT
+                  </Typography>
+                  <Typography variant="body2" gutterBottom>
+                    <strong>邮箱支持：</strong> it-support@allcaremd.com
+                  </Typography>
+                  <Typography variant="body2">
+                    <strong>支持时间：</strong> 周一至周五 9:00 AM - 6:00 PM
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Alert severity="info" sx={{ mt: 3 }}>
+                <Typography variant="body2">
+                  <strong>提示：</strong>遇到技术问题时，请详细描述问题现象，以便技术人员快速定位和解决。
+                </Typography>
+              </Alert>
             </DialogContent>
           </>
         )
