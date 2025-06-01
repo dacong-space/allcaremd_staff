@@ -20,6 +20,7 @@ const PCATraining = React.lazy(() => import('./pages/PCATraining'))
 const CPRTraining = React.lazy(() => import('./pages/CPRTraining'))
 const OtherTraining = React.lazy(() => import('./pages/OtherTraining'))
 const NotFound = React.lazy(() => import('./pages/NotFound'))
+const ErrorTest = React.lazy(() => import('./pages/ErrorTest'))
 
 
 

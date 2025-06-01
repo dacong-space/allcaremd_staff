@@ -29,13 +29,14 @@ class ErrorBoundary extends React.Component {
       return (
         <Box
           sx={{
-            minHeight: '100vh',
+            minHeight: 'calc(100vh - 64px)', // 减去导航栏高度
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             position: 'relative',
             overflow: 'hidden',
+            mt: 0, // 确保没有顶部边距
           }}
         >
           {/* 背景装饰 */}
