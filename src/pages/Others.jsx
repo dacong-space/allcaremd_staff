@@ -198,183 +198,105 @@ function Others() {
       case 'feedback':
         return (
           <>
-            <DialogTitle
-              sx={{
-                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                color: 'white',
-                textAlign: 'center',
-                py: 3,
-                fontSize: '1.5rem',
-                fontWeight: 'bold'
-              }}
-            >
-              💬 意见反馈
-            </DialogTitle>
-            <DialogContent sx={{ p: 0 }}>
+            <DialogTitle sx={{ color: '#10b981' }}>意见反馈</DialogTitle>
+            <DialogContent>
               {submitSuccess ? (
-                <Box
-                  textAlign="center"
-                  py={6}
-                  sx={{
-                    background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-                  }}
-                >
-                  <CheckCircleIcon sx={{ fontSize: 80, color: '#10b981', mb: 3 }} />
-                  <Typography variant="h5" gutterBottom fontWeight="bold" color="#059669">
-                    反馈提交成功！
+                <Box textAlign="center" py={4}>
+                  <CheckCircleIcon sx={{ fontSize: 60, color: '#10b981', mb: 2 }} />
+                  <Typography variant="h6" gutterBottom>
+                    反馈提交成功
                   </Typography>
-                  <Typography color="text.secondary" sx={{ fontSize: '1.1rem' }}>
+                  <Typography color="text.secondary">
                     感谢您的宝贵意见，我们会认真处理您的反馈
                   </Typography>
-                  <Box sx={{ mt: 3 }}>
-                    <Chip
-                      label="预计回复时间：1-2个工作日"
-                      sx={{
-                        bgcolor: '#10b981',
-                        color: 'white',
-                        fontWeight: 'bold'
-                      }}
-                    />
-                  </Box>
                 </Box>
               ) : (
-                <Box sx={{ p: 4, background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)' }}>
-                  {/* 反馈类型选择 */}
-                  <Box sx={{ mb: 3 }}>
-                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ color: '#374151', mb: 2 }}>
-                      📋 请选择反馈类型
+                <Box>
+                  <Typography variant="h6" gutterBottom sx={{ color: '#10b981', fontWeight: 'bold' }}>
+                    员工意见反馈系统
+                  </Typography>
+
+                  <Box sx={{ mt: 3 }}>
+                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
+                      反馈类型
                     </Typography>
-                    <TextField
-                      select
-                      fullWidth
-                      value={feedbackForm.type}
-                      onChange={(e) => setFeedbackForm({...feedbackForm, type: e.target.value})}
-                      placeholder="请选择反馈类型"
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 2,
-                          bgcolor: 'white',
-                          '&:hover': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                          '&.Mui-focused': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                        }
-                      }}
-                    >
-                      <MenuItem value="suggestion">💡 建议 - 改进建议和优化意见</MenuItem>
-                      <MenuItem value="complaint">⚠️ 投诉 - 服务问题和不满意见</MenuItem>
-                      <MenuItem value="question">❓ 问题咨询 - 工作相关疑问</MenuItem>
-                      <MenuItem value="praise">👍 表扬 - 正面反馈和表扬</MenuItem>
-                    </TextField>
+                    <List dense>
+                      <ListItem>
+                        <TextField
+                          select
+                          fullWidth
+                          label="请选择反馈类型"
+                          value={feedbackForm.type}
+                          onChange={(e) => setFeedbackForm({...feedbackForm, type: e.target.value})}
+                          sx={{ mb: 2 }}
+                        >
+                          <MenuItem value="suggestion">工作建议</MenuItem>
+                          <MenuItem value="complaint">问题投诉</MenuItem>
+                          <MenuItem value="question">疑问咨询</MenuItem>
+                          <MenuItem value="praise">表扬反馈</MenuItem>
+                        </TextField>
+                      </ListItem>
+                    </List>
+
+                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                      反馈主题
+                    </Typography>
+                    <List dense>
+                      <ListItem>
+                        <TextField
+                          fullWidth
+                          label="主题"
+                          value={feedbackForm.subject}
+                          onChange={(e) => setFeedbackForm({...feedbackForm, subject: e.target.value})}
+                          placeholder="请简要描述反馈主题"
+                          sx={{ mb: 2 }}
+                        />
+                      </ListItem>
+                    </List>
+
+                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                      详细内容
+                    </Typography>
+                    <List dense>
+                      <ListItem>
+                        <TextField
+                          fullWidth
+                          multiline
+                          rows={4}
+                          label="详细内容"
+                          value={feedbackForm.message}
+                          onChange={(e) => setFeedbackForm({...feedbackForm, message: e.target.value})}
+                          placeholder="请详细描述您的反馈内容，包括具体情况、建议或问题"
+                          sx={{ mb: 2 }}
+                        />
+                      </ListItem>
+                    </List>
+
+                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ mt: 3 }}>
+                      联系方式
+                    </Typography>
+                    <List dense>
+                      <ListItem>
+                        <ListItemText
+                          primary="联系方式（可选）"
+                          secondary="请留下您的电话或邮箱，以便我们及时回复"
+                        />
+                      </ListItem>
+                      <ListItem>
+                        <TextField
+                          fullWidth
+                          label="联系方式（可选）"
+                          value={feedbackForm.contact}
+                          onChange={(e) => setFeedbackForm({...feedbackForm, contact: e.target.value})}
+                          placeholder="电话或邮箱"
+                        />
+                      </ListItem>
+                    </List>
                   </Box>
 
-                  {/* 主题输入 */}
-                  <Box sx={{ mb: 3 }}>
-                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ color: '#374151', mb: 2 }}>
-                      📝 主题
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      value={feedbackForm.subject}
-                      onChange={(e) => setFeedbackForm({...feedbackForm, subject: e.target.value})}
-                      placeholder="请简要描述反馈主题"
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 2,
-                          bgcolor: 'white',
-                          '&:hover': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                          '&.Mui-focused': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                        }
-                      }}
-                    />
-                  </Box>
-
-                  {/* 详细内容 */}
-                  <Box sx={{ mb: 3 }}>
-                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ color: '#374151', mb: 2 }}>
-                      📄 详细内容
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      multiline
-                      rows={5}
-                      value={feedbackForm.message}
-                      onChange={(e) => setFeedbackForm({...feedbackForm, message: e.target.value})}
-                      placeholder="请详细描述您的反馈内容，包括具体情况、建议或问题..."
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 2,
-                          bgcolor: 'white',
-                          '&:hover': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                          '&.Mui-focused': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                        }
-                      }}
-                    />
-                  </Box>
-
-                  {/* 联系方式 */}
-                  <Box sx={{ mb: 2 }}>
-                    <Typography variant="subtitle1" fontWeight="bold" gutterBottom sx={{ color: '#374151', mb: 2 }}>
-                      📞 联系方式 <Chip label="可选" size="small" sx={{ ml: 1, bgcolor: '#e5e7eb' }} />
-                    </Typography>
-                    <TextField
-                      fullWidth
-                      value={feedbackForm.contact}
-                      onChange={(e) => setFeedbackForm({...feedbackForm, contact: e.target.value})}
-                      placeholder="请留下您的电话或邮箱，以便我们及时回复"
-                      sx={{
-                        '& .MuiOutlinedInput-root': {
-                          borderRadius: 2,
-                          bgcolor: 'white',
-                          '&:hover': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                          '&.Mui-focused': {
-                            '& .MuiOutlinedInput-notchedOutline': {
-                              borderColor: '#10b981',
-                            },
-                          },
-                        }
-                      }}
-                    />
-                  </Box>
-
-                  {/* 提示信息 */}
-                  <Alert
-                    severity="info"
-                    sx={{
-                      mt: 3,
-                      borderRadius: 2,
-                      bgcolor: '#eff6ff',
-                      border: '1px solid #bfdbfe'
-                    }}
-                  >
+                  <Alert severity="info" sx={{ mt: 3 }}>
                     <Typography variant="body2">
-                      <strong>温馨提示：</strong>我们重视每一条反馈，会在1-2个工作日内给予回复。紧急问题请直接拨打 (240) 668-4666。
+                      我们重视每一条反馈，会在1-2个工作日内给予回复。紧急问题请直接拨打 (240) 668-4666。
                     </Typography>
                   </Alert>
                 </Box>
@@ -796,51 +718,19 @@ function Others() {
         fullScreen={isMobile}
       >
         {renderDialogContent()}
-        <DialogActions sx={{ p: 3, background: openDialog === 'feedback' ? 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)' : 'transparent' }}>
+        <DialogActions>
           {openDialog === 'feedback' && !submitSuccess && (
             <Button
               onClick={handleFeedbackSubmit}
               variant="contained"
               startIcon={<SendIcon />}
               disabled={!feedbackForm.type || !feedbackForm.subject || !feedbackForm.message}
-              sx={{
-                background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                color: 'white',
-                fontWeight: 'bold',
-                py: 1.5,
-                px: 4,
-                borderRadius: 2,
-                '&:hover': {
-                  background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
-                  transform: 'translateY(-1px)',
-                  boxShadow: '0 4px 12px rgba(16, 185, 129, 0.3)',
-                },
-                '&:disabled': {
-                  background: '#d1d5db',
-                  color: '#9ca3af',
-                },
-              }}
             >
-              💬 提交反馈
+              提交反馈
             </Button>
           )}
-          <Button
-            onClick={handleDialogClose}
-            variant="outlined"
-            sx={{
-              borderColor: '#d1d5db',
-              color: '#6b7280',
-              fontWeight: 'bold',
-              py: 1.5,
-              px: 4,
-              borderRadius: 2,
-              '&:hover': {
-                borderColor: '#9ca3af',
-                bgcolor: '#f9fafb',
-              },
-            }}
-          >
-            {submitSuccess ? '✅ 完成' : '❌ 关闭'}
+          <Button onClick={handleDialogClose} variant="outlined">
+            {submitSuccess ? '完成' : '关闭'}
           </Button>
         </DialogActions>
       </Dialog>

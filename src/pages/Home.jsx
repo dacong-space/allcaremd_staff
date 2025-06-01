@@ -44,7 +44,7 @@ const HERO_IMAGES = [
     title: "温柔护理时刻"
   },
   {
-    src: "/images/20250521_2107_Diverse Healthcare Team_simple_compose_01jvtrew1ee0zs0ad3k3csjh2g.png",
+    src: "/images/20250521_2115_Elderly Joy in Park_simple_compose_01jvtrwkyce12r2h5px5v4fs7r.png",
     alt: "Allcare Health Care 专业医疗团队",
     title: "多元化医疗团队"
   },
@@ -54,7 +54,7 @@ const HERO_IMAGES = [
     title: "快乐的老年人聚会"
   },
   {
-    src: "/images/20250521_2115_Elderly Joy in Park_simple_compose_01jvtrwkyce12r2h5px5v4fs7r.png",
+    src: "/images/20250521_2107_Diverse Healthcare Team_simple_compose_01jvtrew1ee0zs0ad3k3csjh2g.png",
     alt: "Allcare Health Care 户外护理服务",
     title: "老年人在公园的快乐时光"
   }
@@ -585,7 +585,7 @@ function Home() {
               }}
             >
               <img
-                src="/images/20250521_2054_Gentle Caregiving Moment_simple_compose_01jvtqn1m5ev0aph6cw6p15pf0.png"
+                src="/images/20250521_2107_Diverse Healthcare Team_simple_compose_01jvtrew1ee0zs0ad3k3csjh2g.png"
                 alt="Gentle Caregiving Moment"
                 style={{
                   width: '100%',
