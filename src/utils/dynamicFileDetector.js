@@ -3,7 +3,31 @@
  * 通过尝试访问文件来检测哪些PDF文件实际存在
  */
 
-// 按分类组织的已知文件（根据实际文件夹内容）
+// 常见的PDF文件名模式（用于智能检测）
+const COMMON_PDF_PATTERNS = [
+  // 通用模式
+  'document.pdf', 'file.pdf', 'form.pdf', 'manual.pdf', 'guide.pdf',
+  'handbook.pdf', 'policy.pdf', 'procedure.pdf', 'agreement.pdf',
+  'contract.pdf', 'template.pdf', 'checklist.pdf', 'report.pdf',
+
+  // 入职相关
+  'employee_handbook.pdf', 'onboarding_checklist.pdf', 'new_hire_forms.pdf',
+  'employment_agreement.pdf', 'job_description.pdf', 'orientation_guide.pdf',
+
+  // 客户相关
+  'client_agreement.pdf', 'service_contract.pdf', 'care_plan.pdf',
+  'client_intake.pdf', 'assessment_form.pdf', 'consent_form.pdf',
+
+  // 培训相关
+  'training_manual.pdf', 'safety_guidelines.pdf', 'certification.pdf',
+  'course_materials.pdf', 'training_checklist.pdf', 'competency_test.pdf',
+
+  // 表格相关
+  'daily_report.pdf', 'timesheet.pdf', 'incident_report.pdf',
+  'medication_log.pdf', 'care_notes.pdf', 'evaluation_form.pdf'
+]
+
+// 按分类组织的已知文件（这些是确定存在的文件）
 const KNOWN_FILES_BY_CATEGORY = {
   onboarding: ['Test-3.pdf', 'Test-6.pdf'],
   client: ['Test-1.pdf', 'Test-6.pdf'],
@@ -86,7 +110,31 @@ async function getFileDetails(category, filename) {
 function getFilesToCheck(category) {
   const knownFiles = KNOWN_FILES_BY_CATEGORY[category] || []
   const dynamicFiles = Array.from(discoveredFiles[category] || [])
-  return [...knownFiles, ...dynamicFiles]
+
+  // 添加通用模式文件名
+  const commonPatterns = COMMON_PDF_PATTERNS.slice()
+
+  // 生成数字序列文件名 (1.pdf, 2.pdf, ..., 50.pdf)
+  for (let i = 1; i <= 50; i++) {
+    commonPatterns.push(`${i}.pdf`)
+  }
+
+  // 生成Test序列文件名 (Test-1.pdf, Test-2.pdf, ..., Test-20.pdf)
+  for (let i = 1; i <= 20; i++) {
+    commonPatterns.push(`Test-${i}.pdf`)
+  }
+
+  // 生成常见的文档名称变体
+  const baseNames = ['document', 'file', 'form', 'manual', 'guide', 'policy', 'procedure']
+  baseNames.forEach(base => {
+    for (let i = 1; i <= 10; i++) {
+      commonPatterns.push(`${base}${i}.pdf`)
+      commonPatterns.push(`${base}_${i}.pdf`)
+      commonPatterns.push(`${base}-${i}.pdf`)
+    }
+  })
+
+  return [...new Set([...knownFiles, ...dynamicFiles, ...commonPatterns])]
 }
 
 /**
@@ -150,6 +198,11 @@ export async function scanAllFiles() {
  * 添加新的可能文件名到指定分类的检测列表
  */
 export function addPossibleFilename(filename, category = 'onboarding') {
+  // 确保文件名以.pdf结尾
+  if (!filename.toLowerCase().endsWith('.pdf')) {
+    filename += '.pdf'
+  }
+
   const knownFiles = KNOWN_FILES_BY_CATEGORY[category] || []
   if (!knownFiles.includes(filename) && !discoveredFiles[category]?.has(filename)) {
     if (!discoveredFiles[category]) {
@@ -158,6 +211,15 @@ export function addPossibleFilename(filename, category = 'onboarding') {
     discoveredFiles[category].add(filename)
     console.log(`➕ 添加新的文件名到 ${category} 检测列表: ${filename}`)
   }
+}
+
+/**
+ * 批量添加文件名到检测列表
+ */
+export function addMultipleFilenames(filenames, category = 'onboarding') {
+  filenames.forEach(filename => {
+    addPossibleFilename(filename, category)
+  })
 }
 
 /**

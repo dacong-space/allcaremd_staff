@@ -42,6 +42,7 @@ import {
 function Others() {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isSmallMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const [openDialog, setOpenDialog] = useState(null)
   const [feedbackForm, setFeedbackForm] = useState({
     type: '',
@@ -615,10 +616,11 @@ function Others() {
       {/* 页面标题 */}
       <Box textAlign="center" mb={6}>
         <Typography
-          variant="h3"
+          variant={isMobile ? "h2" : "h1"}
           component="h1"
           gutterBottom
           sx={{
+            fontSize: isSmallMobile ? '2rem' : isMobile ? '2.5rem' : '3rem',
             fontWeight: 700,
             background: 'linear-gradient(135deg, #1e293b 0%, #475569 100%)',
             backgroundClip: 'text',

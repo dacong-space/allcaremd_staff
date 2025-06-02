@@ -202,10 +202,14 @@ function Files() {
       {/* Header */}
       <Box textAlign="center" sx={{ mb: 6 }}>
         <Typography
-          variant={isMobile ? "h3" : "h2"}
+          variant={isMobile ? "h2" : "h1"}
           component="h1"
           gutterBottom
-          sx={{ fontSize: isSmallMobile ? '1.75rem' : 'inherit' }}
+          sx={{
+            fontSize: isSmallMobile ? '2rem' : isMobile ? '2.5rem' : '3rem',
+            fontWeight: 700,
+            color: '#1e2022'
+          }}
         >
           Allcare Document Center
         </Typography>
