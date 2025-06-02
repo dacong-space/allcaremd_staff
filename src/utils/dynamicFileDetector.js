@@ -29,7 +29,12 @@ const COMMON_PDF_PATTERNS = [
 
 // 按分类组织的已知文件（这些是确定存在的文件）
 const KNOWN_FILES_BY_CATEGORY = {
-  onboarding: ['Test-3.pdf', 'Test-6.pdf'],
+  onboarding: [
+    'Check List (Chinese).pdf',
+    'Check List (Enligsh).pdf',
+    'Form I-9.pdf',
+    'Form W-4.pdf'
+  ],
   client: ['Test-1.pdf', 'Test-6.pdf'],
   training: ['Test-4.pdf', 'Test-5.pdf'],
   forms: ['Test-2.pdf', 'Test-6.pdf']
